@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PatientBiometricEditForm from "../edit-forms/PatientBiometricEditForm";
 import moment from "moment";
 import PatientReportContent from "./PatientReportContent";
@@ -6,22 +6,22 @@ import PatientBillsContent from "./PatientBillsContent";
 import FuncUtil from "../../utils/FuncUtil";
 
 function UserProfileDetail(props: any) {
-    const {patient,...properties} = props;
-    const [record,setRecord] = useState(patient);
-    const [loaded,setLoaded] = useState(false);
+    const { patient, ...properties } = props;
+    const [record, setRecord] = useState(patient);
+    const [loaded, setLoaded] = useState(false);
     const [refresh, doRefresh] = useState(0);
     const [onEditing, setOnEditing] = useState(false);
     const onUpdate = (e: any) => {
         doRefresh(e.id);
-        setTimeout(()=>{
+        setTimeout(() => {
             setOnEditing(false);
-        },1000);
+        }, 1000);
     }
     const onCancel = (e: any) => {
         setOnEditing(false);
     }
     useEffect(() => {
-        if (loaded==false){
+        if (loaded == false) {
             setRecord(patient);
             setLoaded(false);
         }
@@ -43,7 +43,7 @@ function UserProfileDetail(props: any) {
                                         <div className="align-left p-1">
                                             <a href="#" className="profile-image">
                                                 <img src={patient.photo}
-                                                     className="rounded-circle img-border height-100 width-100" alt="Card image"/>
+                                                    className="rounded-circle img-border height-100 width-100" alt="Card image" />
                                             </a>
                                         </div>
                                         <div className="media-body text-left  mt-1">
@@ -60,7 +60,7 @@ function UserProfileDetail(props: any) {
                                         <div className="card-header pb-0">
                                             <div className="card-title-wrap bar-primary">
                                                 <div className="card-title">Personal Info</div>
-                                                <hr/>
+                                                <hr />
                                             </div>
                                         </div>
                                         <div className="card-content">
@@ -114,7 +114,7 @@ function UserProfileDetail(props: any) {
                                         <div className="card-header pb-0">
                                             <div className="card-title-wrap bar-primary">
                                                 <div className="card-title">Passport Info</div>
-                                                <hr/>
+                                                <hr />
                                             </div>
                                         </div>
                                         <div className="card-content">
@@ -156,7 +156,7 @@ function UserProfileDetail(props: any) {
                                         <div className="card-header pb-0">
                                             <div className="card-title-wrap bar-primary">
                                                 <div className="card-title">Contact Info</div>
-                                                <hr/>
+                                                <hr />
                                             </div>
                                         </div>
                                         <div className="card-content">
@@ -186,7 +186,7 @@ function UserProfileDetail(props: any) {
                                         <div className="card-header pb-0">
                                             <div className="card-title-wrap bar-primary">
                                                 <div className="card-title">Service / Billing Inf</div>
-                                                <hr/>
+                                                <hr />
                                             </div>
                                         </div>
                                         <div className="card-content">
@@ -231,13 +231,13 @@ function UserProfileDetail(props: any) {
                                                     </ul>
                                                     <div className="tab-content px-1 pt-1">
                                                         <div className="tab-pane box-shadow-2 pb-1" id="tab1" aria-labelledby="base-tab1">
-                                                            <PatientBiometricEditForm patient={patient} onUpdate={onUpdate} onCancel={onCancel}/>
+                                                            <PatientBiometricEditForm patient={patient} onUpdate={onUpdate} onCancel={onCancel} />
                                                         </div>
                                                         <div className="tab-pane active box-shadow-2" id="tab2" aria-labelledby="base-tab2">
-                                                            <PatientReportContent patient={patient}/>
+                                                            <PatientReportContent patient={patient} />
                                                         </div>
                                                         <div className="tab-pane box-shadow-2" id="tab3" aria-labelledby="base-tab3">
-                                                            <PatientBillsContent patient={patient}/>
+                                                            <PatientBillsContent patient={patient} />
                                                         </div>
                                                     </div>
                                                 </div>
