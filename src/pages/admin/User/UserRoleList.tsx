@@ -64,8 +64,13 @@ function UserRoleList(props: any) {
     }).catch(reason => {
       console.log(record);
     })
-
   }
+
+  const checkAllListHandler = (e: any) => {
+    console.log(e);
+  }
+
+
 
   const onSuccess = (e: any) => {
     setAction('none');
@@ -152,44 +157,9 @@ function UserRoleList(props: any) {
                 <div className="card">
                   <div className="card-content collapse show">
                     <div className="card-header d-flex justify-content-between ">
-                      <div>
-                        <h5 className={'card-title'}>Permissions of {selected?.name}</h5>
-                      </div>
-                      <div className='d-flex '>
-                        <div className="form-check  ">
-                          <input className="" type="checkbox" id="selectAll" />
-                          <label className="form-check-label   " htmlFor="selectAll">
-                            Select All
-                          </label>
-                        </div>
-                        <div className="form-check  ">
-                          <input className="" type="checkbox" id="selectAll" />
-                          <label className="form-check-label   " htmlFor="selectAll">
-                            Select All
-                          </label>
-                        </div>
-                        <div className="form-check  ">
-                          <input className="" type="checkbox" id="selectAll" />
-                          <label className="form-check-label   " htmlFor="selectAll">
-                            Select All
-                          </label>
-                        </div>
-                        <div className="form-check  ">
-                          <input className="" type="checkbox" id="selectAll" />
-                          <label className="form-check-label   " htmlFor="selectAll">
-                            Select All
-                          </label>
-                        </div>
-                        <div className="form-check  ">
-                          <input className="" type="checkbox" id="selectAll" />
-                          <label className="form-check-label   " htmlFor="selectAll">
-                            Select All
-                          </label>
-                        </div>
 
+                      <h5 className={'card-title'}>Permissions of {selected?.name}</h5>
 
-
-                      </div>
                     </div>
                     <div className="card-body pt-0">
                       <div className="table-responsive">
@@ -198,25 +168,42 @@ function UserRoleList(props: any) {
                             <tr>
                               <th>#</th>
                               <th>User Interface</th>
-                              <th>List</th>
-                              <th>Add</th>
-                              <th>View</th>
-                              <th>Edit</th>
+                              <th className='text-left'>
+                                <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="listAll" />
+                                <label className="form-check-label cursor-pointer" htmlFor="listAll">
+                                  List
+                                </label>
+                              </th>
+                              <th>
+                                <input className="rolegap" type="checkbox" id="addAll" />
+                                <span className='rolegap'>Add</span>
+                              </th>
+                              <th>
+                                <input className="rolegap" type="checkbox" id="viewAll" />
+                                <span className='rolegap'>View</span>
+                              </th>
+                              <th>
+                                <input className="rolegap" type="checkbox" id="editAll" />
+                                <span className='rolegap'>Edit</span>
+                              </th>
                               {/*<th>Delete</th>*/}
-                              <th>Pay</th>
+                              <th>
+                                <input className="rolegap" type="checkbox" id="payAll" />
+                                <span className='rolegap'>Pay</span>
+                              </th>
                             </tr>
                           </thead>
                           <tbody>
                             {selected.privileges.map((privilege: any, index) => (
-                              <tr>
+                              <tr className='' >
                                 <th scope="row">{index + 1}</th>
                                 <td>{privilege.permission}</td>
-                                <td><input type="checkbox" data-id={privilege.id} data-field="list" onClick={checkHandler} checked={privilege.list} disabled={permission.edit ? false : true} /></td>
-                                <td><input type="checkbox" data-id={privilege.id} data-field="create" onClick={checkHandler} checked={privilege.create} disabled={permission.edit ? false : true} /></td>
-                                <td><input type="checkbox" data-id={privilege.id} data-field="view" onClick={checkHandler} checked={privilege.view} disabled={permission.edit ? false : true} /></td>
-                                <td><input type="checkbox" data-id={privilege.id} data-field="edit" onClick={checkHandler} checked={privilege.edit} disabled={permission.edit ? false : true} /></td>
-                                {/*<td><input type="checkbox" data-id={privilege.id} data-field="remove" onClick={checkHandler} checked={privilege.remove}/></td>*/}
-                                <td><input type="checkbox" data-id={privilege.id} data-field="pay" onClick={checkHandler} checked={privilege.pay} disabled={permission.edit ? false : true} /></td>
+                                <td className='text-center'><input type="checkbox" data-id={privilege.id} data-field="list" onClick={checkHandler} checked={privilege.list} disabled={permission.edit ? false : true} /></td>
+                                <td className='text-center'><input type="checkbox" data-id={privilege.id} data-field="create" onClick={checkHandler} checked={privilege.create} disabled={permission.edit ? false : true} /></td>
+                                <td className='text-center'><input type="checkbox" data-id={privilege.id} data-field="view" onClick={checkHandler} checked={privilege.view} disabled={permission.edit ? false : true} /></td>
+                                <td className='text-center'><input type="checkbox" data-id={privilege.id} data-field="edit" onClick={checkHandler} checked={privilege.edit} disabled={permission.edit ? false : true} /></td>
+                                {/*<td className='text-center'><input type="checkbox" data-id={privilege.id} data-field="remove" onClick={checkHandler} checked={privilege.remove}/></td>*/}
+                                <td className='text-center'><input type="checkbox" data-id={privilege.id} data-field="pay" onClick={checkHandler} checked={privilege.pay} disabled={permission.edit ? false : true} /></td>
                               </tr>
                             ))}
                           </tbody>
