@@ -51,6 +51,7 @@ function UserRoleList(props: any) {
       field: e.target.dataset.field,
       value: e.target.checked,
     }
+    console.log(record);
     RoleService.updatePermission(record).then(response => {
       loadRole(response.data.roleId)
       toast.success(response.data.permission + '-' + record.field + ' Updated!', {
@@ -66,8 +67,56 @@ function UserRoleList(props: any) {
     })
   }
 
+  // select all functions
   const checkAllListHandler = (e: any) => {
-    console.log(e);
+    let record = {
+      field: e.target.id,
+      value: e.target.checked,
+    }
+    const result = selected?.privileges?.map(({ id, list }) => ({ id, list, value: record?.value }));
+    console.log(result);
+    // const inputId = e.target.id;
+  }
+
+
+
+  const checkAllAddHandler = (e: any) => {
+    let record = {
+      field: e.target.id,
+      value: e.target.checked,
+    }
+    const result = selected?.privileges?.map(({ id, create }) => ({ id, create, value: record?.value }));
+    console.log(result);
+  }
+
+  const checkAllViewHandler = (e: any) => {
+    let record = {
+      field: e.target.id,
+      value: e.target.checked,
+    }
+    const result = selected?.privileges?.map(({ id, view }) => ({ id, view, value: record?.value }));
+    console.log(result);
+  }
+
+
+  const checkAllEditHandler = (e: any) => {
+    let record = {
+      field: e.target.id,
+      value: e.target.checked,
+    }
+    const result = selected?.privileges?.map(({ id, edit }) => ({ id, edit, value: record?.value }));
+    console.log(result);
+  }
+
+
+  const checkAllPayHandler = (e: any) => {
+    let record = {
+      field: e.target.id,
+      value: e.target.checked,
+    }
+    const result = selected?.privileges?.map(({ id, pay }) => ({ id, pay, value: record?.value }));
+    console.log(selected.privileges);
+    console.log(result);
   }
 
 
@@ -175,21 +224,31 @@ function UserRoleList(props: any) {
                                 </label>
                               </th>
                               <th>
-                                <input className="rolegap" type="checkbox" id="addAll" />
-                                <span className='rolegap'>Add</span>
+                                <input onClick={checkAllAddHandler} className="rolegap cursor-pointer" type="checkbox" id="addAll" />
+                                <label className="form-check-label cursor-pointer" htmlFor="addAll">
+                                  Add
+                                </label>
+
                               </th>
                               <th>
-                                <input className="rolegap" type="checkbox" id="viewAll" />
-                                <span className='rolegap'>View</span>
+                                <input onClick={checkAllViewHandler} className="rolegap cursor-pointer" type="checkbox" id="viewAll" />
+                                <label className="form-check-label cursor-pointer" htmlFor="viewAll">
+                                  View
+                                </label>
                               </th>
                               <th>
-                                <input className="rolegap" type="checkbox" id="editAll" />
-                                <span className='rolegap'>Edit</span>
+                                <input onClick={checkAllEditHandler} className="rolegap cursor-pointer" type="checkbox" id="editAll" />
+                                <label className="form-check-label cursor-pointer" htmlFor="editAll">
+                                  Edit
+                                </label>
                               </th>
                               {/*<th>Delete</th>*/}
                               <th>
-                                <input className="rolegap" type="checkbox" id="payAll" />
-                                <span className='rolegap'>Pay</span>
+                                <input onClick={checkAllPayHandler} className="rolegap cursor-pointer" type="checkbox" id="payAll" />
+                                <label className="form-check-label cursor-pointer" htmlFor="payAll">
+                                  Pay
+                                </label>
+
                               </th>
                             </tr>
                           </thead>

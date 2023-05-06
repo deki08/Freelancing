@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import RefValuesForm from "../../../components/forms/RefValuesForm";
 
-function RefValues(props:any) {
+function RefValues(props: any) {
     return (
         <div className="app-content content">
             <div className="content-wrapper">
@@ -32,7 +32,7 @@ function RefValues(props:any) {
                             <div className="card">
                                 <div className="card-content collapse show">
                                     <div className="card-body">
-                                        <RefValuesForm/>
+                                        <RefValuesForm />
                                     </div>
                                 </div>
                             </div>
