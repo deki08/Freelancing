@@ -279,7 +279,7 @@ export const MENU = [
             { id: 1, label: "Patient Bill", path: "/bills/patient", page: "PATIENT_BILL", permission: 'list' },
             { id: 2, label: "Agent Bill", path: "/bills/agent", page: "AGENT_BILL", permission: 'list' },
             { id: 3, label: "Agency Bill", path: "/bills/agency", page: "AGENCY_BILL", permission: 'list' },
-            // {id: 4, label: "Update Bill", path: "/bills/update",page:"PATIENT_BILL",permission:'edit'},
+            { id: 4, label: "Actual Bill", path: "/bills/actual", page: "PATIENT_BILL", permission: 'edit' },
         ]
     }, {
         id: 4, label: "Test & Package", icon: "ft-tag", open: false,

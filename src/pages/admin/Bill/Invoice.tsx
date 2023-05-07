@@ -53,6 +53,7 @@ function Invoice(props: any) {
         loadBill();
     },[]);
 
+console.log(bill,'billllllll');
 
     return (
         <>

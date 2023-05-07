@@ -115,6 +115,8 @@ function ReportedValues(props: any) {
         setValues(report);
         loadRefValues();
     }, [])
+    console.log(values);
+    
 
     return (
         <form  className="form p-5" style={{background:'white'}} onSubmit={handleSubmit}>
