@@ -1,19 +1,20 @@
-import React, {useState} from 'react';
-import {useNavigate} from "react-router-dom";
-import BillService from "../../../services/BillService";
-import AuthService from "../../../services/AuthService";
+import React, { useState } from 'react';
+import { API_ROUTES } from "../../../utils/constants";
 import DataTable from "../../../components/ui/DataTable";
-import {API_ROUTES} from "../../../utils/constants";
-import PayBillComponent from "./PayBillComponent";
+import { useNavigate } from "react-router-dom";
+import AuthService from "../../../services/AuthService";
+import BillService from "../../../services/BillService";
 import Invoice from "./Invoice";
+import PayBillComponent from "./PayBillComponent";
 
-function AgentBillList(props:any) {
+function ActualBill(props: any) {
     const navigate = useNavigate();
-    const permission = AuthService.getPermission('AGENT_BILL');
+    const permission = AuthService.getPermission('PATIENT_BILL');
     const [data, setDate] = useState([]);
     const [refresh, doRefresh] = useState(0);
     const [action, setAction] = useState('none');
     const [bill, setBill] = useState<any>({});
+    const pageSizes = [100, 200, 500, 1000, 10000];
 
     const payHandler = (e: any) => {
         setBill(JSON.parse(e.target.dataset.record));
@@ -37,16 +38,16 @@ function AgentBillList(props:any) {
     const rowActions = (row: any) => {
         return (
             <>
-                {row.status !== 'PAID' && permission.pay?
+                {row.status !== 'PAID' && permission.pay ?
                     <button type="button" className="btn btn-info btn-xss box-shadow-1"
-                            data-record={JSON.stringify(row)} onClick={payHandler}>
-                        <i className="ft-shopping-cart"></i> Pay
+                        data-record={JSON.stringify(row)} onClick={payHandler}>
+                        <i className="ft-shopping-cart mr-05"></i>Pay
                     </button> : ""
                 }
-                {permission.view?<button type="button" className="btn btn-success btn-xss box-shadow-1"
-                                         data-record={JSON.stringify(row)} onClick={viewHandler}>
+                {permission.view ? <button type="button" className="btn btn-success btn-xss box-shadow-1"
+                    data-record={JSON.stringify(row)} onClick={viewHandler}>
                     <i className="ft-eye"></i> Bill
-                </button>:''}
+                </button> : ''}
             </>);
     }
 
@@ -71,18 +72,14 @@ function AgentBillList(props:any) {
 
 
     const columns: {}[] = [
-        {data: "index", name: "SL", sortable: true, class: "text-center px-0"},
-        {data: "billNo", name: "Bill No", sortable: true, class: "",sort:true},
-        {data: "patientName", name: "Patient Name", class: ""},
-        {data: "passportNo", name: "Passport #", class: "text-center "},
-        {data: "regNo", name: "Patient Id", class: "text-center "},
-        {data: "amount", name: "Amount", class: "text-right", calculateSum: true, currency: true,sort:true},
-        {data: "agentOrAgencyName",name: "Agent",class: "",sort:true},
-        {data: "commission",name: "Commission",class: "text-right",calculateSum: true,currency: true,sort:true},
-        {data: "paid", name: "Paid", class: "text-right", calculateSum: true, currency: true,sort:true},
-        {data: "due", name: "Due", class: "text-right", calculateSum: true, currency: true,sort:true},
-        {data: "status",name: "Status", render: statusRender, class: "text-center",sort:true},
-        {name: "Action", render: rowActions, class: "text-center px-0 py-0"}
+        { data: "index", name: "SL", sortable: true, class: "text-center px-1" },
+        { data: "regNo", name: "Patient Id", class: "px-2 text-center", sort: true },
+        { data: "createdDate", name: "Date", class: "text-center px-1 dateCreated", sort: true },
+        { data: "patientName", name: "Patient Name", class: "px-1 text-center" },
+        { data: "agentOrAgencyName", name: "Agency / Agent", class: "px-1 text-center", sort: true },
+        { data: "amount", name: "Amount", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
+        { data: "paid", name: "Paid", class: "px-1 text-center", calculateSum: true, currency: true, sort: true },
+        { data: "due", name: "Due", class: "px-1 text-center", calculateSum: true, currency: true, sort: true },
     ];
 
     const handleSearch = (params: any) => {
@@ -106,7 +103,7 @@ function AgentBillList(props:any) {
                     <div className="content-wrapper-before"></div>
                     <div className="content-header row">
                         <div className="content-header-left col-md-4 col-12 mb-2">
-                            <h3 className="content-header-title">All Agent Bill List</h3>
+                            <h3 className="content-header-title">All Patient Bill List</h3>
                         </div>
                         <div className="content-header-right col-md-8 col-12">
                             <div className="breadcrumbs-top float-md-right">
@@ -114,9 +111,9 @@ function AgentBillList(props:any) {
                                     <ol className="breadcrumb">
                                         <li className="breadcrumb-item"><a href="/">Home</a>
                                         </li>
-                                        <li className="breadcrumb-item"><a href="/user">Bill</a>
+                                        <li className="breadcrumb-item"><a href="/user">User</a>
                                         </li>
-                                        <li className="breadcrumb-item active">Agent
+                                        <li className="breadcrumb-item active">Create
                                         </li>
                                     </ol>
                                 </div>
@@ -130,10 +127,11 @@ function AgentBillList(props:any) {
                                     <div className="card-content collapse show">
                                         <div className="card-body">
                                             <DataTable columns={columns} data={data} onSearch={handleSearch}
-                                                       endpoint={API_ROUTES.BILL_ADVANCE_SEARCH_AGENT} refresh={refresh}
-                                                       dateFilter={true}
-                                                       actionButtons={true}
-                                                       searchPlaceholder={"Patient Name, Passport No, Agent Name "}/>
+                                                endpoint={API_ROUTES.BILL_ADVANCE_SEARCH} refresh={refresh}
+                                                dateFilter={true}
+                                                actionButtons={true}
+                                                pagesSizes={pageSizes}
+                                                searchPlaceholder={"Patient Name, Passport No, Agent Or Agency Name"} />
                                         </div>
                                     </div>
                                 </div>
@@ -143,30 +141,30 @@ function AgentBillList(props:any) {
                 </div>
             </div>
             {
-                action == 'pay' ?
+                action === 'pay' ?
                     <div className={`modal fade fadeIn show`} role="dialog"
-                         style={{display: 'block'}} data-backdrop="false" tabIndex={-1}>
+                        style={{ display: 'block' }} data-backdrop="false" tabIndex={-1}>
                         <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
                             <div className="modal-content">
                                 <div className="modal-body scroll-85">
-                                    <PayBillComponent billId={bill.id} onCancel={cancelHandler} onSuccess={successHandler}/>
+                                    <PayBillComponent billId={bill.id} onCancel={cancelHandler} onSuccess={successHandler} />
                                 </div>
                             </div>
                         </div>
                     </div> : ""
             }
             {
-                action == 'view' ?
+                action === 'view' ?
                     <div className={`modal fade fadeIn show`} role="dialog"
-                         style={{display: 'block'}} data-backdrop="false" tabIndex={-1}>
-                        <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        style={{ display: 'block' }} data-backdrop="false" tabIndex={-1}>
+                        <div className="modal-dialog modal-xl modal-dialog-centered" role="document">
                             <div className="modal-content">
                                 <div className="modal-body scroll-80">
-                                    <Invoice billId={bill.id}/>
+                                    <Invoice billId={bill.id} />
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-sm btn-secondary"
-                                            onClick={() => setAction('none')}>Close
+                                        onClick={() => setAction('none')}>Close
                                     </button>
                                 </div>
                             </div>
@@ -177,4 +175,4 @@ function AgentBillList(props:any) {
     );
 }
 
-export default AgentBillList;
+export default ActualBill;

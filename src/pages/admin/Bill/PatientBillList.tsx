@@ -73,13 +73,13 @@ function PatientBills(props: any) {
 
     const columns: {}[] = [
         { data: "index", name: "SL", sortable: true, class: "text-center px-1" },
-        { data: "patientId", name: "Patient Id", class: "px-2 text-center", sort: true },
+        // { data: "patientId", name: "Patient Id", class: "px-2 text-center", sort: true },
         { data: "createdDate", name: "Date", class: "text-center px-1 dateCreated", sort: true },
         { data: "patientName", name: "Patient Name", class: "px-1 text-center" },
         { data: "agentOrAgencyName", name: "Agency / Agent", class: "px-1 text-center", sort: true },
         { data: "billNo", name: "Bill No", sortable: true, class: "", sort: true },
         { data: "passportNo", name: "Passport #", class: "text-center px-1" },
-        { data: "regNo", name: "Registration No", class: "text-center px-1" },
+        { data: "regNo", name: "Patient Id", class: "text-center px-1" },
         { data: "amount", name: "Amount", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
         { data: "commission", name: "Commission", class: "px-1 text-center", calculateSum: true, currency: true, sort: true },
         { data: "paid", name: "Paid", class: "px-1 text-center", calculateSum: true, currency: true, sort: true },
