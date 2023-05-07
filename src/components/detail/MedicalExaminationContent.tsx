@@ -63,15 +63,14 @@ function MedicalExaminationContent(props: any) {
             <div className={'row'}>
               <div className="col-12 text-center">
                 <div className="px-0 row  list-unstyled black">
-                  <div className='col border py-2 border-right-0 '>
-                    {/* <img src={configuration.reportCompanyLogo} className="mb-0" alt='' height={60} /> */}
-                    <img src="https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg" className="mb-0 rounded-circle " alt='' width={100} height={100} />
+                  <div className='col-4 border py-2 border-right-0 '>
+                    <img src={configuration.reportCompanyLogo} className="mb-0" alt='' height={100} />
+                    {/* <img src="https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg" className="mb-0 rounded-circle " alt='' width={100} height={100} /> */}
                   </div>
-                  <div className='col-6 py-2 border'>
+                  <div className='col-8 py-2 border'>
                     <div>
                       <h1 className='text-bold-700'>{configuration.businessName}</h1>
                       <h4>Address : {configuration.invoiceAddress}</h4>
-
                     </div>
                     <div className='d-flex justify-content-around'>
                       <p>PHONE : {configuration.reportContactNumber} </p>
@@ -79,12 +78,6 @@ function MedicalExaminationContent(props: any) {
                       <p>Report Download : {configuration.reportUrl}</p>
                     </div>
                   </div>
-
-
-                  <div className='col py-2 border border-left-0'>
-                    <div><span>Phone : </span> <span>Email : {configuration.reportEmail}</span></div>
-                  </div>
-
                 </div>
               </div>
             </div>
