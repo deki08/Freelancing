@@ -227,109 +227,109 @@ export const APP_ROUTES = {
 }
 
 export const DAYS_IN_MONTH = [
-    {text: "Select Repeat On", value: ""},
-    {text: "1st", value: "1"},
-    {text: "2nd", value: "2"},
-    {text: "3rd", value: "3"},
-    {text: "4th", value: "4"},
-    {text: "5th", value: "5"},
-    {text: "6th", value: "6"},
-    {text: "7th", value: "7"},
-    {text: "8th", value: "8"},
-    {text: "9th", value: "9"},
-    {text: "10th", value: "10"},
-    {text: "11th", value: "11"},
-    {text: "12th", value: "12"},
-    {text: "13th", value: "13"},
-    {text: "14th", value: "14"},
-    {text: "15th", value: "15"},
-    {text: "16th", value: "16"},
-    {text: "17th", value: "17"},
-    {text: "18th", value: "18"},
-    {text: "19th", value: "19"},
-    {text: "20th", value: "20"},
-    {text: "21st", value: "21"},
-    {text: "22nd", value: "22"},
-    {text: "23rd", value: "23"},
-    {text: "24th", value: "24"},
-    {text: "25th", value: "25"},
-    {text: "26th", value: "26"},
-    {text: "27th", value: "27"},
-    {text: "28th", value: "28"},
-    {text: "29th", value: "29"},
-    {text: "30th", value: "30"},
-    {text: "31st", value: "31"},
+    { text: "Select Repeat On", value: "" },
+    { text: "1st", value: "1" },
+    { text: "2nd", value: "2" },
+    { text: "3rd", value: "3" },
+    { text: "4th", value: "4" },
+    { text: "5th", value: "5" },
+    { text: "6th", value: "6" },
+    { text: "7th", value: "7" },
+    { text: "8th", value: "8" },
+    { text: "9th", value: "9" },
+    { text: "10th", value: "10" },
+    { text: "11th", value: "11" },
+    { text: "12th", value: "12" },
+    { text: "13th", value: "13" },
+    { text: "14th", value: "14" },
+    { text: "15th", value: "15" },
+    { text: "16th", value: "16" },
+    { text: "17th", value: "17" },
+    { text: "18th", value: "18" },
+    { text: "19th", value: "19" },
+    { text: "20th", value: "20" },
+    { text: "21st", value: "21" },
+    { text: "22nd", value: "22" },
+    { text: "23rd", value: "23" },
+    { text: "24th", value: "24" },
+    { text: "25th", value: "25" },
+    { text: "26th", value: "26" },
+    { text: "27th", value: "27" },
+    { text: "28th", value: "28" },
+    { text: "29th", value: "29" },
+    { text: "30th", value: "30" },
+    { text: "31st", value: "31" },
 ];
 
 export const MENU = [
     {
-        id: 1, label: "Dashboard", icon: "ft-home",open:false,
+        id: 1, label: "Dashboard", icon: "ft-home", open: false,
         submenu: [
-            {id: 1, label: "Analytics", path: "/dashboard",page:"DASHBOARD",permission:'list'},
+            { id: 1, label: "Analytics", path: "/dashboard", page: "DASHBOARD", permission: 'list' },
         ]
     }, {
-        id: 2, label: "Patient", icon: "ft-users",open:false,
+        id: 2, label: "Patient", icon: "ft-users", open: false,
         submenu: [
-            {id: 1, label: "Add Patient", path: "/patients/create", page:"PATIENT",permission:'create'},
-            {id: 2, label: "Patient List", path: "/patients",page:"PATIENT",permission:'list'},
+            { id: 1, label: "Add Patient", path: "/patients/create", page: "PATIENT", permission: 'create' },
+            { id: 2, label: "Patient List", path: "/patients", page: "PATIENT", permission: 'list' },
         ]
     }, {
-        id: 3, label: "Bills", icon: "ft-book",open:false,
+        id: 3, label: "Bills", icon: "ft-book", open: false,
         submenu: [
-            {id: 1, label: "Patient Bill", path: "/bills/patient",page:"PATIENT_BILL",permission:'list'},
-            {id: 2, label: "Agent Bill", path: "/bills/agent",page:"AGENT_BILL",permission:'list'},
-            {id: 3, label: "Agency Bill", path: "/bills/agency",page:"AGENCY_BILL",permission:'list'},
+            { id: 1, label: "Patient Bill", path: "/bills/patient", page: "PATIENT_BILL", permission: 'list' },
+            { id: 2, label: "Agent Bill", path: "/bills/agent", page: "AGENT_BILL", permission: 'list' },
+            { id: 3, label: "Agency Bill", path: "/bills/agency", page: "AGENCY_BILL", permission: 'list' },
             // {id: 4, label: "Update Bill", path: "/bills/update",page:"PATIENT_BILL",permission:'edit'},
         ]
     }, {
-        id: 4, label: "Test & Package", icon: "ft-tag",open:false,
+        id: 4, label: "Test & Package", icon: "ft-tag", open: false,
         submenu: [
-            {id: 1, label: "All Test", path: "/tests",page:"TEST",permission:'list'},
-            {id: 2, label: "Add Test", path: "/tests/create",page:"TEST",permission:'create'},
-            {id: 3, label: "All Package", path: "/packages",page:"PACKAGE",permission:'list'},
-            {id: 4, label: "Add Package", path: "/packages/create",page:"PACKAGE",permission:'create'},
+            { id: 1, label: "All Test", path: "/tests", page: "TEST", permission: 'list' },
+            { id: 2, label: "Add Test", path: "/tests/create", page: "TEST", permission: 'create' },
+            { id: 3, label: "All Package", path: "/packages", page: "PACKAGE", permission: 'list' },
+            { id: 4, label: "Add Package", path: "/packages/create", page: "PACKAGE", permission: 'create' },
         ]
     }, {
-        id: 5, label: "Agent & Agency", icon: "ft-user-plus",open:false,
+        id: 5, label: "Agent & Agency", icon: "ft-user-plus", open: false,
         submenu: [
-            {id: 1, label: "All Agent", path: "/agents",page:"AGENT",permission:'list'},
-            {id: 2, label: "Add Agent", path: "/agents/create",page:"AGENT",permission:'create'},
-            {id: 3, label: "All Agency", path: "/agencies",page:"AGENCY",permission:'list'},
-            {id: 4, label: "Add Agency", path: "/agencies/create",page:"AGENCY",permission:'create'},
-            {id: 5, label: "Agent Commission List", path: "/agents/commissions",page:"AGENT_COMMISSION",permission:'list'},
-            {id: 6, label: "Agency Commission List", path: "/agencies/commissions",page:"AGENCY_COMMISSION",permission:'list'},
+            { id: 1, label: "All Agent", path: "/agents", page: "AGENT", permission: 'list' },
+            { id: 2, label: "Add Agent", path: "/agents/create", page: "AGENT", permission: 'create' },
+            { id: 3, label: "All Agency", path: "/agencies", page: "AGENCY", permission: 'list' },
+            { id: 4, label: "Add Agency", path: "/agencies/create", page: "AGENCY", permission: 'create' },
+            { id: 5, label: "Agent Commission List", path: "/agents/commissions", page: "AGENT_COMMISSION", permission: 'list' },
+            { id: 6, label: "Agency Commission List", path: "/agencies/commissions", page: "AGENCY_COMMISSION", permission: 'list' },
         ]
     }, {
-        id: 6, label: "Accounts", icon: "ft-shield",open:false,
+        id: 6, label: "Accounts", icon: "ft-shield", open: false,
         submenu: [
-            {id: 0, label: "Accounts", path: "/accounts",page:"ACCOUNT",permission:'list'},
-            {id: 1, label: "Purchase", path: "/purchase",page:"PURCHASE",permission:'list'},
-            {id: 2, label: "Add Purchase", path: "/purchase/create",page:"PURCHASE",permission:'create'},
-            {id: 3, label: "Expenses", path: "/expenses",page:"EXPENSES",permission:'list'},
-            {id: 4, label: "Add Expense", path: "/expenses/create",page:"EXPENSES",permission:'create'},
-            {id: 5, label: "Profit/Loss Report", path: "/report/lost-profit",page:"LOST_PROFIT",permission:'list'},
+            { id: 0, label: "Accounts", path: "/accounts", page: "ACCOUNT", permission: 'list' },
+            { id: 1, label: "Purchase", path: "/purchase", page: "PURCHASE", permission: 'list' },
+            { id: 2, label: "Add Purchase", path: "/purchase/create", page: "PURCHASE", permission: 'create' },
+            { id: 3, label: "Expenses", path: "/expenses", page: "EXPENSES", permission: 'list' },
+            { id: 4, label: "Add Expense", path: "/expenses/create", page: "EXPENSES", permission: 'create' },
+            { id: 5, label: "Profit/Loss Report", path: "/report/lost-profit", page: "LOST_PROFIT", permission: 'list' },
             // {id: 6, label: "Sale", path: "/bills/patient",page:"PATIENT_BILL",permission:'list'},
-            {id: 7, label: "Cashier Report", path: "/cashier-report",page:"CASHIER_REPORT",permission:'list'},
-            {id: 8, label: "Account Transfer", path: "/account-transfer",page:"ACCOUNT_TRANSFER",permission:'list'},
-            {id: 9, label: "Supplier", path: "/suppliers",page:"SUPPLIER",permission:'list'},
-        ]
-    },{
-        id: 8, label: "Lab Reports", icon: "ft-paperclip",open:false,
-        submenu: [
-            {id: 1, label: "Lab Reports", path: "/lab-reports",page:"LAB_REPORTS",permission:'list'},
+            { id: 7, label: "Cashier Report", path: "/cashier-report", page: "CASHIER_REPORT", permission: 'list' },
+            { id: 8, label: "Account Transfer", path: "/account-transfer", page: "ACCOUNT_TRANSFER", permission: 'list' },
+            { id: 9, label: "Supplier", path: "/suppliers", page: "SUPPLIER", permission: 'list' },
         ]
     }, {
-        id: 7, label: "User Management", icon: "ft-users",open:false,
+        id: 8, label: "Lab Reports", icon: "ft-paperclip", open: false,
         submenu: [
-            {id: 1, label: "Roles", path: "/roles",page:"ROLE",permission:'list'},
-            {id: 2, label: "All Users", path: "/users",page:"USER",permission:'list'},
-            {id: 3, label: "Add User", path: "/users/create",page:"USER",permission:'create'},
+            { id: 1, label: "Lab Reports", path: "/lab-reports", page: "LAB_REPORTS", permission: 'list' },
         ]
     }, {
-        id: 9, label: "Settings", icon: "ft-settings",open:false,
+        id: 7, label: "User Management", icon: "ft-users", open: false,
         submenu: [
-            {id: 1, label: "System Settings", path: "/settings" ,page:"SETTING",permission:'list'},
-            {id: 5, label: "Reference Value Settings", path: "/settings/reference/update",page:"REF_VAL",permission:'list'},
+            { id: 1, label: "Roles", path: "/roles", page: "ROLE", permission: 'list' },
+            { id: 2, label: "All Users", path: "/users", page: "USER", permission: 'list' },
+            { id: 3, label: "Add User", path: "/users/create", page: "USER", permission: 'create' },
+        ]
+    }, {
+        id: 9, label: "Settings", icon: "ft-settings", open: false,
+        submenu: [
+            { id: 1, label: "System Settings", path: "/settings", page: "SETTING", permission: 'list' },
+            { id: 5, label: "Reference Value Settings", path: "/settings/reference/update", page: "REF_VAL", permission: 'list' },
         ]
     },
 ];
