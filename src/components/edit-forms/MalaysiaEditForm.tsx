@@ -130,8 +130,8 @@ function MalaysiaEditForm(props: any) {
         </div>) : ''}
       <div className="form-body">
         <div style={{ display: "flex", justifyContent: "flex-start" }}>
-          <h3>Medical Test</h3>
-          <p className={'light-black ml-1'} >Update Form</p>
+          <h3>Medical Examination</h3>
+          <p className={'light-black ml-1'}>Edit Form</p>
         </div>
         <div className="row">
           <div className="col-12 col-md-6 pr-0">

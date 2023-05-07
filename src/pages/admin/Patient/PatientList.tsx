@@ -13,6 +13,8 @@ import PatientBillsContent from "../../../components/detail/PatientBillsContent"
 import { MODEL } from "../../../utils/FormFields";
 import MedicalExamination from './MedicalExamination';
 import MalaysiaEditForm from '../../../components/edit-forms/MalaysiaEditForm';
+import MedicalExaminationEdit from './MedicalExaminationEdit';
+import MedicalExaminationEditing from '../../../components/detail/MedicalExamninationEditForm';
 
 function PatientList(props: any) {
   const navigate = useNavigate();
@@ -238,7 +240,7 @@ console.log(data);
                   {permission.create ? <Link to="/patients/create" className="btn btn-sm btn-info box-shadow-1 pull-right"><i
                     className="ft-plus"></i> Add Patient</Link> : ''}
                 </div>
-                <div className="card-body">
+                <div className="card-body pr-0">
                   <DataTable columns={columns} data={data} onSearch={handleSearch}
                     endpoint={API_ROUTES.PATIENT_ADVANCE_SEARCH} refresh={refresh}
                     dateFilter={true}
@@ -424,7 +426,8 @@ console.log(data);
             <div className="modal-dialog modal-xl modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-body scroll-80">
-                  <MalaysiaEditForm patient={patient} onUpdateMalaysia={onUpdateMalaysia} onCancel={onCancel} />
+                  {/* <MalaysiaEditForm patient={patient} onUpdateMalaysia={onUpdateMalaysia} onCancel={onCancel} /> */}
+                  <MedicalExaminationEditing patient={patient} onUpdateMalaysia={onUpdateMalaysia} onCancel={onCancel} />
                 </div>
                 <div className="modal-footer">
 

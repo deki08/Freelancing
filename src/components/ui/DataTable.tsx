@@ -265,7 +265,7 @@ function DataTable(props: any) {
       </div>
       <div className={"col-md-12"}>
         <div className={`table-container  ${filteredData?.length && 'responsiveTable'} `}>
-          <table className={`table   table-hover table-striped table-bordered sourced-data`} id={"datatable"}>
+          <table className={`table table-sm  table-hover table-striped table-bordered sourced-data`} id={"datatable"}>
             <thead className="bg-primary white">
               <tr>
                 {columns.map((column: any, index: number) => (
