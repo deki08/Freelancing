@@ -1,4 +1,4 @@
-import {API_ROUTES} from "./constants";
+import { API_ROUTES } from "./constants";
 
 export const PERSONAL_INFO = [
     {
@@ -16,7 +16,7 @@ export const PERSONAL_INFO = [
         id: 2,
         name: "gender",
         type: "select",
-        values: [{text: "Select Gender", value: ""}, {text: 'Male', value: 'MALE'}, {text: 'Female', value: 'FEMALE'}],
+        values: [{ text: "Select Gender", value: "" }, { text: 'Male', value: 'MALE' }, { text: 'Female', value: 'FEMALE' }],
         className: "form-control",
         placeholder: "Gender",
         errorMessage: "Please Select a Gender!",
@@ -45,7 +45,7 @@ export const PERSONAL_INFO = [
         id: 5,
         name: "maritalStatus",
         type: "select",
-        values: [{text: 'Single', value: 'UNMARRIED'}, { text: 'Married', value: 'MARRIED'}],
+        values: [{ text: 'Single', value: 'UNMARRIED' }, { text: 'Married', value: 'MARRIED' }],
         className: "form-control",
         placeholder: "Marital Status",
         errorMessage: "Please Select a Marital Status!",
@@ -55,7 +55,7 @@ export const PERSONAL_INFO = [
         id: 6,
         name: "nationality",
         type: "select",
-        values: [{text: 'Bangladeshi', value: 'BANGLADESHI'}],
+        values: [{ text: 'Bangladeshi', value: 'BANGLADESHI' }],
         className: "form-control",
         placeholder: "Nationality",
         errorMessage: "Please Select a Nationality!",
@@ -65,10 +65,10 @@ export const PERSONAL_INFO = [
         id: 7,
         name: "religion",
         type: "select",
-        values: [{text: "Select Nationality", value: ""}, {text: 'Muslim', value: 'MUSLIM'}, {
+        values: [{ text: "Select Nationality", value: "" }, { text: 'Muslim', value: 'MUSLIM' }, {
             text: 'Hindu',
             value: 'HINDU'
-        }, {text: 'Buddhist', value: 'BUDDHIST'}, {text: 'Christian', value: 'CHRISTIAN'}, {
+        }, { text: 'Buddhist', value: 'BUDDHIST' }, { text: 'Christian', value: 'CHRISTIAN' }, {
             text: 'Others',
             value: 'OTHERS'
         }],
@@ -108,6 +108,118 @@ export const PERSONAL_INFO = [
         column: 3,
         pattern: "^[A-Za-z]*$"
     }
+];
+
+// malaysia entry personal info
+export const MALAYSIA_PERSONAL_INFO = [
+    {
+        id: 1,
+        name: "fullName",
+        type: "text",
+        className: "form-control",
+        placeholder: "Full Name",
+        errorMessage: "Full Name shouldn't include any special character!",
+        label: "Full Name",
+        column: 6,
+        pattern: "^[A-Za-z, ]*$",
+        required: true
+    }, {
+        id: 2,
+        name: "gender",
+        type: "select",
+        values: [{ text: "Select Gender", value: "" }, { text: 'Male', value: 'MALE' }, { text: 'Female', value: 'FEMALE' }],
+        className: "form-control",
+        placeholder: "Gender",
+        errorMessage: "Please Select a Gender!",
+        label: "Gender",
+        column: 3,
+    }, {
+        id: 3,
+        name: "dateOfBirth",
+        type: "date",
+        className: "form-control",
+        placeholder: "Date of Birth",
+        label: "Date of Birth",
+        column: 3,
+    }, {
+        id: 4,
+        name: "age",
+        type: "number",
+        className: "form-control",
+        placeholder: "Age",
+        disabled: false,
+        errorMessage: "Age Not Valid!",
+        label: "Age",
+        column: 3,
+        pattern: "^[0-9]+$"
+    }, {
+        id: 5,
+        name: "maritalStatus",
+        type: "select",
+        values: [{ text: 'Single', value: 'UNMARRIED' }, { text: 'Married', value: 'MARRIED' }],
+        className: "form-control",
+        placeholder: "Marital Status",
+        errorMessage: "Please Select a Marital Status!",
+        label: "Marital Status",
+        column: 3,
+    }, {
+        id: 6,
+        name: "nationality",
+        type: "select",
+        values: [{ text: 'Bangladeshi', value: 'BANGLADESHI' }],
+        className: "form-control",
+        placeholder: "Nationality",
+        errorMessage: "Please Select a Nationality!",
+        label: "Nationality",
+        column: 3
+    }, {
+        id: 7,
+        name: "religion",
+        type: "select",
+        values: [{ text: "Select Religion", value: "" }, { text: 'Muslim', value: 'MUSLIM' }, {
+            text: 'Hindu',
+            value: 'HINDU'
+        }, { text: 'Buddhist', value: 'BUDDHIST' }, { text: 'Christian', value: 'CHRISTIAN' }, {
+            text: 'Others',
+            value: 'OTHERS'
+        }],
+        className: "form-control",
+        placeholder: "Religion",
+        errorMessage: "Please Select a Religion!",
+        label: "Religion",
+        column: 3
+    }, {
+        id: 8,
+        name: "fathersName",
+        type: "text",
+        className: "form-control",
+        placeholder: "Father's Name",
+        errorMessage: "Invalid Father's Name!",
+        label: "Father's Name",
+        column: 6,
+        pattern: "^[A-Za-z ]*$"
+    }, {
+        id: 9,
+        name: "mothersName",
+        type: "text",
+        className: "form-control",
+        placeholder: "Mother's Name",
+        errorMessage: "Invalid Mother's Name!",
+        label: "Mother's Name",
+        column: 6,
+        pattern: "^[A-Za-z ]*$"
+    },
+    // {
+    //     id: 10,
+    //     name: "profession",
+    //     type: "text",
+    //     className: "form-control",
+    //     placeholder: "Profession",
+    //     errorMessage: "Invalid Profession!",
+    //     label: "Profession",
+    //     column: 3,
+    //     pattern: "^[A-Za-z]*$"
+    // }
 ];
 
 export const PASSPORT_INFO = [
@@ -235,7 +347,7 @@ export const SERVICE_BILLING_INFO = [
         column: 3,
         required: true,
         ajax: true,
-        mapping: {path: API_ROUTES.PACKAGE_AND_TEST_ALL, value: "id", text: "name"}
+        mapping: { path: API_ROUTES.PACKAGE_AND_TEST_ALL, value: "id", text: "name" }
     }, {
         id: 2,
         name: "agentOrAgencyId",
@@ -246,7 +358,7 @@ export const SERVICE_BILLING_INFO = [
         column: 3,
         ajax: true,
         required: true,
-        mapping: {path: API_ROUTES.AGENT_AND_AGENCY_ALL, value: "id", text: "fullName"}
+        mapping: { path: API_ROUTES.AGENT_AND_AGENCY_ALL, value: "id", text: "fullName" }
     }, {
         id: 3,
         name: "deliveryDate",
@@ -436,7 +548,7 @@ export const PACKAGE = [
         label: "Description",
         column: 12,
         pattern: "^[a-zA-Z0-9, ]+$"
-    },  {
+    }, {
         id: 4,
         name: "abbreviation",
         type: "text",
@@ -446,11 +558,11 @@ export const PACKAGE = [
         label: "Abbreviation",
         column: 3,
         pattern: "^[A-Z,0-9]*$",
-    },{
+    }, {
         id: 4,
         name: "activeStatus",
         type: "select",
-        values: [{text: "Select Status", value: ""}, {text: "Active", value: "ACTIVE"}, {
+        values: [{ text: "Select Status", value: "" }, { text: "Active", value: "ACTIVE" }, {
             text: "Inactive",
             value: "INACTIVE"
         }],
@@ -466,10 +578,10 @@ export const TEST = [
         id: 1,
         name: "department",
         type: "select",
-        values: [{text: "Select Department", value: ""}, {
+        values: [{ text: "Select Department", value: "" }, {
             text: "Laboratory Investigation",
             value: "Laboratory Investigation"
-        }, {text: "Medical Examination", value: "Medical Examination"}],
+        }, { text: "Medical Examination", value: "Medical Examination" }],
         className: "form-control",
         label: "Department",
         column: 3,
@@ -511,10 +623,10 @@ export const TEST = [
         id: 5,
         name: "sample",
         type: "select",
-        values: [{text: "Select Sample", value: ""}, {text: "Blood", value: "Blood"}, {
+        values: [{ text: "Select Sample", value: "" }, { text: "Blood", value: "Blood" }, {
             text: "Urine",
             value: "Urine"
-        }, {text: "Stool", value: "Stool"}, {text: "Physician", value: "Physician"}, {text: "X-RAY", value: "X-RAY"}],
+        }, { text: "Stool", value: "Stool" }, { text: "Physician", value: "Physician" }, { text: "X-RAY", value: "X-RAY" }],
         className: "form-control",
         label: "Sample",
         column: 6,
@@ -542,7 +654,7 @@ export const TEST = [
         id: 7,
         name: "activeStatus",
         type: "select",
-        values: [{text: "Select Status", value: ""}, {text: "Active", value: "ACTIVE"}, {
+        values: [{ text: "Select Status", value: "" }, { text: "Active", value: "ACTIVE" }, {
             text: "Inactive",
             value: "INACTIVE"
         }],
@@ -564,7 +676,7 @@ export const TEST_REPORT = [
         label: "Test Name",
         column: 6,
         ajax: true,
-        mapping: {path: API_ROUTES.TEST_ALL, value: "id", text: "name"},
+        mapping: { path: API_ROUTES.TEST_ALL, value: "id", text: "name" },
         required: true,
     },
     {
@@ -577,7 +689,7 @@ export const TEST_REPORT = [
         label: "Patient Name",
         column: 6,
         ajax: true,
-        mapping: {path: API_ROUTES.PATIENT_ALL, value: "id", text: "fullName"},
+        mapping: { path: API_ROUTES.PATIENT_ALL, value: "id", text: "fullName" },
         required: true,
     },
     {
@@ -652,14 +764,14 @@ export const USER = [
         label: "Role Name",
         column: 3,
         ajax: true,
-        mapping: {path: API_ROUTES.ROLE_ALL, value: "id", text: "name"},
+        mapping: { path: API_ROUTES.ROLE_ALL, value: "id", text: "name" },
         required: true,
     },
     {
         id: 6,
         name: "status",
         type: "select",
-        values: [{text: "Select Status", value: ""}, {text: 'Active', value: true}, {text: 'Inactive', value: false}],
+        values: [{ text: "Select Status", value: "" }, { text: 'Active', value: true }, { text: 'Inactive', value: false }],
         className: "form-control",
         label: "Active Status",
         column: 3,
@@ -713,14 +825,14 @@ export const USER_EDIT = [
         label: "Role Name",
         column: 3,
         ajax: true,
-        mapping: {path: API_ROUTES.ROLE_ALL, value: "id", text: "name"},
+        mapping: { path: API_ROUTES.ROLE_ALL, value: "id", text: "name" },
         required: true,
     },
     {
         id: 5,
         name: "enabled",
         type: "select",
-        values: [{text: "Select Status", value: ""}, {text: 'Active', value: true}, {text: 'Inactive', value: false}],
+        values: [{ text: "Select Status", value: "" }, { text: 'Active', value: true }, { text: 'Inactive', value: false }],
         className: "form-control",
         label: "Active Status",
         column: 3,
@@ -907,6 +1019,18 @@ export const VENEREAL_DISEASES = [
         column: 3,
     },
 ];
+export const CARDIO_VASCULAR_SYSTEM
+    = [
+        {
+            id: 1,
+            name: "A. HEART SIZE",
+            type: "text",
+            className: "form-control",
+            placeholder: "A. HEART SIZE",
+            label: "A. HEART SIZE",
+            column: 3,
+        },
+    ];
 
 export const X_RAY_INVESTIGATION = [
     {
@@ -1216,7 +1340,7 @@ export const PATIENT_FORM_EXTRA_FIELDS = [
         id: 1,
         name: "status",
         type: "select",
-        values: [{text: "Select Status", value: ""}, {text: "Fit",value: "FIT"}, {text: "Unfit", value: "UNFIT"}, {text: "Held Up", value: "HELD_UP"}],
+        values: [{ text: "Select Status", value: "" }, { text: "Fit", value: "FIT" }, { text: "Unfit", value: "UNFIT" }, { text: "Held Up", value: "HELD_UP" }],
         className: "form-control",
         label: "Final Report Status",
         column: 3,
@@ -1253,7 +1377,7 @@ export const BILL = [
         column: 6,
         required: true,
         ajax: true,
-        mapping: {path: API_ROUTES.TEST_ALL, value: "id", text: "nameWithPrice"}
+        mapping: { path: API_ROUTES.TEST_ALL, value: "id", text: "nameWithPrice" }
     },
     {
         id: 2,
@@ -1303,7 +1427,7 @@ export const SUB_CATEGORY = [
         column: 6,
         required: true,
         ajax: true,
-        mapping: {path: API_ROUTES.MAIN_CATEGORY_GET, value: "id", text: "name"}
+        mapping: { path: API_ROUTES.MAIN_CATEGORY_GET, value: "id", text: "name" }
     },
     {
         id: 2,
@@ -1371,7 +1495,7 @@ export const BUSINESS_SETTINGS = [
         id: 2,
         name: "currency",
         type: "select",
-        values: [{text: "Select Currency", value: ""}, {text: "Bangladesh-Taka", value: "BDT"}],
+        values: [{ text: "Select Currency", value: "" }, { text: "Bangladesh-Taka", value: "BDT" }],
         className: "form-control",
         label: "Currency",
         column: 4,
@@ -1380,10 +1504,10 @@ export const BUSINESS_SETTINGS = [
         id: 3,
         name: "dateFormat",
         type: "select",
-        values: [{text: "Select Date Format", value: ""}, {text: "dd-mm-yyyy", value: "FORMAT1"}, {
+        values: [{ text: "Select Date Format", value: "" }, { text: "dd-mm-yyyy", value: "FORMAT1" }, {
             text: "mm-dd-yyyy",
             value: "FORMAT2"
-        }, {text: "dd/mm/yyyy", value: "FORMAT3"}, {text: "mm/dd/yyyy", value: "FORMAT4"}],
+        }, { text: "dd/mm/yyyy", value: "FORMAT3" }, { text: "mm/dd/yyyy", value: "FORMAT4" }],
         className: "form-control",
         label: "Date Format",
         column: 4,
@@ -1431,7 +1555,7 @@ export const EMAIL_SETTINGS = [
         id: 1,
         name: "mailDriver",
         type: "select",
-        values: [{text: "Select Mail Driver", value: ""}, {text: "SMTP", value: "SMTP"}],
+        values: [{ text: "Select Mail Driver", value: "" }, { text: "SMTP", value: "SMTP" }],
         className: "form-control",
         label: "Mail Driver",
         column: 4,
@@ -1560,7 +1684,7 @@ export const INVOICE_SETTINGS = [
         label: "Invoice Seal",
         column: 4,
         required: false
-    },{
+    }, {
         id: 8,
         name: "websiteUrl",
         type: "text",
@@ -1568,7 +1692,7 @@ export const INVOICE_SETTINGS = [
         placeholder: "Website URL",
         label: "Website URL",
         column: 6,
-    },{
+    }, {
         id: 8,
         name: "reportUrl",
         type: "text",
@@ -1616,7 +1740,7 @@ export const ACCOUNT_TRANSFER = [
         column: 6,
         required: true,
         ajax: true,
-        mapping: {path: API_ROUTES.ACCOUNT_ALL, value: "id", text: "name"}
+        mapping: { path: API_ROUTES.ACCOUNT_ALL, value: "id", text: "name" }
     },
     {
         id: 1,
@@ -1629,7 +1753,7 @@ export const ACCOUNT_TRANSFER = [
         column: 6,
         required: true,
         ajax: true,
-        mapping: {path: API_ROUTES.ACCOUNT_ALL, value: "id", text: "name"}
+        mapping: { path: API_ROUTES.ACCOUNT_ALL, value: "id", text: "name" }
     },
     {
         id: 2,
@@ -1667,7 +1791,7 @@ export const SUPPLIER = [
         column: 6,
         pattern: "^[A-Za-z0-9, ]*$",
         required: true
-    },{
+    }, {
         id: 3,
         name: "company",
         type: "text",
@@ -1677,7 +1801,7 @@ export const SUPPLIER = [
         label: "Company Name",
         column: 12,
         required: true
-    },{
+    }, {
         id: 4,
         name: "contactNo",
         type: "text",
@@ -1686,7 +1810,7 @@ export const SUPPLIER = [
         errorMessage: "Contact Number shouldn't include any special character!",
         label: "Contact Number",
         column: 6
-    },{
+    }, {
         id: 2,
         name: "email",
         type: "email",
@@ -1923,6 +2047,7 @@ export const PATIENT_TEST_REPORT = {
 
 export const FORM = {
     PERSONAL_INFO,
+    MALAYSIA_PERSONAL_INFO,
     PASSPORT_INFO,
     CONTACT_INFO,
     SERVICE_BILLING_INFO,
@@ -1939,6 +2064,7 @@ export const FORM = {
     RESPIRATORY_EXAM,
     OTHERS,
     VENEREAL_DISEASES,
+    CARDIO_VASCULAR_SYSTEM,
     X_RAY_INVESTIGATION,
     BLOOD_ELISA_SEROLOGY_MEDICAL,
     DRUG_TEST,

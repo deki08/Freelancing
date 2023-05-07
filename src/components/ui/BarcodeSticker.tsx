@@ -4,7 +4,7 @@ import Barcode from "react-barcode";
 function BarcodeSticker(props: any) {
     const { patient, type, description, bNumber } = props;
     return (
-        <div className={'card'} style={{ width: '58mm' }}>
+        <div className={'card '} style={{ width: '58mm' }}>
             <div className="card-content box-shadow-3">
                 <div className="card-body">
                     <label>{patient.regNo}</label>

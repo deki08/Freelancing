@@ -1,32 +1,32 @@
-import React, {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../services/AuthService";
-import {MENU} from "../utils/constants";
+import { MENU } from "../utils/constants";
 
 const Navbar = (props: any) => {
-    const {configuration} = AuthService.getConfiguration();
+    const { configuration } = AuthService.getConfiguration();
     const navigate = useNavigate();
     const [uri] = useState("/");
-    const [mobile,setMobile] = useState(true);
-    const [menu,setMenu] = useState(MENU);
+    const [mobile, setMobile] = useState(true);
+    const [menu, setMenu] = useState(MENU);
 
-    const handleWindowSizeChange = ()=> {
+    const handleWindowSizeChange = () => {
         setMobile(window.innerWidth <= 768 ? true : false);
     }
 
 
-    const onMenuClick = (e:any) => {
+    const onMenuClick = (e: any) => {
         e.preventDefault();
         let menuId = e.target.dataset.menu;
         let parent = e.target.closest('.nav-item');
-        if(parent.classList.contains('open')){
+        if (parent.classList.contains('open')) {
             parent.classList.remove('open');
-        }else{
+        } else {
             parent.classList.add('open');
         }
     };
 
-    const onLinkClick = (e:any) => {
+    const onLinkClick = (e: any) => {
         document.body.classList.remove('menu-open');
         document.body.classList.add('menu-hide');
     };
@@ -41,18 +41,18 @@ const Navbar = (props: any) => {
 
 
     console.log(menu);
-    
+
 
     return (
         <>
-            {mobile?
+            {mobile ?
                 <div className="main-menu menu-light menu-fixed menu-shadow" role="navigation" data-menu="menu-wrapper"
-                     data-nav="brand-center">
+                    data-nav="brand-center">
                     <div className="navbar-container main-menu-content ps ps--active-y" data-menu="menu-container">
                         <ul className="navigation navigation-main" id="main-menu-navigation"
-                            data-menu="menu-navigation" style={{maxHeight:'90vh',overflow:'scroll'}}>
+                            data-menu="menu-navigation" style={{ maxHeight: '90vh', overflow: 'scroll' }}>
                             {menu.map((item) => (
-                                <li key={'menu-'+item.id} className={`nav-item has-sub`} data-menu="dropdown">
+                                <li key={'menu-' + item.id} className={`nav-item has-sub`} data-menu="dropdown">
                                     <a className="dropdown-toggle" href="#/" data-toggle="dropdown" data-menu={item.id} onClick={onMenuClick}>
                                         <i className={item.icon}></i><span>{item.label}</span>
                                     </a>
@@ -64,8 +64,8 @@ const Navbar = (props: any) => {
                                                         <li key={'m-mm-' + item.id + '-' + submenu.id}
                                                             className={uri === submenu.path ? "active" : ""}>
                                                             <Link key={'mm-' + item.id + '-' + submenu.id + '-link'}
-                                                                  className="dropdown-item"
-                                                                  to={submenu.path} onClick={onLinkClick}>{submenu.label}</Link>
+                                                                className="dropdown-item"
+                                                                to={submenu.path} onClick={onLinkClick}>{submenu.label}</Link>
                                                         </li> : ""
                                                 ))}
                                             </div>
@@ -77,9 +77,9 @@ const Navbar = (props: any) => {
                     </div>
                 </div>
                 :
-                <div id="sticky-wrapper" className="sticky-wrapper" style={{height: 70}}>
+                <div id="sticky-wrapper" className="sticky-wrapper" style={{ height: 70 }}>
                     <div className="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-dark navbar-without-dd-arrow navbar-shadow"
-                         role="navigation" data-menu="menu-wrapper">
+                        role="navigation" data-menu="menu-wrapper">
                         <div className="navbar-container main-menu-content" data-menu="menu-container">
                             <ul className="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                                 {menu.map((item) => (
@@ -95,8 +95,8 @@ const Navbar = (props: any) => {
                                                             <li key={'mm-' + item.id + '-' + submenu.id}
                                                                 className={uri === submenu.path ? "active" : ""} data-menu="">
                                                                 <Link key={'mm-' + item.id + '-' + submenu.id + '-link'}
-                                                                      className="dropdown-item"
-                                                                      to={submenu.path}>{submenu.label}</Link>
+                                                                    className="dropdown-item"
+                                                                    to={submenu.path}>{submenu.label}</Link>
                                                             </li> : ""
                                                     ))}
                                                 </div>

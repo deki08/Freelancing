@@ -330,7 +330,7 @@ export const MENU = [
         submenu: [
             { id: 1, label: "System Settings", path: "/settings", page: "SETTING", permission: 'list' },
             { id: 5, label: "Reference Value Settings", path: "/settings/reference/update", page: "REF_VAL", permission: 'list' },
-            { id: 6, label: "Malaysia Settings", path: "/settings/reference/update", page: "REF_VAL", permission: 'list' },
+            { id: 6, label: "Malaysia Settings", path: "/settings/malaysia/update", page: "REF_VAL", permission: 'list' },
         ]
     },
 ];

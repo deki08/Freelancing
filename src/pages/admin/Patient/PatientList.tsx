@@ -12,10 +12,23 @@ import XRayUpload from "../../../components/ui/XRayUpload";
 import PatientBillsContent from "../../../components/detail/PatientBillsContent";
 import { MODEL } from "../../../utils/FormFields";
 import MedicalExamination from './MedicalExamination';
+import MalaysiaEditForm from '../../../components/edit-forms/MalaysiaEditForm';
 
 function PatientList(props: any) {
     const navigate = useNavigate();
     const permission = AuthService.getPermission('PATIENT');
+    const malaysiaActions = (row: any) => {
+        return (
+            <>
+                {permission.edit ? <button type="button" className="btn btn-xss btn-warning box-shadow-1"
+                    data-record={JSON.stringify(row)} onClick={patientTest1}> Malaysia
+                </button> : ''}
+                {permission.edit ? <button type="button" className="btn btn-xss btn-primary box-shadow-1"
+                    data-record={JSON.stringify(row)} onClick={malaysiaEditHandler}> Malaysia Entry
+                </button> : ''}
+            </>
+        )
+    }
     const rowActions = (row: any) => {
         return (
             <>
@@ -41,13 +54,6 @@ function PatientList(props: any) {
                 {permission.edit ? <button type="button" className="btn btn-xss btn-danger box-shadow-1"
                     data-record={JSON.stringify(row)} onClick={patientDeleteHandler}> Delete
                 </button> : ''}
-                {permission.edit ? <button type="button" className="btn btn-xss btn-warning box-shadow-1"
-                    data-record={JSON.stringify(row)} onClick={patientTest1}> Malaysia
-                </button> : ''}
-                {permission.edit ? <button type="button" className="btn btn-xss btn-primary box-shadow-1"
-                    data-record={JSON.stringify(row)} onClick={patientTest2}> Malaysia Entry
-                </button> : ''}
-                
             </>);
     }
 
@@ -71,9 +77,9 @@ function PatientList(props: any) {
         { data: "agentOrAgencyName", name: "Agent Or Agency", class: "text-center", sort: true },
         { name: "Status", render: statusRender, class: "text-center  width-200" },
         { data: 'healthStatus', name: "FINAL STATUS", class: "text-center" },
-        { name: "Action", render: rowActions, class: "text-center py-0" },
-        { name: "Malaysia", render: rowActions, class: "text-center py-0" },
-       
+        { name: "Action", render: rowActions, class: "text-center " },
+        { name: "Malaysia", render: malaysiaActions, class: "text-center " },
+
     ];
 
 
@@ -108,14 +114,13 @@ function PatientList(props: any) {
         let record = JSON.parse(e.target.dataset.record);
         setPatient(record);
         setReport(record.report);
-        setAction('test-view');
+        setAction('medical-exam-report');
     }
-    const patientTest2 = () => {
+    const malaysiaEditHandler = (e: any) => {
+        setPatient(JSON.parse(e.target.dataset.record));
+        setAction('malaysia-entry-edit');
+    }
 
-    }
-    const patientTest3 = () => {
-
-    }
 
     const patientDelete = (data: any) => {
         console.log(data);
@@ -137,9 +142,18 @@ function PatientList(props: any) {
             setAction('none');
         }, 1000);
     }
+
+    const onUpdateMalaysia = (e: any) => {
+        doRefresh(e.id);
+        setTimeout(() => {
+            setAction('none');
+        }, 1000);
+    }
+
     const onCancel = (e: any) => {
         setAction('none');
     }
+
     const onUpdateMedical = (e: any) => {
         doRefresh(e.id);
         setTimeout(() => {
@@ -349,24 +363,7 @@ function PatientList(props: any) {
             }
 
             {/* patient test */}
-            {
-                action === 'test-view' ?
-                    <div className={`modal fade fadeIn show`} role="dialog"
-                        style={{ display: 'block' }} data-backdrop="false" tabIndex={-1}>
-                        <div className="modal-dialog modal-xl modal-dialog-centered" role="document">
-                            <div className="modal-content">
-                                <div className="modal-body p-0 scroll-85">
-                                    <MedicalExamination patients={patient} />
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-sm btn-secondary"
-                                        onClick={() => setAction('none')}>Close
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> : ""
-            }
+
 
             {
                 action === 'patient-delete' ?
@@ -397,6 +394,44 @@ function PatientList(props: any) {
                     </div> : ""
             }
 
+            {
+                action === 'medical-exam-report' ?
+                    <div className={`modal fade fadeIn show`} role="dialog"
+                        style={{ display: 'block' }} data-backdrop="false" tabIndex={-1}>
+                        <div className="modal-dialog modal-xl modal-dialog-centered" role="document">
+                            <div className="modal-content">
+                                <div className="modal-body p-0 scroll-85">
+                                    <MedicalExamination patients={patient} />
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-sm btn-secondary"
+                                        onClick={() => setAction('none')}>Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> : ""
+            }
+            {/* malaysia entry edit */}
+            {
+                action === 'malaysia-entry-edit' ?
+                    <div className={`modal fade fadeIn show`} role="dialog"
+                        style={{ display: 'block' }} data-backdrop="false" tabIndex={-1}>
+                        <div className="modal-dialog modal-xl modal-dialog-centered" role="document">
+                            <div className="modal-content">
+                                <div className="modal-body scroll-80">
+                                    <MalaysiaEditForm patient={patient} onUpdateMalaysia={onUpdateMalaysia} onCancel={onCancel} />
+                                </div>
+                                <div className="modal-footer">
+
+                                    <button type="button" className="btn btn-sm btn-secondary"
+                                        onClick={() => setAction('none')}>Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> : ""
+            }
         </>
     );
 }
