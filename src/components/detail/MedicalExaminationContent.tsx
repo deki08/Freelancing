@@ -133,34 +133,48 @@ function MedicalExaminationContent(props: any) {
               <tbody>
 
 
-                <tr>
-                  <td colSpan={1} className="font-size black">REGISTRATION NUMBER</td>
-                  <td colSpan={1} className="font-size black">{patient.regNo}</td>
-                  <td colSpan={1} className="font-size black">COUNTRY NAME</td>
-                  <td colSpan={1} className="font-size black">{patient.nationality}ASDADA</td>
+                <tr >
+                  <td colSpan={1} w-25 className="font-size black">REGISTRATION NUMBER</td>
+                  <td colSpan={1} w-25 className="font-size black">{patient.regNo}</td>
+                  <td colSpan={1} w-25 className="font-size black">COUNTRY NAME</td>
+                  <td colSpan={1} w-25 className="font-size black">{patient.nationality}ASDADA</td>
 
 
                 </tr>
                 <tr>
-                  <td colSpan={1} className="font-size black">NAME</td>
-                  <td colSpan={1} className="font-size black">{patient.fullName}</td>
-                  <td colSpan={1} className="font-size black">FATHER'S NAME</td>
-                  <td colSpan={1} className="font-size black">{patient.fathersName}</td>
+                  <td colSpan={1} w-25 className="font-size black">NAME</td>
+                  <td colSpan={1} w-25 className="font-size black">{patient.fullName}</td>
+                  <td colSpan={1} w-25 className="font-size black">FATHER'S NAME</td>
+                  <td colSpan={1} w-25 className="font-size black">{patient.fathersName}</td>
 
                 </tr>
                 <tr>
 
-                  <td className="font-size black">PASSPORT NO.</td>
-                  <td className="font-size black">{patient?.passportNo}</td>
-                  <td className="font-size black">DATE OF BIRTH</td>
-                  <td className="font-size black">{patient?.dateOfBirth}</td>
+                  <td className="font-size w-25 black">PASSPORT NO.</td>
+                  <td className="font-size w-25 black">{patient?.passportNo}</td>
+                  <td className="font-size w-25 black">DATE OF BIRTH</td>
+                  <td className="font-size w-25 black">{patient?.dateOfBirth}</td>
 
                 </tr>
                 <tr>
-                  <td className="font-size black">AGENCY</td>
-                  <td className="font-size black">{patient?.agentOrAgencyName}</td>
-                  <td className="font-size black">AGE</td>
-                  <td className="font-size black">SEX</td>
+                  <td className="font-size w-25 black">AGENCY</td>
+                  <td className="font-size w-25 black">{patient?.agentOrAgencyName}</td>
+
+                  <td className='w-25'>
+                    <tr className='w-100'>
+                      <td className="font-size border-border-left-0 border-top-0 border-bottom-0 black" style={{ width: '100px' }}>AGE</td>
+                      <td className="font-size border-0 w-50 black">25</td>
+
+                    </tr>
+                  </td>
+
+      
+                    <tr className='w-25'>
+                      <td className="font-size border-top-0 border-left-0 border-bottom-0 black" style={{ width: '100px' }}>Sex</td>
+                      <td className="font-size border-0 w-50 black">Mail</td>
+
+                    </tr>
+                
                 </tr>
                 <tr>
                   <td className="font-size black">ADDRESS</td>
@@ -175,12 +189,12 @@ function MedicalExaminationContent(props: any) {
             <table className="table-bordered table">
               <tbody>
                 <tr>
-                  <td className="font-size black">ASTHMA</td>
-                  <td className="font-size black"> </td>
-                  <td className="font-size black"> </td>
-                  <td className="font-size black">EPILEPSY /FITS</td>
-                  <td className="font-size black"> </td>
-                  <td className="font-size black"> </td>
+                  <td className="font-size w-25  black">ASTHMA</td>
+                  <td className="font-size  black"> </td>
+                  <td className="font-size  black"> </td>
+                  <td className="font-size w-25 black">EPILEPSY /FITS</td>
+                  <td className="font-size  black"> </td>
+                  <td className="font-size  black"> </td>
                 </tr>
               </tbody>
             </table>
@@ -203,10 +217,10 @@ function MedicalExaminationContent(props: any) {
             <table className="table-bordered table">
               <tbody>
                 <tr>
-                  <td className="font-size black">Diabetes</td>
+                  <td className="font-size w-25 black">Diabetes</td>
                   <td className="font-size black"> </td>
                   <td className="font-size black"> </td>
-                  <td className="font-size black">Blood Pressure</td>
+                  <td className="font-size w-25 black">Blood Pressure</td>
                   <td className="font-size black"> </td>
                   <td className="font-size black"> </td>
                 </tr>
@@ -230,9 +244,24 @@ function MedicalExaminationContent(props: any) {
 
 
             {/* signature */}
-            <div>
+            <div className='pt-2 text-black-50 pb-3'>
 
-              <hr />
+              {/* <span>_________________________</span> */}
+              <div className='' style={{ width: '240px', textAlign: 'start', paddingBottom: '0.5px' }}>
+
+                <hr className=' bg-black ' />
+              </div>
+              <div className='pl-3'>
+                {/* <span className='pl-5'>_________________________</span> */}
+                <div style={{ width: '240px', textAlign: 'start', }}>
+
+                  <hr className=' bg-black ' />
+                </div>
+
+                <h6 className='text-black'>Signature of worker</h6>
+              </div>
+              <h6>Date:</h6>
+
             </div>
 
             {/* part: 2 */}
