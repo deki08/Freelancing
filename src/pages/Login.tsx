@@ -12,8 +12,10 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
-    const [capErr, setCapErr] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [capErr, setCapErr] = useState(false)
+    const [emailErr,setEmailErr]=useState(false)
+    const [passwordErr,setPasswordErr]=useState(false)
 
 
     useEffect(() => {
@@ -44,6 +46,8 @@ const Login = () => {
         setLoading(true)
         if (numSum == capNum && email && password) {
             setCapErr(false)
+            setEmailErr(false)
+            setPasswordErr(false)
             AuthService.login(email, password).then(response => {
                 setError(false);
                 setSuccess(true);
@@ -59,6 +63,8 @@ const Login = () => {
         } else {
             setLoading(false)
             setCapErr(true)
+            setEmailErr(true)
+            setPasswordErr(true)
 
         }
 
@@ -103,7 +109,7 @@ const Login = () => {
                                                         <div className="form-control-position">
                                                             <i className="ft-user"></i>
                                                         </div>
-                                                        {!email && <p className="text-danger font-small-3">Email is required</p>}
+                                                        {emailErr && <p className="text-danger font-small-3">Email is required</p>}
                                                     </fieldset>
                                                     <fieldset className="form-group position-relative has-icon-left">
                                                         <input
@@ -116,7 +122,7 @@ const Login = () => {
                                                         <div className="form-control-position">
                                                             <i className="ft-lock"></i>
                                                         </div>
-                                                        {!password && <p className="text-danger font-small-3">Password is required</p>}
+                                                        {passwordErr && <p className="text-danger font-small-3">Password is required</p>}
                                                     </fieldset>
                                                     <div className="form-group d-flex justify-content-center row">
                                                         <div className="col-md-6 col-12 text-center text-sm-left">
