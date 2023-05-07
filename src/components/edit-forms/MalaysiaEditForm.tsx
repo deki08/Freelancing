@@ -134,7 +134,7 @@ function MalaysiaEditForm(props: any) {
           <p className={'light-black ml-1'} >Update Form</p>
         </div>
         <div className="row">
-          <div className="col-md-6 pr-0">
+          <div className="col-12 col-md-6 pr-0">
             <table className="table-bordered table ">
               <tbody>
                 <tr>
@@ -147,92 +147,26 @@ function MalaysiaEditForm(props: any) {
                   <td className="text-center font-weight-bolder font-size black" colSpan={2}>RESULTS</td>
                   <td className="text-center font-weight-bolder font-size black" colSpan={2}>REF. VALUE</td>
                 </tr>
-                <tr>
-                  <td rowSpan={2} className="font-size black">VISUAL ACUITY</td>
-                  <td colSpan={2} className="text-center font-size black">UNAIDED</td>
-                  <td colSpan={2} className="text-center font-size black">AIDED</td>
-                </tr>
-                <tr>
-                  <td className="text-center font-size black">RIGHT</td>
-                  <td className="text-center font-size black">LEFT</td>
-                  <td className="text-center font-size black">RIGHT</td>
-                  <td className="text-center font-size black">LEFT</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">DISTANT</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="distantUnaidedRight" onChange={onChange} defaultValue={report?.distantUnaidedRight} />
-                  </td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="distantUnaidedLeft" onChange={onChange} defaultValue={report?.distantUnaidedLeft} />
-                  </td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="distantAidedRight" onChange={onChange} defaultValue={report?.distantAidedRight} />
-                  </td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="distantAidedLeft" onChange={onChange} defaultValue={report?.distantAidedLeft} />
-                  </td>
-                </tr>
-                <tr>
-                  <td className="font-size black">NEAR</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="nearUnaidedRight" onChange={onChange} defaultValue={report?.nearUnaidedRight} />
-                  </td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="nearUnaidedLeft" onChange={onChange} defaultValue={report?.nearUnaidedLeft} />
-                  </td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="nearAidedRight" onChange={onChange} defaultValue={report?.nearAidedRight} />
-                  </td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="nearAidedLeft" onChange={onChange} defaultValue={report?.nearAidedLeft} />
-                  </td>
-                </tr>
-                <tr>
-                  <td className="font-size black">CLEAR VISION</td>
-                  <td colSpan={4} className="text-center font-size black">
-                    <input type="text" className="form-control" name="clearVision" onChange={onChange} defaultValue={report?.clearVision} />
-                  </td>
-                </tr>
-                <tr>
-                  <td className="font-size black" rowSpan={2}>HEARING (EAR)</td>
-                  <td className="text-center font-size black">L</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="earLeft" onChange={onChange} defaultValue={report?.earLeft} />
-                  </td>
-                  <td className="text-center font-size black" colSpan={2}>{refValue.earLeft}</td>
-                </tr>
-                <tr>
-                  <td className="text-center font-size black">R</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="earRight" onChange={onChange} defaultValue={report?.earRight} />
-                  </td>
-                  <td className="text-center font-size black" colSpan={2}>{refValue.earRight}</td>
-                </tr>
+
                 <tr>
                   <td className="text-center font-size black font-weight-bolder" colSpan={5}>
                     SYSTEMIC EXAM: CARDIO - VASCULAR
                   </td>
                 </tr>
-                <tr>
-                  <td className="font-size black">B.P</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="bloodPressure" onChange={onChange} defaultValue={report?.bloodPressure} />
-                  </td>
-                  <td className="text-center font-size black" colSpan={2}>{refValue.bloodPressure}</td>
-                </tr>
+
                 <tr>
                   <td className="font-size black">HEART</td>
-                  <td className="text-center font-size black" colSpan={2}>
+                  <td className="text-center font-size black">
                     <input type="text" className="form-control" name="heart" onChange={onChange} defaultValue={report?.heart} />
                   </td>
-                  <td className="text-center font-size black" colSpan={2} rowSpan={2}>{refValue.heart}</td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue?.heart}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">PULSE</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="pulse" onChange={onChange} defaultValue={report?.pulse} />
+                  <td className="font-size black">HEART SOUND</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="heartSound" onChange={onChange} defaultValue={report?.heartSound} />
                   </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.lungs}</td>
                 </tr>
                 <tr>
                   <td className="text-center font-weight-bolder font-size black" colSpan={5}>
@@ -240,153 +174,230 @@ function MalaysiaEditForm(props: any) {
                   </td>
                 </tr>
                 <tr>
-                  <td className="font-size black">LUNGS</td>
+                  <td className="font-size black">BREATH SOUNDS</td>
                   <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="lungs" onChange={onChange} defaultValue={report?.lungs} />
+                    <input type="text" className="form-control" name="breathSound" onChange={onChange} defaultValue={report?.breathSound} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.lungs}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">GASTROINTESTINAL ABDOMEN</td>
+                  <td className="font-size black">OTHER RINDINGS </td>
                   <td className="text-center font-size black"
                     colSpan={2}>
-                    <input type="text" className="form-control" name="gastrointestinalAbdomen" onChange={onChange} defaultValue={report?.gastrointestinalAbdomen} />
+                    <input type="text" className="form-control" name="otherRindings" onChange={onChange} defaultValue={report?.otherRindings} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.gastrointestinalAbdomen}</td>
                 </tr>
+
+                {/* -------------- GASTROINTESTINAL */}
                 <tr>
-                  <td className="text-center font-weight-bolder font-size black" colSpan={5}>OTHERS</td>
+                  <td className="text-center font-weight-bolder font-size black" colSpan={5}>
+                    GASTROINTESTINAL
+                  </td>
                 </tr>
                 <tr>
-                  <td className="font-size black">HEIGHT (CM)</td>
+                  <td className="font-size black">LIVER</td>
                   <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="height" onChange={onChange} defaultValue={report?.height} />
+                    <input type="text" className="form-control" name="liver" onChange={onChange} defaultValue={report?.liver} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.lungs}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">SPLEEN</td>
+                  <td className="text-center font-size black"
+                  >
+                    <input type="text" className="form-control" name="spleen" onChange={onChange} defaultValue={report?.spleen} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.gastrointestinalAbdomen}</td>
+                </tr>
+
+                {/* GENERAL MENTAL */}
+
+                <tr>
+                  <td className="text-center font-weight-bolder font-size black" colSpan={5}>GENERAL MENTAL
+                  </td>
+                </tr>
+                <tr>
+                  <td className="font-size black">STATUS</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="mentalStatus" onChange={onChange} defaultValue={report?.mentalStatus} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.height}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">WEIGHT (KG)</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="weight" onChange={onChange} defaultValue={report?.weight} />
+                  <td className="font-size black">SPEECH</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="mentalSpeech" onChange={onChange} defaultValue={report?.mentalSpeech} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.weight}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">HERNIA</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="hernia" onChange={onChange} defaultValue={report?.hernia} />
+                  <td className="font-size black">MOTOR POWER</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="mentalMotorPower" onChange={onChange} defaultValue={report?.mentalMotorPower} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.hernia}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">VARICOSEVEINS</td>
+                  <td className="font-size black">SENSORY</td>
                   <td className="text-center font-size black"
-                    colSpan={2}>
-                    <input type="text" className="form-control" name="varicoseVeins" onChange={onChange} defaultValue={report?.varicoseVeins} />
+                  >
+                    <input type="text" className="form-control" name="mentalSensory" onChange={onChange} defaultValue={report?.mentalSensory} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.varicoseVeins}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">DEFORMITIES</td>
+                  <td className="font-size black">REFLESES</td>
                   <td className="text-center font-size black"
-                    colSpan={2}>
-                    <input type="text" className="form-control" name="deformities" onChange={onChange} defaultValue={report?.deformities} />
+                  >
+                    <input type="text" className="form-control" name="mentalRefleses" onChange={onChange} defaultValue={report?.mentalRefleses} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.deformities}</td>
                 </tr>
+                {/* section d - X ray findings */}
                 <tr>
-                  <td className="font-size black">SKIN</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="skin" onChange={onChange} defaultValue={report?.skin} />
-                  </td>
-                  <td className="text-center font-size black" colSpan={2}>{refValue.skin}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">C.N.S.</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="cns" onChange={onChange} defaultValue={report?.cns} />
-                  </td>
-                  <td className="text-center font-size black" colSpan={2}>{refValue.cns}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">EXTREMITIES</td>
-                  <td className="text-center font-size black"
-                    colSpan={2}>
-                    <input type="text" className="form-control" name="extremities" onChange={onChange} defaultValue={report?.extremities} />
-                  </td>
-                  <td className="text-center font-size black" colSpan={2}>{refValue.extremities}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">PSYCHIATRY</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="psychiatry" onChange={onChange} defaultValue={report?.psychiatry} />
-                  </td>
-                  <td className="text-center font-size black" colSpan={2}>{refValue.psychiatry}</td>
-                </tr>
-                <tr>
-                  <td className="text-center font-weight-bolder font-size black" colSpan={5}>VENEREAL
-                    DISEASES
+                  <td className="text-center font-weight-bolder font-size black" colSpan={5}>X-RAY FINDINGS
                   </td>
                 </tr>
                 <tr>
-                  <td className="font-size black">SYMPTOMS</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="symptoms" onChange={onChange} defaultValue={report?.symptoms} />
-                  </td>
-                  <td className="text-center font-size black" colSpan={2}>{refValue.symptoms}</td>
-                </tr>
-                <tr>
-                  <td className="text-center font-weight-bolder font-size black" colSpan={5}>X-RAY
-                    INVESTIGATION
-                  </td>
-                </tr>
-                <tr>
-                  <td className="font-size black">CHEST X-RAY</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="chestXray" onChange={onChange} defaultValue={report?.chestXray} />
+                  <td className="font-size black">DATE OF X-RAY TAKEN</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="dateOfXrayTaken" onChange={onChange} defaultValue={report?.dateOfXrayTaken} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.chestXray}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">ECG</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="ecg" onChange={onChange} defaultValue={report?.ecg} />
+                  <td className="font-size black">DATE OF X-RAY REPORTED</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="dateOfXrayReported" onChange={onChange} defaultValue={report?.dateOfXrayReported} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.ecg}</td>
                 </tr>
+                {/* urine drug screening---------- */}
                 <tr>
-                  <td className="text-center font-weight-bolder font-size black" colSpan={5}>DRUG TEST
+                  <td className="text-center font-weight-bolder font-size black" colSpan={4}>
+                    URIN DRUG SCREENING
                   </td>
                 </tr>
                 <tr>
-                  <td className="font-size black">THC</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="thc" onChange={onChange} defaultValue={report?.thc} />
+                  <td className="font-size black">OPIATES</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="urineOpiates" onChange={onChange} defaultValue={report?.urineOpiates} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.thc}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">MOP</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="mop" onChange={onChange} defaultValue={report?.mop} />
+                  <td className="font-size black">CANNABINOIDS</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="urineCannabinoids" onChange={onChange} defaultValue={report?.cannabinoids} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">AMP</td>
-                  <td className="text-center font-size black" colSpan={2}>
-                    <input type="text" className="form-control" name="amp" onChange={onChange} defaultValue={report?.amp} />
+                  <td className="font-size black">URINE HCG</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="urineHcg" onChange={onChange} defaultValue={report?.urineHcg} />
                   </td>
                   <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+
+                {/* CONCLUTION OF MEDICAL STATUS ----------------------*/}
+                <tr>
+                  <td className="text-center font-weight-bolder font-size black" colSpan={4}>CONCLUTION OF MEDICAL STATUS:
+                  </td>
+                </tr>
+                <tr>
+                  <td className="font-size black">HIV /AIDS</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfHivOrAids" onChange={onChange} defaultValue={report?.statusOfHivOrAids} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">TB</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfTB" onChange={onChange} defaultValue={report?.statusOfTB} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">MALARIA </td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfMalaria" onChange={onChange} defaultValue={report?.statusOfMalaria} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">HEPATITIS</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfHepatitis" onChange={onChange} defaultValue={report?.statusOfHepatitis} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">STD</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfSTD" onChange={onChange} defaultValue={report?.statusOfSTD} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">EPILEPSY</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfEpilepsy" onChange={onChange} defaultValue={report?.statusOfEpilepsy} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">CANCER</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfCancer" onChange={onChange} defaultValue={report?.statusOfCancer} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">DRUGS</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfDrugs" onChange={onChange} defaultValue={report?.statusOfDrugs} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">LEPROSY</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfLeprosy" onChange={onChange} defaultValue={report?.statusOfLeprosy} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">PREGNANCY</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfPregnancy" onChange={onChange} defaultValue={report?.statusOfPregnancy} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">PSYCHIATRIC ILLENESS</td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfPsychiatricIll" onChange={onChange} defaultValue={report?.statusOfPsychiatricIll} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">OTHERS </td>
+                  <td className="text-center font-size black">
+                    <input type="text" className="form-control" name="statusOfOther" onChange={onChange} defaultValue={report?.statusOfOther} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div className="col-md-6 pl-0">
+          <div className="col-12 col-md-6  pl-0">
             <table className="table-bordered table ">
               <tbody>
                 <tr>
-                  <td className="text-center font-weight-bolder font-size black" colSpan={3}>LABORATORY
+                  <td className="text-center font-weight-bolder font-size black" colSpan={4}>LABORATORY
                     INVESTIGATION
                   </td>
                 </tr>
@@ -395,222 +406,226 @@ function MalaysiaEditForm(props: any) {
                   <td className="text-center font-weight-bolder font-size black" colSpan={1}>RESULTS</td>
                   <td className="text-center font-weight-bolder font-size black">REF. VALUE</td>
                 </tr>
+                {/* ------------right side items */}
+
+
+
                 <tr>
-                  <td className="text-center font-weight-bolder font-size black" colSpan={3}>URINE</td>
+                  <td className="text-center font-weight-bolder font-size black" colSpan={4}>GENITOURINARY SYSTEM</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">SUGAR</td>
+                  <td className="font-size black">KIDNEY</td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="sugar" onChange={onChange} defaultValue={report?.sugar} />
+                    <input type="text" className="form-control" name="genitourinaryKidney" onChange={onChange} defaultValue={report?.genitourinaryKidney} />
                   </td>
-                  <td className="text-center font-size black">{refValue.sugar}</td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">ALBUMIN</td>
+                  <td className="font-size black">DISCHARGE </td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="albumin" onChange={onChange} defaultValue={report?.albumin} />
+                    <input type="text" className="form-control" name="genitourinaryDischarge" onChange={onChange} defaultValue={report?.genitourinaryDischarge} />
                   </td>
-                  <td className="text-center font-size black">{refValue.albumin}</td>
+                  <td colSpan={2} className="text-center font-size black">{refValue.albumin}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">BILHARZIASIS (IF ENDEMIC)</td>
+                  <td className="font-size black">SORES/ ULCER</td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="urineBilharziasis" onChange={onChange} defaultValue={report?.urineBilharziasis} />
+                    <input type="text" className="form-control" name="genitourinarySoresOrUlcer" onChange={onChange} defaultValue={report?.genitourinarySoresOrUlcer} />
                   </td>
-                  <td className="text-center font-size black">{refValue.urineBilharziasis}</td>
+                  <td colSpan={2} className="text-center font-size black">{refValue.urineBilharziasis}</td>
+                </tr>
+                {/* Laboratory results */}
+                <tr>
+                  <td className="text-center font-weight-bolder font-size black" colSpan={4}>Laboratory results
+                  </td>
                 </tr>
                 <tr>
-                  <td className="font-size black">PREGNANCY TEST</td>
+                  <td className="font-size black">SPECIMEN RECEIVED DATE</td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="pregnancy" onChange={onChange} defaultValue={report?.pregnancy} />
+                    <input type="text" className="form-control" name="laboratoryReceivedDate" onChange={onChange} defaultValue={report?.laboratoryReceivedDate} />
                   </td>
-                  <td className="text-center font-size black">{refValue.pregnancy}</td>
+                  <td colSpan={2} className="text-center font-size black">{refValue.urineBilharziasis}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">OTHERS</td>
+                  <td className="font-size black">DATE OF LAB REPORT </td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="others" onChange={onChange} defaultValue={report?.others} />
+                    <input type="text" className="form-control" name="laboratoryReportDateOfLab" onChange={onChange} defaultValue={report?.laboratoryReportDateOfLab} />
                   </td>
-                  <td className="text-center font-size black">{refValue.others}</td>
+                  <td colSpan={2} className="text-center font-size black">{refValue.urineBilharziasis}</td>
                 </tr>
+
                 <tr>
-                  <td className="text-center font-weight-bolder font-size black" colSpan={3}>STOOL R/E (IF
-                    REQUIRED)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="font-size black">HELMINTHS</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="helminths" onChange={onChange} defaultValue={report?.helminths} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.helminths}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">GIARDIA</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="giardia" onChange={onChange} defaultValue={report?.giardia} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.giardia}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">BILHARZIASIS (IF ENDEMIC)</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="stoolBilharziasis" onChange={onChange} defaultValue={report?.stoolBilharziasis} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.stoolBilharziasis}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">CULTURE</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="culture" onChange={onChange} defaultValue={report?.culture} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.culture}</td>
-                </tr>
-                <tr>
-                  <td className="text-center font-weight-bolder font-size black" colSpan={3}>BLOOD-CBC &
-                    GROUPING
+                  <td className="text-center font-weight-bolder font-size black" colSpan={4}>Blood Tests
                   </td>
                 </tr>
                 <tr>
-                  <td className="font-size black">MALARIA</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="malaria" onChange={onChange} defaultValue={report?.malaria} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.malaria}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">MICROFILARIA</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="microfilaria" onChange={onChange} defaultValue={report?.microfilaria} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.microfilaria}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">BLOOD GROUP</td>
+                  <td className="font-size black">BLOOD Group</td>
                   <td className="text-center font-size black">
                     <input type="text" className="form-control" name="bloodGroup" onChange={onChange} defaultValue={report?.bloodGroup} />
                   </td>
-                  <td className="text-center font-size black">{refValue.bloodGroup}</td>
+                  <td colSpan={2} className="text-center font-size black">{refValue.urineBilharziasis}</td>
+                </tr>
+
+                {/* female urine test */}
+                {/* pregnancy test ------------ */}
+                <tr>
+                  <td className="text-center font-weight-bolder font-size black" colSpan={5}>
+                    PREGNANCY TEST URINE FEMALE
+                  </td>
                 </tr>
                 <tr>
-                  <td className="font-size black">HEMOGLOBIN</td>
+                  <td className="font-size black">SPECIFIC GRAVITY</td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="haemoglobin" onChange={onChange} defaultValue={report?.haemoglobin} />
+                    <input type="text" className="form-control" name="femaleSpecificGravity" onChange={onChange} defaultValue={report?.femaleSpecificGravity} />
                   </td>
-                  <td className="text-center font-size black">{refValue.haemoglobin}</td>
+                  <td colSpan={2} className="text-center font-size black">{refValue.urineBilharziasis}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">ESR</td>
+                  <td className="font-size black">COLOUR</td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="esr" onChange={onChange} defaultValue={report?.esr} />
+                    <input type="text" className="form-control" name="femaleUrineColor" onChange={onChange} defaultValue={report?.femaleUrineColor} />
                   </td>
-                  <td className="text-center font-size black">{refValue.esr}</td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
                 </tr>
+                <tr>
+                  <td className="font-size black">PH</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="femaleUrinePh" onChange={onChange} defaultValue={report?.femaleUrinePh} />
+                  </td>
+                  <td colSpan={2} className="text-center font-size black">{refValue.urineBilharziasis}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">LEUCOCYTES</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="femaleUrineLeucocytes" onChange={onChange} defaultValue={report?.femaleUrineLeucocytes} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">GLUCOSE</td>
+                  <td className="text-center font-size black"  >
+                    <input type="text" className="form-control" name="femaleGlucose" onChange={onChange} defaultValue={report?.femaleGlucose} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">PROTEIN</td>
+                  <td className="text-center font-size black"  >
+                    <input type="text" className="form-control" name="femaleProtein" onChange={onChange} defaultValue={report?.femaleProtein} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">BLOOD</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="femaleBlood" onChange={onChange} defaultValue={report?.femaleBlood} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">MICROSCOPY</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="femaleMicroscopy" onChange={onChange} defaultValue={report?.femaleMicroscopy} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">RED BLOOD CELL</td>
+                  <td className="text-center font-size black"  >
+                    <input type="text" className="form-control" name="femaleRedBloodCell" onChange={onChange} defaultValue={report?.femaleRedBloodCell} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">WHITE BLOOD CELL</td>
+                  <td className="text-center font-size black"  >
+                    <input type="text" className="form-control" name="femaleWhiteBloodCell" onChange={onChange} defaultValue={report?.femaleWhiteBloodCell} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">EPITHELIAL CELL</td>
+                  <td className="text-center font-size black"  >
+                    <input type="text" className="form-control" name="femaleEpithelialCell" onChange={onChange} defaultValue={report?.femaleEpithelialCell} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">CASTS</td>
+                  <td className="text-center font-size black"  >
+                    <input type="text" className="form-control" name="femaleCasts" onChange={onChange} defaultValue={report?.femaleCasts} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">CRYSTAL</td>
+                  <td className="text-center font-size black"  >
+                    <input type="text" className="form-control" name="femaleCrystal" onChange={onChange} defaultValue={report?.femaleCrystal} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">BACTERIA</td>
+                  <td className="text-center font-size black" >
+                    <input type="text" className="form-control" name="femaleBacteria" onChange={onChange} defaultValue={report?.femaleBacteria} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+                <tr>
+                  <td className="font-size black">OTHERS</td>
+                  <td className="text-center font-size black"  >
+                    <input type="text" className="form-control" name="femaleOthers" onChange={onChange} defaultValue={report?.femaleOthers} />
+                  </td>
+                  <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
+                </tr>
+
                 <tr>
                   <td className="text-center font-weight-bolder font-size black"
-                    colSpan={3}>BLOOD-BIOCHEMISTRY
+                    colSpan={4}>Serology
                   </td>
                 </tr>
                 <tr>
-                  <td className="font-size black">R.B.S.</td>
+                  <td className="font-size black">HIV ANTIBODY</td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="rbs" onChange={onChange} defaultValue={report?.rbs} />
+                    <input type="text" className="form-control" name="serologyHivAntibody" onChange={onChange} defaultValue={report?.serologyHivAntibody} />
                   </td>
                   <td className="text-center font-size black">{refValue.rbs}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">CREATININE</td>
+                  <td className="font-size black">HB<small>s</small>AG</td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="creatinine" onChange={onChange} defaultValue={report?.creatinine} />
+                    <input type="text" className="form-control" name="serologyHbsAG" onChange={onChange} defaultValue={report?.serologyHbsAG} />
                   </td>
                   <td className="text-center font-size black">{refValue.creatinine}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">T.BIL</td>
+                  <td className="font-size black">VDRL</td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="tbil" onChange={onChange} defaultValue={report?.tbil} />
+                    <input type="text" className="form-control" name="serologyVdrl" onChange={onChange} defaultValue={report?.serologyVdrl} />
                   </td>
                   <td className="text-center font-size black">{refValue.tbil}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">SGPT</td>
+                  <td className="font-size black">MALARIA PARASITE</td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="sgpt" onChange={onChange} defaultValue={report?.sgpt} />
+                    <input type="text" className="form-control" name="serologyMalariaParasite" onChange={onChange} defaultValue={report?.serologyMalariaParasite} />
                   </td>
                   <td className="text-center font-size black">{refValue.sgpt}</td>
                 </tr>
                 <tr>
-                  <td className="font-size black">SGOT</td>
+                  <td className="font-size black">F.B.S.</td>
                   <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="sgot" onChange={onChange} defaultValue={report?.sgot} />
+                    <input type="text" className="form-control" name="serologyFBS" onChange={onChange} defaultValue={report?.serologyFBS} />
                   </td>
                   <td className="text-center font-size black">{refValue.sgot}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">ALP</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="alp" onChange={onChange} defaultValue={report?.alp} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.alp}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">UREA</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="urea" onChange={onChange} defaultValue={report?.urea} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.urea}</td>
-                </tr>
-                <tr>
-                  <td className="text-center font-weight-bolder font-size black" colSpan={3}>BLOOD-ELISA &
-                    SEROLOGY
-                  </td>
-                </tr>
-                <tr>
-                  <td className="font-size black">ANTI HCV</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="antiHcv" onChange={onChange} defaultValue={report?.antiHcv} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.antiHcv}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">TPHA (IF VDRL POSITIVE)</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="tpha" onChange={onChange} defaultValue={report?.tpha} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.tpha}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">VDRL</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="vdrl" onChange={onChange} defaultValue={report?.vdrl} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.vdrl}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">HIV I & HIV II</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="hiv" onChange={onChange} defaultValue={report?.hiv} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.hiv}</td>
-                </tr>
-                <tr>
-                  <td className="font-size black">HB<small>S</small>AG</td>
-                  <td className="text-center font-size black">
-                    <input type="text" className="form-control" name="hbsag" onChange={onChange} defaultValue={report?.hbsag} />
-                  </td>
-                  <td className="text-center font-size black">{refValue.hbsag}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <h4 className="form-section">Doctor Remark</h4>
-        <div className="row">
-          {/* {FORM.PATIENT_FORM_EXTRA_FIELDS.map((input) => (
-            <FormField key={input?.id} {...input} onChange={onChange} defaultValue={report[input?.name]} />
-          ))} */}
-        </div>
+
+
       </div>
       <div className="form-actions">
         <button type="button" className="btn btn-danger mr-1" onClick={onCancel}>
