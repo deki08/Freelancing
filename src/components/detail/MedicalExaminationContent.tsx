@@ -216,7 +216,6 @@ function MedicalExaminationContent(props: any) {
  */}
             {/*  */}
             <h6 className='text-black-deep text-bold-700'>Family History (Parents with history of diabetes, blood pressure and heart diseases)
-
             </h6>
             <table className="table-bordered table">
               <tbody>
@@ -231,7 +230,6 @@ function MedicalExaminationContent(props: any) {
 
             {/* signature */}
             <div>
-
               <hr />
             </div>
 
@@ -243,380 +241,648 @@ function MedicalExaminationContent(props: any) {
               </h6>
             </div>
 
-            <div className="row">
-              <div className="col-md-6 pr-0">
-                <table className="table-bordered table ">
-                  <tbody>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>MEDICAL
-                        EXAMINATION
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black">TYPE OF EXAMINATION</td>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={2}>RESULTS</td>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={2}>REF. VALUE</td>
-                    </tr>
-                    <tr>
-                      <td rowSpan={2} className="font-size black">VISUAL ACUITY</td>
-                      <td colSpan={2} className="text-center font-size black">UNAIDED</td>
-                      <td colSpan={2} className="text-center font-size black">AIDED</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-size black">RIGHT</td>
-                      <td className="text-center font-size black">LEFT</td>
-                      <td className="text-center font-size black">RIGHT</td>
-                      <td className="text-center font-size black">LEFT</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">DISTANT</td>
-                      <td className="text-center font-size black">{report.distantUnaidedRight}</td>
-                      <td className="text-center font-size black">{report.distantUnaidedLeft}</td>
-                      <td className="text-center font-size black">{report.distantAidedRight}</td>
-                      <td className="text-center font-size black">{report.distantAidedLeft}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">NEAR</td>
-                      <td className="text-center font-size black">{report.nearUnaidedRight}</td>
-                      <td className="text-center font-size black">{report.nearUnaidedLeft}</td>
-                      <td className="text-center font-size black">{report.nearAidedRight}</td>
-                      <td className="text-center font-size black">{report.nearAidedLeft}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">CLEAR VISION</td>
-                      <td colSpan={4} className="text-center font-size black">{report.clearVision}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black" rowSpan={2}>HEARING (EAR)</td>
-                      <td className="text-center font-size black">L</td>
-                      <td className="text-center font-size black">{report.earLeft}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.earLeft}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-size black">R</td>
-                      <td className="text-center font-size black">{report.earRight}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.earRight}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-size black font-weight-bolder" colSpan={5}>
-                        SYSTEMIC EXAM: CARDIO - VASCULAR
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">B.P</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.bloodPressure}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.bloodPressure}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">HEART</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.heart}</td>
-                      <td className="text-center font-size black" colSpan={2} rowSpan={2}>{refValue.heart}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">PULSE</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.pulse}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>
-                        RESPIRATORY EXAM
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">LUNGS</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.lungs}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.lungs}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">GASTROINTESTINAL ABDOMEN</td>
-                      <td className="text-center font-size black"
-                        colSpan={2}>{report.gastrointestinalAbdomen}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.gastrointestinalAbdomen}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>OTHERS</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">HEIGHT (CM)</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.height}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.height}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">WEIGHT (KG)</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.weight}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.weight}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">HERNIA</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.hernia}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.hernia}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">VARICOSEVEINS</td>
-                      <td className="text-center font-size black"
-                        colSpan={2}>{report.varicoseVeins}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.varicoseVeins}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">DEFORMITIES</td>
-                      <td className="text-center font-size black"
-                        colSpan={2}>{report.deformities}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.deformities}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">SKIN</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.skin}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.skin}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">C.N.S.</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.cns}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.cns}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">EXTREMITIES</td>
-                      <td className="text-center font-size black"
-                        colSpan={2}>{report.extremities}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.extremities}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">PSYCHIATRY</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.psychiatry}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.psychiatry}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>VENEREAL
-                        DISEASES
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">SYMPTOMS</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.symptoms}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.symptoms}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>X-RAY
-                        INVESTIGATION
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">CHEST X-RAY</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.chestXray}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.chestXray}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">ECG</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.ecg}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.ecg}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>DRUG TEST
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">THC</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.thc}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.thc}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">MOP</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.mop}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">AMP</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.amp}</td>
-                      <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="col-md-6 pl-0">
-                <table className="table-bordered table ">
-                  <tbody>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={3}>LABORATORY
-                        INVESTIGATION
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black">TYPE OF EXAMINATION</td>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={1}>RESULTS</td>
-                      <td className="text-center font-weight-bolder font-size black">REF. VALUE</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={3}>URINE</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">SUGAR</td>
-                      <td className="text-center font-size black">{report.sugar}</td>
-                      <td className="text-center font-size black">{refValue.sugar}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">ALBUMIN</td>
-                      <td className="text-center font-size black">{report.albumin}</td>
-                      <td className="text-center font-size black">{refValue.albumin}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">BILHARZIASIS (IF ENDEMIC)</td>
-                      <td className="text-center font-size black">{report.urineBilharziasis}</td>
-                      <td className="text-center font-size black">{refValue.urineBilharziasis}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">PREGNANCY TEST</td>
-                      <td className="text-center font-size black">{report.pregnancy}</td>
-                      <td className="text-center font-size black">{refValue.pregnancy}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">OTHERS</td>
-                      <td className="text-center font-size black">{report.others}</td>
-                      <td className="text-center font-size black">{refValue.others}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={3}>STOOL R/E (IF
-                        REQUIRED)
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">HELMINTHS</td>
-                      <td className="text-center font-size black">{report.helminths}</td>
-                      <td className="text-center font-size black">{refValue.helminths}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">GIARDIA</td>
-                      <td className="text-center font-size black">{report.giardia}</td>
-                      <td className="text-center font-size black">{refValue.giardia}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">BILHARZIASIS (IF ENDEMIC)</td>
-                      <td className="text-center font-size black">{report.stoolBilharziasis}</td>
-                      <td className="text-center font-size black">{refValue.stoolBilharziasis}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">CULTURE</td>
-                      <td className="text-center font-size black">{report.culture}</td>
-                      <td className="text-center font-size black">{refValue.culture}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={3}>BLOOD-CBC &
-                        GROUPING
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">MALARIA</td>
-                      <td className="text-center font-size black">{report.malaria}</td>
-                      <td className="text-center font-size black">{refValue.malaria}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">MICROFILARIA</td>
-                      <td className="text-center font-size black">{report.microfilaria}</td>
-                      <td className="text-center font-size black">{refValue.microfilaria}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">BLOOD GROUP</td>
-                      <td className="text-center font-size black">{report.bloodGroup}</td>
-                      <td className="text-center font-size black">{refValue.bloodGroup}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">HEMOGLOBIN</td>
-                      <td className="text-center font-size black">{report.haemoglobin}</td>
-                      <td className="text-center font-size black">{refValue.haemoglobin}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">ESR</td>
-                      <td className="text-center font-size black">{report.esr}</td>
-                      <td className="text-center font-size black">{refValue.esr}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black"
-                        colSpan={3}>BLOOD-BIOCHEMISTRY
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">R.B.S.</td>
-                      <td className="text-center font-size black">{report.rbs}</td>
-                      <td className="text-center font-size black">{refValue.rbs}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">CREATININE</td>
-                      <td className="text-center font-size black">{report.creatinine}</td>
-                      <td className="text-center font-size black">{refValue.creatinine}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">T.BIL</td>
-                      <td className="text-center font-size black">{report.tbil}</td>
-                      <td className="text-center font-size black">{refValue.tbil}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">SGPT</td>
-                      <td className="text-center font-size black">{report.sgpt}</td>
-                      <td className="text-center font-size black">{refValue.sgpt}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">SGOT</td>
-                      <td className="text-center font-size black">{report.sgot}</td>
-                      <td className="text-center font-size black">{refValue.sgot}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">ALP</td>
-                      <td className="text-center font-size black">{report.alp}</td>
-                      <td className="text-center font-size black">{refValue.alp}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">UREA</td>
-                      <td className="text-center font-size black">{report.urea}</td>
-                      <td className="text-center font-size black">{refValue.urea}</td>
-                    </tr>
-                    <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={3}>BLOOD-ELISA &
-                        SEROLOGY
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">ANTI HCV</td>
-                      <td className="text-center font-size black">{report.antiHcv}</td>
-                      <td className="text-center font-size black">{refValue.antiHcv}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">TPHA (IF VDRL POSITIVE)</td>
-                      <td className="text-center font-size black">{report.tpha}</td>
-                      <td className="text-center font-size black">{refValue.tpha}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">VDRL</td>
-                      <td className="text-center font-size black">{report.vdrl}</td>
-                      <td className="text-center font-size black">{refValue.vdrl}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">HIV I & HIV II</td>
-                      <td className="text-center font-size black">{report.hiv}</td>
-                      <td className="text-center font-size black">{refValue.hiv}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-size black">HB<small>S</small>AG</td>
-                      <td className="text-center font-size black">{report.hbsag}</td>
-                      <td className="text-center font-size black">{refValue.hbsag}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            {/* disease */}
+            <h6 className='text-black-deep text-bold-700'>Disease</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '20%', paddingLeft: '5px' }}>DISEASES</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '10%', }}>COMMENT</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '10%', }}>DATE</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '20%', paddingLeft: '5px' }}>DISEASES</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '10%', }}>COMMENT</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '10%', }}>DATE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="font-size black">
+                    HIV/ AIDS
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   HYPERTENSION
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    TUBERCULOSIS
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   HEART DISEASES
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    LEPROSY
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   BRONCHIAL ASTHMA
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    VIRAL HEPATITIS
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   DIABETES MELLITUS
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    PSYCHIATRIC ILLNESS
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   PEPTIC ULCER
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    EPILEPSY
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   KIDNEY DISEASES
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    CANCER
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   OTHERS
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    SEXTUALLY TRANSMITED <br /> DISEASES
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    MALARIA
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td colSpan={3} className="font-size text-bold-600 black">
+                    Foreign workers found with diseases /conditions where the workers are considered unsuitable for employment in Malaysia, if the medical test /examination is positive
+                  </td>
+
+                  <td colSpan={3} className="font-size text-bold-600 black">Foreign workers found with incurable or chronic diseases / conditions where they need prolonged and extensive treatment may also be found unsuitable for employment in Malaysia.</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+
+
+            {/* ----------------------------------- */}
+            {/* part: 3 */}
+            <div>
+              <h6 className='text-black-deep text-bold-600'> <strong className='text-bold-700'>Part: III. Physical Examination & Investigations </strong>(to be filled by the examining doctor)
+              </h6>
+              <h6 className='text-black-deep text-bold-600'>Section A: General Examination
+
+              </h6>
             </div>
-            {report.status ?
-              <table className="table-bordered table ">
-                <tbody>
-                  <tr>
-                    <td className="font-size black">
-                      Mentioned above is the medical report for {patient.gender == 'MALE' ? 'Mr' : 'Mrs'}. {patient.fullName}, Who is <span className={"font-weight-bolder"}>{report.status}</span> for the above mentioned job according to the Medical criteria.
-                    </td>
-                    <td className="font-weight-bolder font-size black" style={{ whiteSpace: "pre-line" }}>
-                      {report.status != null ? <img src={configuration.reportDoctorSeal} className={'width-100'} /> : ''}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="font-size black">REMARK : {patient.remark}</td>
-                    <td className="font-size black">FINAL CHECKED BY : {patient.lastModifiedBy}</td>
-                  </tr>
-                </tbody>
-              </table> : ""}
+
+
+
+
+
+            <h6 className='text-black-deep text-bold-700'>Disease</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>HEIGHT</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>DEFOMITIES OF LIMBS</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="font-size black">
+                    WEIGHT
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   ANAEMIA
+                  </td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    WEIGHT
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   ANAEMIA
+                  </td>
+                  <td className="font-size black"></td>
+                </tr>
+
+                <tr>
+                  <td className="font-size black">
+                    PULSE
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   JAUNDICE
+                  </td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    BLOOD PRESSURE   A - SYSTOLIC
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   LYMPH NODE ENLARGEMENT
+                  </td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    B - DIASTOLIC
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   Vision test A – Unaided
+                  </td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    LAST MENSTRUAL PERIOD DATE
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   B – Aided
+                  </td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    CHRONIC SKIN RASH
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   HEARING
+                  </td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    ANAESTHETIC SKIN PATCH
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">                   OTHERS (if abnormal, describe under comment)
+                  </td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td colSpan={4} rowSpan={3} className="font-size text-bold-600 black">
+                    COMMENTS (Refer To Part- III,<br /> Sec-A)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            {/* section b system examination */}
+
+            <h6 className='text-black-deep text-bold-700'>Section B: System Examination
+            </h6>
+            <h6 className='text-black-deep text-bold-700 '>CARDIO VASCULAR SYSTEM
+            </h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HEART SIZE</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HEART SOUND</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+
+                </tr>
+              </thead>
+            </table>
+
+            {/* RESPIRATORY SYSTEM */}
+
+            <h6 className='text-black-deep text-bold-700 '>RESPIRATORY SYSTEM</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. BREATH SOUNDS</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. OTHER RINDINGS </th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+
+                </tr>
+              </thead>
+            </table>
+
+            {/* GASTROINTESTINAL */}
+            <h6 className='text-black-deep text-bold-700 '>RGASTROINTESTINAL</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. LIVER</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. SPLEEN </th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+            </table>
+
+            {/* NERVOUS SYSTEM & MENTAL STATUS */}
+            <h6 className='text-black-deep text-bold-700 '>NERVOUS SYSTEM & MENTAL STATUS
+            </h6>
+            <h6 className='text-black-deep text-bold-700 '>GENERAL MENTAL
+            </h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. STATUS</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. SPEECH  </th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="font-size black">
+                    C. MOTOR POWER
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    D. SENSORY
+                  </td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    E. REFLESES
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+            {/*GENITOURINARY SYSTEM */}
+            <h6 className='text-black-deep text-bold-700 '>GENITOURINARY SYSTEM</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. KIDNEY</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. DISCHARGE </th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="font-size black">
+                    C. SORES/ ULCER
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+            {/*Section C: Laboratory results */}
+            <h6 className='text-black-deep text-bold-700 '>GENITOURINARY SYSTEM</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. SPECIMEN RECEIVED DATE</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. DATE OF LAB REPORT </th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+            </table>
+
+
+            {/*Blood Tests*/}
+            <h6 className='text-black-deep text-bold-700 '>GENITOURINARY SYSTEM</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>BLOOD Group</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+            </table>
+
+
+            {/*Serology */}
+            <h6 className='text-black-deep text-bold-700 '>Serology</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HIV ANTIBODY</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HBsAG</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="font-size black">
+                    C. VDRL
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">D. MALARIA PARASITE</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    E. F.B.S.
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+            {/*Urine Drug Screening */}
+            <h6 className='text-black-deep text-bold-700 '>Urine Drug Screening</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. OPIATES</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. CANNABINOIDS</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="font-size black">
+                    C. URINE HCG
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    E. F.B.S.
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+            {/*A PREGNANCY TEST URINE FEME */}
+            <h6 className='text-black-deep text-bold-700 '>A PREGNANCY TEST URINE FEME</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>SPECIFIC GRAVITY</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>COLOUR</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="font-size black">
+                    PH
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">LEUCOCYTES</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    GLUCOSE
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">PROTEIN</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    BLOOD
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">MICROSCOPY</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    RED BLOOD CELL
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">WHITE BLOOD CELL</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    EPITHELIAL CELL</td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">CASTS</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    CRYSTAL
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">BACTERIA</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    OTHERS
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+
+            {/*Section D: X-RAY FINDINGS*/}
+            <h6 className='text-black-deep text-bold-700 '>DATE OF X-RAY TAKEN</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>DATE OF X-RAY TAKEN</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>DATE OF X-RAY REPORTED</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+            </table>
+
+
+            {/*REPORT*/}
+            <h6 className='text-black-deep text-bold-700 '>REPORT</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HEART SHAPE</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HEART SIZE</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="font-size black">
+                    C. LUNG FIELDS
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">D. MEDIASTINUM & HILA</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    E. PLEURAL / HEMIDIAPHRAGMS
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">F. COSTO-PHRENIC ANGLES</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    G. TORACIC CASE
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black"></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+
+            {/*FINDINGS*/}
+            <h6 className='text-black-deep text-bold-700 '>FINDINGS</h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. FOCAL LESION</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. OTHER ABNORMALITIES</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+            </table>
+
+
+
+            {/*CONCLUTION OF MEDICAL STATUS:*/}
+            <h6 className='text-black-deep text-bold-700 '>CONCLUTION OF MEDICAL STATUS:
+            </h6>
+            <h6 className='text-black-deep text-bold-600 '>I have examined Mr./Ms. (PATIENT NAME DURING REGISTRATION), Passport Number – (DURING <br /> REGISTRATION), He/She are free from the following diseases.
+            </h6>
+            <table className="table-bordered table">
+              <thead style={{ textAlign: 'left' }}>
+                <tr>
+                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HIV /AIDS</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. TB</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="font-size black">
+                    C. MALARIA
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">D. HEPATITIS</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    E. STD
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">F. EPILEPSY</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    G. CANCER
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">H. DRUGS</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    I. LEPROSY
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">J. PREGNANCY</td>
+                  <td className="font-size black"></td>
+                </tr>
+                <tr>
+                  <td className="font-size black">
+                    K. PSYCHIATRIC ILLENESS
+                  </td>
+                  <td className="font-size black"></td>
+                  <td className="font-size black">L. OTHERS </td>
+                  <td className="font-size black"></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+
+
+
 
           </div>
         </div>
