@@ -13,7 +13,7 @@ function MedicalExamination(props: any) {
         <div className="content-wrapper-before"></div>
         <div className="content-header row">
           <div className="content-header-left col-md-4 col-12 mb-2">
-            <h3 className="content-header-title">Medical Examination Report</h3>
+            <h3 className="content-header-title">Medical Examination Form</h3>
           </div>
         </div>
         <div className="content-body">
