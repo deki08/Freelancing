@@ -11,6 +11,7 @@ import UserProfileDetail from "../../../components/detail/UserProfileDetail";
 import XRayUpload from "../../../components/ui/XRayUpload";
 import PatientBillsContent from "../../../components/detail/PatientBillsContent";
 import { MODEL } from "../../../utils/FormFields";
+import MedicalExamination from './MedicalExamination';
 
 function PatientList(props: any) {
     const navigate = useNavigate();
@@ -39,6 +40,15 @@ function PatientList(props: any) {
                 </button> : ''}
                 {permission.edit ? <button type="button" className="btn btn-xss btn-danger box-shadow-1"
                     data-record={JSON.stringify(row)} onClick={patientDeleteHandler}> Delete
+                </button> : ''}
+                {permission.edit ? <button type="button" className="btn btn-xss btn-warning box-shadow-1"
+                    data-record={JSON.stringify(row)} onClick={patientTest1}> Test1
+                </button> : ''}
+                {permission.edit ? <button type="button" className="btn btn-xss btn-primary box-shadow-1"
+                    data-record={JSON.stringify(row)} onClick={patientTest2}> Test2
+                </button> : ''}
+                {permission.edit ? <button type="button" className="btn btn-xss btn-secondary box-shadow-1"
+                    data-record={JSON.stringify(row)} onClick={patientTest3}> Test3
                 </button> : ''}
             </>);
     }
@@ -90,9 +100,23 @@ function PatientList(props: any) {
     // patient delete
     const patientDeleteHandler = (e: any) => {
         setPatient(JSON.parse(e.target.dataset.record));
-        console.log(JSON.parse(e.target.dataset.record));
         setAction('patient-delete');
     }
+
+    // patientTest1-2-3
+    const patientTest1 = (e: any) => {
+        let record = JSON.parse(e.target.dataset.record);
+        setPatient(record);
+        setReport(record.report);
+        setAction('test-view');
+    }
+    const patientTest2 = () => {
+
+    }
+    const patientTest3 = () => {
+
+    }
+
     const patientDelete = (data: any) => {
         console.log(data);
     }
@@ -324,6 +348,25 @@ function PatientList(props: any) {
                     </div> : ""
             }
 
+            {/* patient test */}
+            {
+                action === 'test-view' ?
+                    <div className={`modal fade fadeIn show`} role="dialog"
+                        style={{ display: 'block' }} data-backdrop="false" tabIndex={-1}>
+                        <div className="modal-dialog modal-xl modal-dialog-centered" role="document">
+                            <div className="modal-content">
+                                <div className="modal-body p-0 scroll-85">
+                                    <MedicalExamination patients={patient} />
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-sm btn-secondary"
+                                        onClick={() => setAction('none')}>Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> : ""
+            }
 
             {
                 action === 'patient-delete' ?
