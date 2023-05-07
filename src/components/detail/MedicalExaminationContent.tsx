@@ -168,13 +168,13 @@ function MedicalExaminationContent(props: any) {
                     </tr>
                   </td>
 
-      
-                    <tr className='w-25'>
-                      <td className="font-size border-top-0 border-left-0 border-bottom-0 black" style={{ width: '100px' }}>Sex</td>
-                      <td className="font-size border-0 w-50 black">Mail</td>
 
-                    </tr>
-                
+                  <tr className='w-25'>
+                    <td className="font-size border-top-0 border-left-0 border-bottom-0 black" style={{ width: '100px' }}>Sex</td>
+                    <td className="font-size border-0 w-50 black">Mail</td>
+
+                  </tr>
+
                 </tr>
                 <tr>
                   <td className="font-size black">ADDRESS</td>
@@ -910,8 +910,45 @@ function MedicalExaminationContent(props: any) {
 
 
 
+            {/* other details */}
+            <div>
+              {/*FINDINGS*/}
+              <h6 className='text-black-deep text-bold-700 '>( &nbsp;&nbsp;&nbsp;     ) Certify him/her as FIT for employment.
+              </h6>
+              <h6 className='text-black-deep text-bold-700 '>(   &nbsp;&nbsp;&nbsp;   ) He/ She is found to be UNFIT as per Malaysia ministry of health standards.
+              </h6>
+            </div>
+            <div className='row border mx-0 '>
+              <div className='col-3 pb-4  border-bottom '>
+                &nbsp;&nbsp;&nbsp;
+              </div>
 
+              <div className='col-9'>
+                <table
+                  className=" table">
+                  <thead style={{ textAlign: 'left' }}>
+                    <tr>
+                      <th className="font-size black border border-black border-top-0 py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>Dr. Name</th>
+                      <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                      <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>Date</th>
+                      <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="font-size black">
+                        Qualification
+                      </td>
+                      <td className="font-size black"></td>
+                      <td className="font-size black">Hospital Address</td>
+                      <td className="font-size black"></td>
+                    </tr>
 
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
 
 
           </div>
