@@ -9,38 +9,90 @@ import ReactToPrint from "react-to-print";
 import AuthService from "../../services/AuthService";
 import FuncUtil from "../../utils/FuncUtil";
 
-function MedicalExaminationContent(props: any) {
+function MedicalExaminationEditing(props: any) {
   const configuration = AuthService.getConfiguration();
   const [loaded, setLoaded] = useState(false);
   const [patient, setPatient] = useState(props.patient);
-  const [report, setReport] = useState(MODEL.REPORT);
+  const [medicalReport, setMedicalReport] = useState(MODEL.MEDICALEXAMINATION);
   const [refValue, setRefValue] = useState(MODEL.REF_VALUE);
+  const [values, setValues] = useState({
+    id: null,
+    heartSize: "",
+    heartSound: "",
+    breathSound: "",
+    otherRindings: "",
+    liver: "",
+    spleen: "",
+    mentalStatus: "",
+    mentalSpeech: "",
+    mentalMotorPower: "",
+    varicoseVeins: "",
+    mentalRefleses: "",
+    dateOfXrayTaken: "",
+    dateOfXrayReported: "",
+    urineOpiates: "",
+    cannabinoids: "",
+    urineHcg: "",
+    statusOfHivOrAids: "",
+    statusOfTB: "",
+    statusOfMalaria: "",
+    statusOfHepatitis: "",
+    statusOfSTD: "",
+    statusOfEpilepsy: "",
+    statusOfCancer: "",
+    statusOfDrugs: "",
+    statusOfLeprosy: "",
+    statusOfPregnancy: "",
+    statusOfPsychiatricIll: "",
+    statusOfOther: "",
+    genitourinaryKidney: "",
+    genitourinaryDischarge: "",
+    genitourinarySoresOrUlcer: "",
+    laboratoryReceivedDate: "",
+    laboratoryReportDateOfLab: "",
+    bloodGroup: "",
+    femaleSpecificGravity: "",
+    femaleUrineColor: "",
+    femaleUrinePh: "",
+    femaleUrineLeucocytes: "",
+    femaleGlucose: "",
+    femaleProtein: "",
+    femaleBlood: "",
+    femaleMicroscopy: "",
+    femaleRedBloodCell: "",
+    femaleWhiteBloodCell: "",
+    femaleEpithelialCell: "",
+    femaleCasts: "",
+    femaleCrystal: "",
+    femaleBacteria: "",
+    femaleOthers: "",
+    serologyHivAntibody: "",
+    serologyHbsAG: "",
+    serologyVdrl: "",
+    serologyMalariaParasite: "",
+    serologyFBS: "",
+  });
 
-  const pageStyle = `
-      @page {
-        size: auto;
-        margin: 0;
-      }
-      @media print {
-        html, body {
-          width: 210mm;
-          height: 297mm;
-        }
-        body {
-          margin: 0;
-        }
-      }
-    `;
+  const onChange = (e: any) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
   useEffect(() => {
     PatientService.findById(patient.id).then(response => {
       setPatient(response.data);
-      setReport(response.data.report);
+      setMedicalReport(response.data.report);
     })
     RefValuesService.find().then(response => {
       setRefValue(response.data);
     })
-  }, [])
+  }, [patient?.id])
+
+  const myStyle = {
+    backgroundColor: '#f7f7f7f7',
+    color: 'white',
+    borderRadius: '5px',
+    border: '0px'
+  };
 
   return (
     <div className="card mb-0">
@@ -48,33 +100,26 @@ function MedicalExaminationContent(props: any) {
         <div className="card-body">
           <div className="row">
             <div className="col-8">
-              <h3 className="font-size mb-2">Medical Examination Form of {patient.fullName}</h3>
+              <h3 className="font-size mb-2">Edit Medical Examination Form of {patient.fullName}</h3>
             </div>
-            <div className="col-4">
-              <ReactToPrint
-                pageStyle={pageStyle}
-                documentTitle={patient.passportNo}
-                content={() => document.getElementById('patient-report-print-content')}
-                trigger={() => <button className="btn btn-info pull-right">Print</button>} />
-            </div>
+
           </div>
           <div className={'printable mx-3 my-2'} id={'patient-report-print-content'}>
             <div className={'row'}>
               <div className="col-12 text-center">
                 <div className="px-0 row  list-unstyled black">
                   <div className='col-4 border py-2 border-right-0 '>
-                    <img src={configuration.reportCompanyLogo} className="mb-0" alt='' height={100} />
-                    {/* <img src="https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg" className="mb-0 rounded-circle " alt='' width={100} height={100} /> */}
+                    <img src={configuration?.reportCompanyLogo} className="mb-0" alt='' height={100} />
                   </div>
                   <div className='col-8 py-2 border'>
                     <div>
-                      <h1 className='text-bold-700'>{configuration.businessName}</h1>
-                      <h4>Address : {configuration.invoiceAddress}</h4>
+                      <h1 className='text-bold-700'>{configuration?.businessName}</h1>
+                      <h4>Address : {configuration?.invoiceAddress}</h4>
                     </div>
                     <div className='d-flex justify-content-around'>
-                      <p>PHONE : {configuration.reportContactNumber} </p>
-                      <p>Website :{configuration.websiteUrl} </p>
-                      <p>Report Download : {configuration.reportUrl}</p>
+                      <p>PHONE : {configuration?.reportContactNumber} </p>
+                      <p>Website :{configuration?.websiteUrl} </p>
+                      <p>Report Download : {configuration?.reportUrl}</p>
                     </div>
                   </div>
                 </div>
@@ -88,43 +133,10 @@ function MedicalExaminationContent(props: any) {
                 </p>
               </div>
             </div>
-            {/* <table className="table-bordered table report-header">
-              <tbody>
-                <tr className={'text-center'}>
-                  <td className="black width-20-per text-center">
-                    <span>PATIENT ID : {patient.regNo}</span>
-                    <Barcode value={patient.regNo ? patient.regNo : 'NA'} marginTop={10} displayValue={false} width={2} height={50} />
-                    <br />
-                    <span>REG DATE : {moment(FuncUtil.toDateTime(patient.createdDate)).format('DD-MM-YYYY')}
-                    </span>
-                  </td>
-                  <td className="black width-20-per text-center">
-                    <img src={patient.photo} alt="" style={{ height: 120, maxWidth: 150 }} />
-                  </td>
-                  <td className="black width-20-per text-center">
-                    <img src={patient.fingerPrint} alt="" style={{ height: 120, maxWidth: 150 }} />
-                  </td>
-                  <td className="black width-20-per text-center">
-                    <img src={report.xrayImage} alt="" style={{ height: 120, maxWidth: 150 }} />
-                  </td>
-                  <td className="black width-20-per text-center">
-                    <QRCode size={100} className={'qr-image mt-1'} value={patient.qr ? patient.qr : ''} />
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-center font-weight-bolder font-size black">DATE : {moment(FuncUtil.toDateTime(report.modifiedDate)).format('DD-MM-YYYY hh:mm A')}</td>
-                  <td className="text-center font-weight-bolder font-size black">PHOTO</td>
-                  <td className="text-center font-weight-bolder font-size black">THUMB PRINT</td>
-                  <td className="text-center font-weight-bolder font-size black">X –RAY IMAGE</td>
-                  <td className="text-center font-weight-bolder font-size black">QR CODE</td>
-                </tr>
-              </tbody>
-            </table> */}
+
             <h6 className='text-black-deep text-bold-700'>Part: I, Personal Information</h6>
             <table className="table-bordered table">
               <tbody>
-
-
                 <tr >
                   <td colSpan={1} w-25 className="font-size black">REGISTRATION NUMBER</td>
                   <td colSpan={1} w-25 className="font-size black">{patient.regNo}</td>
@@ -175,9 +187,9 @@ function MedicalExaminationContent(props: any) {
                 </tr>
               </tbody>
             </table>
+
             <h6 className='text-black-deep text-bold-700'>Personal Medical History
             </h6>
-
             <table className="table-bordered table">
               <tbody>
                 <tr>
@@ -269,11 +281,11 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '20%', paddingLeft: '5px' }}>DISEASES</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '10%', }}>COMMENT</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '10%', }}>DATE</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '10%' }}>COMMENT</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '10%' }}>DATE</th>
                   <th className="font-size black border border-black py-0" style={{ width: '20%', paddingLeft: '5px' }}>DISEASES</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '10%', }}>COMMENT</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '10%', }}>DATE</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '10%' }}>COMMENT</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '10%' }}>DATE</th>
                 </tr>
               </thead>
               <tbody>
@@ -409,7 +421,7 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>HEIGHT</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}></th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>DEFOMITIES OF LIMBS</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
 
@@ -490,9 +502,10 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black"></td>
                 </tr>
                 <tr>
-                  <td colSpan={4} rowSpan={3} className="font-size text-bold-600 black">
+                  <td rowSpan={3} className="font-size text-bold-600 black">
                     COMMENTS (Refer To Part- III,<br /> Sec-A)
                   </td>
+                  <td colSpan={3} className="font-size black"></td>
                 </tr>
               </tbody>
             </table>
@@ -507,9 +520,18 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HEART SIZE</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input name='heartSize' type="text"
+                      onChange={onChange} defaultValue={medicalReport?.heartSize}
+                      className='medicalInput border-0 w-100 ' />
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HEART SOUND</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange} defaultValue={medicalReport?.heartSound}
+                      name='heartSound' type="text"
+                      className='medicalInput border-0 w-100 ' />
+                  </th>
 
                 </tr>
               </thead>
@@ -522,9 +544,18 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. BREATH SOUNDS</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input name='breathSound' type="text"
+                      onChange={onChange} defaultValue={medicalReport?.breathSound}
+                      className='medicalInput border-0 w-100 ' />
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. OTHER RINDINGS </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange} defaultValue={medicalReport?.otherRindings}
+                      name='otherRindings' type="text"
+                      className='medicalInput border-0 w-100 ' />
+                  </th>
 
                 </tr>
               </thead>
@@ -536,9 +567,22 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. LIVER</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange} defaultValue={medicalReport?.liver}
+                      name='liver' type="text"
+                      className='medicalInput border-0 w-100 ' />
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. SPLEEN </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='spleen' type="text"
+                      defaultValue={medicalReport?.spleen}
+                    />
+
+                  </th>
                 </tr>
               </thead>
             </table>
@@ -552,9 +596,21 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. STATUS</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='mentalStatus' type="text"
+                      defaultValue={medicalReport?.mentalStatus}
+                    />
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. SPEECH  </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>      <input
+                    onChange={onChange}
+                    className='medicalInput border-0 w-100 '
+                    name='mentalSpeech' type="text"
+                    defaultValue={medicalReport?.mentalSpeech}
+                  /></th>
                 </tr>
               </thead>
               <tbody>
@@ -562,17 +618,38 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. MOTOR POWER
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='mentalMotorPower' type="text"
+                      defaultValue={medicalReport?.mentalMotorPower}
+                    />
+                  </td>
                   <td className="font-size black">
                     D. SENSORY
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='varicoseVeins' type="text"
+                      defaultValue={medicalReport?.varicoseVeins}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     E. REFLESES
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='mentalRefleses' type="text"
+                      defaultValue={medicalReport?.mentalRefleses}
+                    />
+                  </td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -586,9 +663,21 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. KIDNEY</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>  <input
+                    onChange={onChange}
+                    className='medicalInput border-0 w-100 '
+                    name='genitourinaryKidney' type="text"
+                    defaultValue={medicalReport?.genitourinaryKidney}
+                  /></th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. DISCHARGE </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='genitourinaryDischarge' type="text"
+                      defaultValue={medicalReport?.genitourinaryDischarge}
+                    />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -596,7 +685,14 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. SORES/ ULCER
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='genitourinarySoresOrUlcer' type="text"
+                      defaultValue={medicalReport?.genitourinarySoresOrUlcer}
+                    />
+                  </td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -610,9 +706,23 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. SPECIMEN RECEIVED DATE</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='laboratoryReceivedDate' type="text"
+                      defaultValue={medicalReport?.laboratoryReceivedDate}
+                    />
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. DATE OF LAB REPORT </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='laboratoryReportDateOfLab' type="text"
+                      defaultValue={medicalReport?.laboratoryReportDateOfLab}
+                    />
+                  </th>
                 </tr>
               </thead>
             </table>
@@ -624,7 +734,14 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>BLOOD Group</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='bloodGroup' type="text"
+                      defaultValue={medicalReport?.bloodGroup}
+                    />
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
                 </tr>
@@ -638,9 +755,23 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HIV ANTIBODY</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HBsAG</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='serologyHivAntibody' type="text"
+                      defaultValue={medicalReport?.serologyHivAntibody}
+                    />
+                  </th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HB<small>s</small>AG</th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='serologyHbsAG' type="text"
+                      defaultValue={medicalReport?.serologyHbsAG}
+                    />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -648,15 +779,36 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. VDRL
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='serologyVdrl' type="text"
+                      defaultValue={medicalReport?.serologyVdrl}
+                    />
+                  </td>
                   <td className="font-size black">D. MALARIA PARASITE</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='serologyMalariaParasite' type="text"
+                      defaultValue={medicalReport?.serologyMalariaParasite}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     E. F.B.S.
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='serologyFBS' type="text"
+                      defaultValue={medicalReport?.serologyFBS}
+                    />
+                  </td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -671,9 +823,23 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. OPIATES</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='urineOpiates' type="text"
+                      defaultValue={medicalReport?.urineOpiates}
+                    />
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. CANNABINOIDS</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='cannabinoids' type="text"
+                      defaultValue={medicalReport?.cannabinoids}
+                    />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -681,15 +847,14 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. URINE HCG
                   </td>
-                  <td className="font-size black"></td>
-                  <td className="font-size black"></td>
-                  <td className="font-size black"></td>
-                </tr>
-                <tr>
                   <td className="font-size black">
-                    E. F.B.S.
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='urineHcg' type="text"
+                      defaultValue={medicalReport?.urineHcg}
+                    />
                   </td>
-                  <td className="font-size black"></td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -704,9 +869,23 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>SPECIFIC GRAVITY</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleSpecificGravity' type="text"
+                      defaultValue={medicalReport?.femaleSpecificGravity}
+                    />
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>COLOUR</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleUrineColor' type="text"
+                      defaultValue={medicalReport?.femaleUrineColor}
+                    />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -714,54 +893,145 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     PH
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleUrinePh' type="text"
+                      defaultValue={medicalReport?.femaleUrinePh}
+                    />
+                  </td>
                   <td className="font-size black">LEUCOCYTES</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleUrineLeucocytes' type="text"
+                      defaultValue={medicalReport?.femaleUrineLeucocytes}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     GLUCOSE
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleGlucose' type="text"
+                      defaultValue={medicalReport?.femaleGlucose}
+                    />
+                  </td>
                   <td className="font-size black">PROTEIN</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleProtein' type="text"
+                      defaultValue={medicalReport?.femaleProtein}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     BLOOD
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleBlood' type="text"
+                      defaultValue={medicalReport?.femaleBlood}
+                    />
+                  </td>
                   <td className="font-size black">MICROSCOPY</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleMicroscopy' type="text"
+                      defaultValue={medicalReport?.femaleMicroscopy}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     RED BLOOD CELL
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleRedBloodCell' type="text"
+                      defaultValue={medicalReport?.femaleRedBloodCell}
+                    />
+                  </td>
                   <td className="font-size black">WHITE BLOOD CELL</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleWhiteBloodCell' type="text"
+                      defaultValue={medicalReport?.femaleWhiteBloodCell}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     EPITHELIAL CELL</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleEpithelialCell' type="text"
+                      defaultValue={medicalReport?.femaleEpithelialCell}
+                    />
+                  </td>
                   <td className="font-size black">CASTS</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleCasts' type="text"
+                      defaultValue={medicalReport?.femaleCasts}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     CRYSTAL
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleCrystal' type="text"
+                      defaultValue={medicalReport?.femaleCrystal}
+                    />
+                  </td>
                   <td className="font-size black">BACTERIA</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleBacteria' type="text"
+                      defaultValue={medicalReport?.femaleBacteria}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     OTHERS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='femaleOthers' type="text"
+                      defaultValue={medicalReport?.femaleOthers}
+                    />
+                  </td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -777,9 +1047,24 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>DATE OF X-RAY TAKEN</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='dateOfXrayTaken' type="text"
+                      defaultValue={medicalReport?.dateOfXrayTaken}
+                    />
+
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>DATE OF X-RAY REPORTED</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='dateOfXrayReported' type="text"
+                      defaultValue={medicalReport?.dateOfXrayReported}
+                    />
+                  </th>
                 </tr>
               </thead>
             </table>
@@ -791,7 +1076,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HEART SHAPE</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HEART SIZE</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
                 </tr>
@@ -833,7 +1120,7 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. FOCAL LESION</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}></th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. OTHER ABNORMALITIES</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
                 </tr>
@@ -851,9 +1138,23 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HIV /AIDS</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfHivOrAids' type="text"
+                      defaultValue={medicalReport?.statusOfHivOrAids}
+                    />
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. TB</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfTB' type="text"
+                      defaultValue={medicalReport?.statusOfTB}
+                    />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -861,41 +1162,107 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. MALARIA
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfMalaria' type="text"
+                      defaultValue={medicalReport?.statusOfMalaria}
+                    />
+                  </td>
                   <td className="font-size black">D. HEPATITIS</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfHepatitis' type="text"
+                      defaultValue={medicalReport?.statusOfHepatitis}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     E. STD
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfSTD' type="text"
+                      defaultValue={medicalReport?.statusOfSTD}
+                    />
+                  </td>
                   <td className="font-size black">F. EPILEPSY</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">   <input
+                    onChange={onChange}
+                    className='medicalInput border-0 w-100 '
+                    name='statusOfEpilepsy' type="text"
+                    defaultValue={medicalReport?.statusOfEpilepsy}
+                  /></td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     G. CANCER
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfCancer' type="text"
+                      defaultValue={medicalReport?.statusOfCancer}
+                    />
+                  </td>
                   <td className="font-size black">H. DRUGS</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfDrugs' type="text"
+                      defaultValue={medicalReport?.statusOfDrugs}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     I. LEPROSY
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfLeprosy' type="text"
+                      defaultValue={medicalReport?.statusOfLeprosy}
+                    />
+                  </td>
                   <td className="font-size black">J. PREGNANCY</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfPregnancy' type="text"
+                      defaultValue={medicalReport?.statusOfPregnancy}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     K. PSYCHIATRIC ILLENESS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfPsychiatricIll' type="text"
+                      defaultValue={medicalReport?.statusOfPsychiatricIll}
+                    />
+                  </td>
                   <td className="font-size black">L. OTHERS </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">  <input
+                    onChange={onChange}
+                    className='medicalInput border-0 w-100 '
+                    name='statusOfOther' type="text"
+                    defaultValue={medicalReport?.statusOfOther}
+                  /></td>
                 </tr>
               </tbody>
             </table>
@@ -921,7 +1288,7 @@ function MedicalExaminationContent(props: any) {
                   <thead style={{ textAlign: 'left' }}>
                     <tr>
                       <th className="font-size black border border-black border-top-0 py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>Dr. Name</th>
-                      <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                      <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}></th>
                       <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>Date</th>
                       <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
                     </tr>
@@ -944,10 +1311,21 @@ function MedicalExaminationContent(props: any) {
 
 
           </div>
+          <div className="form-actions ml-3">
+            <button type="button" className="btn btn-danger mr-1" >
+              <i className="ft-x"></i> Cancel
+            </button>
+            <button type="submit" className="btn btn-primary" >
+              <i className="ft-save"></i> Update &nbsp;
+              {<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+            </button>
+          </div>
         </div>
+
       </div>
+
     </div >
   );
 }
 
-export default MedicalExaminationContent;
+export default MedicalExaminationEditing;
