@@ -126,7 +126,7 @@ const Login = () => {
                                                                     <span className="fw-bold">{randomN2}</span><span className="pr-1">=</span>
                                                                     <input required placeholder="Sum of" type="text" className="form-control round " name="capNum" id="" /><span className="h3 fw-bold ">?</span>
                                                                 </div>
-                                                                {capErr && <p className="text-danger text-center font-small-3">Cap num not matched</p>}
+                                                                {capErr && <p className="text-danger text-center font-small-3">Captcha is not correct. try again</p>}
                                                             </div>
                                                         </div>
                                                         {/* <div className="col-md-6 col-12 float-sm-left text-center text-sm-right">
@@ -138,7 +138,7 @@ const Login = () => {
                                                         <button
                                                             type="submit"
                                                             className="btn round btn-block btn-glow btn-bg-gradient-x-purple-blue col-12 mr-1 mb-1">
-                                                            {loading? 'loading...' : 'Login'}
+                                                            {loading ? 'loading...' : 'Login'}
                                                         </button>
                                                     </div>
 

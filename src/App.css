@@ -323,3 +323,13 @@ td {
 .rolegap {
   margin-right: 5px;
 }
+
+
+/* medical report */
+.text-black-deep {
+  color: #000000 !important;
+}
+
+.text-bolder {
+  font-weight: bolder !important;
+}
