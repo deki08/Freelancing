@@ -39,6 +39,10 @@ const Navbar = (props: any) => {
         }
     }, []);
 
+
+    console.log(menu);
+    
+
     return (
         <>
             {mobile?
