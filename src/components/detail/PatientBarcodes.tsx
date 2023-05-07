@@ -12,17 +12,18 @@ function PatientBarcodes(props: any) {
       }
       @media print {
         html, body {
-          width: 210mm;
-          height: 297mm;
+             width:60mm;
+          height: 60mm;
+          padding-top:10px;
         }
         body {
-          margin: 0;
+            padding-left:10px;
         }
       }
     `;
 
   return (
-    <div className="card">
+    <div className="card ">
       <div className="card-content collapse show">
         <div className="card-body">
           <div className="row">
@@ -34,13 +35,16 @@ function PatientBarcodes(props: any) {
                 trigger={() => <button className="btn btn-info">Print</button>} />
             </div>
           </div>
-          <div id={'barcodes-content'}>
-            <BarcodeSticker patient={patient} type={'STOOL'} description={'HEL,M,GMR'} bNumber={'230321011'} />
-            <BarcodeSticker patient={patient} type={'URINE'} description={'SUGAR,AL,BILHA,ETC'} bNumber={'230321011'} />
-            <BarcodeSticker patient={patient} type={'BLOOD-CBC'} description={'HGB,BGROUP,MP,MFP'} bNumber={'230321011'} />
-            <BarcodeSticker patient={patient} type={'BLOOD-ELISA'} description={'HCV,HIV,HBsAG'} bNumber={'230321011'} />
-            <BarcodeSticker patient={patient} type={'BLOOD-BIOCHEMISTRY'} description={'GLUC,TBIL,SGPT,SGOT,CREA'} bNumber={'230321011'} />
+          <div className='mt-1'>
+            <div id={'barcodes-content'}>
+              <BarcodeSticker patient={patient} type={'STOOL'} description={'HEL,M,GMR'} bNumber={'230321011'} />
+              <BarcodeSticker patient={patient} type={'URINE'} description={'SUGAR,AL,BILHA,ETC'} bNumber={'230321011'} />
+              <BarcodeSticker patient={patient} type={'BLOOD-CBC'} description={'HGB,BGROUP,MP,MFP'} bNumber={'230321011'} />
+              <BarcodeSticker patient={patient} type={'BLOOD-ELISA'} description={'HCV,HIV,HBsAG'} bNumber={'230321011'} />
+              <BarcodeSticker patient={patient} type={'BLOOD-BIOCHEMISTRY'} description={'GLUC,TBIL,SGPT,SGOT,CREA'} bNumber={'230321011'} />
+            </div>
           </div>
+
         </div>
       </div>
     </div>

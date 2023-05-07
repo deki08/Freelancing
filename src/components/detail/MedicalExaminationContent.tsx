@@ -49,7 +49,7 @@ function MedicalExaminationContent(props: any) {
         <div className="card-body">
           <div className="row">
             <div className="col-8">
-              <h3 className="font-size mb-2">Medical Examination Report of {patient.fullName}</h3>
+              <h3 className="font-size mb-2">Medical Examination Form of {patient.fullName}</h3>
             </div>
             <div className="col-4">
               <ReactToPrint
