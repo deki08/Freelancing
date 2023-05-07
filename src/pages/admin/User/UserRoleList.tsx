@@ -133,6 +133,8 @@ function UserRoleList(props: any) {
     loadRoles();
   }, []);
 
+
+
   return (
     <>
       <div className="app-content content">
@@ -218,33 +220,33 @@ function UserRoleList(props: any) {
                               <th>#</th>
                               <th>User Interface</th>
                               <th className='text-left'>
-                                <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="listAll" />
+                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="listAll" />}
                                 <label className="form-check-label cursor-pointer" htmlFor="listAll">
                                   List
                                 </label>
                               </th>
                               <th>
-                                <input onClick={checkAllAddHandler} className="rolegap cursor-pointer" type="checkbox" id="addAll" />
+                                {selected?.name && <input onClick={checkAllAddHandler} className="rolegap cursor-pointer" type="checkbox" id="addAll" />}
                                 <label className="form-check-label cursor-pointer" htmlFor="addAll">
                                   Add
                                 </label>
 
                               </th>
                               <th>
-                                <input onClick={checkAllViewHandler} className="rolegap cursor-pointer" type="checkbox" id="viewAll" />
+                                {selected?.name && <input onClick={checkAllViewHandler} className="rolegap cursor-pointer" type="checkbox" id="viewAll" />}
                                 <label className="form-check-label cursor-pointer" htmlFor="viewAll">
                                   View
                                 </label>
                               </th>
                               <th>
-                                <input onClick={checkAllEditHandler} className="rolegap cursor-pointer" type="checkbox" id="editAll" />
+                                {selected?.name && <input onClick={checkAllEditHandler} className="rolegap cursor-pointer" type="checkbox" id="editAll" />}
                                 <label className="form-check-label cursor-pointer" htmlFor="editAll">
                                   Edit
                                 </label>
                               </th>
                               {/*<th>Delete</th>*/}
                               <th>
-                                <input onClick={checkAllPayHandler} className="rolegap cursor-pointer" type="checkbox" id="payAll" />
+                                {selected?.name && <input onClick={checkAllPayHandler} className="rolegap cursor-pointer" type="checkbox" id="payAll" />}
                                 <label className="form-check-label cursor-pointer" htmlFor="payAll">
                                   Pay
                                 </label>
