@@ -12,7 +12,7 @@ function FormSelect(props: any) {
 
     const initOptions = () => {
         if (ajax) {
-            http.get(mapping.path).then(response => {
+            http.get(mapping?.path).then(response => {
                 let data: any = [];
                 if (!disableFirstOption) {
                     data.push({ value: '', text: `Select ${label}` });

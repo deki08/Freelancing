@@ -49,6 +49,7 @@ import SupplierList from "./pages/admin/Supplier/SupplierList";
 import EditableBillsList from "./pages/admin/Bill/EditableBillsList";
 import LabReports from "./pages/admin/LabReport/LabReports";
 import MalaysiaValues from './pages/admin/Settings/MalaysiaValues';
+import ReportedValues from './pages/admin/Settings/ReportedValues';
 
 function App() {
     return (
@@ -91,6 +92,7 @@ function App() {
                 <Route key={'pt-r-31'} path={'/expenses'} element={<ExpenseList />} />
                 <Route key={'pt-r-32'} path={'/settings/reference/update'} element={<RefValues />} />
                 <Route key={'pt-r-33'} path={'/settings/malaysia/update'} element={<MalaysiaValues />} />
+                <Route key={'pt-r-33'} path={'/settings/reported/update'} element={<ReportedValues />} /> 
                 <Route key={'pt-r-34'} path={'/report/lost-profit'} element={<LostProfitReport />} />
                 <Route key={'pt-r-35'} path={'/accounts'} element={<AccountList />} />
                 <Route key={'pt-r-36'} path={'/roles'} element={<UserRoleList />} />
