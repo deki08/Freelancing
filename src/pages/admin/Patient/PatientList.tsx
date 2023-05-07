@@ -71,7 +71,7 @@ function PatientList(props: any) {
   const columns: {}[] = [
     { data: "index", name: "SL", sortable: true, class: "text-center  width-100" },
     { data: "fullName", name: "Full Name", class: "", sort: true },
-    { data: "id", name: "Patient ID", class: "", sort: true },
+    { data: "regNo", name: "Patient ID", class: "", sort: true },
     { data: "passportNo", name: "Passport Number", class: "text-center width-200", sort: true },
     { data: "mobile", name: "Contact Number", class: "text-center  width-200", sort: true },
     { data: "agentOrAgencyName", name: "Agent Or Agency", class: "text-center", sort: true },
@@ -89,6 +89,7 @@ function PatientList(props: any) {
   const [patient, setPatient] = useState(MODEL.PATIENT);
   const [report, setReport] = useState(MODEL.REPORT);
   const [refresh, doRefresh] = useState(0);
+console.log(data);
 
   const patientBillsHandler = (e: any) => {
     setPatient(JSON.parse(e.target.dataset.record));
