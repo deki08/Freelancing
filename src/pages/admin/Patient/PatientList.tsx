@@ -42,14 +42,12 @@ function PatientList(props: any) {
                     data-record={JSON.stringify(row)} onClick={patientDeleteHandler}> Delete
                 </button> : ''}
                 {permission.edit ? <button type="button" className="btn btn-xss btn-warning box-shadow-1"
-                    data-record={JSON.stringify(row)} onClick={patientTest1}> Test1
+                    data-record={JSON.stringify(row)} onClick={patientTest1}> Malaysia
                 </button> : ''}
                 {permission.edit ? <button type="button" className="btn btn-xss btn-primary box-shadow-1"
-                    data-record={JSON.stringify(row)} onClick={patientTest2}> Test2
+                    data-record={JSON.stringify(row)} onClick={patientTest2}> Malaysia Entry
                 </button> : ''}
-                {permission.edit ? <button type="button" className="btn btn-xss btn-secondary box-shadow-1"
-                    data-record={JSON.stringify(row)} onClick={patientTest3}> Test3
-                </button> : ''}
+                
             </>);
     }
 
@@ -73,7 +71,9 @@ function PatientList(props: any) {
         { data: "agentOrAgencyName", name: "Agent Or Agency", class: "text-center", sort: true },
         { name: "Status", render: statusRender, class: "text-center  width-200" },
         { data: 'healthStatus', name: "FINAL STATUS", class: "text-center" },
-        { name: "Action", render: rowActions, class: "text-center py-0" }
+        { name: "Action", render: rowActions, class: "text-center py-0" },
+        { name: "Malaysia", render: rowActions, class: "text-center py-0" },
+       
     ];
 
 
