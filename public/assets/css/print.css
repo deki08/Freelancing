@@ -229,6 +229,18 @@ td {
     border-collapse: collapse;
 }
 
+#patient-medicalExam-report table tbody tr td {
+    padding: 1px 5px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#patient-medicalExam-report thead tbody tr td {
+    padding: 1px 5px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
 @media print {
     @page {
         size: A4;

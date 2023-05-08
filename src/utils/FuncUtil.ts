@@ -16,8 +16,8 @@ const validate = (e: any) => {
                 e.target.focus();
             }
         }
-    }else{
-        if (e.target.required){
+    } else {
+        if (e.target.required) {
             if (e.target.value === '' || e.target.value === undefined) {
                 e.target.classList.remove("is-valid");
                 e.target.classList.add("is-invalid");
@@ -26,35 +26,44 @@ const validate = (e: any) => {
         }
     }
 }
-const toCurrency = (value: number,currency:string) => {
+const toCurrency = (value: number, currency: string) => {
     let amount = value;
-    if (value == null){
+    if (value == null) {
         amount = 0
     }
-   return amount.toLocaleString('en-US', {
+    return amount.toLocaleString('en-US', {
         style: 'currency',
         currency: currency,
     });
 }
-const getValue = (e:any) => {
+const toCurrencyRate = (value: number, currency: string) => {
+    let amount = value;
+    if (value == null) {
+        amount = 0
+    }
+    return amount.toLocaleString('en-US', {
+        currency: currency,
+    });
+}
+const getValue = (e: any) => {
     let name = e.target.nodeName;
     let value;
-    if (name === 'INPUT'){
+    if (name === 'INPUT') {
         let type = e.target.type.toUpperCase();
-        if (type==='CHECKBOX'){
+        if (type === 'CHECKBOX') {
             value = e.target.checked;
-        }else if (type==='RADIO'){
+        } else if (type === 'RADIO') {
             value = e.target.checked;
-        }else {
+        } else {
             value = e.target.value;
         }
-    }else if(name === 'SELECT'){
+    } else if (name === 'SELECT') {
         value = e.target.value;
     }
-   return value;
+    return value;
 }
 
-const base64 = (file:any) => {
+const base64 = (file: any) => {
     // Make new FileReader
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -73,13 +82,13 @@ const base64 = (file:any) => {
     });
 }
 
-const toDate = (date:any) => {
+const toDate = (date: any) => {
     return moment(new Date(date)).format('YYYY-MM-DD');
 }
-const toDateTime = (date:any) => {
+const toDateTime = (date: any) => {
     return moment(new Date(date)).format('YYYY-MM-DD hh:mm a');
 }
-const age = (birthDay:any) => {
+const age = (birthDay: any) => {
     let date = birthDay;
     let diff = moment(moment()).diff(date, 'milliseconds');
     let duration = moment.duration(diff);
@@ -94,5 +103,6 @@ const FuncUtil = {
     toDate,
     toDateTime,
     age,
+    toCurrencyRate
 }
 export default FuncUtil;

@@ -35,40 +35,9 @@ function ActualBill(props: any) {
         doRefresh(1);
     }
 
-    const rowActions = (row: any) => {
-        return (
-            <>
-                {row.status !== 'PAID' && permission.pay ?
-                    <button type="button" className="btn btn-info btn-xss box-shadow-1"
-                        data-record={JSON.stringify(row)} onClick={payHandler}>
-                        <i className="ft-shopping-cart mr-05"></i>Pay
-                    </button> : ""
-                }
-                {permission.view ? <button type="button" className="btn btn-success btn-xss box-shadow-1"
-                    data-record={JSON.stringify(row)} onClick={viewHandler}>
-                    <i className="ft-eye"></i> Bill
-                </button> : ''}
-            </>);
-    }
 
-    const statusRender = (row: any) => {
-        let badgeStyle = 'badge-light';
-        switch (row.status) {
-            case "GENERATED":
-                badgeStyle = 'badge-primary';
-                break;
-            case "PAYMENT_DUE":
-                badgeStyle = 'badge-danger';
-                break;
-            case "PARTIALLY_PAID":
-                badgeStyle = 'badge-warning';
-                break;
-            case "PAID":
-                badgeStyle = 'badge-success';
-                break;
-        }
-        return (<div className={`badge ${badgeStyle}`}>{row.status}</div>);
-    }
+
+
 
 
     const columns: {}[] = [

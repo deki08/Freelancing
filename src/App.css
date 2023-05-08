@@ -299,6 +299,10 @@ td {
   padding-right: 4px;
 }
 
+.medicalInput:focus {
+  outline: none;
+  border: none !important;
+}
 
 @media (max-width: 1700px) {
   .responsiveTable {
