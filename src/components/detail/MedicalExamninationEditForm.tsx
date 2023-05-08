@@ -12,6 +12,7 @@ import FuncUtil from "../../utils/FuncUtil";
 function MedicalExaminationEditing(props: any) {
   const configuration = AuthService.getConfiguration();
   const [loaded, setLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
   const [patient, setPatient] = useState(props.patient);
   const [medicalReport, setMedicalReport] = useState(MODEL.MEDICALEXAMINATION);
   const [refValue, setRefValue] = useState(MODEL.REF_VALUE);
@@ -71,11 +72,28 @@ function MedicalExaminationEditing(props: any) {
     serologyVdrl: "",
     serologyMalariaParasite: "",
     serologyFBS: "",
+    reportOfHeartShape: "",
+    reportOfHeartSize: "",
+    reportOfLungFields: "",
+    reportOfMediastinum: "",
+    reportOfPleuralHemidiaphragms: "",
+    reportOfCostoPhrenic: "",
+    reportOfToracicCase: "",
+    findingsOfFocalLesion: "",
+    findingsOfAbnormalities: ""
   });
 
   const onChange = (e: any) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+
+  const medicalExamEditHandler = (): void => {
+    console.log(values);
+  }
+  const { onCancel } = props;
+  const handleCancel = () => {
+    onCancel()
+  }
 
   useEffect(() => {
     PatientService.findById(patient.id).then(response => {
@@ -87,12 +105,6 @@ function MedicalExaminationEditing(props: any) {
     })
   }, [patient?.id])
 
-  const myStyle = {
-    backgroundColor: '#f7f7f7f7',
-    color: 'white',
-    borderRadius: '5px',
-    border: '0px'
-  };
 
   return (
     <div className="card mb-0">
@@ -1077,10 +1089,22 @@ function MedicalExaminationEditing(props: any) {
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HEART SHAPE</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
-
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='reportOfHeartShape' type="text"
+                      defaultValue={medicalReport?.reportOfHeartShape}
+                    />
                   </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HEART SIZE</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='reportOfHeartSize' type="text"
+                      defaultValue={medicalReport?.reportOfHeartSize}
+                    />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -1088,23 +1112,58 @@ function MedicalExaminationEditing(props: any) {
                   <td className="font-size black">
                     C. LUNG FIELDS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='reportOfLungFields' type="text"
+                      defaultValue={medicalReport?.reportOfLungFields}
+                    />
+                  </td>
                   <td className="font-size black">D. MEDIASTINUM & HILA</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='reportOfMediastinum' type="text"
+                      defaultValue={medicalReport?.reportOfMediastinum}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     E. PLEURAL / HEMIDIAPHRAGMS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='reportOfPleuralHemidiaphragms' type="text"
+                      defaultValue={medicalReport?.reportOfPleuralHemidiaphragms}
+                    />
+                  </td>
                   <td className="font-size black">F. COSTO-PHRENIC ANGLES</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='reportOfCostoPhrenic' type="text"
+                      defaultValue={medicalReport?.reportOfCostoPhrenic}
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     G. TORACIC CASE
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='reportOfToracicCase' type="text"
+                      defaultValue={medicalReport?.reportOfToracicCase}
+                    />
+                  </td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -1120,9 +1179,23 @@ function MedicalExaminationEditing(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. FOCAL LESION</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='findingsOfFocalLesion' type="text"
+                      defaultValue={medicalReport?.findingsOfFocalLesion}
+                    />
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. OTHER ABNORMALITIES</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='findingsOfAbnormalities' type="text"
+                      defaultValue={medicalReport?.findingsOfAbnormalities}
+                    />
+                  </th>
                 </tr>
               </thead>
             </table>
@@ -1312,12 +1385,18 @@ function MedicalExaminationEditing(props: any) {
 
           </div>
           <div className="form-actions ml-3">
-            <button type="button" className="btn btn-danger mr-1" >
+            <button
+              onClick={handleCancel}
+              type="button" className="btn btn-danger mr-1" >
               <i className="ft-x"></i> Cancel
             </button>
-            <button type="submit" className="btn btn-primary" >
+            <button
+              onClick={medicalExamEditHandler}
+              type="submit" className="btn btn-primary" >
               <i className="ft-save"></i> Update &nbsp;
-              {<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+              {
+                isLoading ?
+                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : ""}
             </button>
           </div>
         </div>

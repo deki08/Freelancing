@@ -12,8 +12,6 @@ import XRayUpload from "../../../components/ui/XRayUpload";
 import PatientBillsContent from "../../../components/detail/PatientBillsContent";
 import { MODEL } from "../../../utils/FormFields";
 import MedicalExamination from './MedicalExamination';
-import MalaysiaEditForm from '../../../components/edit-forms/MalaysiaEditForm';
-import MedicalExaminationEdit from './MedicalExaminationEdit';
 import MedicalExaminationEditing from '../../../components/detail/MedicalExamninationEditForm';
 
 function PatientList(props: any) {
@@ -425,7 +423,7 @@ function PatientList(props: any) {
             <div className="modal-dialog modal-xl modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-body scroll-80">
-                  {/* <MalaysiaEditForm patient={patient} onUpdateMalaysia={onUpdateMalaysia} onCancel={onCancel} /> */}
+
                   <MedicalExaminationEditing patient={patient} onUpdateMalaysia={onUpdateMalaysia} onCancel={onCancel} />
                 </div>
                 <div className="modal-footer">
