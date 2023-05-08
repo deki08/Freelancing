@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Barcode from "react-barcode";
 import QRCode from "react-qr-code";
-import { MODEL } from "../../utils/FormFields";
+import { FORM, MODEL } from "../../utils/FormFields";
 import PatientService from "../../services/PatientService";
 import RefValuesService from "../../services/RefValuesService";
 import moment from "moment";
 import ReactToPrint from "react-to-print";
 import AuthService from "../../services/AuthService";
 import FuncUtil from "../../utils/FuncUtil";
+import FormField from '../ui/FormField';
 
 function MedicalExaminationEditing(props: any) {
   const configuration = AuthService.getConfiguration();
@@ -80,7 +81,10 @@ function MedicalExaminationEditing(props: any) {
     reportOfCostoPhrenic: "",
     reportOfToracicCase: "",
     findingsOfFocalLesion: "",
-    findingsOfAbnormalities: ""
+    findingsOfAbnormalities: "",
+    remarkStatus: "",
+    remark: "",
+    nameOfDoctor: ""
   });
 
   const onChange = (e: any) => {
@@ -104,7 +108,9 @@ function MedicalExaminationEditing(props: any) {
       setRefValue(response.data);
     })
   }, [patient?.id])
-
+  const onChangeHandler = (e: any) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="card mb-0">
@@ -1330,12 +1336,14 @@ function MedicalExaminationEditing(props: any) {
                     />
                   </td>
                   <td className="font-size black">L. OTHERS </td>
-                  <td className="font-size black">  <input
-                    onChange={onChange}
-                    className='medicalInput border-0 w-100 '
-                    name='statusOfOther' type="text"
-                    defaultValue={medicalReport?.statusOfOther}
-                  /></td>
+                  <td className="font-size black">
+                    <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='statusOfOther' type="text"
+                      defaultValue={medicalReport?.statusOfOther}
+                    />
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -1351,19 +1359,26 @@ function MedicalExaminationEditing(props: any) {
               </h6>
             </div>
             <div className='row border mx-0 '>
-              <div className='col-3 pb-4  border-bottom '>
+              <div className='col-2 pb-4  border-bottom '>
                 &nbsp;&nbsp;&nbsp;
               </div>
 
-              <div className='col-9'>
+              <div className='col-10'>
                 <table
                   className=" table">
                   <thead style={{ textAlign: 'left' }}>
                     <tr>
-                      <th className="font-size black border border-black border-top-0 py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>Dr. Name</th>
-                      <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}></th>
-                      <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>Date</th>
-                      <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                      <th className="font-size black border border-black border-top-0 py-0 " style={{ width: '15%', paddingLeft: '5px', fontWeight: "normal" }}>Dr. Name</th>
+                      <th className="font-size black border border-black py-0" style={{ width: '30%', fontWeight: "normal", paddingLeft: '5px' }}>
+                        <input
+                          onChange={onChange}
+                          className='medicalInput border-0 w-100 '
+                          name='nameOfDoctor' type="text"
+                          defaultValue={medicalReport?.nameOfDoctor}
+                        />
+                      </th>
+                      <th className="font-size black border  border-black py-0" style={{ width: '15%', paddingLeft: '5px', fontWeight: "normal" }}>Date</th>
+                      <th className="font-size black border border-black py-0" style={{ width: '30%', paddingLeft: '5px', fontWeight: "normal" }}></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1381,7 +1396,12 @@ function MedicalExaminationEditing(props: any) {
 
               </div>
             </div>
-
+            <h4 className="form-section mt-2">Doctor Remark</h4>
+            <div className="row">
+              {FORM?.MEDICAL_FORM_EXTRA_FIELDS.map((input) => (
+                <FormField key={input?.id} {...input} onChange={onChangeHandler} defaultValue={patient[input?.name]} />
+              ))}
+            </div>
 
           </div>
           <div className="form-actions ml-3">
