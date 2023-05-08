@@ -126,12 +126,12 @@ function PatientBills(props: any) {
                             </div>
                         </div>
                     </div>
-                    <div className="content-body">
+                    <div className="content-body ">
                         <div className="row">
                             <div className="col-12">
-                                <div className="card">
+                                <div className="card ">
                                     <div className="card-content collapse show">
-                                        <div className="card-body">
+                                        <div className="card-body ">
                                             <DataTable columns={columns} data={data} onSearch={handleSearch}
                                                 endpoint={API_ROUTES.BILL_ADVANCE_SEARCH} refresh={refresh}
                                                 dateFilter={true}
