@@ -23,7 +23,7 @@ function DataTable(props: any) {
   const { columns, endpoint, pagesSizes, actionButtons, dateFilter } = props;
 
   const [filteredData, setFilteredData] = useState([]);
-  console.log(filteredData);
+
   let [page, setPage] = useState({
     pageNumber: 0,
     pageSize: pagesSizes ? pagesSizes[pagesSizes.length - 1] : 9999,
@@ -213,6 +213,8 @@ function DataTable(props: any) {
     loadData();
   }
 
+ 
+  console.log(filteredData);
   return (
     <div className={"row w-100"}>
       {actionButtons ?
