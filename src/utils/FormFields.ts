@@ -389,7 +389,7 @@ export const ACTUAL_BILL_SEARCH = [
         placeholder: "Package/Test Name",
         errorMessage: "Please Select a Package or Agency!",
         label: "Package/Test Name",
-        column: 3,
+        column: 4,
         required: true,
         ajax: true,
         mapping: { path: API_ROUTES.PACKAGE_AND_TEST_ALL, value: "id", text: "name" }
@@ -400,11 +400,11 @@ export const ACTUAL_BILL_SEARCH = [
         className: "form-control",
         placeholder: "Agent/Agency Name",
         label: "Agent/Agency Name",
-        column: 3,
+        column: 4,
         ajax: true,
         required: true,
         mapping: { path: API_ROUTES.AGENT_AND_AGENCY_ALL, value: "id", text: "fullName" }
-    } 
+    }
 ];
 
 export const AGENT = [

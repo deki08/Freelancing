@@ -43,7 +43,7 @@ function FormSelect(props: any) {
             </div>
             <select {...inputProps} onChange={onChange} onBlur={handleFocus} focused={focused}>
                 {options?.map((option: { text: any, value: any }) => (
-                    <option value={option.value} selected={inputProps.defaultValue ? (inputProps.defaultValue == option.value ? true : false) : false}>{option.text}</option>
+                    <option value={option.value} defaultChecked={inputProps.defaultValue ? (inputProps.defaultValue == option.value ? true : false) : false}>{option.text}</option>
                 ))}
             </select>
             <div className="invalid-feedback">{inputProps.errorMessage}</div>

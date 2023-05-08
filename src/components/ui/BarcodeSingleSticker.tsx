@@ -3,7 +3,7 @@ import Barcode from "react-barcode";
 // IN NEW BUTTON > Patient Id, Name, Passport number
 function BarcodeSingleSticker(props: any) {
   const { patient, type, description } = props;
-  console.log(patient);
+
   return (
     <div className={'card'} style={{ width: '48mm' }}>
       <div className="card-content py-0 box-shadow-3">

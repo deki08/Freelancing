@@ -7,7 +7,7 @@ import PdfUtil from "../../../utils/PdfUtil";
 import FuncUtil from "../../../utils/FuncUtil";
 import { useReactToPrint } from "react-to-print";
 import formatDateTime from '../../../model/formatDateTime';
-import { input } from '@tensorflow/tfjs-node';
+import { data, input } from '@tensorflow/tfjs-node';
 import FormField from '../../../components/ui/FormField';
 import { FORM } from '../../../utils/FormFields';
 
@@ -27,6 +27,9 @@ function ActualBillTable(props: any) {
   const { columns, endpoint, pagesSizes, actionButtons, dateFilter } = props;
 
   const [filteredData, setFilteredData] = useState([]);
+  const [dataUpdated, setDataUpdated] = useState({});
+
+
 
   let [page, setPage] = useState({
     pageNumber: 0,
@@ -248,14 +251,18 @@ function ActualBillTable(props: any) {
     }
     loadData();
   }
+
+
+
+
+
   const getValues = (props: any) => {
     const patientData = {
       patientId: props?.record?.id,
       valueType: props?.data,
       updatedMoney: props?.e?.target?.value,
     }
-    console.log(patientData)
-
+    setDataUpdated(patientData)
   }
   const onChange = (e: any) => {
     FuncUtil.validate(e)
@@ -272,12 +279,14 @@ function ActualBillTable(props: any) {
 
 
   // update value save 
-  const updateValues = ()=>{}
+  const updateValues = () => {
+    console.log(dataUpdated);
+  }
 
   return (
     <div className={"row w-100"}>
       {actionButtons ?
-        <div className={"col-md-12 mb-1 d-flex justify-content-between"}>
+        <div className={"col-md-12 mb-1 d-flex align-items-center justify-content-between"}>
           <div className={"buttons-group"}>
             <button type="button" className="btn btn-sm btn-outline-blue btn-min-width mr-1 box-shadow-1"
               onClick={onCopy}>Copy
@@ -295,16 +304,23 @@ function ActualBillTable(props: any) {
               onClick={handlePrint}>Print
             </button>
           </div>
-          <div className='border d-flex'>
-            <div className="d-flex">
-              {FORM.ACTUAL_BILL_SEARCH .map((input) => (
-                <FormField key={input.id} {...input} onChange={onChange} />
+
+
+          <div className='  w-auto '>
+            <div className="d-flex  justify-content-end align-items-center">
+              {FORM.ACTUAL_BILL_SEARCH.map((input) => (
+                <FormField key={Math.random()}  {...input} onChange={onChange} />
               ))}
+              <div>
+                <button type="button" className="btn mt-1 btn-sm btn-outline-purple mr-1 py-1 px-2 box-shadow-1"
+                  onClick={updateValues}>Update
+                </button>
+
+              </div>
             </div>
-            <button type="button" className="btn btn-sm btn-outline-purple btn-min-width mr-1 box-shadow-1"
-              onClick={updateValues}>Update
-            </button>
+
           </div>
+
         </div> : ""
       }
       <div className={`col-md-12 mb-1`}>
@@ -449,7 +465,7 @@ function ActualBillTable(props: any) {
                 <option value={30}>30 Record</option>
                 <option value={50}>50 Record</option>
                 <option value={100}>100 Record</option>
-                <option value={9999} selected={true}>All Record</option>
+                <option value={9999} >All Record</option>
               </>
               )}
 
