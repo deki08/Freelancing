@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import CommissionService from "../../services/CommissionService";
 import FuncUtil from "../../utils/FuncUtil";
 
 function CommissionDetails(props: any) {
-    const {agentOrAgencyId} = props;
+    const { agentOrAgencyId } = props;
     const [loaded, setLoaded] = useState(false);
     const [summery, setSummery] = useState({
         totalBills: 0,
@@ -77,7 +77,7 @@ function CommissionDetails(props: any) {
 
                         <div className="col-6 col-sm-3 col-md-6 col-lg-3 text-center">
                             <p className="blue-grey lighten-2 mb-0">Due Amount</p>
-                            <p className="font-medium-5 text-bold-400">{FuncUtil.toCurrency(summery.dueAmount,"BDT")}</p>
+                            <p className="font-medium-5 text-bold-400">{FuncUtil.toCurrency(summery.dueAmount, "BDT")}</p>
                         </div>
                     </div>
 
@@ -86,7 +86,7 @@ function CommissionDetails(props: any) {
                     </h6>
                     <div className="progress progress-sm mt-1 mb-0 box-shadow-2">
                         <div className="progress-bar bg-gradient-x-primary" role="progressbar"
-                             style={{width: `${summery.totalBills * summery.completedBills / 100}%`}}></div>
+                            style={{ width: `${summery.totalBills * summery.completedBills / 100}%` }}></div>
                     </div>
                 </div>
             </div>
