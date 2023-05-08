@@ -24,7 +24,7 @@ function DataTable(props: any) {
   const { columns, endpoint, pagesSizes, actionButtons, dateFilter } = props;
 
   const [filteredData, setFilteredData] = useState([]);
-  console.log(filteredData);
+
   let [page, setPage] = useState({
     pageNumber: 0,
     pageSize: pagesSizes ? pagesSizes[pagesSizes.length - 1] : 9999,
@@ -213,7 +213,14 @@ function DataTable(props: any) {
     }
     loadData();
   }
-
+  const getValues = (e:any,record:any) => {
+    console.log(record);
+    console.log(e.target.value);
+    
+    
+  }
+ 
+  console.log(filteredData);
   return (
     <div className={"row w-100"}>
       {actionButtons ?
@@ -289,7 +296,8 @@ function DataTable(props: any) {
                             index + 1 : (column.currency ? (
                               <>
                                 <span className=''>BDT</span>
-                                <input
+                                <input 
+                                  onChange={(e)=>getValues(e,record)}
                                   style={{ marginLeft: "4px" }}
                                   className='border-0 pl-1 ' defaultValue={FuncUtil.toCurrencyRate(record[column.data], "BDT")} type="text" />
 
