@@ -1365,6 +1365,29 @@ export const PATIENT_FORM_EXTRA_FIELDS = [
     }
 ];
 
+export const MEDICAL_FORM_EXTRA_FIELDS = [
+    {
+        id: 1,
+        name: "status",
+        type: "select",
+        values: [{ text: "Select Status", value: "" }, { text: "Fit", value: "FIT" }, { text: "Unfit", value: "UNFIT" }, { text: "Held Up", value: "HELD_UP" }],
+        className: "form-control",
+        label: "Final Report Status",
+        column: 3,
+    },
+
+    {
+        id: 2,
+        name: "remark",
+        type: "textarea",
+        className: "form-control",
+        placeholder: "Remarks",
+        label: "Remarks",
+        column: 12,
+    }
+];
+
+
 export const BILL = [
     {
         id: 1,
@@ -1957,7 +1980,10 @@ export const MEDICALEXAMINATION = {
     reportOfCostoPhrenic: "",
     reportOfToracicCase: "",
     findingsOfFocalLesion: "",
-    findingsOfAbnormalities: ""
+    findingsOfAbnormalities: "",
+    remarkStatus: "",
+    remark: "",
+    nameOfDoctor: ""
 }
 
 export const PATIENT = {
@@ -2141,6 +2167,7 @@ export const FORM = {
     BLOOD_BIOCHEMISTRY,
     BLOOD_ELISA_SEROLOGY_LABORATORY,
     PATIENT_FORM_EXTRA_FIELDS,
+    MEDICAL_FORM_EXTRA_FIELDS,
     BILL,
     CATEGORY,
     ACCOUNT,

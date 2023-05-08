@@ -902,13 +902,34 @@ function MedicalExaminationContent(props: any) {
 
 
             {/* other details */}
-            <div>
-              {/*FINDINGS*/}
-              <h6 className='text-black-deep text-bold-700 '>( &nbsp;&nbsp;&nbsp;     ) Certify him/her as FIT for employment.
-              </h6>
-              <h6 className='text-black-deep text-bold-700 '>(   &nbsp;&nbsp;&nbsp;   ) He/ She is found to be UNFIT as per Malaysia ministry of health standards.
-              </h6>
-            </div>
+            {report.status ?
+              <table className="table-bordered table ">
+                <tbody>
+                  <tr>
+                    <td className="font-size black">
+                      Mentioned above is the medical report for {patient.gender == 'MALE' || patient.gender == 'male' || patient.gender == 'Male' ? 'Mr' : 'Mrs'}. {patient.fullName}, Who is <span className={"font-weight-bolder"}>{report.status}</span> for the above mentioned job according to the Medical criteria.
+                    </td>
+                    <td className="font-weight-bolder font-size black" style={{ whiteSpace: "pre-line" }}>
+                      {report.status != null ? <img src={configuration.reportDoctorSeal} className={'width-100'} alt='' /> : ''}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="font-size black">REMARK : {patient.remark}</td>
+                    <td className="font-size black">FINAL CHECKED BY : {patient.lastModifiedBy}</td>
+                  </tr>
+                </tbody>
+              </table> :
+
+              <div>
+                {/*FINDINGS*/}
+                <h6 className='text-black-deep text-bold-700 '>( &nbsp;&nbsp;&nbsp;     ) Certify him/her as FIT for employment.
+                </h6>
+                <h6 className='text-black-deep text-bold-700 '>(   &nbsp;&nbsp;&nbsp;   ) He/ She is found to be UNFIT as per Malaysia ministry of health standards.
+                </h6>
+              </div>
+
+            }
+
             <div className='row border mx-0 '>
               <div className='col-3 pb-4  border-bottom '>
                 &nbsp;&nbsp;&nbsp;
@@ -919,9 +940,9 @@ function MedicalExaminationContent(props: any) {
                   className=" table">
                   <thead style={{ textAlign: 'left' }}>
                     <tr>
-                      <th className="font-size black border border-black border-top-0 py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>Dr. Name</th>
+                      <th className="font-size black border border-black border-top-0 py-0 " style={{ width: '15%', paddingLeft: '5px', fontWeight: "normal" }}>Dr. Name</th>
                       <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
-                      <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>Date</th>
+                      <th className="font-size black border border-black py-0" style={{ width: '15%', paddingLeft: '5px', fontWeight: "normal" }}>Date</th>
                       <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
                     </tr>
                   </thead>
@@ -934,7 +955,6 @@ function MedicalExaminationContent(props: any) {
                       <td className="font-size black">Hospital Address</td>
                       <td className="font-size black"></td>
                     </tr>
-
                   </tbody>
                 </table>
 
