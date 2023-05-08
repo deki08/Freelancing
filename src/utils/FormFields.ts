@@ -1949,6 +1949,15 @@ export const MEDICALEXAMINATION = {
     serologyVdrl: "",
     serologyMalariaParasite: "",
     serologyFBS: "",
+    reportOfHeartShape: "",
+    reportOfHeartSize: "",
+    reportOfLungFields: "",
+    reportOfMediastinum: "",
+    reportOfPleuralHemidiaphragms: "",
+    reportOfCostoPhrenic: "",
+    reportOfToracicCase: "",
+    findingsOfFocalLesion: "",
+    findingsOfAbnormalities: ""
 }
 
 export const PATIENT = {
