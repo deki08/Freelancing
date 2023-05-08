@@ -7,6 +7,7 @@ import PdfUtil from "../../utils/PdfUtil";
 import FuncUtil from "../../utils/FuncUtil";
 import { useReactToPrint } from "react-to-print";
 import formatDateTime from '../../model/formatDateTime';
+import { input } from '@tensorflow/tfjs-node';
 
 
 interface Page {
@@ -282,9 +283,20 @@ function DataTable(props: any) {
                 <tr key={index}>
                   {columns.map((column: any, cellNumber: number) => (
                     column["render"] ? <td className={column.class}>{column.render(record)}</td> :
-                      <td key={'rec-' + record.id + '-' + cellNumber} className={column.class}>
+                      <td key={Math.random()} className={column.class}>
                         {
-                          column.data === 'index' ? index + 1 : (column.currency ? FuncUtil.toCurrency(record[column.data], "BDT") : (column.data === 'createdDate' ? formatDateTime(record.createdDate) : record[column.data]))
+                          column.data === 'index' ?
+                            index + 1 : (column.currency ? (
+                              <>
+                                <span className=''>BDT</span>
+                                <input
+                                  style={{ marginLeft: "4px" }}
+                                  className='border-0 pl-1 ' defaultValue={FuncUtil.toCurrencyRate(record[column.data], "BDT")} type="text" />
+
+                              </>
+                            )
+                              : (column.data === 'createdDate' ? formatDateTime(record.createdDate) :
+                                record[column.data]))
                         }
 
                       </td>
