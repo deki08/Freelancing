@@ -54,17 +54,17 @@ function MedicalExaminationContent(props: any) {
               <ReactToPrint
                 pageStyle={pageStyle}
                 documentTitle={patient.passportNo}
-                content={() => document.getElementById('patient-report-print-content')}
+                content={() => document.getElementById('patient-medicalExam-report')}
                 trigger={() => <button className="btn btn-info pull-right">Print</button>} />
             </div>
           </div>
-          <div className={'printable mx-3 my-2'} id={'patient-report-print-content'}>
+          <div className={'printable mx-3 my-2'} id={'patient-medicalExam-report'}>
             <div className={'row'}>
               <div className="col-12 text-center">
                 <div className="px-0 row  list-unstyled black">
                   <div className='col-4 border py-2 border-right-0 '>
                     <img src={configuration.reportCompanyLogo} className="mb-0" alt='' height={100} />
-                    {/* <img src="https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg" className="mb-0 rounded-circle " alt='' width={100} height={100} /> */}
+
                   </div>
                   <div className='col-8 py-2 border'>
                     <div>
@@ -155,7 +155,7 @@ function MedicalExaminationContent(props: any) {
                   <td className='w-25'>
                     <tr className='w-100'>
                       <td className="font-size border-border-left-0 border-top-0 border-bottom-0 black" style={{ width: '100px' }}>AGE</td>
-                      <td className="font-size border-0 w-50 black">25</td>
+                      <td className="font-size border-0 w-50 black"> </td>
 
                     </tr>
                   </td>
@@ -163,8 +163,7 @@ function MedicalExaminationContent(props: any) {
 
                   <tr className='w-25'>
                     <td className="font-size border-top-0 border-left-0 border-bottom-0 black" style={{ width: '100px' }}>Sex</td>
-                    <td className="font-size border-0 w-50 black">Mail</td>
-
+                    <td className="font-size border-0 w-50 black">{patient?.gender}</td>
                   </tr>
 
                 </tr>

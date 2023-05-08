@@ -263,7 +263,7 @@ function DataTable(props: any) {
           : ""
         }
       </div>
-      <div className={"col-md-12"}>
+      <div className={"col-md-12  w-100 pr-0"}>
         <div className={`table-container  ${filteredData?.length && 'responsiveTable'} `}>
           <table className={`table table-sm  table-hover table-striped table-bordered sourced-data`} id={"datatable"}>
             <thead className="bg-primary white">
