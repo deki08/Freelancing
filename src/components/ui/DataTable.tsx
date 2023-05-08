@@ -213,14 +213,16 @@ function DataTable(props: any) {
     }
     loadData();
   }
-  const getValues = (e:any,record:any) => {
-    console.log(record);
-    console.log(e.target.value);
-    
-    
+  const getValues = (props: any) => {
+    const patientData = {
+      patientId: props?.record?.id,
+      valueType: props?.data,
+      updatedMoney: props?.e?.target?.value,
+    }
+    console.log(patientData)
+
   }
- 
-  console.log(filteredData);
+
   return (
     <div className={"row w-100"}>
       {actionButtons ?
@@ -296,10 +298,10 @@ function DataTable(props: any) {
                             index + 1 : (column.currency ? (
                               <>
                                 <span className=''>BDT</span>
-                                <input 
-                                  onChange={(e)=>getValues(e,record)}
+                                <input
+                                  onChange={(e) => getValues({ e, record, data: column.data })}
                                   style={{ marginLeft: "4px" }}
-                                  className='border-0 pl-1 ' defaultValue={FuncUtil.toCurrencyRate(record[column.data], "BDT")} type="text" />
+                                  className='border-0 pl-1' defaultValue={FuncUtil.toCurrencyRate(record[column.data], "BDT")} type="text" />
 
                               </>
                             )
