@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { API_ROUTES } from "../../../utils/constants";
-import DataTable from "../../../components/ui/DataTable";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../../../services/AuthService";
 import BillService from "../../../services/BillService";
 import Invoice from "./Invoice";
 import PayBillComponent from "./PayBillComponent";
+import ActualBillTable from './ActualBillTable';
 
 function ActualBill(props: any) {
     const navigate = useNavigate();
@@ -95,7 +95,7 @@ function ActualBill(props: any) {
                                 <div className="card">
                                     <div className="card-content collapse show">
                                         <div className="card-body">
-                                            <DataTable columns={columns} data={data} onSearch={handleSearch}
+                                            <ActualBillTable columns={columns} data={data} onSearch={handleSearch}
                                                 endpoint={API_ROUTES.BILL_ADVANCE_SEARCH} refresh={refresh}
                                                 dateFilter={true}
                                                 actionButtons={true}

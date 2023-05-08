@@ -379,6 +379,34 @@ export const SERVICE_BILLING_INFO = [
     }
 ];
 
+
+export const ACTUAL_BILL_SEARCH = [
+    {
+        id: 1,
+        name: "testOrPackageId",
+        type: "select",
+        className: "form-control",
+        placeholder: "Package/Test Name",
+        errorMessage: "Please Select a Package or Agency!",
+        label: "Package/Test Name",
+        column: 3,
+        required: true,
+        ajax: true,
+        mapping: { path: API_ROUTES.PACKAGE_AND_TEST_ALL, value: "id", text: "name" }
+    }, {
+        id: 2,
+        name: "agentOrAgencyId",
+        type: "select",
+        className: "form-control",
+        placeholder: "Agent/Agency Name",
+        label: "Agent/Agency Name",
+        column: 3,
+        ajax: true,
+        required: true,
+        mapping: { path: API_ROUTES.AGENT_AND_AGENCY_ALL, value: "id", text: "fullName" }
+    } 
+];
+
 export const AGENT = [
     {
         id: 1,
@@ -2179,6 +2207,7 @@ export const FORM = {
     ROLE,
     ACCOUNT_TRANSFER,
     SUPPLIER,
+    ACTUAL_BILL_SEARCH
 }
 
 export const MODEL = {
