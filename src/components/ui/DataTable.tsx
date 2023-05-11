@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import http from "../../config/httpConfig";
 import moment from "moment";
 import FileUtil from "../../utils/CsvUtil";
 import CsvUtil from "../../utils/CsvUtil";
 import PdfUtil from "../../utils/PdfUtil";
 import FuncUtil from "../../utils/FuncUtil";
-import {useReactToPrint} from "react-to-print";
+import { useReactToPrint } from "react-to-print";
 
 
 interface Page {
@@ -19,11 +19,11 @@ interface Page {
 }
 
 function DataTable(props: any) {
-    const {columns, endpoint, pagesSizes, actionButtons, dateFilter} = props;
+    const { columns, endpoint, pagesSizes, actionButtons, dateFilter } = props;
     const [filteredData, setFilteredData] = useState([]);
     let [page, setPage] = useState({
         pageNumber: 0,
-        pageSize: pagesSizes ? pagesSizes[pagesSizes.length-1] : 9999,
+        pageSize: pagesSizes ? pagesSizes[pagesSizes.length - 1] : 9999,
         column: "id",
         sort: "DESC",
         text: "",
@@ -37,7 +37,7 @@ function DataTable(props: any) {
     const [message, setMessage] = useState("");
 
     const generateCsvData = () => {
-        return filteredData.map((record:any) => {
+        return filteredData.map((record: any) => {
             delete record.createdDate;
             delete record.modifiedDate;
             return Object.keys(record).map(function (k) {
@@ -51,7 +51,7 @@ function DataTable(props: any) {
     }
 
     const onCsv = () => {
-        filteredData.map((record:any) => {
+        filteredData.map((record: any) => {
             delete record.createdDate;
             delete record.modifiedDate;
             return record;
@@ -59,12 +59,12 @@ function DataTable(props: any) {
         FileUtil.generateCsv("data.csv", filteredData, columns);
     }
     const onExcel = () => {
-        filteredData.map((record:any) => {
+        filteredData.map((record: any) => {
             delete record.createdDate;
             delete record.modifiedDate;
             return record;
         })
-        CsvUtil.generateExcel('data',filteredData);
+        CsvUtil.generateExcel('data', filteredData);
     }
     const onPdf = () => {
         PdfUtil.downloadPdf("data", "datatable-download");
@@ -153,7 +153,7 @@ function DataTable(props: any) {
         if (isLoading) {
             loadData();
         }
-    }, [isLoading,loadData])
+    }, [isLoading, loadData])
 
     useEffect(() => {
         loadData();
@@ -169,9 +169,9 @@ function DataTable(props: any) {
     }
 
     const handleSort = (column: string) => {
-        if (page.column === column){
-            page.sort = page.sort === 'ASC'?'DESC':'ASC';
-        }else{
+        if (page.column === column) {
+            page.sort = page.sort === 'ASC' ? 'DESC' : 'ASC';
+        } else {
             page.column = column;
             page.sort = 'ASC';
         }
@@ -179,12 +179,12 @@ function DataTable(props: any) {
     }
 
     const handleChange = (e: any) => {
-        if (e.target.name == 'from'){
+        if (e.target.name == 'from') {
             page.from = e.target.value;
-        }else if(e.target.name == 'to'){
+        } else if (e.target.name == 'to') {
             page.to = e.target.value;
-        }else{
-            switch (e.target.value){
+        } else {
+            switch (e.target.value) {
                 case 'today':
                     page.from = moment(new Date()).format('YYYY-MM-DD');
                     page.to = moment(new Date()).format('YYYY-MM-DD');
@@ -216,19 +216,19 @@ function DataTable(props: any) {
                 <div className={"col-md-12 mb-1"}>
                     <div className={"buttons-group"}>
                         <button type="button" className="btn btn-sm btn-outline-blue btn-min-width mr-1 box-shadow-1"
-                                onClick={onCopy}>Copy
+                            onClick={onCopy}>Copy
                         </button>
                         <button type="button" className="btn btn-sm btn-outline-yellow btn-min-width mr-1 box-shadow-1"
-                                onClick={onCsv}>CSV
+                            onClick={onCsv}>CSV
                         </button>
                         <button type="button" className="btn btn-sm btn-outline-blue-grey btn-min-width mr-1 box-shadow-1"
-                                onClick={onExcel}>Excel
+                            onClick={onExcel}>Excel
                         </button>
                         <button type="button" className="btn btn-sm btn-outline-pink btn-min-width mr-1 box-shadow-1"
-                                onClick={onPdf}>PDF
+                            onClick={onPdf}>PDF
                         </button>
                         <button type="button" className="btn btn-sm btn-outline-purple btn-min-width mr-1 box-shadow-1"
-                                onClick={handlePrint}>Print
+                            onClick={handlePrint}>Print
                         </button>
                     </div>
                 </div> : ""
@@ -236,19 +236,19 @@ function DataTable(props: any) {
             <div className={`col-md-12 mb-1`}>
                 <div className={'input-group pull-right col-7'}>
                     <input type="text" className="form-control round box-shadow-1"
-                           placeholder={props.searchPlaceholder ? props.searchPlaceholder : 'Type Here to Search'}
-                           aria-label="Amount (to the nearest dollar)" name="amount" onChange={typeHandler}/>
+                        placeholder={props.searchPlaceholder ? props.searchPlaceholder : 'Type Here to Search'}
+                        aria-label="Amount (to the nearest dollar)" name="amount" onChange={typeHandler} />
                     <button className="btn btn-info  box-shadow-1" onClick={reload}><i className="ft-refresh-cw"></i>
                     </button>
                 </div>
                 {dateFilter ?
                     <div className={'input-group pull-right col-5'}>
                         <input type="date" className="form-control round mr-1 box-shadow-1" value={page.from}
-                               name="from"
-                               onChange={onFromDateChange}/>
+                            name="from"
+                            onChange={onFromDateChange} />
                         <span className={"mr-1 mt-1"}>TO</span>
                         <input type="date" className="form-control round mr-1 box-shadow-1" value={page.to} name="to"
-                               onChange={onToDateChange}/>
+                            onChange={onToDateChange} />
                         <select className="form-control" name={'duration'} onChange={handleChange}>
                             <option value="today">Today</option>
                             <option value="yesterday">Yesterday</option>
@@ -261,82 +261,82 @@ function DataTable(props: any) {
                 }
             </div>
             <div className={"col-md-12"}>
-                <div className="table-container">
+                <div className="table-container responsiveTable">
                     <table className="table table-sm table-striped table-bordered sourced-data" id={"datatable"}>
                         <thead className="bg-primary white">
-                        <tr>
-                            {columns.map((column: any,index:number) => (
-                                <th key={index}  className={column.class?column.class.replace('text-right','text-center').replace('text-left','text-center'):''}>
-                                    {column.name} {column.sort ?<i className="ft-shuffle pull-right" onClick={()=>handleSort(column.data)}></i>:''}
-                                </th>
-                            ))}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {filteredData.map((record: any, index) => (
-                            <tr key={index}>
-                                {columns.map((column: any, cellNumber: number) => (
-                                    column["render"] ? <td className={column.class}>{column.render(record)}</td> :
-                                        <td key={'rec-' + record.id + '-' + cellNumber} className={column.class}>
-                                            {
-                                                column.data === 'index' ? index + 1 : (column.currency ? FuncUtil.toCurrency(record[column.data],"BDT"):record[column.data])
-                                            }
-                                        </td>
+                            <tr>
+                                {columns.map((column: any, index: number) => (
+                                    <th key={index} className={column.class ? column.class.replace('text-right', 'text-center').replace('text-left', 'text-center') : ''}>
+                                        {column.name} {column.sort ? <i className="ft-shuffle pull-right" onClick={() => handleSort(column.data)}></i> : ''}
+                                    </th>
                                 ))}
                             </tr>
-                        ))}
+                        </thead>
+                        <tbody>
+                            {filteredData.map((record: any, index) => (
+                                <tr key={index}>
+                                    {columns.map((column: any, cellNumber: number) => (
+                                        column["render"] ? <td className={column.class}>{column.render(record)}</td> :
+                                            <td key={'rec-' + record.id + '-' + cellNumber} className={column.class}>
+                                                {
+                                                    column.data === 'index' ? index + 1 : (column.currency ? FuncUtil.toCurrency(record[column.data], "BDT") : record[column.data])
+                                                }
+                                            </td>
+                                    ))}
+                                </tr>
+                            ))}
 
                         </tbody>
 
                         <tfoot>
-                        {isLoading ? <tr key={'foot-tr-loading'}>
-                            <td colSpan={columns.length} className={"text-center"}>Loading...</td>
-                        </tr> : ""}
-                        {!isLoading ?
-                            <tr key={'foot-tr-1'} >
-                                {columns.map((column: any,index:number) => (
-                                    column["calculateSum"] ?
-                                        <td key={index} className={column.class}>
-                                            <strong>
-                                            {
-                                                column.currency ? FuncUtil.toCurrency(calculateSum(column.data),"BDT") : calculateSum(column.data)
-                                            }
-                                            </strong>
-                                        </td> :
-                                        <td key={'foot-'+index} className={column.class}></td>
-                                ))}
-                            </tr> : ""
-                        }
+                            {isLoading ? <tr key={'foot-tr-loading'}>
+                                <td colSpan={columns.length} className={"text-center"}>Loading...</td>
+                            </tr> : ""}
+                            {!isLoading ?
+                                <tr key={'foot-tr-1'} >
+                                    {columns.map((column: any, index: number) => (
+                                        column["calculateSum"] ?
+                                            <td key={index} className={column.class}>
+                                                <strong>
+                                                    {
+                                                        column.currency ? FuncUtil.toCurrency(calculateSum(column.data), "BDT") : calculateSum(column.data)
+                                                    }
+                                                </strong>
+                                            </td> :
+                                            <td key={'foot-' + index} className={column.class}></td>
+                                    ))}
+                                </tr> : ""
+                            }
                         </tfoot>
                     </table>
                 </div>
                 <div className={'w-100 datatable-download'} id={'datatable-download'}>
                     <table className={'table-bordered m-1'} id={'datatable-print'}>
                         <thead>
-                        <tr>
-                            <td style={{border:'0px'}} colSpan={columns.filter((column:any)=>{return column.name !== 'Action'}).length}> Data From {page.from} TO {page.to}</td>
-                        </tr>
-                        <tr>
-                            {columns.map((column: any,index:number) => (
-                                column.name !== 'Action' ?
-                                    <th key={'th'+index} className={column.class?column.class.replace('text-right','text-center').replace('text-left','text-center'):''}>{column.name}</th>
-                                    :''
-                            ))}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {filteredData.map((record: any, index) => (
-                            <tr key={'rec-' + index}>
-                                {columns.map((column: any, cellNumber: number) => (
-                                    column.name !== 'Action' ? (
-                                        column["render"] ?
-                                            <td key={cellNumber} className={column.class}>{column.render(record)}</td>
-                                            :<td key={cellNumber} className={column.class}>
-                                            {column.data === 'index' ? index + 1 : (column.currency ? FuncUtil.toCurrency(record[column.data],"BDT"):record[column.data])}
-                                        </td>):''
+                            <tr>
+                                <td style={{ border: '0px' }} colSpan={columns.filter((column: any) => { return column.name !== 'Action' }).length}> Data From {page.from} TO {page.to}</td>
+                            </tr>
+                            <tr>
+                                {columns.map((column: any, index: number) => (
+                                    column.name !== 'Action' ?
+                                        <th key={'th' + index} className={column.class ? column.class.replace('text-right', 'text-center').replace('text-left', 'text-center') : ''}>{column.name}</th>
+                                        : ''
                                 ))}
                             </tr>
-                        ))}
+                        </thead>
+                        <tbody>
+                            {filteredData.map((record: any, index) => (
+                                <tr key={'rec-' + index}>
+                                    {columns.map((column: any, cellNumber: number) => (
+                                        column.name !== 'Action' ? (
+                                            column["render"] ?
+                                                <td key={cellNumber} className={column.class}>{column.render(record)}</td>
+                                                : <td key={cellNumber} className={column.class}>
+                                                    {column.data === 'index' ? index + 1 : (column.currency ? FuncUtil.toCurrency(record[column.data], "BDT") : record[column.data])}
+                                                </td>) : ''
+                                    ))}
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -352,21 +352,21 @@ function DataTable(props: any) {
                 <div className={"row"}>
                     <div className={"col-8 mt-1"}>
                         <select className="form-control pull-left width-20-per" onChange={pageSizeHandler}>
-                            {pagesSizes ? pagesSizes.map((column: any, index:number) => (
-                                <option key={'size'+index} value={column}>{column} Record</option>
+                            {pagesSizes ? pagesSizes.map((column: any, index: number) => (
+                                <option key={'size' + index} value={column}>{column} Record</option>
                             )) : (<>
-                                    <option value={10}>10 Record</option>
-                                    <option value={20}>20 Record</option>
-                                    <option value={30}>30 Record</option>
-                                    <option value={50}>50 Record</option>
-                                    <option value={100}>100 Record</option>
-                                    <option value={9999} selected={true}>All Record</option>
-                                </>
+                                <option value={10}>10 Record</option>
+                                <option value={20}>20 Record</option>
+                                <option value={30}>30 Record</option>
+                                <option value={50}>50 Record</option>
+                                <option value={100}>100 Record</option>
+                                <option value={9999} selected={true}>All Record</option>
+                            </>
                             )}
 
                         </select>
                         <div className="dataTables_info pull-left ml-2 mt-1" id="DataTables_Table_1_info" role="status"
-                             aria-live="polite">Showing {page.pageNumber * page.pageSize + 1} to {(page.pageNumber * page.pageSize) + page.pageSize} of {page.total} entries
+                            aria-live="polite">Showing {page.pageNumber * page.pageSize + 1} to {(page.pageNumber * page.pageSize) + page.pageSize} of {page.total} entries
                         </div>
                     </div>
                     <div className={"col-4"}>
@@ -378,10 +378,10 @@ function DataTable(props: any) {
                                         <span className="sr-only">Previous</span>
                                     </a>
                                 </li>
-                                {pages.map((pageNumber: any,index) => (
-                                    <li key={'page'+index} className={`page-item ${pageNumber === page.pageNumber ? 'active' : ''}`}>
+                                {pages.map((pageNumber: any, index) => (
+                                    <li key={'page' + index} className={`page-item ${pageNumber === page.pageNumber ? 'active' : ''}`}>
                                         <a className="page-link" data-page={pageNumber}
-                                           onClick={changePage} href="/#">{pageNumber + 1}</a>
+                                            onClick={changePage} href="/#">{pageNumber + 1}</a>
                                     </li>
                                 ))}
                                 <li className="page-item">

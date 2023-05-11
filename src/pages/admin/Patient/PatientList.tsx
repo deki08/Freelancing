@@ -69,7 +69,7 @@ function PatientList(props: any) {
   }
 
   const columns: {}[] = [
-    { data: "index", name: "SL", sortable: true, class: "text-center  width-100" },
+    { data: "index", name: "SL", sortable: true, class: "text-center" },
     { data: "fullName", name: "Full Name", class: "", sort: true },
     { data: "regNo", name: "Patient ID", class: "", sort: true },
     { data: "passportNo", name: "Passport Number", class: "text-center width-200", sort: true },
@@ -89,7 +89,7 @@ function PatientList(props: any) {
   const [patient, setPatient] = useState(MODEL.PATIENT);
   const [report, setReport] = useState(MODEL.REPORT);
   const [refresh, doRefresh] = useState(0);
-console.log(data);
+  console.log(data);
 
   const patientBillsHandler = (e: any) => {
     setPatient(JSON.parse(e.target.dataset.record));
@@ -424,7 +424,6 @@ console.log(data);
             <div className="modal-dialog modal-xl modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-body scroll-80">
-
                   <MedicalExaminationEditing patient={patient} onUpdateMalaysia={onUpdateMalaysia} onCancel={onCancel} />
                 </div>
                 <div className="modal-footer">

@@ -43,8 +43,10 @@ function ActualBill(props: any) {
     const columns: {}[] = [
         { data: "index", name: "SL", sortable: true, class: "text-center px-1" },
         { data: "regNo", name: "Patient Id", class: "px-2 text-center", sort: true },
-        { data: "createdDate", name: "Date", class: "text-center px-1 dateCreated", sort: true },
         { data: "patientName", name: "Patient Name", class: "px-1 text-center" },
+        { data: "createdDate", name: "Date", class: "text-center px-1 dateCreated", sort: true },
+        { data: "testName", name: "Package Name", class: "text-center px-1", sort: true },
+        // { data: "qr", name: "Travelling To", class: "text-center px-1" },
         { data: "agentOrAgencyName", name: "Agency / Agent", class: "px-1 text-center", sort: true },
         { data: "amount", name: "Amount", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
         { data: "paid", name: "Paid", class: "px-1 text-center", calculateSum: true, currency: true, sort: true },

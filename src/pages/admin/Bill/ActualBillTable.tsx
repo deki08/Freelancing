@@ -29,6 +29,7 @@ function ActualBillTable(props: any) {
   const [filteredData, setFilteredData] = useState([]);
   const [dataUpdated, setDataUpdated] = useState({});
 
+  console.log(filteredData);
 
 
   let [page, setPage] = useState({
