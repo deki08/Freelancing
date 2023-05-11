@@ -19,6 +19,8 @@ function PatientSingleBarcode(props: any) {
         }
         body {
           margin:0px;
+          padding-left: 4px;
+          padding-top:4px;
         }
       }
     `;

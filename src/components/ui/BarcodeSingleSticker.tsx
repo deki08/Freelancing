@@ -5,15 +5,15 @@ function BarcodeSingleSticker(props: any) {
   const { patient, type, description } = props;
 
   return (
-    <div className={'card'} style={{ width: '48mm' }}>
+    <div className={'card'} style={{ width: '48mm', height: "30mm" }}>
       <div className="card-content py-0 box-shadow-3">
         <div className="card-body py-1 px-1">
-          <label className='text-center w-100 my-0 text-bold-600 '>{patient.regNo}</label>
-          <label className='text-center py-0 w-100 text-bold-600'>{patient?.fullName?.slice(0, 16)}</label>
+          <label className='text-center w-100 py-0 my-0 text-bold-600 '>{patient.regNo}</label>
+          <label className='text-center py-0 w-100 my-0 text-bold-600'>{patient?.fullName?.slice(0, 16)}</label>
           {/* <label className=''>{patient?.passportNo}</label> */}
-          <Barcode value={patient.regNo ? patient.regNo : 'NA'} marginLeft={1} marginRight={0} marginTop={1} displayValue={false}
+          <Barcode value={patient.regNo ? patient.regNo : 'NA'} marginLeft={1} marginRight={0} marginTop={1} marginBottom={1} displayValue={false}
             width={1.13} height={25} />
-          <label className='text-center mb-0 w-100'>{patient?.passportNo}</label>
+          <label className='text-center py-0 my-0 w-100'>{patient?.passportNo}</label>
         </div>
       </div>
     </div>

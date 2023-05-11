@@ -126,28 +126,31 @@ function MedicalExaminationEditing(props: any) {
             <div className={'row'}>
               <div className="col-12 text-center">
                 <div className="px-0 row  list-unstyled black">
-                  <div className='col-4 border py-2 border-right-0 '>
-                    <img src={configuration?.reportCompanyLogo} className="mb-0" alt='' height={100} />
+                  <div className='col-2  py-2 border-right-0 '>
+                    <img src={configuration.reportCompanyLogo} className="mb-0" alt='' height={100} />
                   </div>
-                  <div className='col-8 py-2 border'>
+                  <div className='col-10 py-2 '>
                     <div>
-                      <h1 className='text-bold-700'>{configuration?.businessName}</h1>
-                      <h4>Address : {configuration?.invoiceAddress}</h4>
+                      <h3 className='text-bold-600'>{configuration.businessName}</h3>
+                      <h4>Address : {configuration.invoiceAddress}</h4>
                     </div>
                     <div className='d-flex justify-content-around'>
-                      <p>PHONE : {configuration?.reportContactNumber} </p>
-                      <p>Website :{configuration?.websiteUrl} </p>
-                      <p>Report Download : {configuration?.reportUrl}</p>
+                      <p>CONTACT NO. : {configuration.reportContactNumber} </p>
+                      <p>Website :{configuration.websiteUrl} </p>
+                      <p>Report Download : {configuration.reportUrl}</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="row mt-2">
-              <div className="col-md-12 text-center">
-                <h4 className={'font-weight-bolder'}>Medical Examination
+              <div className='col-md-2'>
+                <h4 className='text-fs-medium text-black-deep'>APPENDIX - C</h4>
+              </div>
+              <div className="w-100 col-md-8  mr-1 text-center">
+                <h4 className={'font-weight-600 text-black-deep'}>Medical Examination
                   Report</h4>
-                <p className='text-bold-600'>Foreign Worker
+                <p className='text-bold-600 text-black-deep'>Foreign Worker
                 </p>
               </div>
             </div>
@@ -236,7 +239,7 @@ function MedicalExaminationEditing(props: any) {
 
 
 
-            <table className="table-bordered table">
+            <table className="table-bordered table mt-3">
               <tbody>
                 <tr>
                   <td className="font-size w-25 black">Diabetes</td>
@@ -251,13 +254,13 @@ function MedicalExaminationEditing(props: any) {
             {/**heart diseases)
  */}
             {/*  */}
-            <h6 className='text-black-deep text-bold-700'>Family History (Parents with history of diabetes, blood pressure and heart diseases)
+            <h6 className='text-black-deep text-bold-500 mt-3'>Family History (Parents with history of diabetes, blood pressure and heart diseases)
             </h6>
             <table className="table-bordered table">
               <tbody>
                 <tr>
                   <td rowSpan={5} className="font-size black">
-                    .
+                    &nbsp;
                   </td>
                 </tr>
               </tbody>
@@ -265,36 +268,35 @@ function MedicalExaminationEditing(props: any) {
 
 
             {/* signature */}
-            <div className='pt-2 text-black-50 pb-3'>
+            <div className='my-5 py-5 text-black-50'>
 
               {/* <span>_________________________</span> */}
               <div className='' style={{ width: '240px', textAlign: 'start', paddingBottom: '0.5px' }}>
-
-                <hr className=' bg-black ' />
+                <hr style={{ borderTop: "1px solid #000" }} />
               </div>
               <div className='pl-3'>
                 {/* <span className='pl-5'>_________________________</span> */}
                 <div style={{ width: '240px', textAlign: 'start', }}>
 
-                  <hr className=' bg-black ' />
+                  <hr style={{ borderTop: "1px solid #000" }} />
                 </div>
 
-                <h6 className='text-black'>Signature of worker</h6>
+                <h6 className=' text-black-deep'>Signature of worker</h6>
               </div>
-              <h6>Date:</h6>
+              <h6 className=' text-black-deep'>Date:</h6>
 
             </div>
 
             {/* part: 2 */}
             <div>
-              <h6 className='text-black-deep text-bold-600'> <strong className='font-weight-bolder'>Part: II, Medical History</strong> (to be filled by the attending doctor)
+              <h6 className='text-black-deep '> <strong className='font-weight-bolder'>Part: II, Medical History</strong> (to be filled by the attending doctor)
               </h6>
-              <h6 className='text-black-deep text-bold-600'>Has the worker suffered or experienced the following symptoms: If yes, please indicate date of detection.
+              <h6 className='text-black-deep '>Has the worker suffered or experienced the following symptoms: If yes, please indicate date of detection.
               </h6>
             </div>
 
             {/* disease */}
-            <h6 className='text-black-deep text-bold-700'>Disease</h6>
+            <h6 className='text-black-deep text-bold-700 mt-3'>Disease</h6>
             <table className="table-bordered table">
               <thead style={{ textAlign: 'left' }}>
                 <tr>
@@ -431,10 +433,6 @@ function MedicalExaminationEditing(props: any) {
             </div>
 
 
-
-
-
-            <h6 className='text-black-deep text-bold-700'>Disease</h6>
             <table className="table-bordered table">
               <thead style={{ textAlign: 'left' }}>
                 <tr>
@@ -455,15 +453,7 @@ function MedicalExaminationEditing(props: any) {
                   </td>
                   <td className="font-size black"></td>
                 </tr>
-                <tr>
-                  <td className="font-size black">
-                    WEIGHT
-                  </td>
-                  <td className="font-size black"></td>
-                  <td className="font-size black">                   ANAEMIA
-                  </td>
-                  <td className="font-size black"></td>
-                </tr>
+
 
                 <tr>
                   <td className="font-size black">
@@ -719,7 +709,8 @@ function MedicalExaminationEditing(props: any) {
 
 
             {/*Section C: Laboratory results */}
-            <h6 className='text-black-deep text-bold-700 '>GENITOURINARY SYSTEM</h6>
+            <h6 className='text-black-deep text-bold-700 '>Section C: Laboratory results
+            </h6>
             <table className="table-bordered table">
               <thead style={{ textAlign: 'left' }}>
                 <tr>
@@ -747,7 +738,8 @@ function MedicalExaminationEditing(props: any) {
 
 
             {/*Blood Tests*/}
-            <h6 className='text-black-deep text-bold-700 '>GENITOURINARY SYSTEM</h6>
+            <h6 className='text-black-deep text-bold-700 '>Blood Tests
+            </h6>
             <table className="table-bordered table">
               <thead style={{ textAlign: 'left' }}>
                 <tr>
@@ -768,70 +760,72 @@ function MedicalExaminationEditing(props: any) {
 
 
             {/*Serology */}
-            <h6 className='text-black-deep text-bold-700 '>Serology</h6>
-            <table className="table-bordered table">
-              <thead style={{ textAlign: 'left' }}>
-                <tr>
-                  <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HIV ANTIBODY</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
-                    <input
-                      onChange={onChange}
-                      className='medicalInput border-0 w-100 '
-                      name='serologyHivAntibody' type="text"
-                      defaultValue={medicalReport?.serologyHivAntibody}
-                    />
-                  </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HB<small>s</small>AG</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
-                    <input
-                      onChange={onChange}
-                      className='medicalInput border-0 w-100 '
-                      name='serologyHbsAG' type="text"
-                      defaultValue={medicalReport?.serologyHbsAG}
-                    />
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="font-size black">
-                    C. VDRL
-                  </td>
-                  <td className="font-size black">
-                    <input
-                      onChange={onChange}
-                      className='medicalInput border-0 w-100 '
-                      name='serologyVdrl' type="text"
-                      defaultValue={medicalReport?.serologyVdrl}
-                    />
-                  </td>
-                  <td className="font-size black">D. MALARIA PARASITE</td>
-                  <td className="font-size black">
-                    <input
-                      onChange={onChange}
-                      className='medicalInput border-0 w-100 '
-                      name='serologyMalariaParasite' type="text"
-                      defaultValue={medicalReport?.serologyMalariaParasite}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td className="font-size black">
-                    E. F.B.S.
-                  </td>
-                  <td className="font-size black">
-                    <input
-                      onChange={onChange}
-                      className='medicalInput border-0 w-100 '
-                      name='serologyFBS' type="text"
-                      defaultValue={medicalReport?.serologyFBS}
-                    />
-                  </td>
-                  <td className="font-size black"></td>
-                  <td className="font-size black"></td>
-                </tr>
-              </tbody>
-            </table>
+            <div className='mt-5 pt-4'>
+              <h6 className='text-black-deep text-bold-700 '>Serology</h6>
+              <table className="table-bordered table">
+                <thead style={{ textAlign: 'left' }}>
+                  <tr>
+                    <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HIV ANTIBODY</th>
+                    <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}>
+                      <input
+                        onChange={onChange}
+                        className='medicalInput border-0 w-100 '
+                        name='serologyHivAntibody' type="text"
+                        defaultValue={medicalReport?.serologyHivAntibody}
+                      />
+                    </th>
+                    <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HB<small>s</small>AG</th>
+                    <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>
+                      <input
+                        onChange={onChange}
+                        className='medicalInput border-0 w-100 '
+                        name='serologyHbsAG' type="text"
+                        defaultValue={medicalReport?.serologyHbsAG}
+                      />
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="font-size black">
+                      C. VDRL
+                    </td>
+                    <td className="font-size black">
+                      <input
+                        onChange={onChange}
+                        className='medicalInput border-0 w-100 '
+                        name='serologyVdrl' type="text"
+                        defaultValue={medicalReport?.serologyVdrl}
+                      />
+                    </td>
+                    <td className="font-size black">D. MALARIA PARASITE</td>
+                    <td className="font-size black">
+                      <input
+                        onChange={onChange}
+                        className='medicalInput border-0 w-100 '
+                        name='serologyMalariaParasite' type="text"
+                        defaultValue={medicalReport?.serologyMalariaParasite}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="font-size black">
+                      E. F.B.S.
+                    </td>
+                    <td className="font-size black">
+                      <input
+                        onChange={onChange}
+                        className='medicalInput border-0 w-100 '
+                        name='serologyFBS' type="text"
+                        defaultValue={medicalReport?.serologyFBS}
+                      />
+                    </td>
+                    <td className="font-size black"></td>
+                    <td className="font-size black"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
 
 
@@ -882,7 +876,7 @@ function MedicalExaminationEditing(props: any) {
 
 
             {/*A PREGNANCY TEST URINE FEME */}
-            <h6 className='text-black-deep text-bold-700 '>A PREGNANCY TEST URINE FEME</h6>
+            <h6 className='text-black-deep text-bold-700 '>A PREGNANCY TEST URINE FEMALE</h6>
             <table className="table-bordered table">
               <thead style={{ textAlign: 'left' }}>
                 <tr>
@@ -1060,7 +1054,8 @@ function MedicalExaminationEditing(props: any) {
 
 
             {/*Section D: X-RAY FINDINGS*/}
-            <h6 className='text-black-deep text-bold-700 '>DATE OF X-RAY TAKEN</h6>
+            <h6 className='text-black-deep text-bold-700 mt-2 '>Section D: X-RAY FINDINGS
+            </h6>
             <table className="table-bordered table">
               <thead style={{ textAlign: 'left' }}>
                 <tr>
@@ -1089,7 +1084,7 @@ function MedicalExaminationEditing(props: any) {
 
 
             {/*REPORT*/}
-            <h6 className='text-black-deep text-bold-700 '>REPORT</h6>
+            <h6 className='text-black-deep text-bold-700 mt-2'>REPORT</h6>
             <table className="table-bordered table">
               <thead style={{ textAlign: 'left' }}>
                 <tr>
@@ -1180,7 +1175,7 @@ function MedicalExaminationEditing(props: any) {
 
 
             {/*FINDINGS*/}
-            <h6 className='text-black-deep text-bold-700 '>FINDINGS</h6>
+            <h6 className='text-black-deep text-bold-700 mt-2'>FINDINGS</h6>
             <table className="table-bordered table">
               <thead style={{ textAlign: 'left' }}>
                 <tr>
@@ -1209,9 +1204,10 @@ function MedicalExaminationEditing(props: any) {
 
 
             {/*CONCLUTION OF MEDICAL STATUS:*/}
-            <h6 className='text-black-deep text-bold-700 '>CONCLUTION OF MEDICAL STATUS:
+            <h6 className='text-black-deep text-bold-700 my-1'>CONCLUTION OF MEDICAL STATUS:
             </h6>
-            <h6 className='text-black-deep text-bold-600 '>I have examined Mr./Ms. (PATIENT NAME DURING REGISTRATION), Passport Number – (DURING <br /> REGISTRATION), He/She are free from the following diseases.
+            <h6 className='text-black-deep'>I have examined <strong> {`${patient?.gender === "MALE" ? "Mr." : ""} ${patient?.gender === "FEMALE" ? "Ms." : ""}  `} {patient?.fullName}
+            </strong> , Passport Number – {patient?.passportNo}, <br /> <span>{`${patient?.gender === "MALE" ? "He is" : ""} ${patient?.gender === "FEMALE" ? "She is" : ""}  ${patient?.gender !== "MALE" && patient?.gender !== "FEMALE" ? "He/She are" : ""}   free from the following diseases.`}</span>
             </h6>
             <table className="table-bordered table">
               <thead style={{ textAlign: 'left' }}>
@@ -1358,12 +1354,13 @@ function MedicalExaminationEditing(props: any) {
               <h6 className='text-black-deep text-bold-700 '>(   &nbsp;&nbsp;&nbsp;   ) He/ She is found to be UNFIT as per Malaysia ministry of health standards.
               </h6>
             </div>
-            <div className='row border mx-0 '>
-              <div className='col-2 pb-4  border-bottom '>
-                &nbsp;&nbsp;&nbsp;
+            <div className='mt-5 pt-4'>
+              <div className='d-flex justify-content flex-column align-items-center' >
+                <hr style={{ width: "200px", borderTop: "1px solid black" }} />
+                <p className='text-black-deep '>Doctor’s Signature</p>
               </div>
 
-              <div className='col-10'>
+              <div className=''>
                 <table
                   className=" table">
                   <thead style={{ textAlign: 'left' }}>

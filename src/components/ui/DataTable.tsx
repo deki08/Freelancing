@@ -261,7 +261,7 @@ function DataTable(props: any) {
                 }
             </div>
             <div className={"col-md-12"}>
-                <div className="table-container">
+                <div className="table-container responsiveTable">
                     <table className="table table-sm table-striped table-bordered sourced-data" id={"datatable"}>
                         <thead className="bg-primary white">
                             <tr>
@@ -328,6 +328,7 @@ function DataTable(props: any) {
                             {filteredData.map((record: any, index) => (
                                 <tr key={'rec-' + index}>
                                     {columns.map((column: any, cellNumber: number) => (
+
                                         column.name !== 'Status' && column.name !== 'Action' && column?.name !== 'Malaysia' ? (
                                             column["render"] ?
                                                 <td key={cellNumber} className={column.class}>{column.render(record)}</td>
