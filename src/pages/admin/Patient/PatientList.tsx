@@ -16,6 +16,7 @@ import MedicalExaminationEditing from '../../../components/detail/MedicalExamnin
 
 function PatientList(props: any) {
   const navigate = useNavigate();
+  
   const permission = AuthService.getPermission('PATIENT');
   const malaysiaActions = (row: any) => {
     return (
@@ -30,7 +31,7 @@ function PatientList(props: any) {
     )
   }
   const rowActions = (row: any) => {
-    return (
+    return (  
       <>
         {AuthService.permit('PATIENT_BILL', 'view') ?
           <button type="button" className="btn btn-xss btn-primary box-shadow-1"

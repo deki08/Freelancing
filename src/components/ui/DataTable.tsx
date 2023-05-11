@@ -314,11 +314,11 @@ function DataTable(props: any) {
                     <table className={'table-bordered m-1'} id={'datatable-print'}>
                         <thead>
                             <tr>
-                                <td style={{ border: '0px' }} colSpan={columns.filter((column: any) => { return column.name !== 'Action' }).length}> Data From {page.from} TO {page.to}</td>
+                                <td style={{ border: '0px' }} colSpan={columns.filter((column: any) => { return column.name !== 'Status' && column.name !== 'Action' && column?.name !== 'Malaysia' }).length}> Data From {page.from} TO {page.to}</td>
                             </tr>
                             <tr>
                                 {columns.map((column: any, index: number) => (
-                                    column.name !== 'Action' ?
+                                    column.name !== 'Status' && column.name !== 'Action' && column?.name !== 'Malaysia' ?
                                         <th key={'th' + index} className={column.class ? column.class.replace('text-right', 'text-center').replace('text-left', 'text-center') : ''}>{column.name}</th>
                                         : ''
                                 ))}
@@ -328,7 +328,8 @@ function DataTable(props: any) {
                             {filteredData.map((record: any, index) => (
                                 <tr key={'rec-' + index}>
                                     {columns.map((column: any, cellNumber: number) => (
-                                        column.name !== 'Action' ? (
+
+                                        column.name !== 'Status' && column.name !== 'Action' && column?.name !== 'Malaysia' ? (
                                             column["render"] ?
                                                 <td key={cellNumber} className={column.class}>{column.render(record)}</td>
                                                 : <td key={cellNumber} className={column.class}>
