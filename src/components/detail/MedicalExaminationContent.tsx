@@ -236,13 +236,9 @@ function MedicalExaminationContent(props: any) {
 
 
             {/* signature */}
-            <div className='py-5 my-5 text-black-50 '>
+            <div className='py-5 my-5 d-flex justify-content-between text-center text-black-50 '>
 
               {/* <span>_________________________</span> */}
-              <div className='' style={{ width: '240px', textAlign: 'start', paddingBottom: '0.5px' }}>
-
-                <hr style={{ borderTop: "1px solid #000" }} />
-              </div>
               <div className='pl-3'>
                 {/* <span className='pl-5'>_________________________</span> */}
                 <div style={{ width: '240px', textAlign: 'start', }}>
@@ -252,9 +248,20 @@ function MedicalExaminationContent(props: any) {
 
                 <h6 className='text-black'>Signature of worker</h6>
               </div>
-              <h6>Date:</h6>
+
+              <div>
+              <div className='' style={{ width: '240px', textAlign: 'start', paddingBottom: '0.5px' }}>
+                <hr style={{ borderTop: "1px solid #000" }} />
+              </div>
+                <h6>Date:</h6>
+              </div>
+             
 
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
             <br />
             <br />
             <br />
