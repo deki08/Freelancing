@@ -1,10 +1,10 @@
 import axios from "axios";
-import {API_ROUTES, BASE_URL} from "../utils/constants";
+import { API_ROUTES, BASE_URL } from "../utils/constants";
 
 const http = axios.create({
     baseURL: BASE_URL,
 })
-http.interceptors.request.use((config:any) => {
+http.interceptors.request.use((config: any) => {
     const jwt = localStorage.getItem('token');
     if (jwt) {
         config.headers.Authorization = `Bearer ${jwt}`;

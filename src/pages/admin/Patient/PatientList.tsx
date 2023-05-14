@@ -13,10 +13,12 @@ import PatientBillsContent from "../../../components/detail/PatientBillsContent"
 import { MODEL } from "../../../utils/FormFields";
 import MedicalExamination from './MedicalExamination';
 import MedicalExaminationEditing from '../../../components/detail/MedicalExamninationEditForm';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function PatientList(props: any) {
   const navigate = useNavigate();
-  
+
   const permission = AuthService.getPermission('PATIENT');
   const malaysiaActions = (row: any) => {
     return (
@@ -31,7 +33,7 @@ function PatientList(props: any) {
     )
   }
   const rowActions = (row: any) => {
-    return (  
+    return (
       <>
         {AuthService.permit('PATIENT_BILL', 'view') ?
           <button type="button" className="btn btn-xss btn-primary box-shadow-1"
@@ -90,7 +92,6 @@ function PatientList(props: any) {
   const [patient, setPatient] = useState(MODEL.PATIENT);
   const [report, setReport] = useState(MODEL.REPORT);
   const [refresh, doRefresh] = useState(0);
-  console.log(data);
 
   const patientBillsHandler = (e: any) => {
     setPatient(JSON.parse(e.target.dataset.record));
@@ -125,8 +126,16 @@ function PatientList(props: any) {
 
 
   const patientDelete = (data: any) => {
-    console.log(data);
+    const patientId = data?.id;
+    axios
+      .delete(`https://apialhamad.gccerp.org/api/v1/patient/${patientId}`)
+      .then(resp => {
+        toast("Successfully deleted patient")
+        setAction("")
+      })
   }
+
+
   const patientViewHandler = (e: any) => {
     let record = JSON.parse(e.target.dataset.record);
     setPatient(record);
@@ -385,7 +394,7 @@ function PatientList(props: any) {
 
                 <div className="modal-footer d-flex justify-content-between">
                   <button type="button" className="btn btn-sm btn-danger"
-                    onClick={() => patientDelete(patient)}>Delete
+                    onClick={() => patientDelete(patient)}>Confirm Delete
                   </button>
                   <button type="button" className="btn btn-sm btn-secondary"
                     onClick={() => setAction('none')}>Close

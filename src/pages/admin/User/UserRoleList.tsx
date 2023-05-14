@@ -4,6 +4,7 @@ import AuthService from "../../../services/AuthService";
 import RoleService from "../../../services/RoleService";
 import RoleForm from "../../../components/forms/RoleForm";
 import { toast } from "react-toastify";
+import axios from 'axios';
 
 function UserRoleList(props: any) {
   const navigate = useNavigate();
@@ -70,54 +71,31 @@ function UserRoleList(props: any) {
   // select all functions
   const checkAllListHandler = (e: any) => {
     let record = {
+      id: "",
       field: e.target.id,
       value: e.target.checked,
     }
-    const result = selected?.privileges?.map(({ id, list }) => ({ id, list, value: record?.value }));
+    console.log(record);
+    const result = selected?.privileges?.map(({ id, list }) => ({ id, field: record?.field, value: record?.value }));
     console.log(result);
-    // const inputId = e.target.id;
+
+    // axios.put('https://apialhamad.gccerp.org/api/v1/role-permission-bulk', {
+    //   data: {
+    //     id: 123,
+    //     name: 'John Doe',
+    //     email: 'johndoe@example.com'
+    //   }
+    // })
+    //   .then(response => {
+    //     console.log('Success:', response.data);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error:', error);
+    //   });
+
   }
 
 
-
-  const checkAllAddHandler = (e: any) => {
-    let record = {
-      field: e.target.id,
-      value: e.target.checked,
-    }
-    const result = selected?.privileges?.map(({ id, create }) => ({ id, create, value: record?.value }));
-    console.log(result);
-  }
-
-  const checkAllViewHandler = (e: any) => {
-    let record = {
-      field: e.target.id,
-      value: e.target.checked,
-    }
-    const result = selected?.privileges?.map(({ id, view }) => ({ id, view, value: record?.value }));
-    console.log(result);
-  }
-
-
-  const checkAllEditHandler = (e: any) => {
-    let record = {
-      field: e.target.id,
-      value: e.target.checked,
-    }
-    const result = selected?.privileges?.map(({ id, edit }) => ({ id, edit, value: record?.value }));
-    console.log(result);
-  }
-
-
-  const checkAllPayHandler = (e: any) => {
-    let record = {
-      field: e.target.id,
-      value: e.target.checked,
-    }
-    const result = selected?.privileges?.map(({ id, pay }) => ({ id, pay, value: record?.value }));
-    console.log(selected.privileges);
-    console.log(result);
-  }
 
 
 
@@ -220,37 +198,36 @@ function UserRoleList(props: any) {
                               <th>#</th>
                               <th>User Interface</th>
                               <th className='text-left'>
-                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="listAll" />}
-                                <label className="form-check-label cursor-pointer" htmlFor="listAll">
+                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="list" />}
+                                <label className="form-check-label cursor-pointer" htmlFor="list">
                                   List
                                 </label>
                               </th>
                               <th>
-                                {selected?.name && <input onClick={checkAllAddHandler} className="rolegap cursor-pointer" type="checkbox" id="addAll" />}
-                                <label className="form-check-label cursor-pointer" htmlFor="addAll">
+                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="create" />}
+                                <label className="form-check-label cursor-pointer" htmlFor="create">
                                   Add
                                 </label>
 
                               </th>
                               <th>
-                                {selected?.name && <input onClick={checkAllViewHandler} className="rolegap cursor-pointer" type="checkbox" id="viewAll" />}
-                                <label className="form-check-label cursor-pointer" htmlFor="viewAll">
+                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="view" />}
+                                <label className="form-check-label cursor-pointer" htmlFor="view">
                                   View
                                 </label>
                               </th>
                               <th>
-                                {selected?.name && <input onClick={checkAllEditHandler} className="rolegap cursor-pointer" type="checkbox" id="editAll" />}
-                                <label className="form-check-label cursor-pointer" htmlFor="editAll">
+                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="edit" />}
+                                <label className="form-check-label cursor-pointer" htmlFor="edit">
                                   Edit
                                 </label>
                               </th>
                               {/*<th>Delete</th>*/}
                               <th>
-                                {selected?.name && <input onClick={checkAllPayHandler} className="rolegap cursor-pointer" type="checkbox" id="payAll" />}
-                                <label className="form-check-label cursor-pointer" htmlFor="payAll">
+                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="pay" />}
+                                <label className="form-check-label cursor-pointer" htmlFor="pay">
                                   Pay
                                 </label>
-
                               </th>
                             </tr>
                           </thead>
