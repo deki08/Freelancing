@@ -1,4 +1,4 @@
-import {API_ROUTES} from "../utils/constants";
+import { API_ROUTES } from "../utils/constants";
 import http from "../config/httpConfig";
 
 const save = async (patient: {}) => {
@@ -6,7 +6,7 @@ const save = async (patient: {}) => {
 };
 
 const findById = async (id: any) => {
-    return http.get(API_ROUTES.PATIENT_GET + id);
+    return http.delete(API_ROUTES.PATIENT_GET + id);
 };
 
 const findAll = async () => {
@@ -14,7 +14,7 @@ const findAll = async () => {
 };
 
 const deleteById = async (id: bigint) => {
-    return http.delete(API_ROUTES.PATIENT_DELETE + id);
+    return http.delete(`${API_ROUTES.PATIENT_DELETE}${id}`);
 };
 
 const findAllByAllColumn = async (data: { pageNumber: number, pageSize: number, text: string }) => {
@@ -22,7 +22,7 @@ const findAllByAllColumn = async (data: { pageNumber: number, pageSize: number, 
 };
 
 const uploadProfile = async (image64: String) => {
-    return http.post(API_ROUTES.PATIENT_UPLOAD_PROFILE, {fileContentBase64: image64});
+    return http.post(API_ROUTES.PATIENT_UPLOAD_PROFILE, { fileContentBase64: image64 });
 };
 const uploadFinger = async (finger: any) => {
     return http.post(API_ROUTES.PATIENT_UPLOAD_FINGER, finger);
@@ -33,15 +33,15 @@ const findByProfile = async (id: any) => {
 };
 
 const uploadProfileById = async (id: any, image64: String) => {
-    return http.post(API_ROUTES.PATIENT_UPLOAD_PROFILE_BY_ID.replace(':id', id), {fileContentBase64: image64});
+    return http.post(API_ROUTES.PATIENT_UPLOAD_PROFILE_BY_ID.replace(':id', id), { fileContentBase64: image64 });
 };
 
 const uploadXrayById = async (id: any, image64: String) => {
-    return http.post(API_ROUTES.PATIENT_UPLOAD_XRAY_BY_ID.replace(':id', id), {fileContentBase64: image64});
+    return http.post(API_ROUTES.PATIENT_UPLOAD_XRAY_BY_ID.replace(':id', id), { fileContentBase64: image64 });
 };
 
 const uploadFingerById = async (id: any, image64: String) => {
-    return http.post(API_ROUTES.PATIENT_UPLOAD_FINGER_BY_ID.replace(':id', id), {fileContentBase64: image64});
+    return http.post(API_ROUTES.PATIENT_UPLOAD_FINGER_BY_ID.replace(':id', id), { fileContentBase64: image64 });
 };
 const search = async (text: string) => {
     return http.get(API_ROUTES.PATIENT_SEARCH.replace(':query', text));
