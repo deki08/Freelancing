@@ -73,7 +73,7 @@ function MedicalExaminationContent(props: any) {
                       <h4>Address : {configuration.invoiceAddress}</h4>
                     </div>
                     <div className='d-flex justify-content-around'>
-                      <p>CONTACT NO. : {configuration.reportContactNumber} </p>
+                      <p>CONTACT NO : {configuration.reportContactNumber} </p>
                       <p>Website :{configuration.websiteUrl} </p>
                       <p>Report Download : {configuration.reportUrl}</p>
                     </div>
@@ -250,12 +250,12 @@ function MedicalExaminationContent(props: any) {
               </div>
 
               <div>
-              <div className='' style={{ width: '240px', textAlign: 'start', paddingBottom: '0.5px' }}>
-                <hr style={{ borderTop: "1px solid #000" }} />
-              </div>
+                <div className='' style={{ width: '240px', textAlign: 'start', paddingBottom: '0.5px' }}>
+                  <hr style={{ borderTop: "1px solid #000" }} />
+                </div>
                 <h6>Date:</h6>
               </div>
-             
+
 
             </div>
             <br />
@@ -905,7 +905,7 @@ function MedicalExaminationContent(props: any) {
 
 
             {/* other details */}
-            {report.status ?
+            {report?.status ?
               <table className="table-bordered table ">
                 <tbody>
                   <tr>
@@ -913,7 +913,7 @@ function MedicalExaminationContent(props: any) {
                       Mentioned above is the medical report for {patient.gender == 'MALE' || patient.gender == 'male' || patient.gender == 'Male' ? 'Mr' : 'Mrs'}. {patient.fullName}, Who is <span className={"font-weight-bolder"}>{report.status}</span> for the above mentioned job according to the Medical criteria.
                     </td>
                     <td className="font-weight-bolder font-size black" style={{ whiteSpace: "pre-line" }}>
-                      {report.status != null ? <img src={configuration.reportDoctorSeal} className={'width-100'} alt='' /> : ''}
+                      {report?.status != null ? <img src={configuration.reportDoctorSeal} className={'width-100'} alt='' /> : ''}
                     </td>
                   </tr>
                   <tr>

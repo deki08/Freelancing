@@ -28,7 +28,7 @@ function UserRoleList(props: any) {
       if (reason.code === "ERR_NETWORK") {
         navigate("/maintenance");
       }
-      if (reason.response.status === 401) {
+      if (reason?.response?.status === 401) {
         AuthService.logout();
         navigate("/login");
       }
@@ -68,30 +68,38 @@ function UserRoleList(props: any) {
     })
   }
 
+
+  interface MyObject {
+    [key: string]: boolean | string | number | null;
+  }
   // select all functions
   const checkAllListHandler = (e: any) => {
     let record = {
-      id: "",
+      id: selected?.name,
       field: e.target.id,
       value: e.target.checked,
     }
     console.log(record);
-    const result = selected?.privileges?.map(({ id, list }) => ({ id, field: record?.field, value: record?.value }));
-    console.log(result);
 
-    // axios.put('https://apialhamad.gccerp.org/api/v1/role-permission-bulk', {
-    //   data: {
-    //     id: 123,
-    //     name: 'John Doe',
-    //     email: 'johndoe@example.com'
-    //   }
-    // })
-    //   .then(response => {
-    //     console.log('Success:', response.data);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error:', error);
-    //   });
+
+    const result = selected?.privileges?.map(({ id }) => ({ field: record?.field, value: record?.value }));
+    console.log(result);
+    console.log(selected);
+
+    const hasListTrue = selected?.privileges?.some((obj: MyObject) => obj.list === true);
+
+    console.log(hasListTrue);
+
+    axios.put('https://perfect.gccerp.org/api/v1/role-permission-bulk', {
+      data: record
+    })
+      .then(response => {
+        toast.success("Successfully updated role")
+        console.log('Success:', response.data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
 
   }
 
@@ -111,7 +119,9 @@ function UserRoleList(props: any) {
     loadRoles();
   }, []);
 
-
+  interface ObjectWithBooleanProperties {
+    [key: string]: boolean;
+  }
 
   return (
     <>
@@ -198,33 +208,53 @@ function UserRoleList(props: any) {
                               <th>#</th>
                               <th>User Interface</th>
                               <th className='text-left'>
-                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="list" />}
+                                {selected?.name && <input
+                                  onClick={checkAllListHandler}
+                                  checked={selected?.privileges?.some((obj: MyObject) => obj.list === true)}
+                                  disabled={permission.edit ? false : true}
+                                  className="rolegap cursor-pointer" type="checkbox" id="list" />}
                                 <label className="form-check-label cursor-pointer" htmlFor="list">
                                   List
                                 </label>
                               </th>
                               <th>
-                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="create" />}
+                                {selected?.name && <input onClick={checkAllListHandler}
+                                  checked={selected?.privileges?.some((obj: MyObject) => obj?.create === true)}
+                                  disabled={permission.edit ? false : true}
+                                  className="rolegap cursor-pointer" type="checkbox" id="create" />}
                                 <label className="form-check-label cursor-pointer" htmlFor="create">
                                   Add
                                 </label>
 
                               </th>
                               <th>
-                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="view" />}
+                                {selected?.name && <input onClick={checkAllListHandler}
+                                  checked={selected?.privileges?.some((obj: MyObject) => obj?.view === true)}
+                                  disabled={permission.edit ? false : true}
+                                  className="rolegap cursor-pointer" type="checkbox" id="view" />}
                                 <label className="form-check-label cursor-pointer" htmlFor="view">
                                   View
                                 </label>
                               </th>
                               <th>
-                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="edit" />}
+                                {selected?.name && <input onClick={checkAllListHandler}
+
+                                  checked={selected?.privileges?.some((obj: MyObject) => obj?.edit === true)}
+                                  disabled={permission.edit ? false : true}
+
+                                  className="rolegap cursor-pointer" type="checkbox" id="edit" />}
                                 <label className="form-check-label cursor-pointer" htmlFor="edit">
                                   Edit
                                 </label>
                               </th>
                               {/*<th>Delete</th>*/}
                               <th>
-                                {selected?.name && <input onClick={checkAllListHandler} className="rolegap cursor-pointer" type="checkbox" id="pay" />}
+                                {selected?.name && <input onClick={checkAllListHandler}
+
+                                  checked={selected?.privileges?.some((obj: MyObject) => obj?.pay === true)}
+                                  disabled={permission.edit ? false : true}
+
+                                  className="rolegap cursor-pointer" type="checkbox" id="pay" />}
                                 <label className="form-check-label cursor-pointer" htmlFor="pay">
                                   Pay
                                 </label>

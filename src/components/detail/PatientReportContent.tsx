@@ -12,7 +12,8 @@ import FuncUtil from "../../utils/FuncUtil";
 function PatientReportContent(props: any) {
   const configuration = AuthService.getConfiguration();
   const [loaded, setLoaded] = useState(false);
-  const [patient, setPatient] = useState(props.patient);
+  const [patient, setPatient] = useState(props?.patient);
+  console.log(patient);
   const [report, setReport] = useState(MODEL.REPORT);
   const [refValue, setRefValue] = useState(MODEL.REF_VALUE);
   const pageStyle = `
@@ -22,7 +23,7 @@ function PatientReportContent(props: any) {
       }
       @media print {
         html, body {
-          width: 210mm;
+          width: 220mm;
           height: 297mm;
         }
         body {
@@ -61,7 +62,7 @@ function PatientReportContent(props: any) {
             <div className={'row'}>
               <div className="col-12 text-center">
                 <ul className="px-0 list-unstyled black">
-                  <li><img src={configuration.reportCompanyLogo} className="mb-0" height={60} /></li>
+                  <li><img alt='' src={configuration?.reportCompanyLogo} className="mb-0" height={60} /></li>
                   <li><span>Phone : {configuration.reportContactNumber}</span> <span>Email : {configuration.reportEmail}</span></li>
                   <li>Website : {configuration.websiteUrl} Report Download : {configuration.reportUrl}</li>
                   <li>Address : {configuration.invoiceAddress}</li>
@@ -80,24 +81,24 @@ function PatientReportContent(props: any) {
                     <span>PATIENT ID : {patient.regNo}</span>
                     <Barcode value={patient.regNo ? patient.regNo : 'NA'} marginTop={10} displayValue={false} width={2} height={50} />
                     <br />
-                    <span>REG DATE : {moment(FuncUtil.toDateTime(patient.createdDate)).format('DD-MM-YYYY')}
+                    <span>REG DATE : {moment(FuncUtil.toDateTime(patient?.createdDate)).format('DD-MM-YYYY')}
                     </span>
                   </td>
                   <td className="black width-20-per text-center">
-                    <img src={patient.photo} alt="" style={{ height: 120, maxWidth: 150 }} />
+                    <img src={patient?.photo} alt="" style={{ height: 120, maxWidth: 150 }} />
                   </td>
                   <td className="black width-20-per text-center">
-                    <img src={patient.fingerPrint} alt="" style={{ height: 120, maxWidth: 150 }} />
+                    <img src={patient?.fingerPrint} alt="" style={{ height: 120, maxWidth: 150 }} />
                   </td>
                   <td className="black width-20-per text-center">
-                    <img src={report.xrayImage} alt="" style={{ height: 120, maxWidth: 150 }} />
+                    <img src={report?.xrayImage} alt="" style={{ height: 120, maxWidth: 150 }} />
                   </td>
                   <td className="black width-20-per text-center">
-                    <QRCode size={100} className={'qr-image mt-1'} value={patient.qr ? patient.qr : ''} />
+                    <QRCode size={100} className={'qr-image mt-1'} value={patient?.qr ? patient.qr : ''} />
                   </td>
                 </tr>
                 <tr>
-                  <td className="text-center font-weight-bolder font-size black">DATE : {moment(FuncUtil.toDateTime(report.modifiedDate)).format('DD-MM-YYYY hh:mm A')}</td>
+                  <td className="text-center font-weight-bolder font-size black">DATE : {moment(FuncUtil.toDateTime(report?.modifiedDate)).format('DD-MM-YYYY hh:mm A')}</td>
                   <td className="text-center font-weight-bolder font-size black">PHOTO</td>
                   <td className="text-center font-weight-bolder font-size black">THUMB PRINT</td>
                   <td className="text-center font-weight-bolder font-size black">X –RAY IMAGE</td>
@@ -139,6 +140,8 @@ function PatientReportContent(props: any) {
                 </tr>
               </tbody>
             </table>
+
+
             <div className="row">
               <div className="col-md-6 pr-0">
                 <table className="table-bordered table ">
@@ -166,31 +169,31 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">DISTANT</td>
-                      <td className="text-center font-size black">{report.distantUnaidedRight}</td>
-                      <td className="text-center font-size black">{report.distantUnaidedLeft}</td>
-                      <td className="text-center font-size black">{report.distantAidedRight}</td>
-                      <td className="text-center font-size black">{report.distantAidedLeft}</td>
+                      <td className="text-center font-size black">{report?.distantUnaidedRight}</td>
+                      <td className="text-center font-size black">{report?.distantUnaidedLeft}</td>
+                      <td className="text-center font-size black">{report?.distantAidedRight}</td>
+                      <td className="text-center font-size black">{report?.distantAidedLeft}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">NEAR</td>
-                      <td className="text-center font-size black">{report.nearUnaidedRight}</td>
-                      <td className="text-center font-size black">{report.nearUnaidedLeft}</td>
-                      <td className="text-center font-size black">{report.nearAidedRight}</td>
-                      <td className="text-center font-size black">{report.nearAidedLeft}</td>
+                      <td className="text-center font-size black">{report?.nearUnaidedRight}</td>
+                      <td className="text-center font-size black">{report?.nearUnaidedLeft}</td>
+                      <td className="text-center font-size black">{report?.nearAidedRight}</td>
+                      <td className="text-center font-size black">{report?.nearAidedLeft}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">CLEAR VISION</td>
-                      <td colSpan={4} className="text-center font-size black">{report.clearVision}</td>
+                      <td colSpan={4} className="text-center font-size black">{report?.clearVision}</td>
                     </tr>
                     <tr>
                       <td className="font-size black" rowSpan={2}>HEARING (EAR)</td>
                       <td className="text-center font-size black">L</td>
-                      <td className="text-center font-size black">{report.earLeft}</td>
+                      <td className="text-center font-size black">{report?.earLeft}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.earLeft}</td>
                     </tr>
                     <tr>
                       <td className="text-center font-size black">R</td>
-                      <td className="text-center font-size black">{report.earRight}</td>
+                      <td className="text-center font-size black">{report?.earRight}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.earRight}</td>
                     </tr>
                     <tr>
@@ -200,17 +203,17 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">B.P</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.bloodPressure}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.bloodPressure}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.bloodPressure}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">HEART</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.heart}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.heart}</td>
                       <td className="text-center font-size black" colSpan={2} rowSpan={2}>{refValue.heart}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">PULSE</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.pulse}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.pulse}</td>
                     </tr>
                     <tr>
                       <td className="text-center font-weight-bolder font-size black" colSpan={5}>
@@ -219,13 +222,13 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">LUNGS</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.lungs}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.lungs}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.lungs}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">GASTROINTESTINAL ABDOMEN</td>
                       <td className="text-center font-size black"
-                        colSpan={2}>{report.gastrointestinalAbdomen}</td>
+                        colSpan={2}>{report?.gastrointestinalAbdomen}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.gastrointestinalAbdomen}</td>
                     </tr>
                     <tr>
@@ -233,50 +236,50 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">HEIGHT (CM)</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.height}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.height}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.height}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">WEIGHT (KG)</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.weight}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.weight}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.weight}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">HERNIA</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.hernia}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.hernia}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.hernia}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">VARICOSEVEINS</td>
                       <td className="text-center font-size black"
-                        colSpan={2}>{report.varicoseVeins}</td>
+                        colSpan={2}>{report?.varicoseVeins}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.varicoseVeins}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">DEFORMITIES</td>
                       <td className="text-center font-size black"
-                        colSpan={2}>{report.deformities}</td>
+                        colSpan={2}>{report?.deformities}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.deformities}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">SKIN</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.skin}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.skin}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.skin}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">C.N.S.</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.cns}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.cns}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.cns}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">EXTREMITIES</td>
                       <td className="text-center font-size black"
-                        colSpan={2}>{report.extremities}</td>
+                        colSpan={2}>{report?.extremities}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.extremities}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">PSYCHIATRY</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.psychiatry}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.psychiatry}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.psychiatry}</td>
                     </tr>
                     <tr>
@@ -286,7 +289,7 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">SYMPTOMS</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.symptoms}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.symptoms}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.symptoms}</td>
                     </tr>
                     <tr>
@@ -296,12 +299,12 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">CHEST X-RAY</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.chestXray}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.chestXray}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.chestXray}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">ECG</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.ecg}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.ecg}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.ecg}</td>
                     </tr>
                     <tr>
@@ -310,17 +313,17 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">THC</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.thc}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.thc}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.thc}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">MOP</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.mop}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.mop}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.mop}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">AMP</td>
-                      <td className="text-center font-size black" colSpan={2}>{report.amp}</td>
+                      <td className="text-center font-size black" colSpan={2}>{report?.amp}</td>
                       <td className="text-center font-size black" colSpan={2}>{refValue.amp}</td>
                     </tr>
                   </tbody>
@@ -344,27 +347,27 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">SUGAR</td>
-                      <td className="text-center font-size black">{report.sugar}</td>
+                      <td className="text-center font-size black">{report?.sugar}</td>
                       <td className="text-center font-size black">{refValue.sugar}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">ALBUMIN</td>
-                      <td className="text-center font-size black">{report.albumin}</td>
+                      <td className="text-center font-size black">{report?.albumin}</td>
                       <td className="text-center font-size black">{refValue.albumin}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">BILHARZIASIS (IF ENDEMIC)</td>
-                      <td className="text-center font-size black">{report.urineBilharziasis}</td>
+                      <td className="text-center font-size black">{report?.urineBilharziasis}</td>
                       <td className="text-center font-size black">{refValue.urineBilharziasis}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">PREGNANCY TEST</td>
-                      <td className="text-center font-size black">{report.pregnancy}</td>
+                      <td className="text-center font-size black">{report?.pregnancy}</td>
                       <td className="text-center font-size black">{refValue.pregnancy}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">OTHERS</td>
-                      <td className="text-center font-size black">{report.others}</td>
+                      <td className="text-center font-size black">{report?.others}</td>
                       <td className="text-center font-size black">{refValue.others}</td>
                     </tr>
                     <tr>
@@ -374,22 +377,22 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">HELMINTHS</td>
-                      <td className="text-center font-size black">{report.helminths}</td>
+                      <td className="text-center font-size black">{report?.helminths}</td>
                       <td className="text-center font-size black">{refValue.helminths}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">GIARDIA</td>
-                      <td className="text-center font-size black">{report.giardia}</td>
+                      <td className="text-center font-size black">{report?.giardia}</td>
                       <td className="text-center font-size black">{refValue.giardia}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">BILHARZIASIS (IF ENDEMIC)</td>
-                      <td className="text-center font-size black">{report.stoolBilharziasis}</td>
+                      <td className="text-center font-size black">{report?.stoolBilharziasis}</td>
                       <td className="text-center font-size black">{refValue.stoolBilharziasis}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">CULTURE</td>
-                      <td className="text-center font-size black">{report.culture}</td>
+                      <td className="text-center font-size black">{report?.culture}</td>
                       <td className="text-center font-size black">{refValue.culture}</td>
                     </tr>
                     <tr>
@@ -399,27 +402,27 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">MALARIA</td>
-                      <td className="text-center font-size black">{report.malaria}</td>
+                      <td className="text-center font-size black">{report?.malaria}</td>
                       <td className="text-center font-size black">{refValue.malaria}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">MICROFILARIA</td>
-                      <td className="text-center font-size black">{report.microfilaria}</td>
+                      <td className="text-center font-size black">{report?.microfilaria}</td>
                       <td className="text-center font-size black">{refValue.microfilaria}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">BLOOD GROUP</td>
-                      <td className="text-center font-size black">{report.bloodGroup}</td>
+                      <td className="text-center font-size black">{report?.bloodGroup}</td>
                       <td className="text-center font-size black">{refValue.bloodGroup}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">HEMOGLOBIN</td>
-                      <td className="text-center font-size black">{report.haemoglobin}</td>
+                      <td className="text-center font-size black">{report?.haemoglobin}</td>
                       <td className="text-center font-size black">{refValue.haemoglobin}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">ESR</td>
-                      <td className="text-center font-size black">{report.esr}</td>
+                      <td className="text-center font-size black">{report?.esr}</td>
                       <td className="text-center font-size black">{refValue.esr}</td>
                     </tr>
                     <tr>
@@ -429,37 +432,37 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">R.B.S.</td>
-                      <td className="text-center font-size black">{report.rbs}</td>
+                      <td className="text-center font-size black">{report?.rbs}</td>
                       <td className="text-center font-size black">{refValue.rbs}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">CREATININE</td>
-                      <td className="text-center font-size black">{report.creatinine}</td>
+                      <td className="text-center font-size black">{report?.creatinine}</td>
                       <td className="text-center font-size black">{refValue.creatinine}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">T.BIL</td>
-                      <td className="text-center font-size black">{report.tbil}</td>
+                      <td className="text-center font-size black">{report?.tbil}</td>
                       <td className="text-center font-size black">{refValue.tbil}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">SGPT</td>
-                      <td className="text-center font-size black">{report.sgpt}</td>
+                      <td className="text-center font-size black">{report?.sgpt}</td>
                       <td className="text-center font-size black">{refValue.sgpt}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">SGOT</td>
-                      <td className="text-center font-size black">{report.sgot}</td>
+                      <td className="text-center font-size black">{report?.sgot}</td>
                       <td className="text-center font-size black">{refValue.sgot}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">ALP</td>
-                      <td className="text-center font-size black">{report.alp}</td>
+                      <td className="text-center font-size black">{report?.alp}</td>
                       <td className="text-center font-size black">{refValue.alp}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">UREA</td>
-                      <td className="text-center font-size black">{report.urea}</td>
+                      <td className="text-center font-size black">{report?.urea}</td>
                       <td className="text-center font-size black">{refValue.urea}</td>
                     </tr>
                     <tr>
@@ -469,34 +472,34 @@ function PatientReportContent(props: any) {
                     </tr>
                     <tr>
                       <td className="font-size black">ANTI HCV</td>
-                      <td className="text-center font-size black">{report.antiHcv}</td>
+                      <td className="text-center font-size black">{report?.antiHcv}</td>
                       <td className="text-center font-size black">{refValue.antiHcv}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">TPHA (IF VDRL POSITIVE)</td>
-                      <td className="text-center font-size black">{report.tpha}</td>
+                      <td className="text-center font-size black">{report?.tpha}</td>
                       <td className="text-center font-size black">{refValue.tpha}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">VDRL</td>
-                      <td className="text-center font-size black">{report.vdrl}</td>
+                      <td className="text-center font-size black">{report?.vdrl}</td>
                       <td className="text-center font-size black">{refValue.vdrl}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">HIV I & HIV II</td>
-                      <td className="text-center font-size black">{report.hiv}</td>
+                      <td className="text-center font-size black">{report?.hiv}</td>
                       <td className="text-center font-size black">{refValue.hiv}</td>
                     </tr>
                     <tr>
                       <td className="font-size black">HB<small>S</small>AG</td>
-                      <td className="text-center font-size black">{report.hbsag}</td>
+                      <td className="text-center font-size black">{report?.hbsag}</td>
                       <td className="text-center font-size black">{refValue.hbsag}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-            {report.status ?
+            {report?.status ?
               <table className="table-bordered table ">
                 <tbody>
                   <tr>
@@ -513,6 +516,8 @@ function PatientReportContent(props: any) {
                   </tr>
                 </tbody>
               </table> : ""}
+
+
 
           </div>
         </div>

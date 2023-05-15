@@ -128,7 +128,7 @@ function PatientList(props: any) {
   const patientDelete = (data: any) => {
     const patientId = data?.id;
     axios
-      .delete(`https://apialhamad.gccerp.org/api/v1/patient/${patientId}`)
+      .delete(`https://perfect.gccerp.org/api/v1/patient/${patientId}`)
       .then(resp => {
         toast("Successfully deleted patient")
         setAction("")
