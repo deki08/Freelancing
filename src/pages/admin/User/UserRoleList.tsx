@@ -79,7 +79,7 @@ function UserRoleList(props: any) {
     const result = selected?.privileges?.map(({ id, list }) => ({ id, field: record?.field, value: record?.value }));
     console.log(result);
 
-    // axios.put('https://apialhamad.gccerp.org/api/v1/role-permission-bulk', {
+    // axios.put('https://perfect.gccerp.org/api/v1/role-permission-bulk', {
     //   data: {
     //     id: 123,
     //     name: 'John Doe',

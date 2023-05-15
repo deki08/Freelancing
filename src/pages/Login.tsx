@@ -33,7 +33,7 @@ const Login = () => {
     const randomN2 = getRandomInt(19)
     const numSum = randomN1 + randomN2
 
-    console.log(numSum);
+  
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
