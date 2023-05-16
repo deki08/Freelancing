@@ -35,6 +35,7 @@ function ActualBill(props: any) {
         doRefresh(1);
     }
 
+console.log(data);
 
 
 
@@ -45,12 +46,15 @@ function ActualBill(props: any) {
         { data: "regNo", name: "Patient Id", class: "px-2 text-center", sort: true },
         { data: "patientName", name: "Patient Name", class: "px-1 text-center" },
         { data: "createdDate", name: "Date", class: "text-center px-1 dateCreated", sort: true },
-        { data: "testName", name: "Package Name", class: "text-center px-1", sort: true },
-        // { data: "qr", name: "Travelling To", class: "text-center px-1" },
         { data: "agentOrAgencyName", name: "Agency / Agent", class: "px-1 text-center", sort: true },
-        { data: "amount", name: "Amount", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
-        { data: "paid", name: "Paid", class: "px-1 text-center", calculateSum: true, currency: true, sort: true },
+        { data: "qr", name: "Travelling To", class: "text-center px-1" },
+        { data: "testName", name: "Package Name", class: "text-center px-1", sort: true },
+        { data: "amount", name: "Received", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
+        { data: "new/package amount", name: "Net/Package Amount", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
+        { data: "commission", name: "Commission", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
         { data: "due", name: "Due", class: "px-1 text-center", calculateSum: true, currency: true, sort: true },
+        { data: "paid", name: "Paid", class: "px-1 text-center", calculateSum: true, currency: true, sort: true },
+        { data: "remarks", name: "Remarks", class: "px-1 text-center", sort: true },
     ];
 
     const handleSearch = (params: any) => {

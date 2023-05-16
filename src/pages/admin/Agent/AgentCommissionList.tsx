@@ -25,6 +25,8 @@ function AgentCommissionList(props: any) {
             return (<input type="checkbox" name={'row-selector'} data-record={row.id} onClick={onClickHandler}/>);
         }
     }
+ 
+    
     const statusRender = (row: any) => {
         let badgeStyle = 'badge-light';
         switch (row.status) {
@@ -47,6 +49,7 @@ function AgentCommissionList(props: any) {
         {name: "", render: checkboxRender, class: "text-center width-50"},
         {data: "index", name: "SL", sortable: true, class: "text-center width-50"},
         {data: "billNo", name: "Bill ID", sortable: true,sort:true},
+        {data: "regNo", name: " PATIENT ID", sortable: true,sort:true},
         {data: "patientName", name: "Patient Name", class: ""},
         {data: "agentName", name: "Agent Name", class: "",sort:true},
         {data: "amount", name: "Commission", class: "text-right", calculateSum: true, currency: true,sort:true},

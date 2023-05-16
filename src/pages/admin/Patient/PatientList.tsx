@@ -130,6 +130,8 @@ function PatientList(props: any) {
     axios
       .delete(`https://perfect.gccerp.org/api/v1/patient/${patientId}`)
       .then(resp => {
+        console.log(resp);
+        
         toast("Successfully deleted patient")
         setAction("")
       })

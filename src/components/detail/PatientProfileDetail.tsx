@@ -49,12 +49,12 @@ function PatientProfileDetail(props: any) {
                   <div className="media d-flex m-1 ">
                     <div className="align-left p-1">
                       <a href="#" className="profile-image">
-                        <img src={patient.photo}
+                        <img src={patient?.photo}
                           className="rounded-circle img-border height-100 width-100" alt="Card image" />
                       </a>
                     </div>
                     <div className="media-body text-left  mt-1">
-                      <h3 className="font-large-1 white">{patient.fullName}</h3>
+                      <h3 className="font-large-1 white">{patient?.fullName}</h3>
                       <p className="white">
                         <i className="ft-check-circle white"> </i> PATIENT No: {patient.id}</p>
                     </div>
@@ -134,31 +134,31 @@ function PatientProfileDetail(props: any) {
                         <ul>
                           <li>
                             <strong>Passport No : </strong>
-                            <span>{patient.passportNo}</span>
+                            <span>{patient?.passportNo}</span>
                           </li>
                           <li>
                             <strong>Issue Date : </strong>
-                            <span>{moment(patient.issueDate).format('YYYY-MM-DD')}</span>
+                            <span>{moment(patient?.issueDate).format('YYYY-MM-DD')}</span>
                           </li>
                           <li>
                             <strong>Expired Date : </strong>
-                            <span>{moment(patient.expiredDate).format('YYYY-MM-DD')}</span>
+                            <span>{moment(patient?.expiredDate).format('YYYY-MM-DD')}</span>
                           </li>
                           <li>
                             <strong>NID Number : </strong>
-                            <span>{patient.nidNumber}</span>
+                            <span>{patient?.nidNumber}</span>
                           </li>
                           <li>
                             <strong>Traveling To : </strong>
-                            <span>{patient.travelingTo}</span>
+                            <span>{patient?.travelingTo}</span>
                           </li>
                           <li>
                             <strong>Visa No : </strong>
-                            <span>{patient.visaNo}</span>
+                            <span>{patient?.visaNo}</span>
                           </li>
                           <li>
                             <strong>Visa Date : </strong>
-                            <span>{moment(patient.visaDate).format('YYYY-MM-DD')}</span>
+                            <span>{moment(patient?.visaDate).format('YYYY-MM-DD')}</span>
                           </li>
                         </ul>
                       </div>
@@ -176,19 +176,19 @@ function PatientProfileDetail(props: any) {
                         <ul>
                           <li>
                             <strong>Mobile Number : </strong>
-                            <span>{patient.mobile}</span>
+                            <span>{patient?.mobile}</span>
                           </li>
                           <li>
                             <strong>Email : </strong>
-                            <span>{patient.email}</span>
+                            <span>{patient?.email}</span>
                           </li>
                           <li>
                             <strong>Present Address : </strong>
-                            <span>{patient.presentAddress}</span>
+                            <span>{patient?.presentAddress}</span>
                           </li>
                           <li>
                             <strong>Permanent Address : </strong>
-                            <span>{patient.permanentAddress}</span>
+                            <span>{patient?.permanentAddress}</span>
                           </li>
                         </ul>
                       </div>
@@ -206,19 +206,19 @@ function PatientProfileDetail(props: any) {
                         <ul>
                           <li>
                             <strong>Package/Test Name : </strong>
-                            <span>{patient.testOrPackageId}</span>
+                            <span>{patient?.testOrPackageId}</span>
                           </li>
                           <li>
                             <strong>Agent/Agency Name : </strong>
-                            <span>{patient.agentOrAgencyId}</span>
+                            <span>{patient?.agentOrAgencyId}</span>
                           </li>
                           <li>
                             <strong>Delivery Date : </strong>
-                            <span>{moment(patient.deliveryDate).format('YYYY-MM-DD')}</span>
+                            <span>{moment(patient?.deliveryDate).format('YYYY-MM-DD')}</span>
                           </li>
                           <li>
                             <strong>Special Note : </strong>
-                            <span>{patient.specialNote}</span>
+                            <span>{patient?.specialNote}</span>
                           </li>
                         </ul>
                       </div>
