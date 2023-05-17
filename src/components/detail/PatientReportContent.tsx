@@ -61,15 +61,25 @@ function PatientReportContent(props: any) {
           <div className={'printable mx-3 my-2'} id={'patient-report-print-content'}>
             <div className={'row'}>
               <div className="col-12 text-center">
-                <ul className="px-0 list-unstyled black">
-                  <li><img alt='' src={configuration?.reportCompanyLogo} className="mb-0" height={60} /></li>
-                  <li><span>Phone : {configuration.reportContactNumber}</span> <span>Email : {configuration.reportEmail}</span></li>
-                  <li>Website : {configuration.websiteUrl} Report Download : {configuration.reportUrl}</li>
-                  <li>Address : {configuration.invoiceAddress}</li>
-                </ul>
+                <div className="px-0 row  list-unstyled black">
+                  <div className='col-2  py-2 border-right-0 '>
+                    <img src={configuration.reportCompanyLogo} className="mb-0" alt='' height={100} />
+                  </div>
+                  <div className='col-10 py-2 '>
+                    <div>
+                      <h3 className='text-bold-600'>{configuration.businessName}</h3>
+                      <h4>Address : {configuration.invoiceAddress}</h4>
+                    </div>
+                    <div className='d-flex justify-content-around'>
+                      <p>CONTACT NO : {configuration.reportContactNumber} </p>
+                      <p>Website :{configuration.websiteUrl} </p>
+                      <p>Report Download : {configuration.reportUrl}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="row">
+            <div className="row ">
               <div className="col-md-12 text-center">
                 <h4 className={'font-weight-bolder'}>MEDICAL TEST REPORT</h4>
               </div>
