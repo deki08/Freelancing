@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.multipixeltec.dcservice.model.MalasiyaEntry;
+import com.multipixeltec.dcservice.model.MalasiyaReport;
 import com.multipixeltec.dcservice.service.MalasiyaEntryService;
 
 @RestController
@@ -32,5 +34,10 @@ public class MalasiyaEntryController {
 	public MalasiyaEntry getAll() {
 		List<MalasiyaEntry> values = entryService.findAll();
 		return values.get(0);
+	}
+
+	@GetMapping("/malrep-value")
+	public MalasiyaReport malasiyaReport(@RequestParam String id) {
+		return entryService.findById(id);
 	}
 }

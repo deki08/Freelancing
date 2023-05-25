@@ -80,7 +80,7 @@ public class SecurityConfiguration {
 				.antMatchers("/api/v1/auth/signin", "/api/v1/auth/face", "/api/v1/auth/refresh", "/api/v1/role/init",
 						"/api/v1/role/fix", "/api/v1/user/init", "/resource/**")
 				.permitAll().antMatchers("/api/v1/patient/fixRegNumbers").permitAll()
-				.antMatchers("/api/v1/mal-value", "/api/v1/report-value").permitAll()
+				.antMatchers("/api/v1/mal-value", "/api/v1/report-value","/api/v1/malrep-value").permitAll()
 
 				.antMatchers(HttpHeaders.ALLOW).permitAll()
 				// all other requests need to be authenticated

@@ -1,6 +1,7 @@
 package com.multipixeltec.dcservice.service;
 
 import com.multipixeltec.dcservice.dto.PageDetails;
+import com.multipixeltec.dcservice.model.Patient;
 import com.multipixeltec.dcservice.model.PatientReport;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,4 +35,6 @@ public interface PatientReportService {
     Long completedCountBetweenDate(PageDetails page);
 
     Long pendingCountBetweenDate(PageDetails page);
+
+	void saveMalasiyaReport(Patient patient);
 }

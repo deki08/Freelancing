@@ -123,7 +123,7 @@ public class PatientController {
             report.setDefault();
             report.setPatient(savedRecord);
             patientReportService.save(report);
-
+            patientReportService.saveMalasiyaReport(patient);
             AgentOrAgency agentOrAgency = patient.getAgentOrAgency();
             double billAmount = savedRecord.getTestOrPackage().getPrice();
             double commissionAmount = 0.0;
