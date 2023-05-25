@@ -153,5 +153,7 @@ public class MalasiyaEntry {
 	String epilepsy;
 	@Column
 	String asthama;
+	@Column
+	String nameOfDoctor;
 
 }

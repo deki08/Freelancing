@@ -11,142 +11,144 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-
-
 @Entity
-@Table(name="RPORTED_VALUE")
+@Table(name = "RPORTED_VALUE")
 @Data
 public class ReportedValue {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id ;
+	Long id;
 	@Column
-	String patientId ;
+	String patientId;
 	@Column
-	String eyeVisualAcuityLeft ;
+	String eyeVisualAcuityLeft;
 	@Column
-	String eyeVisualAcuityRight ;
+	String eyeVisualAcuityRight;
 	@Column
-	String earLeft ;
+	String nearRight;
 	@Column
-	String earRight ;
+	String nearLeft;
 	@Column
-	String bloodPressure ;
+	String earLeft;
 	@Column
-	String heart ;
+	String earRight;
 	@Column
-	String lungs ;
+	String bloodPressure;
 	@Column
-	String gastrointestinalAbdomen ;
+	String heart;
 	@Column
-	String height ;
+	String lungs;
 	@Column
-	String weight ;
+	String gastrointestinalAbdomen;
 	@Column
-	String hernia ;
+	String height;
 	@Column
-	String varicoseVeins ;
+	String weight;
 	@Column
-	String deformities ;
+	String hernia;
 	@Column
-	String skin ;
+	String varicoseVeins;
 	@Column
-	String cns ;
+	String deformities;
 	@Column
-	String extremities ;
+	String skin;
 	@Column
-	String psychiatry ;
+	String cns;
 	@Column
-	String symptoms ;
+	String extremities;
 	@Column
-	String chestXray ;
+	String psychiatry;
 	@Column
-	String ecg ;
+	String symptoms;
 	@Column
-	String hiv ;
+	String chestXray;
 	@Column
-	String hbsag ;
+	String ecg;
 	@Column
-	String thc ;
+	String hiv;
 	@Column
-	String mop ;
+	String hbsag;
 	@Column
-	String amp ;
+	String thc;
 	@Column
-	String sugar ;
+	String mop;
 	@Column
-	String albumin ;
+	String amp;
 	@Column
-	String urineBilharziasis ;
+	String sugar;
 	@Column
-	String pregnancy ;
+	String albumin;
 	@Column
-	String others ;
+	String urineBilharziasis;
 	@Column
-	String helminths ;
+	String pregnancy;
 	@Column
-	String giardia ;
+	String others;
 	@Column
-	String bilharziasis ;
+	String helminths;
 	@Column
-	String culture ;
+	String giardia;
 	@Column
-	String stoolBilharziasis ;
+	String bilharziasis;
 	@Column
-	String malaria ;
+	String culture;
 	@Column
-	String microfilaria ;
+	String stoolBilharziasis;
 	@Column
-	String bloodGroup ;
+	String malaria;
 	@Column
-	String haemoglobin ;
+	String microfilaria;
 	@Column
-	String esr ;
+	String bloodGroup;
 	@Column
-	String rbs ;
+	String haemoglobin;
 	@Column
-	String creatinine ;
+	String esr;
 	@Column
-	String tbil ;
+	String rbs;
 	@Column
-	String sgot ;
+	String creatinine;
 	@Column
-	String sgpt ;
+	String tbil;
 	@Column
-	String alp ;
+	String sgot;
 	@Column
-	String urea ;
+	String sgpt;
 	@Column
-	String antiHcv ;
+	String alp;
 	@Column
-	String tpha ;
+	String urea;
 	@Column
-	String vdrl ;
+	String antiHcv;
 	@Column
-	String status ;
+	String tpha;
 	@Column
-	String remark ;
+	String vdrl;
 	@Column
-	Date expireDate ;
+	String status;
 	@Column
-	String pulse ;
+	String remark;
 	@Column
-	String distantAidedRight ;
+	Date expireDate;
 	@Column
-	String distantAidedLeft ;
+	String pulse;
 	@Column
-	String distantUnaidedRight ;
+	String distantAidedRight;
 	@Column
-	String distantUnaidedLeft ;
+	String distantAidedLeft;
 	@Column
-	String nearAidedRight ;
+	String distantUnaidedRight;
 	@Column
-	String nearAidedLeft ;
+	String distantUnaidedLeft;
 	@Column
-	String nearUnaidedRight ;
+	String nearAidedRight;
 	@Column
-	String nearUnaidedLeft ;
+	String nearAidedLeft;
 	@Column
-	String clearVision ;
+	String nearUnaidedRight;
+	@Column
+	String nearUnaidedLeft;
+	@Column
+	String clearVision;
 
 }
