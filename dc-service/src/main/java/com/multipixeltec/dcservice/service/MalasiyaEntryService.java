@@ -16,4 +16,6 @@ public interface MalasiyaEntryService {
 
 	MalasiyaReport findById(String id);
 
+	MalasiyaReport UpdateforPatient(MalasiyaReport malasiyaReport);
+
 }

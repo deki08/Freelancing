@@ -40,4 +40,11 @@ public class MalasiyaEntryController {
 	public MalasiyaReport malasiyaReport(@RequestParam String id) {
 		return entryService.findById(id);
 	}
+	
+	@PostMapping("/malrep-value")
+	public MalasiyaReport malasiyaReport(@RequestBody MalasiyaReport malasiyaReport)
+	{
+		return entryService.UpdateforPatient(malasiyaReport);
+		
+	}
 }
