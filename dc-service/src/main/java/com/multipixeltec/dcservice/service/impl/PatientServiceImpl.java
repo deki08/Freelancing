@@ -1,6 +1,7 @@
 package com.multipixeltec.dcservice.service.impl;
 
 import com.multipixeltec.dcservice.dto.PageDetails;
+import com.multipixeltec.dcservice.dto.updateStatusDto;
 import com.multipixeltec.dcservice.model.Patient;
 import com.multipixeltec.dcservice.repository.PatientRepository;
 import com.multipixeltec.dcservice.service.PatientService;
@@ -109,6 +110,18 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	public List<Patient> findAllByMonth(String date) {
 		return patientRepository.findAllByMonth(date);
+	}
+
+	@Override
+	public String updateStatus(updateStatusDto id) {
+		// TODO Auto-generated method stub
+		Optional<Patient> patient = patientRepository.findById(id.getPatientId());
+		if (patient.isPresent()) {
+			Patient patient2 = patient.get();
+			patient2.setCurrentStatus(id.getStatus());
+			patientRepository.save(patient2);
+		}
+		return "Success";
 	}
 
 }

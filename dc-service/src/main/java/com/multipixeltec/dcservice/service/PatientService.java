@@ -1,6 +1,7 @@
 package com.multipixeltec.dcservice.service;
 
 import com.multipixeltec.dcservice.dto.PageDetails;
+import com.multipixeltec.dcservice.dto.updateStatusDto;
 import com.multipixeltec.dcservice.model.Patient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,4 +45,6 @@ public interface PatientService {
     long countByMonth(String date);
 
     List<Patient> findAllByMonth(String date);
+
+	String updateStatus(updateStatusDto id);
 }

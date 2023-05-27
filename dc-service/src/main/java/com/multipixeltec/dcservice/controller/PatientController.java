@@ -5,6 +5,7 @@ import com.multipixeltec.dcservice.exceptions.NotFoundException;
 import com.multipixeltec.dcservice.service.*;
 import com.multipixeltec.dcservice.dto.ImageDto;
 import com.multipixeltec.dcservice.dto.PageDetails;
+import com.multipixeltec.dcservice.dto.updateStatusDto;
 import com.multipixeltec.dcservice.model.*;
 import com.multipixeltec.dcservice.util.FileService;
 import com.multipixeltec.dcservice.util.SortColumn;
@@ -361,5 +362,13 @@ public class PatientController {
 			patientService.saveAll(patients);
 		}
 		return "Done";
+	}
+
+	@PostMapping("update/status")
+	public String updateStatusByPatientId(@RequestBody updateStatusDto id) {
+		System.out.println(id.toString());
+		System.out.println(id.getStatus());
+		return patientService.updateStatus(id);
+
 	}
 }

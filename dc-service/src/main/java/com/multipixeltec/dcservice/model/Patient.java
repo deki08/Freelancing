@@ -55,7 +55,10 @@ public class Patient extends Auditable<User> {
 
 	@Column(name = "EMAIL")
 	private String email;
-
+	
+	@Column(name="CURRENT_STATUS")
+	private String currentStatus;
+	
 	@Column(name = "SELECT_GROUP")
 	private String group;
 
