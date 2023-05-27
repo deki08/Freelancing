@@ -1,6 +1,7 @@
 package com.multipixeltec.dcservice.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,13 @@ public class reportedValueServiceImpl implements ReportedValueService {
 	public ReportedValue addReportedValue(ReportedValue reportedValue) {
 		// TODO Auto-generated method stub
 		return reportedValueRepository.save(reportedValue);
+
 	}
 
 	@Override
-	public List<ReportedValue> findAll() {
+	public Optional<ReportedValue> findAll() {
 		// TODO Auto-generated method stub
-		return reportedValueRepository.findAll();
+		return reportedValueRepository.findById(1L);
 	}
 
 }

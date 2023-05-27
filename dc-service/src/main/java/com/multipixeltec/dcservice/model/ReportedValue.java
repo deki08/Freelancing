@@ -10,145 +10,137 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Table(name = "RPORTED_VALUE")
 @Data
+@ToString
 public class ReportedValue {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	private long id;
 	@Column
-	String patientId;
+	private String earLeft;
 	@Column
-	String eyeVisualAcuityLeft;
+	private String earRight;
 	@Column
-	String eyeVisualAcuityRight;
+	private String bloodPressure;
 	@Column
-	String nearRight;
+	private String heart;
 	@Column
-	String nearLeft;
+	private String lungs;
 	@Column
-	String earLeft;
+	private String gastrointestinalAbdomen;
 	@Column
-	String earRight;
+	private String height;
 	@Column
-	String bloodPressure;
+	private String weight;
 	@Column
-	String heart;
+	private String hernia;
 	@Column
-	String lungs;
+	private String varicoseVeins;
 	@Column
-	String gastrointestinalAbdomen;
+	private String deformities;
 	@Column
-	String height;
+	private String skin;
 	@Column
-	String weight;
+	private String cns;
 	@Column
-	String hernia;
+	private String extremities;
 	@Column
-	String varicoseVeins;
+	private String psychiatry;
 	@Column
-	String deformities;
+	private String symptoms;
 	@Column
-	String skin;
+	private String chestXray;
 	@Column
-	String cns;
+	private String ecg;
 	@Column
-	String extremities;
+	private String hiv;
 	@Column
-	String psychiatry;
+	private String hbsag;
 	@Column
-	String symptoms;
+	private String thc;
 	@Column
-	String chestXray;
+	private String mop;
 	@Column
-	String ecg;
+	private String amp;
 	@Column
-	String hiv;
+	private String sugar;
 	@Column
-	String hbsag;
+	private String albumin;
 	@Column
-	String thc;
+	private String urineBilharziasis;
 	@Column
-	String mop;
+	private String pregnancy;
 	@Column
-	String amp;
+	private String others;
 	@Column
-	String sugar;
+	private String helminths;
 	@Column
-	String albumin;
+	private String giardia;
 	@Column
-	String urineBilharziasis;
+	private String bilharziasis;
 	@Column
-	String pregnancy;
+	private String culture;
 	@Column
-	String others;
+	private String stoolBilharziasis;
 	@Column
-	String helminths;
+	private String malaria;
 	@Column
-	String giardia;
+	private String microfilaria;
 	@Column
-	String bilharziasis;
+	private String bloodGroup;
 	@Column
-	String culture;
+	private String haemoglobin;
 	@Column
-	String stoolBilharziasis;
+	private String esr;
 	@Column
-	String malaria;
+	private String rbs;
 	@Column
-	String microfilaria;
+	private String creatinine;
 	@Column
-	String bloodGroup;
+	private String tbil;
 	@Column
-	String haemoglobin;
+	private String sgot;
 	@Column
-	String esr;
+	private String sgpt;
 	@Column
-	String rbs;
+	private String alp;
 	@Column
-	String creatinine;
+	private String urea;
 	@Column
-	String tbil;
+	private String antiHcv;
 	@Column
-	String sgot;
+	private String tpha;
 	@Column
-	String sgpt;
+	private String vdrl;
 	@Column
-	String alp;
+	private String status;
 	@Column
-	String urea;
+	private String remark;
 	@Column
-	String antiHcv;
+	private Date expireDate;
 	@Column
-	String tpha;
+	private String pulse;
 	@Column
-	String vdrl;
+	private String distantAidedRight;
 	@Column
-	String status;
+	private String distantAidedLeft;
 	@Column
-	String remark;
+	private String distantUnaidedRight;
 	@Column
-	Date expireDate;
+	private String distantUnaidedLeft;
 	@Column
-	String pulse;
+	private String nearAidedRight;
 	@Column
-	String distantAidedRight;
+	private String nearAidedLeft;
 	@Column
-	String distantAidedLeft;
+	private String nearUnaidedRight;
 	@Column
-	String distantUnaidedRight;
+	private String nearUnaidedLeft;
 	@Column
-	String distantUnaidedLeft;
-	@Column
-	String nearAidedRight;
-	@Column
-	String nearAidedLeft;
-	@Column
-	String nearUnaidedRight;
-	@Column
-	String nearUnaidedLeft;
-	@Column
-	String clearVision;
+	private String clearVision;
 
 }
