@@ -49,6 +49,7 @@ public class PatientController {
     @Value("${application.protocol}")
     private String protocol;
 
+
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
     private SimpleDateFormat sdfMini = new SimpleDateFormat("YYMM");
     private DateTimeFormatter abbrFormatter = DateTimeFormatter.ofPattern("YYMM");
@@ -77,7 +78,10 @@ public class PatientController {
         return abb.toUpperCase().concat(dateAbbr).concat(countAbbr);
     }
 
+    
 
+    
+    
 //    @Transactional(Transactional.TxType.REQUIRES_NEW)
     @PostMapping("/patient")
     public Patient save(@RequestBody Patient patient){
@@ -216,6 +220,7 @@ public class PatientController {
     @DeleteMapping("/patient/{id}")
     public void deleteById(@PathVariable(value = "id") Long id){
         patientService.delete(id);
+       
     }
 
     @DeleteMapping("/patient")

@@ -145,7 +145,7 @@ public class Bill extends Auditable<User> {
         qr = qr.concat("PASSPORT:"+getPassportNo()).concat("\n");
         qr = qr.concat("TRAVEL TO:"+patient.getPassportNo()).concat("\n");
         qr = qr.concat("AGENT:"+getAgentOrAgencyName()).concat("\n");
-        return qr;
+        return patient.getTravelingTo();
     }
 
 }

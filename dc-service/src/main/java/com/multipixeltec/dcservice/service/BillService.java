@@ -1,5 +1,6 @@
 package com.multipixeltec.dcservice.service;
 
+import com.multipixeltec.dcservice.dto.BillUpdateDto;
 import com.multipixeltec.dcservice.dto.PageDetails;
 import com.multipixeltec.dcservice.model.Bill;
 import org.springframework.data.domain.Page;
@@ -42,5 +43,7 @@ public interface BillService {
     Double findBillAmountByDate(PageDetails page);
 
     Double findBillTotalByDate(String toString);
+
+	Bill updateBill(BillUpdateDto billUpdateDto);
 
 }
