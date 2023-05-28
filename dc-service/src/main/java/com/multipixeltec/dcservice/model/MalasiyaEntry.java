@@ -1,5 +1,7 @@
 package com.multipixeltec.dcservice.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -155,5 +157,75 @@ public class MalasiyaEntry {
 	String asthama;
 	@Column
 	String nameOfDoctor;
+	@Column
+	Date date;
+	@Column
+	String hospitaladdress;
+	@Column
+	String qualification;
+	@Column
+	Date modifiedDate;
 
+	@Column
+	String hiv;
+	@Column
+	String hypertension;
+	@Column
+	String tuberclosis;
+	@Column
+	String heartDisease;
+	@Column
+	String leporsy;
+	@Column
+	String bronchialAsthama;
+	@Column
+	String viralHeptites;
+	@Column
+	String diabetesMellitus;
+	@Column
+	String psychitricIllness;
+	@Column
+	String pepticUlcer;
+	@Column
+	String kidneyDeasese;
+	@Column
+	String cancer;
+	@Column
+	String others;
+	@Column
+	String sexTransDisease;
+	@Column
+	String malaria;
+	@Column
+	String height;
+	@Column
+	String deformities;
+	@Column
+	String weight;
+	@Column
+	String anemia;
+	@Column
+	String pulse;
+	@Column
+	String jaudice;
+	@Column
+	String bp;
+	@Column
+	String lne;
+	@Column
+	String bd;
+	@Column
+	String vAUnaided;
+	@Column
+	Date lmp;
+	@Column
+	String bAided;
+	@Column
+	String chronicSkinRash;
+	@Column
+	String hearing;
+	@Column
+	String anSkinPatch;
+	@Column
+	String otherIfabNormalCOndition;
 }

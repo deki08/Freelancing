@@ -115,6 +115,7 @@ public class PatientController {
 		if (isNewRecord) {
 			patient.setRegNo(generateRegNo(abbreviation));
 		}
+		patient.setCurrentStatus("Under Process");
 		Patient savedRecord = patientService.save(patient);
 
 		if (patient.getFingerId() != null && patient.getFingerId() != 0) {
@@ -327,12 +328,12 @@ public class PatientController {
 	}
 
 	@GetMapping("/patient/{passportNumber}/passport")
-	public Optional<Patient> getById(@PathVariable(value = "passportNumber") String passport) {
+	public Patient getById(@PathVariable(value = "passportNumber") String passport) {
 		List<Patient> patients = patientService.findByPassport(passport);
 		if (patients == null || patients.size() == 0) {
 			throw new NotFoundException("Patient Report Not Found For Given Passport Number");
 		}
-		return patients.stream().filter(patient -> patient.getReport().getStatus() != null).findFirst();
+		return patients.get(0);
 	}
 
 	@GetMapping(path = "/patient/fixRegNumbers")
