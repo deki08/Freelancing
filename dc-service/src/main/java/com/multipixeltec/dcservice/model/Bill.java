@@ -71,7 +71,7 @@ public class Bill extends Auditable<User> {
     private User paidBy;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<BillPayment> payments = new HashSet<>();
 
     @JsonIgnore

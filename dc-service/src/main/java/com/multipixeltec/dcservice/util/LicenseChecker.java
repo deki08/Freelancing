@@ -128,7 +128,7 @@ public class LicenseChecker implements CommandLineRunner {
 				user.setFirstName("SUPER");
 				user.setLastName("ADMIN");
 				user.setEmail("rajibrobotics@gmail.com");
-				user.setPassword(passwordEncoder.encode("Rajib123"));
+				user.setPassword(passwordEncoder.encode("Rajib111"));
 				user.setEnabled(true);
 				user.getRoles().add(superAdmin);
 				userService.save(user);

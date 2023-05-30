@@ -100,49 +100,5 @@ public class BillServiceImpl implements BillService {
 		return billRepository.findBillTotalByDate(date);
 	}
 
-	@Override
-	public Bill updateBill(BillUpdateDto billUpdateDto) {
-		// TODO Auto-generated method stub
-		if (billUpdateDto.getValueType().equalsIgnoreCase("agentOrAgencyName")) {
-
-		}
-		if (billUpdateDto.getValueType().equalsIgnoreCase("commission")) {
-			Optional<Bill> billList = billRepository.findById(billUpdateDto.getPatientId());
-			if (billList.isPresent()) {
-				Bill bill = billList.get();
-				bill.setCommission(Double.valueOf(billUpdateDto.getUpdateMoney()));
-				billRepository.save(bill);
-			}
-		}
-		if (billUpdateDto.getValueType().equalsIgnoreCase("due")) {
-
-		}
-		if (billUpdateDto.getValueType().equalsIgnoreCase("patientName")) {
-
-		}
-		if (billUpdateDto.getValueType().equalsIgnoreCase("createdDate")) {
-
-		}
-		if (billUpdateDto.getValueType().equalsIgnoreCase("qr")) {
-
-		}
-		if (billUpdateDto.getValueType().equalsIgnoreCase("testName")) {
-
-		}
-		if (billUpdateDto.getValueType().equalsIgnoreCase("amount")) {
-
-		}
-		if (billUpdateDto.getValueType().equalsIgnoreCase("testPrice")) {
-
-		}
-		if (billUpdateDto.getValueType().equalsIgnoreCase("paid")) {
-
-		}
-		if (billUpdateDto.getValueType().equalsIgnoreCase("remarks")) {
-
-		}
-
-		return null;
-	}
 
 }

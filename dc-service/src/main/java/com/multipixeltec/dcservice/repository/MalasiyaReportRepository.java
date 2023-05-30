@@ -8,4 +8,6 @@ public interface MalasiyaReportRepository extends JpaRepository<MalasiyaReport, 
 
 	MalasiyaReport findByPatientId(Long long1);
 
+	void deleteByPatientId(Long id);
+
 }

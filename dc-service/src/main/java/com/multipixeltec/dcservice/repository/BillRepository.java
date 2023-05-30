@@ -47,4 +47,8 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 
     @Query(value = "SELECT SUM(AMOUNT) FROM BILL WHERE  CREATED_DATE LIKE %:date%", nativeQuery = true)
     Double findBillTotalByDate(String date);
+
+	void deleteByPatientId(Long id);
+
+	Bill findByPatientId(Long id);
 }

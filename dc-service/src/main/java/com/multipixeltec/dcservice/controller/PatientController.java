@@ -7,6 +7,7 @@ import com.multipixeltec.dcservice.dto.ImageDto;
 import com.multipixeltec.dcservice.dto.PageDetails;
 import com.multipixeltec.dcservice.dto.updateStatusDto;
 import com.multipixeltec.dcservice.model.*;
+import com.multipixeltec.dcservice.repository.Actual_BillRepository;
 import com.multipixeltec.dcservice.util.FileService;
 import com.multipixeltec.dcservice.util.SortColumn;
 import org.slf4j.Logger;
@@ -53,6 +54,9 @@ public class PatientController {
 
 	@Autowired
 	private ReportedValueService reportedValueService;
+
+	@Autowired
+	private Actual_BillRepository actual_BillRepository;
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
 	private SimpleDateFormat sdfMini = new SimpleDateFormat("YYMM");
@@ -166,6 +170,22 @@ public class PatientController {
 				billPaymentService.save(payment);
 				savedBill.addPayment(payment.getAmount());
 				billService.save(savedBill);
+
+				Actual_Bill actual_Bill = new Actual_Bill();
+				actual_Bill.setPatientId(savedRecord.getRegNo());
+				actual_Bill.setName(savedRecord.getFullName());
+				actual_Bill.setDate(new Date());
+				actual_Bill.setAgency(savedRecord.getAgentOrAgencyName());
+				actual_Bill.setTravellingTo(savedRecord.getTravelingTo());
+				actual_Bill.setPackageName(savedRecord.getTestOrPackageName());
+				actual_Bill.setRecieved(bill.getAmount());
+				actual_Bill.setNetAmount(savedRecord.getTestOrPackage().getPrice());
+				actual_Bill.setCommision(bill.getCommission());
+				actual_Bill.setPaid(bill.getPaid());
+				actual_Bill.setDue(bill.getDue());
+				actual_BillRepository.save(actual_Bill);
+
+//				actual_Bill.set
 
 				AccountTransaction transaction = new AccountTransaction();
 				transaction.setAccount(payment.getAccount());

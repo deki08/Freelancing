@@ -47,81 +47,123 @@ public class MalasiyaEntryServiceImpl implements MalasiyaEntryService {
 	}
 
 	@Override
-	public MalasiyaReport UpdateforPatient(MalasiyaReport entry) {
+	public MalasiyaReport UpdateforPatient(MalasiyaReport malasiyaEntry) {
 		// TODO Auto-generated method stub
-		MalasiyaReport report = malasiyaReportRepository.findByPatientId(entry.getPatientId());
-		if (report != null) {	
-			report.setHeartSize(entry.getHeartSize());
-			report.setHeartSound(entry.getHeartSound());
-			report.setBreathSound(entry.getBreathSound());
-			report.setOtherRindings(entry.getOtherRindings());
-			report.setLiver(entry.getLiver());
-			report.setSpleen(entry.getSpleen());
-			report.setMentalStatus(entry.getMentalStatus());
-			report.setMentalSpeech(entry.getMentalSpeech());
-			report.setMentalMotorPower(entry.getMentalMotorPower());
-			report.setVaricoseVeins(entry.getVaricoseVeins());
-			report.setMentalRefleses(entry.getMentalRefleses());
-			report.setDateOfXrayTaken(entry.getDateOfXrayTaken());
-			report.setDateOfXrayReported(entry.getDateOfXrayReported());
-			report.setUrineOpiates(entry.getUrineOpiates());
-			report.setCannabinoids(entry.getCannabinoids());
-			report.setUrineHcg(entry.getUrineHcg());
-			report.setStatusOfHivOrAids(entry.getStatusOfHivOrAids());
-			report.setStatusOfTB(entry.getStatusOfTB());
-			report.setStatusOfMalaria(entry.getStatusOfMalaria());
-			report.setStatusOfHepatitis(entry.getStatusOfHepatitis());
-			report.setStatusOfSTD(entry.getStatusOfSTD());
-			report.setStatusOfEpilepsy(entry.getStatusOfEpilepsy());
-			report.setStatusOfCancer(entry.getStatusOfCancer());
-			report.setStatusOfDrugs(entry.getStatusOfDrugs());
-			report.setStatusOfLeprosy(entry.getStatusOfLeprosy());
-			report.setStatusOfPregnancy(entry.getStatusOfPregnancy());
-			report.setStatusOfPsychiatricIll(entry.getStatusOfPsychiatricIll());
-			report.setStatusOfOther(entry.getStatusOfOther());
-			report.setGenitourinaryKidney(entry.getGenitourinaryKidney());
-			report.setGenitourinaryDischarge(entry.getGenitourinaryDischarge());
-			report.setGenitourinarySoresOrUlcer(entry.getGenitourinarySoresOrUlcer());
-			report.setLaboratoryReceivedDate(entry.getLaboratoryReceivedDate());
-			report.setLaboratoryReportDateOfLab(entry.getLaboratoryReportDateOfLab());
-			report.setBloodGroup(entry.getBloodGroup());
-			report.setFemaleSpecificGravity(entry.getFemaleSpecificGravity());
-			report.setFemaleUrineColor(entry.getFemaleUrineColor());
-			report.setFemaleUrinePh(entry.getFemaleUrinePh());
-			report.setFemaleUrineLeucocytes(entry.getFemaleUrineLeucocytes());
-			report.setFemaleGlucose(entry.getFemaleGlucose());
-			report.setFemaleProtein(entry.getFemaleProtein());
-			report.setFemaleBlood(entry.getFemaleBlood());
-			report.setFemaleMicroscopy(entry.getFemaleMicroscopy());
-			report.setFemaleRedBloodCell(entry.getFemaleRedBloodCell());
-			report.setFemaleWhiteBloodCell(entry.getFemaleWhiteBloodCell());
-			report.setFemaleEpithelialCell(entry.getFemaleEpithelialCell());
-			report.setFemaleCasts(entry.getFemaleCasts());
-			report.setFemaleCrystal(entry.getFemaleCrystal());
-			report.setFemaleBacteria(entry.getFemaleBacteria());
-			report.setFemaleOthers(entry.getFemaleOthers());
-			report.setSerologyHivAntibody(entry.getSerologyHivAntibody());
-			report.setSerologyHbsAG(entry.getSerologyHbsAG());
-			report.setSerologyVdrl(entry.getSerologyVdrl());
-			report.setSerologyMalariaParasite(entry.getSerologyMalariaParasite());
-			report.setSerologyFBS(entry.getSerologyFBS());
-			report.setReportOfHeartShape(entry.getReportOfHeartShape());
-			report.setReportOfHeartSize(entry.getReportOfHeartSize());
-			report.setReportOfLungFields(entry.getReportOfLungFields());
-			report.setReportOfMediastinum(entry.getReportOfMediastinum());
-			report.setReportOfPleuralHemidiaphragms(entry.getReportOfPleuralHemidiaphragms());
-			report.setReportOfCostoPhrenic(entry.getReportOfCostoPhrenic());
-			report.setReportOfToracicCase(entry.getReportOfToracicCase());
-			report.setFindingsOfFocalLesion(entry.getFindingsOfFocalLesion());
-			report.setFindingsOfAbnormalities(entry.getFindingsOfAbnormalities());
-			report.setFamilyHistory(entry.getFamilyHistory());
-			report.setDiabetes(entry.getDiabetes());
-			report.setBloodPressure(entry.getBloodPressure());
-			report.setEpilepsy(entry.getEpilepsy());
-			report.setAsthama(entry.getAsthama());
-			report.setNameOfDoctor(entry.getNameOfDoctor());
-			malasiyaReportRepository.save(report);
+		MalasiyaReport malasiyaReport = malasiyaReportRepository.findByPatientId(malasiyaEntry.getPatientId());
+		if (malasiyaReport != null) {
+
+			// Set values from MalasiyaEntry to MalasiyaReport
+			malasiyaReport.setHeartSize(malasiyaEntry.getHeartSize());
+			malasiyaReport.setHeartSound(malasiyaEntry.getHeartSound());
+			malasiyaReport.setBreathSound(malasiyaEntry.getBreathSound());
+			malasiyaReport.setOtherRindings(malasiyaEntry.getOtherRindings());
+			malasiyaReport.setLiver(malasiyaEntry.getLiver());
+			malasiyaReport.setSpleen(malasiyaEntry.getSpleen());
+			malasiyaReport.setMentalStatus(malasiyaEntry.getMentalStatus());
+			malasiyaReport.setMentalSpeech(malasiyaEntry.getMentalSpeech());
+			malasiyaReport.setMentalMotorPower(malasiyaEntry.getMentalMotorPower());
+			malasiyaReport.setVaricoseVeins(malasiyaEntry.getVaricoseVeins());
+			malasiyaReport.setMentalRefleses(malasiyaEntry.getMentalRefleses());
+			malasiyaReport.setDateOfXrayTaken(malasiyaEntry.getDateOfXrayTaken());
+			malasiyaReport.setDateOfXrayReported(malasiyaEntry.getDateOfXrayReported());
+			malasiyaReport.setUrineOpiates(malasiyaEntry.getUrineOpiates());
+			malasiyaReport.setCannabinoids(malasiyaEntry.getCannabinoids());
+			malasiyaReport.setUrineHcg(malasiyaEntry.getUrineHcg());
+
+			// Set the remaining attributes similarly
+			malasiyaReport.setStatusOfHivOrAids(malasiyaEntry.getStatusOfHivOrAids());
+			malasiyaReport.setStatusOfTB(malasiyaEntry.getStatusOfTB());
+			malasiyaReport.setStatusOfMalaria(malasiyaEntry.getStatusOfMalaria());
+			malasiyaReport.setStatusOfHepatitis(malasiyaEntry.getStatusOfHepatitis());
+			malasiyaReport.setStatusOfSTD(malasiyaEntry.getStatusOfSTD());
+			malasiyaReport.setStatusOfEpilepsy(malasiyaEntry.getStatusOfEpilepsy());
+			malasiyaReport.setStatusOfCancer(malasiyaEntry.getStatusOfCancer());
+			malasiyaReport.setStatusOfDrugs(malasiyaEntry.getStatusOfDrugs());
+			malasiyaReport.setStatusOfLeprosy(malasiyaEntry.getStatusOfLeprosy());
+			malasiyaReport.setStatusOfPregnancy(malasiyaEntry.getStatusOfPregnancy());
+			malasiyaReport.setStatusOfPsychiatricIll(malasiyaEntry.getStatusOfPsychiatricIll());
+			malasiyaReport.setStatusOfOther(malasiyaEntry.getStatusOfOther());
+			malasiyaReport.setGenitourinaryKidney(malasiyaEntry.getGenitourinaryKidney());
+			malasiyaReport.setGenitourinaryDischarge(malasiyaEntry.getGenitourinaryDischarge());
+			malasiyaReport.setGenitourinarySoresOrUlcer(malasiyaEntry.getGenitourinarySoresOrUlcer());
+			malasiyaReport.setLaboratoryReceivedDate(malasiyaEntry.getLaboratoryReceivedDate());
+			malasiyaReport.setLaboratoryReportDateOfLab(malasiyaEntry.getLaboratoryReportDateOfLab());
+			malasiyaReport.setBloodGroup(malasiyaEntry.getBloodGroup());
+			malasiyaReport.setFemaleSpecificGravity(malasiyaEntry.getFemaleSpecificGravity());
+			malasiyaReport.setFemaleUrineColor(malasiyaEntry.getFemaleUrineColor());
+			malasiyaReport.setFemaleUrinePh(malasiyaEntry.getFemaleUrinePh());
+			malasiyaReport.setFemaleUrineLeucocytes(malasiyaEntry.getFemaleUrineLeucocytes());
+			malasiyaReport.setFemaleGlucose(malasiyaEntry.getFemaleGlucose());
+			malasiyaReport.setFemaleProtein(malasiyaEntry.getFemaleProtein());
+			malasiyaReport.setFemaleBlood(malasiyaEntry.getFemaleBlood());
+			malasiyaReport.setFemaleMicroscopy(malasiyaEntry.getFemaleMicroscopy());
+			malasiyaReport.setFemaleRedBloodCell(malasiyaEntry.getFemaleRedBloodCell());
+			malasiyaReport.setFemaleWhiteBloodCell(malasiyaEntry.getFemaleWhiteBloodCell());
+			malasiyaReport.setFemaleEpithelialCell(malasiyaEntry.getFemaleEpithelialCell());
+			malasiyaReport.setFemaleCasts(malasiyaEntry.getFemaleCasts());
+			malasiyaReport.setFemaleCrystal(malasiyaEntry.getFemaleCrystal());
+			malasiyaReport.setFemaleBacteria(malasiyaEntry.getFemaleBacteria());
+			malasiyaReport.setFemaleOthers(malasiyaEntry.getFemaleOthers());
+			malasiyaReport.setSerologyHivAntibody(malasiyaEntry.getSerologyHivAntibody());
+			malasiyaReport.setSerologyHbsAG(malasiyaEntry.getSerologyHbsAG());
+			malasiyaReport.setSerologyVdrl(malasiyaEntry.getSerologyVdrl());
+			malasiyaReport.setSerologyMalariaParasite(malasiyaEntry.getSerologyMalariaParasite());
+			malasiyaReport.setSerologyFBS(malasiyaEntry.getSerologyFBS());
+			malasiyaReport.setReportOfHeartShape(malasiyaEntry.getReportOfHeartShape());
+			malasiyaReport.setReportOfHeartSize(malasiyaEntry.getReportOfHeartSize());
+			malasiyaReport.setReportOfLungFields(malasiyaEntry.getReportOfLungFields());
+			malasiyaReport.setReportOfMediastinum(malasiyaEntry.getReportOfMediastinum());
+			malasiyaReport.setReportOfPleuralHemidiaphragms(malasiyaEntry.getReportOfPleuralHemidiaphragms());
+			malasiyaReport.setReportOfCostoPhrenic(malasiyaEntry.getReportOfCostoPhrenic());
+			malasiyaReport.setReportOfToracicCase(malasiyaEntry.getReportOfToracicCase());
+			malasiyaReport.setFindingsOfFocalLesion(malasiyaEntry.getFindingsOfFocalLesion());
+			malasiyaReport.setFindingsOfAbnormalities(malasiyaEntry.getFindingsOfAbnormalities());
+			malasiyaReport.setFamilyHistory(malasiyaEntry.getFamilyHistory());
+			malasiyaReport.setDiabetes(malasiyaEntry.getDiabetes());
+			malasiyaReport.setBloodPressure(malasiyaEntry.getBloodPressure());
+			malasiyaReport.setEpilepsy(malasiyaEntry.getEpilepsy());
+			malasiyaReport.setAsthama(malasiyaEntry.getAsthama());
+			malasiyaReport.setNameOfDoctor(malasiyaEntry.getNameOfDoctor());
+			malasiyaReport.setDate(malasiyaEntry.getDate());
+			malasiyaReport.setHospitaladdress(malasiyaEntry.getHospitaladdress());
+			malasiyaReport.setQualification(malasiyaEntry.getQualification());
+			malasiyaReport.setModifiedDate(malasiyaEntry.getModifiedDate());
+			malasiyaReport.setHiv(malasiyaEntry.getHiv());
+			malasiyaReport.setHypertension(malasiyaEntry.getHypertension());
+			malasiyaReport.setTuberclosis(malasiyaEntry.getTuberclosis());
+			malasiyaReport.setHeartDisease(malasiyaEntry.getHeartDisease());
+			malasiyaReport.setLeporsy(malasiyaEntry.getLeporsy());
+			malasiyaReport.setBronchialAsthama(malasiyaEntry.getBronchialAsthama());
+			malasiyaReport.setViralHeptites(malasiyaEntry.getViralHeptites());
+			malasiyaReport.setDiabetesMellitus(malasiyaEntry.getDiabetesMellitus());
+			malasiyaReport.setPsychitricIllness(malasiyaEntry.getPsychitricIllness());
+			malasiyaReport.setPepticUlcer(malasiyaEntry.getPepticUlcer());
+			malasiyaReport.setKidneyDeasese(malasiyaEntry.getKidneyDeasese());
+			malasiyaReport.setCancer(malasiyaEntry.getCancer());
+			malasiyaReport.setOthers(malasiyaEntry.getOthers());
+			malasiyaReport.setSexTransDisease(malasiyaEntry.getSexTransDisease());
+			malasiyaReport.setMalaria(malasiyaEntry.getMalaria());
+			malasiyaReport.setHeight(malasiyaEntry.getHeight());
+			malasiyaReport.setDeformities(malasiyaEntry.getDeformities());
+			malasiyaReport.setWeight(malasiyaEntry.getWeight());
+			malasiyaReport.setAnemia(malasiyaEntry.getAnemia());
+			malasiyaReport.setPulse(malasiyaEntry.getPulse());
+			malasiyaReport.setJaudice(malasiyaEntry.getJaudice());
+			malasiyaReport.setBp(malasiyaEntry.getBp());
+			malasiyaReport.setLne(malasiyaEntry.getLne());
+			malasiyaReport.setBd(malasiyaEntry.getBd());
+			malasiyaReport.setVAUnaided(malasiyaEntry.getVAUnaided());
+			malasiyaReport.setLmp(malasiyaEntry.getLmp());
+			malasiyaReport.setBAided(malasiyaEntry.getBAided());
+			malasiyaReport.setChronicSkinRash(malasiyaEntry.getChronicSkinRash());
+			malasiyaReport.setHearing(malasiyaEntry.getHearing());
+			malasiyaReport.setAnSkinPatch(malasiyaEntry.getAnSkinPatch());
+			malasiyaReport.setOtherIfabNormalCOndition(malasiyaEntry.getOtherIfabNormalCOndition());
+
+			// Now the malasiyaReport object contains all the values from malasiyaEntry
+
+			malasiyaReportRepository.save(malasiyaReport);
 		}
-		return report;
+		return malasiyaReport;
 	}
 }

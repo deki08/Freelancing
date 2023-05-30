@@ -44,6 +44,6 @@ public interface BillService {
 
     Double findBillTotalByDate(String toString);
 
-	Bill updateBill(BillUpdateDto billUpdateDto);
+	
 
 }

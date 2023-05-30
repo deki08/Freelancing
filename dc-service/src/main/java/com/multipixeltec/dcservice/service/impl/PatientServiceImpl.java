@@ -2,7 +2,14 @@ package com.multipixeltec.dcservice.service.impl;
 
 import com.multipixeltec.dcservice.dto.PageDetails;
 import com.multipixeltec.dcservice.dto.updateStatusDto;
+import com.multipixeltec.dcservice.model.Bill;
+import com.multipixeltec.dcservice.model.BillPayment;
 import com.multipixeltec.dcservice.model.Patient;
+import com.multipixeltec.dcservice.model.PatientReport;
+import com.multipixeltec.dcservice.repository.BillPaymentRepository;
+import com.multipixeltec.dcservice.repository.BillRepository;
+import com.multipixeltec.dcservice.repository.MalasiyaReportRepository;
+import com.multipixeltec.dcservice.repository.PatientReportRepository;
 import com.multipixeltec.dcservice.repository.PatientRepository;
 import com.multipixeltec.dcservice.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +21,19 @@ import org.springframework.data.domain.Sort;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 @Service
 public class PatientServiceImpl implements PatientService {
 
 	@Autowired
 	private PatientRepository patientRepository;
+
+	@Autowired
+	private BillRepository billRepository;
+
+	@Autowired
+	private MalasiyaReportRepository malasiyaReportRepository;
 
 	@Override
 	public Patient save(Patient patient) {
@@ -45,14 +60,44 @@ public class PatientServiceImpl implements PatientService {
 		return patientRepository.findAll(pageable);
 	}
 
+
+	@Autowired
+	private PatientReportRepository patientReportRepository;
+
 	@Override
 	public void delete(Long id) {
+		System.out.println(id);
 		Optional<Patient> patient = patientRepository.findById(id);
 		if (patient.isPresent()) {
-			Patient patient2 = patient.get();
-			System.out.println(patient2.getFullName());
-			patientRepository.deleteById(patient2.getId());
-//			Bill
+			Patient patientToDelete = patient.get();
+			if (patient != null) {
+				PatientReport report = patientToDelete.getReport();
+				
+				if (report != null) {
+					// Disassociate the report from the patient
+					patientToDelete.setReport(null);
+					patientReportRepository.delete(report);
+					System.out.println("deleted");
+				}
+				
+//				List<Bill> bills = patientToDelete.getBills();
+//				if (bills != null) {
+//					
+//					for (Bill bill : bills) {
+//						// Disassociate the bill from the patient
+////						billpaymentRepository.deleteByBill(bill);
+//						
+//						bill.setPatient(null);
+//
+//						billRepository.deleteById(bill.getId());
+//					}
+//					// Clear the bills collection
+//					bills.clear();
+//				}
+				patientRepository.delete(patientToDelete);
+
+			}
+
 		}
 
 	}

@@ -10,8 +10,9 @@ import java.io.Serializable;
  */
 @Data
 public class BillPaymentDto implements Serializable {
-    private final Long id;
-    private final Long billId;
-    private final Long accountId;
-    private final Double amount;
+	private final Long id;
+	private final Long billId;
+	private final Long accountId;
+	private final Double amount;
+	private final String updateEmail;
 }

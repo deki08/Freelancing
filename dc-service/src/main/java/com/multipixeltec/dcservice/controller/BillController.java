@@ -11,6 +11,7 @@ import com.multipixeltec.dcservice.service.*;
 import com.multipixeltec.dcservice.util.SortColumn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -173,6 +174,9 @@ public class BillController {
 		return billService.findAllByPatient(id);
 	}
 
+	@Autowired
+	UserService userService;
+
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
 	@PostMapping("/bill/{id}/pay")
 	public Bill payBill(@RequestBody BillPaymentDto paymentDto) {
@@ -182,6 +186,8 @@ public class BillController {
 
 			System.out.println("Called...............");
 
+			Optional<User> optionalUser = userService.findByEmail(paymentDto.getUpdateEmail());
+
 			Optional<Account> accountOptional = accountService.find(paymentDto.getAccountId());
 			BillPayment payment = new BillPayment();
 			accountOptional.ifPresent(account -> payment.setAccount(account));
@@ -190,8 +196,10 @@ public class BillController {
 			payment.setStatus(PaymentStatus.PAID);
 			billPaymentService.save(payment);
 			bill.addPayment(payment.getAmount());
+			if (optionalUser.isPresent()) {
+				bill.setPaidBy(optionalUser.get());
+			}
 			billService.save(bill);
-
 			AccountTransaction transaction = new AccountTransaction();
 			transaction.setAccount(payment.getAccount());
 			transaction.setAmount(paymentDto.getAmount());
@@ -199,7 +207,6 @@ public class BillController {
 			transaction.setType(TransactionType.CREDIT);
 			transaction.setReferenceTo(ReferenceTo.BILL);
 			transactionService.save(transaction);
-
 			CommissionStatus commissionStatus;
 			if (bill.getStatus() == BillStatus.PAID) {
 				commissionStatus = CommissionStatus.CLIENT_FULLY_PAID;
@@ -217,11 +224,6 @@ public class BillController {
 		} else {
 			throw new NotFoundException("Bill Not Found!");
 		}
-	}
-
-	@PutMapping("/bill/advanced")
-	public Bill updateBill(@RequestBody BillUpdateDto billUpdateDto) {
-		return billService.updateBill(billUpdateDto);
 
 	}
 

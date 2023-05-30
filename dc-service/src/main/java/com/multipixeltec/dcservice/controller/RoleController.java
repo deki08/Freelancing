@@ -46,6 +46,7 @@ public class RoleController {
 
     @GetMapping("/role/{id}")
     public Optional<Role> getById(@PathVariable(value = "id") Long id){
+    	System.out.println(id);
         return roleService.find(id);
     }
 
