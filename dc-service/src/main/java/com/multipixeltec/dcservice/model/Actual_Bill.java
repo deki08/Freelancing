@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="ACTUAL_BILL")
+@Table(name="actual_bill")
 @Data
 public class Actual_Bill {
 	@Id

@@ -81,7 +81,7 @@ public class SecurityConfiguration {
 						"/api/v1/role/fix", "/api/v1/user/init", "/resource/**")
 				.permitAll().antMatchers("/api/v1/patient/fixRegNumbers").permitAll()
 				.antMatchers("/api/v1/mal-value", "/api/v1/report-value/**", "/api/v1/malrep-value"
-						,"/api/v1/update/status","/api/v1/actual-bill/advanced"
+						,"/api/v1/update/status","/api/v1/actual-bill/advanced","/api/v1/role-permission-bulk"
 						
 						).permitAll()
 				.antMatchers(HttpHeaders.ALLOW).permitAll()

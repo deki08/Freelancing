@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+
+import java.util.List;
 import java.util.Set;
 
 public interface RolePermissionRepository extends JpaRepository<RolePermission, Long> {
@@ -15,4 +17,6 @@ public interface RolePermissionRepository extends JpaRepository<RolePermission, 
     @Transactional
     @Query(value = "DELETE FROM ROLE_PRIVILEGE WHERE ID IN (:longSet)",nativeQuery = true)
     void deleteAllByPermissionId(Set<Long> longSet);
+
+	List<RolePermission> findByRoleId(Long id);
 }

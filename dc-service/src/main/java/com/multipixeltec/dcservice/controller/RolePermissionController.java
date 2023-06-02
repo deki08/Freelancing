@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -41,6 +43,21 @@ public class RolePermissionController {
             throw new NotFoundException("Permission Not Found!");
         }
     }
+    
+    @PutMapping("/role-permission-bulk")
+    public Map<String, Object> bulkUpdate(@RequestBody RolePermissionDto permissionDto){
+    	Map<String, Object> map = new LinkedHashMap<>();
+    	try {
+    		map = rolepermissionService.bulkUpdate(permissionDto);
+		} catch (Exception e) {
+			map.put("p_out", "0");
+			map.put("p_error_code", "ERROR-001");
+			map.put("p_error_message", "Processing Error.");
+		}
+    	return map;	
+    }
+    
+    
 
     @GetMapping("/role-permission/{id}")
     public Optional<RolePermission> getById(@PathVariable(value = "id") Long id){

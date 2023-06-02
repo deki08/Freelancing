@@ -6,6 +6,7 @@ import com.multipixeltec.dcservice.model.Bill;
 import com.multipixeltec.dcservice.model.BillPayment;
 import com.multipixeltec.dcservice.model.Patient;
 import com.multipixeltec.dcservice.model.PatientReport;
+import com.multipixeltec.dcservice.repository.Actual_BillRepository;
 import com.multipixeltec.dcservice.repository.BillPaymentRepository;
 import com.multipixeltec.dcservice.repository.BillRepository;
 import com.multipixeltec.dcservice.repository.MalasiyaReportRepository;
@@ -63,10 +64,10 @@ public class PatientServiceImpl implements PatientService {
 
 	@Autowired
 	private PatientReportRepository patientReportRepository;
-
+	@Autowired
+	private Actual_BillRepository actual_BillRepository;
 	@Override
 	public void delete(Long id) {
-		System.out.println(id);
 		Optional<Patient> patient = patientRepository.findById(id);
 		if (patient.isPresent()) {
 			Patient patientToDelete = patient.get();
@@ -74,26 +75,11 @@ public class PatientServiceImpl implements PatientService {
 				PatientReport report = patientToDelete.getReport();
 				
 				if (report != null) {
-					// Disassociate the report from the patient
+					actual_BillRepository.deleteByPatientId(patientToDelete.getRegNo());
 					patientToDelete.setReport(null);
 					patientReportRepository.delete(report);
 					System.out.println("deleted");
 				}
-				
-//				List<Bill> bills = patientToDelete.getBills();
-//				if (bills != null) {
-//					
-//					for (Bill bill : bills) {
-//						// Disassociate the bill from the patient
-////						billpaymentRepository.deleteByBill(bill);
-//						
-//						bill.setPatient(null);
-//
-//						billRepository.deleteById(bill.getId());
-//					}
-//					// Clear the bills collection
-//					bills.clear();
-//				}
 				patientRepository.delete(patientToDelete);
 
 			}

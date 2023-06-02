@@ -1,11 +1,13 @@
 package com.multipixeltec.dcservice.service;
 
+import com.multipixeltec.dcservice.dto.RolePermissionDto;
 import com.multipixeltec.dcservice.model.RolePermission;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -34,4 +36,6 @@ public interface RolePermissionService {
     void deleteAll(List<RolePermission> privileges);
 
     void deleteAll(Set<Long> longSet);
+
+	Map<String, Object> bulkUpdate(RolePermissionDto permissionDto);
 }
