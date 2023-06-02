@@ -16,6 +16,8 @@ function PatientBills(props: any) {
     const [bill, setBill] = useState<any>({});
     const pageSizes = [100, 200, 500, 1000, 10000];
 
+ 
+    
     const payHandler = (e: any) => {
         setBill(JSON.parse(e.target.dataset.record));
         setAction('pay');

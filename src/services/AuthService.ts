@@ -12,6 +12,8 @@ const login = (email: string, password: string) => {
             localStorage.setItem("refresh_token", response.data.refreshToken);
             localStorage.setItem("user", userString);
             localStorage.setItem("permissions", permissions);
+            localStorage.setItem("Name",user.fullName);
+            localStorage.setItem("email",user.email);
         }
         return response.data;
     });
@@ -109,6 +111,7 @@ interface Permission {
     edit:boolean;
     remove:boolean;
     pay:boolean;
+
 }
 
 const AuthService = {

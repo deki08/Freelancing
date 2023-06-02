@@ -1,16 +1,28 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import reactLogo from "../assets/images/logo/logo-without-bg.png";
 import PatientReport from "./admin/Patient/PatientReport";
 import PatientService from "../services/PatientService";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/logo/mt-logo-with-bg.jpg";
 import Footer from "../components/Footer";
+import { Table } from 'reactstrap';
+
 
 function ReportSearch(props: any) {
     const [patient, setPatient] = useState(null);
     const [passport, setPassport] = useState('');
     const [searching, setSearching] = useState(false);
     const [invalid, setInvalid] = useState(false);
+    const [under, setUnder] = useState({
+
+        fullName: "",
+        currentStatus: "",
+        healthStatus: "",
+        passportNo:"",
+    }
+
+
+    );
     const typeHandler = (e: any) => {
         setPassport(e.target.value);
     }
@@ -19,25 +31,31 @@ function ReportSearch(props: any) {
         setSearching(true);
         setPatient(null);
         PatientService.findByPassport(passport).then((response) => {
-            if (response.data){
+            if (response.data.healthStatus === "PENDING") {
+                // setPatient(response.data);
+                setUnder(response.data);
+                console.log(under);
+            } else {
                 setPatient(response.data);
+
             }
             setSearching(false);
         }).catch(response => {
             setPatient(null);
             setSearching(false);
             setInvalid(true);
-            setTimeout(()=> {
+            setTimeout(() => {
                 setInvalid(false);
-            },5000);
+            }, 5000);
         })
     }
+      
 
     return (
         <>
             <nav className="navbar navbar-light bg-white justify-content-between shadow-lg">
                 <a className="navbar-brand" href="#">
-                    <img src={reactLogo} height="30" alt=""/>
+                    <img src={reactLogo} height="30" alt="" />
                     GCC ERP
                 </a>
                 <form className="form-inline">
@@ -49,27 +67,59 @@ function ReportSearch(props: any) {
                     <div className="col-md-12 col-sm-12">
                         <div className="card bg-transparent">
                             <div className="card-header text-center bg-transparent">
-                                <p className="card-text white" style={{fontSize:25}}>Find your report using passport number</p>
+                                <p className="card-text white" style={{ fontSize: 25 }}>Find your report using passport number</p>
                                 <input type="text" className="form-control input-black-placeholder round border-3 border-blue-grey round box-shadow-2 m-auto text-center black"
-                                       id="iconLeft1" style={{maxWidth:500,fontSize:20,height:45}}
-                                       placeholder="Passport Number" onChange={typeHandler}/>
+                                    id="iconLeft1" style={{ maxWidth: 500, fontSize: 20, height: 45 }}
+                                    placeholder="Passport Number" onChange={typeHandler} />
                                 <button type="button" className="btn btn-bg-gradient-x-blue-cyan round border-3 border-white btn-min-width box-shadow-2 my-1" disabled={searching} onClick={searchHandler}>
                                     Find Report
-                                    {searching?<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>:''}
+                                    {searching ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : ''}
                                 </button>
                             </div>
-                            <div className="card-body pt-0 bg-transparent scroll-report" style={{minHeight:'50vh'}}>
+                            <div className="card-body pt-0 bg-transparent scroll-report" style={{ minHeight: '50vh' }}>
                                 {invalid ? <div className="alert alert-light mb-2" role="alert">Report Not Found</div> : ""}
-                                {patient ?<div style={{minWidth:1080}}><PatientReport patients={patient}/></div>  : ""}
+                                {patient ?
+                                    <div style={{ minWidth: 1080 }}><PatientReport patients={patient} />
+
+                                    </div> : ""
+                                }
+                                {under.healthStatus === 'PENDING' ?
+
+                                    <div className="">
+                                        <table className="table-bordered table card mb-4">
+                                            <thead className="white">
+                                                <tr >
+                                                    <td className="black width-10-per text-center"><b>PASSPORT NO.</b></td>
+                                                    <td className="black width-10-per text-center"><b>NAME</b></td>
+                                                    <td className="black width-10-per text-center"><b>STATUS</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="black width-10-per text-center">{under.passportNo}</td>
+                                                    <td className="black width-10-per text-center">{under.fullName}</td>
+                                                    <td className="black width-10-per text-center">{under.currentStatus}</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+
+
+                                        </table>
+                                    </div>
+                                    : ""
+                                }
+
+
                             </div>
-                            <div className={'card-footer bg-transparent text-center mt-5'} style={{border:0}}>
-                                <img src={logo} alt="branding logo" style={{width:'20%'}}/>
+
+                            <div className={'card-footer bg-transparent text-center mt-5'} style={{ border: 0 }}>
+                                <img src={logo} alt="branding logo" style={{ width: '20%' }} />
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <Footer/>
+                <Footer />
             </div>
         </>
 

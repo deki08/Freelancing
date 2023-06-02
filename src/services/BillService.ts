@@ -29,9 +29,18 @@ const findAllByAllColumn = async (data:{pageNumber: number,pageSize:number,text:
     return http.post(API_ROUTES.BILL_ADVANCE_SEARCH,data);
 };
 
-const pay = async (data:{accountId: number,billId: number,amount:number}) => {
+const findAllByAllColumnAct = async (data:{pageNumber: number,pageSize:number,text:string}) => {
+    return http.post(API_ROUTES.ACT_BILL_ADVANCE_SEARCH,data);
+};
+
+const pay = async (data:{accountId: number,billId: number,amount:number,updateEmail:String}) => {
     return http.post(API_ROUTES.BILL_PAYMENT_ADD.replace(':ID',data.billId.toString()),data);
 };
+
+const updateActualBill =async (patient:{}) => {
+    return http.put(API_ROUTES.ACT_BILL_ADVANCE_SEARCH, patient);
+    
+}
 
 const BillService = {
     save,
@@ -42,5 +51,8 @@ const BillService = {
     deleteById,
     findAllByAllColumn,
     pay,
+    findAllByAllColumnAct,
+    updateActualBill,
+    
 }
 export default BillService;

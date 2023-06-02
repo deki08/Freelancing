@@ -13,7 +13,7 @@ function PatientReportContent(props: any) {
   const configuration = AuthService.getConfiguration();
   const [loaded, setLoaded] = useState(false);
   const [patient, setPatient] = useState(props?.patient);
-  console.log(patient);
+ 
   const [report, setReport] = useState(MODEL.REPORT);
   const [refValue, setRefValue] = useState(MODEL.REF_VALUE);
   const pageStyle = `
@@ -23,7 +23,7 @@ function PatientReportContent(props: any) {
       }
       @media print {
         html, body {
-          width: 220mm;
+          width: 200mm;
           height: 297mm;
         }
         body {
@@ -52,7 +52,7 @@ function PatientReportContent(props: any) {
             </div>
             <div className="col-4">
               <ReactToPrint
-                pageStyle={pageStyle}
+               
                 documentTitle={patient.passportNo}
                 content={() => document.getElementById('patient-report-print-content')}
                 trigger={() => <button className="btn btn-info pull-right">Print</button>} />
@@ -162,7 +162,7 @@ function PatientReportContent(props: any) {
                       </td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black">TYPE OF EXAMINATION</td>
+                      <td className="text-left font-weight-bolder font-size black">TYPE OF EXAMINATION</td>
                       <td className="text-center font-weight-bolder font-size black" colSpan={2}>RESULTS</td>
                       <td className="text-center font-weight-bolder font-size black" colSpan={2}>REF. VALUE</td>
                     </tr>
@@ -207,7 +207,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-size black" colSpan={2}>{refValue.earRight}</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-size black font-weight-bolder" colSpan={5}>
+                      <td className="text-left font-size black font-weight-bolder" colSpan={5}>
                         SYSTEMIC EXAM: CARDIO - VASCULAR
                       </td>
                     </tr>
@@ -226,7 +226,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-size black" colSpan={2}>{report?.pulse}</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>
+                      <td className="text-left font-weight-bolder font-size black" colSpan={5}>
                         RESPIRATORY EXAM
                       </td>
                     </tr>
@@ -242,7 +242,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-size black" colSpan={2}>{refValue.gastrointestinalAbdomen}</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>OTHERS</td>
+                      <td className="text-left font-weight-bolder font-size black" colSpan={5}>OTHERS</td>
                     </tr>
                     <tr>
                       <td className="font-size black">HEIGHT (CM)</td>
@@ -293,7 +293,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-size black" colSpan={2}>{refValue.psychiatry}</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>VENEREAL
+                      <td className="text-left font-weight-bolder font-size black" colSpan={5}>VENEREAL
                         DISEASES
                       </td>
                     </tr>
@@ -303,7 +303,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-size black" colSpan={2}>{refValue.symptoms}</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>X-RAY
+                      <td className="text-left font-weight-bolder font-size black" colSpan={5}>X-RAY
                         INVESTIGATION
                       </td>
                     </tr>
@@ -318,7 +318,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-size black" colSpan={2}>{refValue.ecg}</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={5}>DRUG TEST
+                      <td className="text-left font-weight-bolder font-size black" colSpan={5}>DRUG TEST
                       </td>
                     </tr>
                     <tr>
@@ -353,7 +353,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-weight-bolder font-size black">REF. VALUE</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={3}>URINE</td>
+                      <td className="text-left font-weight-bolder font-size black" colSpan={3}>URINE</td>
                     </tr>
                     <tr>
                       <td className="font-size black">SUGAR</td>
@@ -381,7 +381,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-size black">{refValue.others}</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={3}>STOOL R/E (IF
+                      <td className="text-left font-weight-bolder font-size black" colSpan={3}>STOOL R/E (IF
                         REQUIRED)
                       </td>
                     </tr>
@@ -406,7 +406,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-size black">{refValue.culture}</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={3}>BLOOD-CBC &
+                      <td className="text-left font-weight-bolder font-size black" colSpan={3}>BLOOD-CBC &
                         GROUPING
                       </td>
                     </tr>
@@ -436,7 +436,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-size black">{refValue.esr}</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black"
+                      <td className="text-left font-weight-bolder font-size black"
                         colSpan={3}>BLOOD-BIOCHEMISTRY
                       </td>
                     </tr>
@@ -476,7 +476,7 @@ function PatientReportContent(props: any) {
                       <td className="text-center font-size black">{refValue.urea}</td>
                     </tr>
                     <tr>
-                      <td className="text-center font-weight-bolder font-size black" colSpan={3}>BLOOD-ELISA &
+                      <td className="text-left font-weight-bolder font-size black" colSpan={3}>BLOOD-ELISA &
                         SEROLOGY
                       </td>
                     </tr>
@@ -514,7 +514,7 @@ function PatientReportContent(props: any) {
                 <tbody>
                   <tr>
                     <td className="font-size black">
-                      Mentioned above is the medical report for {patient.gender == 'MALE' ? 'Mr' : 'Mrs'}. {patient.fullName}, Who is <span className={"font-weight-bolder"}>{report.status}</span> for the above mentioned job according to the Medical criteria.
+                      Mentioned above is the medical report for <b>{patient.gender == 'MALE' ? 'Mr' : 'Mrs'}. {patient.fullName}</b>, Who is <span className={"font-weight-bolder"}>{report.status}</span> for the above mentioned job according to the Medical criteria.
                     </td>
                     <td className="font-weight-bolder font-size black" style={{ whiteSpace: "pre-line" }}>
                       {report.status != null ? <img src={configuration.reportDoctorSeal} className={'width-100'} /> : ''}
@@ -526,9 +526,6 @@ function PatientReportContent(props: any) {
                   </tr>
                 </tbody>
               </table> : ""}
-
-
-
           </div>
         </div>
       </div>

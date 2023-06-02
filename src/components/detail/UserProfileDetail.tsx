@@ -4,6 +4,7 @@ import moment from "moment";
 import PatientReportContent from "./PatientReportContent";
 import PatientBillsContent from "./PatientBillsContent";
 import FuncUtil from "../../utils/FuncUtil";
+import MedicalExamination from '../../pages/admin/Patient/MedicalExamination';
 
 function UserProfileDetail(props: any) {
     const { patient, ...properties } = props;
@@ -228,6 +229,9 @@ function UserProfileDetail(props: any) {
                                                         <li className="nav-item">
                                                             <a className="nav-link" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false">Patient Bills</a>
                                                         </li>
+                                                        <li className="nav-item">
+                                                            <a className="nav-link" id="base-tab4" data-toggle="tab" aria-controls="tab3" href="#tab4" aria-expanded="false">Malasiya Report</a>
+                                                        </li>
                                                     </ul>
                                                     <div className="tab-content px-1 pt-1">
                                                         <div className="tab-pane box-shadow-2 pb-1" id="tab1" aria-labelledby="base-tab1">
@@ -238,6 +242,10 @@ function UserProfileDetail(props: any) {
                                                         </div>
                                                         <div className="tab-pane box-shadow-2" id="tab3" aria-labelledby="base-tab3">
                                                             <PatientBillsContent patient={patient} />
+                                                        </div>
+                                                        <div className="tab-pane box-shadow-2" id="tab4" aria-labelledby="base-tab3">
+                                                           
+                                                            <MedicalExamination patients={patient} />
                                                         </div>
                                                     </div>
                                                 </div>

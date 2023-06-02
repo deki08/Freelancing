@@ -10,7 +10,7 @@ import ActualBillTable from './ActualBillTable';
 function ActualBill(props: any) {
     const navigate = useNavigate();
     const permission = AuthService.getPermission('PATIENT_BILL');
-    const [data, setDate] = useState([]);
+    const [data, setData] = useState([]);
     const [refresh, doRefresh] = useState(0);
     const [action, setAction] = useState('none');
     const [bill, setBill] = useState<any>({});
@@ -35,31 +35,26 @@ function ActualBill(props: any) {
         doRefresh(1);
     }
 
-console.log(data);
-
-
-
-
-
     const columns: {}[] = [
         { data: "index", name: "SL", sortable: true, class: "text-center px-1" },
-        { data: "regNo", name: "Patient Id", class: "px-2 text-center", sort: true },
-        { data: "patientName", name: "Patient Name", class: "px-1 text-center" },
-        { data: "createdDate", name: "Date", class: "text-center px-1 dateCreated", sort: true },
-        { data: "agentOrAgencyName", name: "Agency / Agent", class: "px-1 text-center", sort: true },
-        { data: "qr", name: "Travelling To", class: "text-center px-1" },
-        { data: "testName", name: "Package Name", class: "text-center px-1", sort: true },
-        { data: "amount", name: "Received", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
-        { data: "new/package amount", name: "Net/Package Amount", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
-        { data: "commission", name: "Commission", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
+        { data: "patientId", name: "Patient Id", class: "px-2 text-center", sort: true },
+        { data: "name", name: "Patient Name", class: "px-1 text-center" },
+        { data: "date", name: "Date", class: "text-center px-1 dateCreated", sort: true },
+        { data: "agency", name: "Agency / Agent", class: "px-1 text-center", sort: true },
+        { data: "travellingTo", name: "Travelling To", class: "text-center px-1" },
+        { data: "packageName", name: "Package Name", class: "text-center px-1", sort: true },
+        { data: "recieved", name: "Received", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
+        { data: "netAmount", name: "Net/Package Amount", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
+        { data: "commision", name: "Commission", class: "text-center px-1", calculateSum: true, currency: true, sort: true },
         { data: "due", name: "Due", class: "px-1 text-center", calculateSum: true, currency: true, sort: true },
         { data: "paid", name: "Paid", class: "px-1 text-center", calculateSum: true, currency: true, sort: true },
         { data: "remarks", name: "Remarks", class: "px-1 text-center", sort: true },
     ];
 
     const handleSearch = (params: any) => {
-        BillService.findAllByAllColumn(params).then(response => {
-            setDate(response.data);
+        BillService.findAllByAllColumnAct(params).then(response => {
+            setData(response.data);
+            // console.log(response.data);
         }).catch(reason => {
             if (reason.code === "ERR_NETWORK") {
                 navigate("/maintenance");
@@ -102,7 +97,7 @@ console.log(data);
                                     <div className="card-content collapse show">
                                         <div className="card-body">
                                             <ActualBillTable columns={columns} data={data} onSearch={handleSearch}
-                                                endpoint={API_ROUTES.BILL_ADVANCE_SEARCH} refresh={refresh}
+                                                endpoint={API_ROUTES.ACT_BILL_ADVANCE_SEARCH} refresh={refresh}
                                                 dateFilter={true}
                                                 actionButtons={true}
                                                 pagesSizes={pageSizes}

@@ -8,6 +8,7 @@ import FuncUtil from "../../utils/FuncUtil";
 import PatientBarcodes from "./PatientBarcodes";
 import { PATIENT } from '../../utils/FormFields';
 import PatientSingleBarcode from './PatientSingleBarCode';
+import MedicalExamination from '../../pages/admin/Patient/MedicalExamination';
 
 function PatientProfileDetail(props: any) {
   const { patient, ...properties } = props;
@@ -235,6 +236,9 @@ function PatientProfileDetail(props: any) {
                               <a className="nav-link" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true">Medical Report</a>
                             </li>
                             <li className="nav-item">
+                              <a className="nav-link" id="base-tab4" data-toggle="tab" aria-controls="tab3" href="#tab8" aria-expanded="false">Malasiya Report</a>
+                            </li>
+                            <li className="nav-item">
                               <a className="nav-link" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false">Biometric Data</a>
                             </li>
                             <li className="nav-item">
@@ -262,6 +266,10 @@ function PatientProfileDetail(props: any) {
                             </div>
                             <div className="tab-pane box-shadow-2" id="tab5" aria-labelledby="base-tab5">
                               <PatientSingleBarcode patient={patient} />
+                            </div>
+                            <div className="tab-pane box-shadow-2" id="tab8" aria-labelledby="base-tab3">
+
+                              <MedicalExamination patients={patient} />
                             </div>
                           </div>
                         </div>

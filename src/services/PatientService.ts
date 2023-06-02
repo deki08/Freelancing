@@ -6,7 +6,7 @@ const save = async (patient: {}) => {
 };
 
 const findById = async (id: any) => {
-    return http.delete(API_ROUTES.PATIENT_GET + id);
+    return http.get(API_ROUTES.PATIENT_GET + id);
 };
 
 const findAll = async () => {
@@ -14,6 +14,7 @@ const findAll = async () => {
 };
 
 const deleteById = async (id: bigint) => {
+    console.log(id);
     return http.delete(`${API_ROUTES.PATIENT_DELETE}${id}`);
 };
 
@@ -51,6 +52,11 @@ const findByPassport = async (passport: string) => {
     return http.get(API_ROUTES.PATIENT_BY_PASSPORT.replace(':passport', passport));
 };
 
+const updateStatus = async (patient: {}) => {
+    return http.post(API_ROUTES.PATIENT_UPDATE_STATUS, patient);
+};
+
+
 const PatientService = {
     save,
     uploadProfileById,
@@ -65,5 +71,6 @@ const PatientService = {
     uploadFinger,
     uploadXrayById,
     findByPassport,
+    updateStatus,
 }
 export default PatientService;

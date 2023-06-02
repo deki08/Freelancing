@@ -3,7 +3,8 @@ import FuncUtil from "../../../utils/FuncUtil";
 import { FORM, MODEL } from "../../../utils/FormFields";
 import FormField from '../../../components/ui/FormField';
 import PatientReportService from "../../../services/PatientReportService";
-import RefValuesService from "../../../services/RefValuesService";
+import ReportedValue from "../../../services/ReportedValue";
+import RefValuesService from '../../../services/RefValuesService';
 
 function ReportedValues(props: any) {
     const { report, onUpdate, onCancel } = props;
@@ -14,59 +15,109 @@ function ReportedValues(props: any) {
     const [refValue, setRefValue] = useState(MODEL.REF_VALUE);
     const [values, setValues] = useState({
         id: null,
+
         patientId: "",
-        eyeVisualAcuityLeft: "",
-        eyeVisualAcuityRight: "",
+
         earLeft: "",
+
         earRight: "",
+
         bloodPressure: "",
+
         heart: "",
+
         lungs: "",
+
         gastrointestinalAbdomen: "",
+
         height: "",
+
         weight: "",
+
         hernia: "",
+
         varicoseVeins: "",
+
         deformities: "",
+
         skin: "",
+
         cns: "",
+
         extremities: "",
+
         psychiatry: "",
+
         symptoms: "",
+
         chestXray: "",
+
         ecg: "",
+
         hiv: "",
+
         hbsag: "",
+
         thc: "",
+
         mop: "",
+
         amp: "",
+
         sugar: "",
+
         albumin: "",
+
         urineBilharziasis: "",
+
         pregnancy: "",
+
         others: "",
+
         helminths: "",
+
         giardia: "",
+
         bilharziasis: "",
+
         culture: "",
+
         stoolBilharziasis: "",
+
         malaria: "",
+
         microfilaria: "",
+
         bloodGroup: "",
+
         haemoglobin: "",
+
         esr: "",
+
         rbs: "",
+
         creatinine: "",
+
         tbil: "",
+
         sgot: "",
+
         sgpt: "",
+
         alp: "",
+
         urea: "",
+
         antiHcv: "",
+
         tpha: "",
+
         vdrl: "",
+
         status: "",
+
         remark: "",
+
         expireDate: "",
         pulse: "",
         distantAidedRight: "",
@@ -78,12 +129,13 @@ function ReportedValues(props: any) {
         nearUnaidedRight: "",
         nearUnaidedLeft: "",
         clearVision: "",
+
     });
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         setIsSaving(true);
-        PatientReportService.save(values).then(response => {
+        ReportedValue.save(values).then(response => {
             setIsSaving(false);
             setIsSaved(true);
             setIsError(false);
@@ -105,6 +157,10 @@ function ReportedValues(props: any) {
     };
 
     const loadRefValues = () => {
+        ReportedValue.find().then(response => {
+            setValues(response.data);
+        });
+
         RefValuesService.find().then(response => {
             setRefValue(response.data);
         })
@@ -113,13 +169,14 @@ function ReportedValues(props: any) {
 
     useEffect(() => {
         setValues(report);
+        console.log(values);
         loadRefValues();
     }, [])
-    console.log(values);
-    
+
+
 
     return (
-        <form  className="form p-5" style={{background:'white'}} onSubmit={handleSubmit}>
+        <form className="form p-5" style={{ background: 'white' }} onSubmit={handleSubmit}>
             {isSaved ? (
                 <div className="alert alert-success mb-1 alert-icon-left" role="alert">
                     <span className="alert-icon"> <i className="ft-thumbs-up"></i> </span>

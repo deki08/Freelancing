@@ -8,13 +8,14 @@ import moment from "moment";
 import ReactToPrint from "react-to-print";
 import AuthService from "../../services/AuthService";
 import FuncUtil from "../../utils/FuncUtil";
+import MalaysiService from '../../services/MalaysiaService';
 
 function MedicalExaminationContent(props: any) {
   const configuration = AuthService.getConfiguration();
   const [loaded, setLoaded] = useState(false);
   const [patient, setPatient] = useState(props.patient);
   const [report, setReport] = useState(MODEL.REPORT);
-  const [refValue, setRefValue] = useState(MODEL.REF_VALUE);
+  const [refValue, setRefValue] = useState(MODEL.MEDICALEXAMINATION);
 
   const pageStyle = `
       @page {
@@ -36,13 +37,13 @@ function MedicalExaminationContent(props: any) {
     PatientService.findById(patient.id).then(response => {
       setPatient(response.data);
       setReport(response.data.report);
+      console.log(patient);
     })
-    RefValuesService.find().then(response => {
+    MalaysiService.findById(patient.id).then(response => {
       setRefValue(response.data);
     })
   }, [])
 
-  console.log(patient);
 
   return (
     <div className="card mb-0">
@@ -50,7 +51,11 @@ function MedicalExaminationContent(props: any) {
         <div className="card-body">
           <div className="row">
             <div className="col-8">
-              <h3 className="font-size mb-2">Medical Examination Form of {patient.fullName}</h3>
+              <h3 className="font-size mb-2">Medical Examination Form of   {patient.fullName}
+
+
+              </h3>
+
             </div>
             <div className="col-4">
               <ReactToPrint
@@ -61,7 +66,11 @@ function MedicalExaminationContent(props: any) {
             </div>
           </div>
           <div className={'printable mx-3 my-2'} id={'patient-medicalExam-report'}>
+
+            {/* <Barcode value={patient.regNo ? patient.regNo : 'NA'} marginTop={10} displayValue={false} width={2} height={50} /> */}
+            {/* <QRCode size={130} className={'qr-image mt-1'} value={patient?.qr ? patient.qr : ''} /> */}
             <div className={'row'}>
+              {/* <Barcode value={patient.regNo ? patient.regNo : 'NA'} marginTop={10} displayValue={false} width={2} height={50} /> */}
               <div className="col-12 text-center">
                 <div className="px-0 row  list-unstyled black">
                   <div className='col-2  py-2 border-right-0 '>
@@ -92,7 +101,7 @@ function MedicalExaminationContent(props: any) {
                 </p>
               </div>
             </div>
-            {/* <table className="table-bordered table report-header">
+            <table className="table-bordered table report-header">
               <tbody>
                 <tr className={'text-center'}>
                   <td className="black width-20-per text-center">
@@ -123,7 +132,7 @@ function MedicalExaminationContent(props: any) {
                   <td className="text-center font-weight-bolder font-size black">QR CODE</td>
                 </tr>
               </tbody>
-            </table> */}
+            </table>
             <h6 className='text-black-deep mt-3 text-bold-700'>Part: I, Personal Information</h6>
             <table className="table-bordered table">
               <tbody>
@@ -185,11 +194,10 @@ function MedicalExaminationContent(props: any) {
               <tbody>
                 <tr>
                   <td className="font-size w-25  black">ASTHMA</td>
-                  <td className="font-size  black"> </td>
-                  <td className="font-size  black"> </td>
+                  <td className="font-size  black">{refValue?.asthama} </td>
+
                   <td className="font-size w-25 black">EPILEPSY /FITS</td>
-                  <td className="font-size  black"> </td>
-                  <td className="font-size  black"> </td>
+                  <td className="font-size  black"> {refValue?.epilepsy}</td>
                 </tr>
               </tbody>
             </table>
@@ -200,8 +208,9 @@ function MedicalExaminationContent(props: any) {
             <table className="table-bordered table">
               <tbody>
                 <tr>
-                  <td rowSpan={5} className="font-size black">If yes remarks:
+                  <td colSpan={1} className="font-size black">If yes remarks:
                   </td>
+                  <td className="font-size  w-50 black">{refValue?.remark}</td>
                 </tr>
               </tbody>
             </table>
@@ -213,11 +222,11 @@ function MedicalExaminationContent(props: any) {
               <tbody>
                 <tr>
                   <td className="font-size w-25 black">Diabetes</td>
-                  <td className="font-size black"> </td>
-                  <td className="font-size black"> </td>
+                  <td className="font-size black"> {refValue?.diabetes}</td>
+
                   <td className="font-size w-25 black">Blood Pressure</td>
-                  <td className="font-size black"> </td>
-                  <td className="font-size black"> </td>
+                  <td className="font-size black">{refValue?.bloodPressure} </td>
+
                 </tr>
               </tbody>
             </table>
@@ -229,7 +238,7 @@ function MedicalExaminationContent(props: any) {
             <table className="table-bordered table">
               <tbody>
                 <tr>
-                  <td className="font-size black"> &nbsp; </td>
+                  <td className="font-size black"> {refValue?.familyHistory} </td>
                 </tr>
               </tbody>
             </table>
@@ -266,13 +275,6 @@ function MedicalExaminationContent(props: any) {
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-
             {/* part: 2 */}
             <div className='mt-5 pt-5'>
               <h6 className='text-black-deep '> <strong className='font-weight-bolder'>Part: II, Medical History</strong> (to be filled by the attending doctor)
@@ -299,55 +301,56 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     HIV/ AIDS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.hiv}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black">                   HYPERTENSION
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.hypertension}</td>
                   <td className="font-size black"></td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     TUBERCULOSIS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.tuberclosis}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black">                   HEART DISEASES
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.heartDisease}</td>
                   <td className="font-size black"></td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     LEPROSY
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.leporsy
+                  }</td>
                   <td className="font-size black"></td>
                   <td className="font-size black">                   BRONCHIAL ASTHMA
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.bronchialAsthama}</td>
                   <td className="font-size black"></td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     VIRAL HEPATITIS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.viralHeptites}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black">                   DIABETES MELLITUS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.diabetesMellitus}</td>
                   <td className="font-size black"></td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     PSYCHIATRIC ILLNESS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.psychitricIllness}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black">                   PEPTIC ULCER
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.pepticUlcer}</td>
                   <td className="font-size black"></td>
                 </tr>
                 <tr>
@@ -358,25 +361,25 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black"></td>
                   <td className="font-size black">                   KIDNEY DISEASES
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.kidneyDeasese}</td>
                   <td className="font-size black"></td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     CANCER
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.cancer}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black">                   OTHERS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.others}</td>
                   <td className="font-size black"></td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     SEXTUALLY TRANSMITED <br /> DISEASES
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.sexTransDisease}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black">
                   </td>
@@ -387,7 +390,7 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     MALARIA
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.malaria}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black">
                   </td>
@@ -421,9 +424,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>HEIGHT</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.height}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>DEFOMITIES OF LIMBS</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.deformities}</th>
 
                 </tr>
               </thead>
@@ -432,64 +435,64 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     WEIGHT
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.weight}</td>
                   <td className="font-size black">                   ANAEMIA
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.anemia}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     PULSE
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.pulse}</td>
                   <td className="font-size black">                   JAUNDICE
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.jaudice}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     BLOOD PRESSURE   A - SYSTOLIC
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.bp}</td>
                   <td className="font-size black">                   LYMPH NODE ENLARGEMENT
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.lne}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     B - DIASTOLIC
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.bd}</td>
                   <td className="font-size black">                   Vision test A – Unaided
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.vAUnaided}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     LAST MENSTRUAL PERIOD DATE
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.lmp}</td>
                   <td className="font-size black">                   B – Aided
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.bAided}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     CHRONIC SKIN RASH
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.chronicSkinRash}</td>
                   <td className="font-size black">                   HEARING
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.hearing}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     ANAESTHETIC SKIN PATCH
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.anSkinPatch}</td>
                   <td className="font-size black">                   OTHERS (if abnormal, describe under comment)
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.otherIfabNormalCOndition}</td>
                 </tr>
                 <tr>
                   <td className="font-size text-bold-600 black">
@@ -512,9 +515,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HEART SIZE</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.heartSize}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HEART SOUND</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.heartSound}</th>
 
                 </tr>
               </thead>
@@ -527,9 +530,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. BREATH SOUNDS</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.breathSound}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. OTHER RINDINGS </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.otherRindings}</th>
 
                 </tr>
               </thead>
@@ -541,9 +544,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. LIVER</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.liver}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. SPLEEN </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.spleen}</th>
                 </tr>
               </thead>
             </table>
@@ -557,9 +560,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. STATUS</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.mentalStatus}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. SPEECH  </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.mentalSpeech}</th>
                 </tr>
               </thead>
               <tbody>
@@ -567,7 +570,7 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. MOTOR POWER
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.mentalMotorPower}</td>
                   <td className="font-size black">
                     D. SENSORY
                   </td>
@@ -577,7 +580,7 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     E. REFLESES
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.mentalRefleses}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -591,9 +594,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. KIDNEY</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.genitourinaryKidney}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. DISCHARGE </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.genitourinaryDischarge}</th>
                 </tr>
               </thead>
               <tbody>
@@ -601,7 +604,7 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. SORES/ ULCER
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.genitourinarySoresOrUlcer}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -616,9 +619,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. SPECIMEN RECEIVED DATE</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.laboratoryReceivedDate}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. DATE OF LAB REPORT </th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.laboratoryReportDateOfLab}</th>
                 </tr>
               </thead>
             </table>
@@ -631,7 +634,7 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>BLOOD Group</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.bloodGroup}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
                 </tr>
@@ -645,9 +648,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HIV ANTIBODY</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.serologyHivAntibody}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HB<small>s</small>AG</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.serologyHbsAG}</th>
                 </tr>
               </thead>
               <tbody>
@@ -655,15 +658,15 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. VDRL
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.serologyVdrl}</td>
                   <td className="font-size black">D. MALARIA PARASITE</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.serologyMalariaParasite}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     E. F.B.S.
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.serologyFBS}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -678,9 +681,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. OPIATES</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.urineOpiates}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. CANNABINOIDS</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.cannabinoids}</th>
                 </tr>
               </thead>
               <tbody>
@@ -688,7 +691,7 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. URINE HCG
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.urineHcg}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -704,9 +707,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>SPECIFIC GRAVITY</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.femaleSpecificGravity}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>COLOUR</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.femaleUrineColor}</th>
                 </tr>
               </thead>
               <tbody>
@@ -714,54 +717,54 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     PH
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleUrinePh}</td>
                   <td className="font-size black">LEUCOCYTES</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleUrineLeucocytes}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     GLUCOSE
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleGlucose}</td>
                   <td className="font-size black">PROTEIN</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleProtein}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     BLOOD
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleBlood}</td>
                   <td className="font-size black">MICROSCOPY</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleMicroscopy}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     RED BLOOD CELL
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleRedBloodCell}</td>
                   <td className="font-size black">WHITE BLOOD CELL</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleWhiteBloodCell}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     EPITHELIAL CELL</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleEpithelialCell}</td>
                   <td className="font-size black">CASTS</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleCasts}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     CRYSTAL
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleCrystal}</td>
                   <td className="font-size black">BACTERIA</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.femaleBacteria}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     OTHERS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.otherRindings}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -778,9 +781,10 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>DATE OF X-RAY TAKEN</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.dateOfXrayTaken}
+                  </th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>DATE OF X-RAY REPORTED</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.dateOfXrayReported}</th>
                 </tr>
               </thead>
             </table>
@@ -792,9 +796,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HEART SHAPE</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.reportOfHeartShape}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. HEART SIZE</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.reportOfHeartSize}</th>
                 </tr>
               </thead>
               <tbody>
@@ -802,23 +806,23 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. LUNG FIELDS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.reportOfLungFields}</td>
                   <td className="font-size black">D. MEDIASTINUM & HILA</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.reportOfMediastinum}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     E. PLEURAL / HEMIDIAPHRAGMS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.reportOfPleuralHemidiaphragms}</td>
                   <td className="font-size black">F. COSTO-PHRENIC ANGLES</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.reportOfCostoPhrenic}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     G. TORACIC CASE
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.reportOfToracicCase}</td>
                   <td className="font-size black"></td>
                   <td className="font-size black"></td>
                 </tr>
@@ -834,9 +838,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. FOCAL LESION</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.findingsOfFocalLesion}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. OTHER ABNORMALITIES</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.findingsOfAbnormalities}</th>
                 </tr>
               </thead>
             </table>
@@ -853,9 +857,9 @@ function MedicalExaminationContent(props: any) {
               <thead style={{ textAlign: 'left' }}>
                 <tr>
                   <th className="font-size black border border-black py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>A. HIV /AIDS</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.statusOfHivOrAids}</th>
                   <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>B. TB</th>
-                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                  <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.statusOfTB}</th>
                 </tr>
               </thead>
               <tbody>
@@ -863,41 +867,41 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">
                     C. MALARIA
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.statusOfMalaria}</td>
                   <td className="font-size black">D. HEPATITIS</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.statusOfHepatitis}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     E. STD
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.statusOfSTD}</td>
                   <td className="font-size black">F. EPILEPSY</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.statusOfEpilepsy}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     G. CANCER
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.statusOfCancer}</td>
                   <td className="font-size black">H. DRUGS</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.statusOfDrugs}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     I. LEPROSY
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.statusOfLeprosy}</td>
                   <td className="font-size black">J. PREGNANCY</td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.statusOfPregnancy}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
                     K. PSYCHIATRIC ILLENESS
                   </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.statusOfPsychiatricIll}</td>
                   <td className="font-size black">L. OTHERS </td>
-                  <td className="font-size black"></td>
+                  <td className="font-size black">{refValue?.otherRindings}</td>
                 </tr>
               </tbody>
             </table>
@@ -917,8 +921,9 @@ function MedicalExaminationContent(props: any) {
                     </td>
                   </tr>
                   <tr>
-                    <td className="font-size black">REMARK : {patient.remark}</td>
-                    <td className="font-size black">FINAL CHECKED BY : {patient.lastModifiedBy}</td>
+
+                    <td className="font-size black">REMARK : {refValue.remark}</td>
+                    <td className="font-size black">FINAL CHECKED BY : {refValue.modifiedDate}</td>
                   </tr>
                 </tbody>
               </table> :
@@ -945,9 +950,9 @@ function MedicalExaminationContent(props: any) {
                   <thead style={{ textAlign: 'left' }}>
                     <tr>
                       <th className="font-size black border border-black border-top-0 py-0 " style={{ width: '15%', paddingLeft: '5px', fontWeight: "normal" }}>Dr. Name</th>
-                      <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}></th>
+                      <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue.nameOfDoctor}</th>
                       <th className="font-size black border border-black py-0" style={{ width: '15%', paddingLeft: '5px', fontWeight: "normal" }}>Date</th>
-                      <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                      <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue.date}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -955,9 +960,9 @@ function MedicalExaminationContent(props: any) {
                       <td className="font-size black">
                         Qualification
                       </td>
-                      <td className="font-size black"></td>
+                      <td className="font-size black">{refValue.qualification}</td>
                       <td className="font-size black">Hospital Address</td>
-                      <td className="font-size black"></td>
+                      <td className="font-size black">{refValue.hospitaladdress}</td>
                     </tr>
                   </tbody>
                 </table>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import http from "../../../config/httpConfig";
 import moment from "moment";
 import FileUtil from "../../../utils/CsvUtil";
@@ -10,6 +10,9 @@ import formatDateTime from '../../../model/formatDateTime';
 import { data, input } from '@tensorflow/tfjs-node';
 import FormField from '../../../components/ui/FormField';
 import { FORM } from '../../../utils/FormFields';
+import { render } from '@testing-library/react';
+import BillService from '../../../services/BillService';
+import NewForm from '../../../components/ui/NewFormSelect';
 
 
 
@@ -29,7 +32,7 @@ function ActualBillTable(props: any) {
   const [filteredData, setFilteredData] = useState([]);
   const [dataUpdated, setDataUpdated] = useState({});
 
-  console.log(filteredData);
+  // console.log(filteredData);
 
 
   let [page, setPage] = useState({
@@ -121,6 +124,8 @@ function ActualBillTable(props: any) {
     page.pageNumber = 0;
     loadData();
   }
+  
+
   const typeHandler = (e: any) => {
     page.text = e.target.value;
     page.pageNumber = 0;
@@ -134,6 +139,7 @@ function ActualBillTable(props: any) {
       updatePagination(response.data);
       setIsLoading(false);
       setIsFailed(false);
+
     }).catch(reason => {
       setIsFailed(true);
       setMessage(reason.code);
@@ -211,6 +217,16 @@ function ActualBillTable(props: any) {
     return number;
   }
 
+  const Editabble = (field: string) => {
+    let number = "check";
+    filteredData.map((record: any) => {
+      number += record[field];
+      return record;
+    });
+    return number;
+  }
+
+
   const handleSort = (column: string) => {
     if (page.column === column) {
       page.sort = page.sort === 'ASC' ? 'DESC' : 'ASC';
@@ -261,27 +277,22 @@ function ActualBillTable(props: any) {
     const patientData = {
       patientId: props?.record?.id,
       valueType: props?.data,
-      updatedMoney: props?.e?.target?.value,
+      updateMoney: props?.e?.target?.value,
     }
-    setDataUpdated(patientData)
+    BillService.updateActualBill(patientData);
+    loadData();
   }
   const onChange = (e: any) => {
-    FuncUtil.validate(e)
-    setValues({ ...values, [e.target.name]: e.target.value });
-    if (e.target.name == 'dateOfBirth') {
-      let date = e.target.value;
-      let diff = moment(moment()).diff(date, 'milliseconds');
-      let duration = moment.duration(diff);
-      document.getElementsByName('age').forEach((element: any, key) => {
-        element.value = '' + duration.get("years");
-      })
-    }
-  };
 
+    // FuncUtil.validate(e)
+    setValues({ ...values, [e.target.name]: e.target.value });
+    console.log(values);
+
+  };
 
   // update value save 
   const updateValues = () => {
-    console.log(dataUpdated);
+    // console.log(dataUpdated);
   }
 
   return (
@@ -310,7 +321,8 @@ function ActualBillTable(props: any) {
           <div className='  w-auto '>
             <div className="d-flex  justify-content-end align-items-center">
               {FORM.ACTUAL_BILL_SEARCH.map((input) => (
-                <FormField key={Math.random()}  {...input} onChange={onChange} />
+                <NewForm key={Math.random()}  {...input} onChange={typeHandler}
+                />
               ))}
               <div>
                 <button type="button" className="btn mt-1 btn-sm btn-outline-purple mr-1 py-1 px-2 box-shadow-1"
@@ -353,7 +365,11 @@ function ActualBillTable(props: any) {
       </div>
       <div className={"col-md-12  w-100 pr-0"}>
         <div className={`table-container  ${filteredData?.length && 'responsiveTable'} `}>
-          <table className={`table table-sm  table-hover table-striped table-bordered sourced-data`} id={"datatable"}>
+          <table className={`table table-sm   table-hover table-striped table-bordered sourced-data`}
+
+
+            id={"datatable"}>
+
             <thead className="bg-primary white">
               <tr>
                 {columns.map((column: any, index: number) => (
@@ -367,24 +383,69 @@ function ActualBillTable(props: any) {
             </thead>
             <tbody>
               {filteredData.map((record: any, index) => (
-                <tr key={index}>
+                <tr key={index} id='row-hover'>
+
                   {columns.map((column: any, cellNumber: number) => (
-                    column["render"] ? <td className={column.class}>{column.render(record)}</td> :
-                      <td key={Math.random()} className={column.class}>
+
+                    column["render"] ?
+
+                      <td className={column.class}>{column.render(record)}
+                      </td> :
+                      <td key={Math.random()} className={column.class} >
                         {
                           column.data === 'index' ?
-                            index + 1 : (column.currency ? (
-                              <>
-                                <span className=''>BDT</span>
-                                <input
-                                  onChange={(e) => getValues({ e, record, data: column.data })}
-                                  style={{ marginLeft: "4px" }}
-                                  className='border-0 pl-1' defaultValue={FuncUtil.toCurrencyRate(record[column.data], "BDT")} type="text" />
+                            index + 1 : (column.currency ?
+                              (
+                                <>
+                                  <span className=''>BDT</span>
+                                  <input
+                                    onInput={(e) => {
+                                      clearTimeout(record[column.data].timer)
+                                      const timer = setTimeout(() => getValues({ e, record, data: column.data }), 5000);
 
-                              </>
+                                    }}
+                                    style={{ marginLeft: "4px" }}
+                                    className='border-0 pl-1' defaultValue={FuncUtil.toCurrencyRate(record[column.data], "BDT")} type="text" />
+                                </>
+                              )
+                              : (column.data === 'date' ?
+                                <input style={{ marginLeft: "4px" }}
+                                  className='border-0 pl-1'
+                                  onInput={(e) => {
+                                    clearTimeout(record[column.data].timer)
+                                    const timer = setTimeout(() => getValues({ e, record, data: column.data }), 5000);
+
+                                  }}
+                                  defaultValue={formatDateTime(record.date)}
+                                />
+                                :
+                                (column.data === 'patientId' ? (record[column.data]) :
+                                  (
+                                    // <input style={{ marginLeft: "4px" }}
+                                    //   onInput={(e) => {
+                                    //     clearTimeout(record[column.data].timer)
+                                    //     const timer = setTimeout(() => getValues({ e, record, data: column.data }), 5000);
+                                    //   }}
+                                    //   defaultValue={record[column.data]}
+                                    //   className='border-0 pl-1'
+                                    // />
+
+                                    <input
+                                      onInput={(e) => {
+                                        if (record[column.data] && record[column.data].timer) {
+                                          clearTimeout(record[column.data].timer);
+                                        }
+                                        const timer = setTimeout(() => getValues({ e, record, data: column.data }), 4000);
+                                      }}
+                                      defaultValue={record[column.data]}
+                                      className='border-0 pl-1'
+                                      style={{ marginLeft: "4px" }}
+                                    />
+                                  )
+                                )
+                              )
                             )
-                              : (column.data === 'createdDate' ? formatDateTime(record.createdDate) :
-                                record[column.data]))
+
                         }
 
                       </td>

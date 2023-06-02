@@ -17,6 +17,7 @@ function RefValuesForm(props: any) {
         e.preventDefault();
         RefValuesService.save(values).then(response => {
             setValues(response.data);
+            
             setIsSaved(true);
             setIsError(false);
             setMessage("Reference Value Successfully Saved!");

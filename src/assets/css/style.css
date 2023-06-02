@@ -1,6 +1,8 @@
-.input-black-placeholder::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.input-black-placeholder::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: black;
-    opacity: 1; /* Firefox */
+    opacity: 1;
+    /* Firefox */
 }
 
 .status {
@@ -43,16 +45,19 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
 .scroll-70 {
     max-height: 70vh;
     overflow-y: auto;
     overflow-x: hidden;
 }
+
 .scroll-65 {
     max-height: 65vh;
     overflow-y: auto;
     overflow-x: hidden;
 }
+
 .scroll-60 {
     max-height: 60vh;
     overflow-y: auto;
@@ -62,6 +67,7 @@
 .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
 }
+
 .custom-file-input::before {
     content: 'Select some files';
     display: inline-block;
@@ -77,44 +83,55 @@
     font-weight: 700;
     font-size: 10pt;
 }
+
 .custom-file-input:hover::before {
     border-color: black;
 }
+
 .custom-file-input:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
+
 .medical-table {
     width: 100%;
 }
-.medical-table td, .medical-table th {
+
+.medical-table td,
+.medical-table th {
     border: 1px solid #000000;
-    padding:10px;
+    padding: 10px;
 }
-.width-1-per{
-    width:1%;
+
+.width-1-per {
+    width: 1%;
 }
-.width-2-per{
-    width:2%;
+
+.width-2-per {
+    width: 2%;
 }
-.width-3-per{
-    width:3%;
+
+.width-3-per {
+    width: 3%;
 }
-.width-4-per{
-    width:4%;
+
+.width-4-per {
+    width: 4%;
 }
-.bg-bee-pattern-blue{
+
+.bg-bee-pattern-blue {
     background-image: url("/src/assets/images/backgrounds/medical-healthcare-blue-color.webp");
     min-height: 94vh;
 }
-.bg-search-report-background{
+
+.bg-search-report-background {
     background-image: url("/src/assets/images/backgrounds/GCC-ERP-by-Multipixel-Technology.jpg");
     min-height: 94vh;
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-position:center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
-.btn-xss{
+.btn-xss {
     max-height: 23px;
     min-width: 53px;
     font-size: 12px;
@@ -128,25 +145,33 @@
     overflow-y: unset;
     max-height: 100000px;
 }
+
 .table-container .table {
     border-collapse: collapse;
 }
+
 .table-container thead {
     position: sticky;
     top: 0;
 }
+
 .table-container tfoot {
     background-color: #f2f2f2;
     position: sticky;
     bottom: 0;
 }
-.table-container th, td {
+
+.table-container th,
+td {
     padding: 2px 2px;
     text-align: left;
 }
-.invoice-template,.invoice {
+
+.invoice-template,
+.invoice {
     color: black;
 }
+
 .invoice tr td {
     border: 0;
     padding-top: 2px;
@@ -157,96 +182,125 @@
     border: 0;
     color: black;
 }
+
 .bill-footer tr td {
     border: 0;
     text-align: center;
 }
-.nav-link{
+
+.nav-link {
     font-family: Arial, serif;
     font-weight: bold;
 }
-.datatable-download table{
+
+.datatable-download table {
     width: 100%;
     margin: 5px;
     display: none;
     font-size: 9px;
 }
-.datatable-download table tbody tr td{
+
+.datatable-download table tbody tr td {
     padding: 1px 5px;
     border: 1px solid black;
     border-collapse: collapse;
 }
-.datatable-download table thead tr th{
+
+.datatable-download table thead tr th {
     border: 1px solid black;
     border-collapse: collapse;
 }
-.scroll-report{
+
+.scroll-report {
     overflow: auto;
     width: 100%;
 }
-#patient-report-print-content table tbody tr td{
+
+#patient-report-print-content table tbody tr td {
     padding: 0px 5px;
     border: 1px solid black;
     border-collapse: collapse;
 }
 
-#patient-report-print-content thead tbody tr td{
+#patient-report-print-content thead tbody tr td {
     padding: 1px 5px;
     border: 1px solid black;
     border-collapse: collapse;
 }
 
 @media print {
+
+    html,
+    body {
+        width: 200mm;
+        height: 200mm;
+    }
+
     @page {
         size: A4;
     }
-    .printable{
+
+    .printable {
         margin: 2px;
     }
-    .printable table{
+
+    .printable table {
         width: 99%;
         margin: 5px 5px;
         font-size: 14px;
     }
-    .printable table tr td{
+
+    .printable table tr td {
         padding: 0 5px;
     }
-    .report-header table tr td{
+
+    .report-header table tr td {
         width: 20%;
         border: 0;
         padding: 2px 5px;
     }
 
-    .datatable-download table{
+    .datatable-download table {
         width: 100%;
         margin: 5px;
         display: block;
         font-size: 9px;
     }
-    .datatable-download table tr td{
+
+    .datatable-download table tr td {
         padding: 0px 5px;
         border: 1px solid black;
         border-collapse: collapse;
     }
-    .datatable-download table tr th{
+
+    .datatable-download table tr th {
         border: 1px solid black;
         border-collapse: collapse;
     }
 
-    .invoice-template,.invoice {
+    .invoice-template,
+    .invoice {
         color: black;
     }
+
     .invoice tr td {
         border: 0;
         padding-top: 2px;
         padding-bottom: 2px;
     }
+
     .bill-total tr td {
         border: 0;
         color: black;
     }
+
     .bill-footer tr td {
         border: 0;
         text-align: center;
     }
+}
+
+#row-hover:hover {
+    transition: 1s;
+    background: rgb(77, 156, 246) !important;
 }

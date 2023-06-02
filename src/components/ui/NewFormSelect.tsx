@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import http from "../../config/httpConfig";
 
-function FormSelect(props: any) {
+function NewForm(props: any) {
     let [focused, setFocused] = useState(false);
     let [isLoaded, setIsLoaded] = useState(false);
     let { label, errorMessage, onChange, column, id, ajax, mapping, values, disableFirstOption, ...inputProps } = props;
@@ -43,7 +43,7 @@ function FormSelect(props: any) {
             </div>
             <select {...inputProps} onChange={onChange} onInput={handleFocus} focused={focused}>
                 {options?.map((option: { text: any, value: any }) => (
-                    <option value={option.value} defaultChecked={inputProps.defaultValue ? (inputProps.defaultValue == option.value ? true : false) : false}>{option.text}</option>
+                    <option value={option.text} defaultChecked={inputProps.defaultValue ? (inputProps.defaultValue == option.value ? true : false) : false}>{option.text}</option>
                 ))}
             </select>
             <div className="invalid-feedback">{inputProps.errorMessage}</div>
@@ -51,4 +51,4 @@ function FormSelect(props: any) {
     );
 }
 
-export default FormSelect;
+export default NewForm;

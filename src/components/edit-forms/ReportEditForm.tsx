@@ -161,31 +161,31 @@ function ReportEditForm(props:any) {
                             <tr>
                                 <td className="font-size black">DISTANT</td>
                                 <td className="text-center font-size black">
-                                    <input type="text" className="form-control" name="distantUnaidedRight" onChange={onChange} defaultValue={report?.distantUnaidedRight}/>
+                                    <input type="text" className="form-control" name="distantUnaidedRight" onChange={onChange} defaultValue={values?.distantUnaidedRight}/>
                                 </td>
                                 <td className="text-center font-size black">
-                                    <input type="text" className="form-control" name="distantUnaidedLeft" onChange={onChange} defaultValue={report?.distantUnaidedLeft}/>
+                                    <input type="text" className="form-control" name="distantUnaidedLeft" onChange={onChange} defaultValue={values?.distantUnaidedLeft}/>
                                 </td>
                                 <td className="text-center font-size black">
-                                    <input type="text" className="form-control" name="distantAidedRight" onChange={onChange} defaultValue={report?.distantAidedRight}/>
+                                    <input type="text" className="form-control" name="distantAidedRight" onChange={onChange} defaultValue={values?.distantAidedRight}/>
                                 </td>
                                 <td className="text-center font-size black">
-                                    <input type="text" className="form-control" name="distantAidedLeft" onChange={onChange} defaultValue={report?.distantAidedLeft}/>
+                                    <input type="text" className="form-control" name="distantAidedLeft" onChange={onChange} defaultValue={values?.distantAidedLeft}/>
                                 </td>
                             </tr>
                             <tr>
                                 <td className="font-size black">NEAR</td>
                                 <td className="text-center font-size black">
-                                    <input type="text" className="form-control" name="nearUnaidedRight" onChange={onChange} defaultValue={report?.nearUnaidedRight}/>
+                                    <input type="text" className="form-control" name="nearUnaidedRight" onChange={onChange} defaultValue={values?.nearUnaidedRight}/>
                                 </td>
                                 <td className="text-center font-size black">
-                                    <input type="text" className="form-control" name="nearUnaidedLeft" onChange={onChange} defaultValue={report?.nearUnaidedLeft}/>
+                                    <input type="text" className="form-control" name="nearUnaidedLeft" onChange={onChange} defaultValue={values?.nearUnaidedLeft}/>
                                 </td>
                                 <td className="text-center font-size black">
-                                    <input type="text" className="form-control" name="nearAidedRight" onChange={onChange} defaultValue={report?.nearAidedRight}/>
+                                    <input type="text" className="form-control" name="nearAidedRight" onChange={onChange} defaultValue={refValue?.nearAidedRight}/>
                                 </td>
                                 <td className="text-center font-size black">
-                                    <input type="text" className="form-control" name="nearAidedLeft" onChange={onChange} defaultValue={report?.nearAidedLeft}/>
+                                    <input type="text" className="form-control" name="nearAidedLeft" onChange={onChange} defaultValue={refValue?.nearAidedLeft}/>
                                 </td>
                             </tr>
                             <tr>

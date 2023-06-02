@@ -23,6 +23,7 @@ function PatientForm() {
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const [isScannerOpen, setIsScannerOpen] = useState(false);
     const [payNow, setPayNow] = useState(true);
+    console.log(localStorage.getItem("Name"));
     const [values, setValues] = useState({
         id: null,
         photo: "",
@@ -55,6 +56,7 @@ function PatientForm() {
         specialNote: "",
         fingerId: 0,
         payNow: true,
+        addedby: localStorage.getItem("Name"),
     });
 
     const handleSubmit = (e: any) => {

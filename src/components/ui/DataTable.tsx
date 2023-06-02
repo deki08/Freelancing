@@ -6,6 +6,7 @@ import CsvUtil from "../../utils/CsvUtil";
 import PdfUtil from "../../utils/PdfUtil";
 import FuncUtil from "../../utils/FuncUtil";
 import { useReactToPrint } from "react-to-print";
+import PatientService from '../../services/PatientService';
 
 
 interface Page {
@@ -134,6 +135,20 @@ function DataTable(props: any) {
             loadData();
         }
     }
+    const getValues = (props: any) => {
+        const patientData = {
+          patientId: props?.record?.id,
+          status: props?.e?.target?.value,
+
+        }
+        PatientService.updateStatus(patientData) .then(resp => {
+            console.log(resp);
+          })
+        reload();
+    }
+
+
+
     const next = (e: any) => {
         e.preventDefault();
         if (page.pageNumber < (page.total / page.pageSize - 3)) {
@@ -279,7 +294,32 @@ function DataTable(props: any) {
                                         column["render"] ? <td className={column.class}>{column.render(record)}</td> :
                                             <td key={'rec-' + record.id + '-' + cellNumber} className={column.class}>
                                                 {
-                                                    column.data === 'index' ? index + 1 : (column.currency ? FuncUtil.toCurrency(record[column.data], "BDT") : record[column.data])
+                                                    column.data === 'index' ? index + 1 : (column.currency ? FuncUtil.toCurrency(record[column.data], "BDT") :
+
+                                                        (column.data === 'currentStatus' ?
+
+                                                            (<>
+                                                                <input type="text"
+                                                                    style={{
+                                                                        marginLeft: "4px",
+                                                                        // display: 'flex',
+                                                                        padding: '10px 10px'
+                                                                    }}
+                                                                    
+                                                                    className='border-0  pl-'
+                                                                    onInput={(e) => {
+                                                                        clearTimeout(record[column.data].timer)
+                                                                        const timer = setTimeout(() => getValues({ e, record,name :column.data }), 5000);
+                                                                    
+                                                                    }}
+                                                                    defaultValue={record.currentStatus}
+                                                                />
+                                                                
+                                                            </>
+
+                                                            ) : record[column.data]
+                                                        )
+                                                    )
                                                 }
                                             </td>
                                     ))}

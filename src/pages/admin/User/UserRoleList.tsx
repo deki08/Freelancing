@@ -11,6 +11,7 @@ function UserRoleList(props: any) {
   const permission = AuthService.getPermission('ROLE');
   const [roles, setRoles] = useState([]);
   const [selected, setSelected] = useState({
+    id: '',
     name: '',
     description: '',
     privileges: []
@@ -52,7 +53,7 @@ function UserRoleList(props: any) {
       field: e.target.dataset.field,
       value: e.target.checked,
     }
-    console.log(record);
+    // console.log(record);
     RoleService.updatePermission(record).then(response => {
       loadRole(response.data.roleId)
       toast.success(response.data.permission + '-' + record.field + ' Updated!', {
@@ -64,7 +65,7 @@ function UserRoleList(props: any) {
         theme: "light",
       });
     }).catch(reason => {
-      console.log(record);
+      // console.log(record);
     })
   }
 
@@ -74,8 +75,9 @@ function UserRoleList(props: any) {
   }
   // select all functions
   const checkAllListHandler = (e: any) => {
+
     let record = {
-      id: selected?.name,
+      id: selected?.id,
       field: e.target.id,
       value: e.target.checked,
     }
@@ -83,14 +85,14 @@ function UserRoleList(props: any) {
 
 
     const result = selected?.privileges?.map(({ id }) => ({ field: record?.field, value: record?.value }));
-    console.log(result);
-    console.log(selected);
+    // console.log(result);
+    // console.log(selected);
 
     const hasListTrue = selected?.privileges?.some((obj: MyObject) => obj.list === true);
 
-    console.log(hasListTrue);
+    // console.log(hasListTrue);
 
-    axios.put('https://perfect.gccerp.org/api/v1/role-permission-bulk', {
+    axios.put('https://apiperfect.gccerp.org/api/v1/role-permission-bulk', {
       data: record
     })
       .then(response => {

@@ -1,4 +1,6 @@
-export const BASE_URL = 'https://apialhamad.gccerp.org'
+// export const BASE_URL = 'https://apialhamad.gccerp.org'
+export const BASE_URL = 'https://apiperfect.gccerp.org'
+// export const BASE_URL = 'http://localhost:8080'
 export const API_ROUTES = {
     SIGN_UP: `${BASE_URL}/api/v1/auth/signup`,
     SIGN_IN: `${BASE_URL}/api/v1/auth/signin`,
@@ -120,6 +122,7 @@ export const API_ROUTES = {
     PATIENT_UPLOAD_FINGER_BY_ID: `${BASE_URL}/api/v1/patient/:id/finger`,
     PATIENT_UPLOAD_XRAY_BY_ID: `${BASE_URL}/api/v1/patient/:id/xray`,
     PATIENT_BY_PASSPORT: `${BASE_URL}/api/v1/patient/:passport/passport`,
+    PATIENT_UPDATE_STATUS: `${BASE_URL}/api/v1/update/status`,
 
     // Role Endpoints
     ROLE_POST: `${BASE_URL}/api/v1/role`,
@@ -133,6 +136,20 @@ export const API_ROUTES = {
     REF_VALUES_POST: `${BASE_URL}/api/v1/ref-value`,
     REF_VALUES_ALL: `${BASE_URL}/api/v1/ref-value`,
     REF_VALUES_GET: `${BASE_URL}/api/v1/ref-value`,
+
+    // Malaysia Values Endpoints
+    MAL_VALUES_POST: `${BASE_URL}/api/v1/mal-value`,
+    MAL_VALUES_ALL: `${BASE_URL}/api/v1/mal-value`,
+    MAL_VALUES_GET: `${BASE_URL}/api/v1/mal-value`,
+    MAL_VALUES_GET_BY_ID: `${BASE_URL}/api/v1/malrep-value?id=`,
+    MAL_VALUES_Uppdate: `${BASE_URL}/api/v1/malrep-value`,
+
+
+ // Malaysia Values Endpoints
+ REPO_VALUES_POST: `${BASE_URL}/api/v1/report-value`,
+ REPO_VALUES_GET: `${BASE_URL}/api/v1/report-value`,
+ 
+
 
     // Business Settings Endpoints
     BUSINESS_POST: `${BASE_URL}/api/v1/configuration/business`,
@@ -168,6 +185,7 @@ export const API_ROUTES = {
     PATIENT_REPORT_BILL_GET: `${BASE_URL}/api/v1/bill/:id/patient`,
     BILL_DELETE: `${BASE_URL}/api/v1/bill/`,
     BILL_ADVANCE_SEARCH: `${BASE_URL}/api/v1/bill/advanced`,
+    ACT_BILL_ADVANCE_SEARCH: `${BASE_URL}/api/v1/actual-bill/advanced`,
     BILL_ADVANCE_SEARCH_AGENT: `${BASE_URL}/api/v1/bill/advanced/agent`,
     BILL_ADVANCE_SEARCH_AGENCY: `${BASE_URL}/api/v1/bill/advanced/agency`,
     BILL_PAYMENT_ADD: `${BASE_URL}/api/v1/bill/:ID/pay`,

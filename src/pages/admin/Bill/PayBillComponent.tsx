@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import BillService from "../../../services/BillService";
 import FuncUtil from "../../../utils/FuncUtil";
 import ExceptionUtil from "../../../utils/ExceptionUtil";
@@ -6,7 +6,7 @@ import AccountService from "../../../services/AccountService";
 import moment from 'moment';
 
 function PayBillComponent(props: any) {
-    const {billId, onCancel, onSuccess} = props;
+    const { billId, onCancel, onSuccess } = props;
     const [bill, setBill] = useState<any>({
         id: 0,
         accountId: 0,
@@ -19,13 +19,14 @@ function PayBillComponent(props: any) {
     const [progress, setProgress] = useState(false);
     const [responseCode, setResponseCode] = useState(0);
     const [message, setMessage] = useState("");
-    const [accounts, setAccounts] = useState([{id: 0, name: ''}]);
+    const [accounts, setAccounts] = useState([{ id: 0, name: '' }]);
 
     const payBill = () => {
         setProgress(true);
         let accountSelect = document.getElementById('accountId') as HTMLSelectElement;
-        let accountId = parseInt(accountSelect?accountSelect.value:'0');
-        BillService.pay({accountId: accountId, billId: bill.id, amount: bill.balance}).then((response) => {
+        let accountId = parseInt(accountSelect ? accountSelect.value : '0');
+        let roleNo = localStorage.getItem("email") ?? '';
+        BillService.pay({ accountId: accountId, billId: bill.id, amount: bill.balance, updateEmail: roleNo }).then((response) => {
             setBill(response.data);
             setProgress(false);
             setResponseCode(response.status);
@@ -42,7 +43,7 @@ function PayBillComponent(props: any) {
     };
 
     const handleChange = (e: any) => {
-        setBill({...bill, [e.target.name]: e.target.value});
+        setBill({ ...bill, [e.target.name]: e.target.value });
     }
 
     const loadBill = () => {
@@ -87,21 +88,21 @@ function PayBillComponent(props: any) {
                         <div className="table-responsive col-sm-12">
                             <table className="table table-bordered">
                                 <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Item &amp; Description</th>
-                                    <th className="text-right">Amount</th>
-                                </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Item &amp; Description</th>
+                                        <th className="text-right">Amount</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>
-                                        <p>{bill.testName}</p>
-                                        <p className="text-muted">{bill.testDescription}</p>
-                                    </td>
-                                    <td className="text-right">{FuncUtil.toCurrency(bill.testPrice, 'BDT')}</td>
-                                </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>
+                                            <p>{bill.testName}</p>
+                                            <p className="text-muted">{bill.testDescription}</p>
+                                        </td>
+                                        <td className="text-right">{FuncUtil.toCurrency(bill.testPrice, 'BDT')}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -112,50 +113,50 @@ function PayBillComponent(props: any) {
                             <div className="table-responsive">
                                 <table className="table">
                                     <tbody>
-                                    <tr>
-                                        <td className="text-bold-800">Total</td>
-                                        <td className="text-bold-800 text-right">{FuncUtil.toCurrency(bill.amount, 'BDT')}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Payment Made</td>
-                                        <td className="pink text-right">(-) {FuncUtil.toCurrency(bill.paid, 'BDT')}</td>
-                                    </tr>
-                                    <tr className="bg-grey bg-lighten-4">
-                                        <td className="text-bold-800">Balance Due</td>
-                                        <td className="text-bold-800 text-right">{FuncUtil.toCurrency(bill.due, 'BDT')}</td>
-                                    </tr>
-                                    <tr className="bg-grey bg-lighten-4">
-                                        <td className="text-bold-800">Account</td>
-                                        <td className="text-bold-800 text-right">
-                                            <select className={"form-control"} name="accountId" id={'accountId'} onChange={handleChange}>
-                                                {accounts.map((account: any) => (
-                                                    <option value={account.id}>{account.name}</option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr className="bg-grey bg-lighten-4">
-                                        <td className="text-bold-800">Paying Amount</td>
-                                        <td className="text-bold-800 text-right">
-                                            <input type="number" className="form-control text-right"
-                                                   placeholder="Amount" name="balance"
-                                                   defaultValue={bill.balance} onChange={handleChange}/>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td className="text-bold-800">Total</td>
+                                            <td className="text-bold-800 text-right">{FuncUtil.toCurrency(bill.amount, 'BDT')}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Payment Made</td>
+                                            <td className="pink text-right">(-) {FuncUtil.toCurrency(bill.paid, 'BDT')}</td>
+                                        </tr>
+                                        <tr className="bg-grey bg-lighten-4">
+                                            <td className="text-bold-800">Balance Due</td>
+                                            <td className="text-bold-800 text-right">{FuncUtil.toCurrency(bill.due, 'BDT')}</td>
+                                        </tr>
+                                        <tr className="bg-grey bg-lighten-4">
+                                            <td className="text-bold-800">Account</td>
+                                            <td className="text-bold-800 text-right">
+                                                <select className={"form-control"} name="accountId" id={'accountId'} onChange={handleChange}>
+                                                    {accounts.map((account: any) => (
+                                                        <option value={account.id}>{account.name}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-grey bg-lighten-4">
+                                            <td className="text-bold-800">Paying Amount</td>
+                                            <td className="text-bold-800 text-right">
+                                                <input type="number" className="form-control text-right"
+                                                    placeholder="Amount" name="balance"
+                                                    defaultValue={bill.balance} onChange={handleChange} />
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div className="form-group">
                                 <button type="button"
-                                        className="btn btn-primary btn-min-width box-shadow-1 pull-right mr-2"
-                                        onClick={payBill} disabled={progress}>
+                                    className="btn btn-primary btn-min-width box-shadow-1 pull-right mr-2"
+                                    onClick={payBill} disabled={progress}>
                                     Pay Now
                                     {progress ? <span className="spinner-border spinner-border-sm" role="status"
-                                                      aria-hidden="true"></span> : ''}
+                                        aria-hidden="true"></span> : ''}
                                 </button>
                                 <button type="button"
-                                        className="btn btn-light btn-min-width box-shadow-1 pull-right mx-1"
-                                        onClick={onCancel}>Cancel
+                                    className="btn btn-light btn-min-width box-shadow-1 pull-right mx-1"
+                                    onClick={onCancel}>Cancel
                                 </button>
                             </div>
                         </div>

@@ -16,6 +16,7 @@ import MedicalExaminationEditing from '../../../components/detail/MedicalExamnin
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+
 function PatientList(props: any) {
   const navigate = useNavigate();
 
@@ -54,7 +55,7 @@ function PatientList(props: any) {
         {permission.edit ? <button type="button" className="btn btn-xss btn-warning box-shadow-1"
           data-record={JSON.stringify(row)} onClick={patientEditHandler}> Edit
         </button> : ''}
-        {permission.edit ? <button type="button" className="btn btn-xss btn-danger box-shadow-1"
+        {permission.remove ? <button type="button" className="btn btn-xss btn-danger box-shadow-1"
           data-record={JSON.stringify(row)} onClick={patientDeleteHandler}> Delete
         </button> : ''}
       </>);
@@ -79,6 +80,7 @@ function PatientList(props: any) {
     { data: "mobile", name: "Contact Number", class: "text-center  width-200", sort: true },
     { data: "agentOrAgencyName", name: "Agent Or Agency", class: "text-center", sort: true },
     { name: "Status", render: statusRender, class: "text-center  width-200" },
+    { data: "currentStatus", name: "Current Status", class: "text-center  width-200" },
     { data: 'healthStatus', name: "FINAL STATUS", class: "text-center" },
     { name: "Action", render: rowActions, class: "text-center " },
     { name: "Malaysia", render: malaysiaActions, class: "text-center " },
@@ -127,13 +129,13 @@ function PatientList(props: any) {
 
   const patientDelete = (data: any) => {
     const patientId = data?.id;
-    axios
-      .delete(`https://perfect.gccerp.org/api/v1/patient/${patientId}`)
+    PatientService.deleteById(data?.id)
       .then(resp => {
         console.log(resp);
-        
         toast("Successfully deleted patient")
         setAction("")
+        loadData();
+        doRefresh(data?.id);
       })
   }
 
@@ -187,7 +189,7 @@ function PatientList(props: any) {
       if (reason.code === "ERR_NETWORK") {
         navigate("/maintenance");
       }
-      if (reason.response.status === 401) {
+      if (reason?.response?.status === 401) {
         AuthService.logout();
         navigate("/login");
       }
@@ -201,7 +203,7 @@ function PatientList(props: any) {
       if (reason.code === "ERR_NETWORK") {
         navigate("/maintenance");
       }
-      if (reason.response.status === 401) {
+      if (reason?.response?.status === 401) {
         AuthService.logout();
         navigate("/login");
       }

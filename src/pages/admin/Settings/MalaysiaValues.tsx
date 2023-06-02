@@ -5,7 +5,11 @@ import MalaysiaValuesForm from '../../../components/forms/MalaysiaValuesForm';
 
 function MalaysiaValues(props: any) {
   return (
+    
+
+
     <div className="app-content content">
+      
       <div className="content-wrapper">
         <div className="content-wrapper-before"></div>
         <div className="content-header row">

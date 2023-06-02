@@ -27,6 +27,7 @@ const Navbar = (props: any) => {
     };
 
     const onLinkClick = (e: any) => {
+        console.log(e.target.value);
         document.body.classList.remove('menu-open');
         document.body.classList.add('menu-hide');
     };
@@ -57,6 +58,7 @@ const Navbar = (props: any) => {
                                     </a>
                                     {item.submenu ?
                                         <ul className="">
+                                         
                                             <div className="arrow_box">
                                                 {item.submenu?.map((submenu) => (
                                                     AuthService.hasPermission(submenu) ?
