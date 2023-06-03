@@ -10,6 +10,7 @@ function UserRoleList(props: any) {
   const navigate = useNavigate();
   const permission = AuthService.getPermission('ROLE');
   const [roles, setRoles] = useState([]);
+
   const [selected, setSelected] = useState({
     id: '',
     name: '',
@@ -81,7 +82,7 @@ function UserRoleList(props: any) {
       field: e.target.id,
       value: e.target.checked,
     }
-    console.log(record);
+    // console.log(record);
 
 
     const result = selected?.privileges?.map(({ id }) => ({ field: record?.field, value: record?.value }));
@@ -93,11 +94,15 @@ function UserRoleList(props: any) {
     // console.log(hasListTrue);
 
     axios.put('https://apiperfect.gccerp.org/api/v1/role-permission-bulk', {
-      data: record
+      id: selected?.id,
+      field: e.target.id,
+      value: e.target.checked,
     })
       .then(response => {
+        loadRoles();
         toast.success("Successfully updated role")
         console.log('Success:', response.data);
+        setRefreshKey(1);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -105,6 +110,8 @@ function UserRoleList(props: any) {
 
   }
 
+
+  const [refreshKey, setRefreshKey] = useState(0);
 
 
 
@@ -194,7 +201,7 @@ function UserRoleList(props: any) {
                   </div>
                 </div>
               </div>
-              {permission.view ? <div className="col-md-6 col-sm-12">
+              {permission.view ? <div className="col-md-6 col-sm-12"  key={refreshKey}>
                 <div className="card">
                   <div className="card-content collapse show">
                     <div className="card-header d-flex justify-content-between ">
