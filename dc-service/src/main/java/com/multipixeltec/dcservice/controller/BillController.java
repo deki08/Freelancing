@@ -185,9 +185,6 @@ public class BillController {
 			Bill bill = optionalBill.get();
 
 			System.out.println("Called...............");
-
-			Optional<User> optionalUser = userService.findByEmail(paymentDto.getUpdateEmail());
-
 			Optional<Account> accountOptional = accountService.find(paymentDto.getAccountId());
 			BillPayment payment = new BillPayment();
 			accountOptional.ifPresent(account -> payment.setAccount(account));
@@ -196,9 +193,7 @@ public class BillController {
 			payment.setStatus(PaymentStatus.PAID);
 			billPaymentService.save(payment);
 			bill.addPayment(payment.getAmount());
-			if (optionalUser.isPresent()) {
-				bill.setPaidBy(optionalUser.get());
-			}
+			bill.setPaidByName(paymentDto.getName());
 			billService.save(bill);
 			AccountTransaction transaction = new AccountTransaction();
 			transaction.setAccount(payment.getAccount());

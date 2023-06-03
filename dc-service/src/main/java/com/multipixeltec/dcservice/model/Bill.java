@@ -69,6 +69,11 @@ public class Bill extends Auditable<User> {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PAID_BY")
     private User paidBy;
+    
+    
+    @Column(name = "PAID_BY_NAME")
+	private String paidByName;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -128,7 +133,7 @@ public class Bill extends Auditable<User> {
         return test.getPrice();
     }
     public String getPaidBy() {
-        return getModifiedBy().getFullName();
+        return paidByName;
     }
     public String getAgentOrAgencyName() {
         if (agent == null)

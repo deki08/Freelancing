@@ -14,5 +14,5 @@ public class BillPaymentDto implements Serializable {
 	private final Long billId;
 	private final Long accountId;
 	private final Double amount;
-	private final String updateEmail;
+	private final String name;
 }
