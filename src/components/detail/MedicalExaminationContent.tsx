@@ -465,7 +465,7 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">{refValue?.bd}</td>
                   <td className="font-size black">                   Vision test A – Unaided
                   </td>
-                  <td className="font-size black">{refValue?.vAUnaided}</td>
+                  <td className="font-size black">{refValue?.vaunaided}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
@@ -474,7 +474,7 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size black">{refValue?.lmp}</td>
                   <td className="font-size black">                   B – Aided
                   </td>
-                  <td className="font-size black">{refValue?.bAided}</td>
+                  <td className="font-size black">{refValue?.baided}</td>
                 </tr>
                 <tr>
                   <td className="font-size black">
@@ -950,9 +950,9 @@ function MedicalExaminationContent(props: any) {
                   <thead style={{ textAlign: 'left' }}>
                     <tr>
                       <th className="font-size black border border-black border-top-0 py-0 " style={{ width: '15%', paddingLeft: '5px', fontWeight: "normal" }}>Dr. Name</th>
-                      <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue.nameOfDoctor}</th>
+                      <th className="font-size black border border-black py-0" style={{ width: '25%', fontWeight: "normal" }}>{refValue?.nameOfDoctor}</th>
                       <th className="font-size black border border-black py-0" style={{ width: '15%', paddingLeft: '5px', fontWeight: "normal" }}>Date</th>
-                      <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue.date}</th>
+                      <th className="font-size black border border-black py-0" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>{refValue?.date}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -960,9 +960,9 @@ function MedicalExaminationContent(props: any) {
                       <td className="font-size black">
                         Qualification
                       </td>
-                      <td className="font-size black">{refValue.qualification}</td>
+                      <td className="font-size black">{refValue?.qualification}</td>
                       <td className="font-size black">Hospital Address</td>
-                      <td className="font-size black">{refValue.hospitaladdress}</td>
+                      <td className="font-size black">{refValue?.hospitaladdress}</td>
                     </tr>
                   </tbody>
                 </table>

@@ -99,7 +99,7 @@ function UserRoleList(props: any) {
       value: e.target.checked,
     })
       .then(response => {
-        loadRoles();
+        loadRole(selected?.id)
         toast.success("Successfully updated role")
         console.log('Success:', response.data);
         setRefreshKey(1);

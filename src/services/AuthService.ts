@@ -1,6 +1,7 @@
 import axios from "axios";
 import {API_ROUTES} from "../utils/constants";
 import http from "../config/httpConfig";
+import { any } from "@tensorflow/tfjs-node";
 
 const login = (email: string, password: string) => {
     return axios.post(API_ROUTES.SIGN_IN, {email, password}).then((response) => {
@@ -59,6 +60,7 @@ const faceAuth = async (image:string) => {
     return http.post(API_ROUTES.FACE_AUTH,{face:image});
 };
 const hasPermission = (menuItem:any) => {
+    
     let permissions:any = getPermissions();
     if (menuItem.page && menuItem.permission) {
         let permission = permissions.filter((item:any) => item.permission == menuItem.page);

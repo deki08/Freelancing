@@ -10,7 +10,8 @@ import ActualBillTable from './ActualBillTable';
 function ActualBill(props: any) {
     const navigate = useNavigate();
     const permission = AuthService.getPermission('PATIENT_BILL');
-    const actualPermesion = AuthService.getPermission('ACTUAL_BILL');
+    
+   
     const [data, setData] = useState([]);
     const [refresh, doRefresh] = useState(0);
     const [action, setAction] = useState('none');

@@ -5,10 +5,13 @@ import { MENU } from "../utils/constants";
 
 const Navbar = (props: any) => {
     const { configuration } = AuthService.getConfiguration();
+    // console.log(configuration);
     const navigate = useNavigate();
     const [uri] = useState("/");
     const [mobile, setMobile] = useState(true);
     const [menu, setMenu] = useState(MENU);
+
+    const permission = AuthService.getPermission('ACTUAL_BILL');
 
     const handleWindowSizeChange = () => {
         setMobile(window.innerWidth <= 768 ? true : false);
@@ -41,7 +44,7 @@ const Navbar = (props: any) => {
     }, []);
 
 
- 
+
 
     return (
         <>
@@ -58,16 +61,24 @@ const Navbar = (props: any) => {
                                     </a>
                                     {item.submenu ?
                                         <ul className="">
-                                         
+
                                             <div className="arrow_box">
                                                 {item.submenu?.map((submenu) => (
+
                                                     AuthService.hasPermission(submenu) ?
                                                         <li key={'m-mm-' + item.id + '-' + submenu.id}
                                                             className={uri === submenu.path ? "active" : ""}>
                                                             <Link key={'mm-' + item.id + '-' + submenu.id + '-link'}
                                                                 className="dropdown-item"
                                                                 to={submenu.path} onClick={onLinkClick}>{submenu.label}</Link>
-                                                        </li> : ""
+                                                        </li> :
+                                                        submenu.page === 'ACTUAL_BILL' && permission?.view == true ?
+                                                            <li key={'m-mm-' + item.id + '-' + submenu.id}
+                                                                className={uri === submenu.path ? "active" : ""}>
+                                                                <Link key={'mm-' + item.id + '-' + submenu.id + '-link'}
+                                                                    className="dropdown-item"
+                                                                    to={submenu.path} onClick={onLinkClick}>{submenu.label}</Link>
+                                                            </li> : ""
                                                 ))}
                                             </div>
                                         </ul> : ""

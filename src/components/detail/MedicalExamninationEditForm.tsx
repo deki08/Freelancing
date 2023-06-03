@@ -126,9 +126,9 @@ function MedicalExaminationEditing(props: any) {
     bp: "",
     lne: "",
     bd: "",
-    vAUnaided: "",
+    vaunaided: "",
     lmp: "",
-    bAided: "",
+    baided: "",
     chronicSkinRash: "",
     hearing: "",
     anSkinPatch: "",
@@ -760,8 +760,8 @@ function MedicalExaminationEditing(props: any) {
                     <td className="font-size black border border-black  " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}> <input
                       onChange={onChange}
                       type="text"
-                      name='vAUnaided'
-                      defaultValue={refValue?.vAUnaided}
+                      name='vaunaided'
+                      defaultValue={refValue?.vaunaided}
                       className='medicalInput border-0 w-100 ' /> </td>
                   </tr>
                   <tr>
@@ -778,8 +778,8 @@ function MedicalExaminationEditing(props: any) {
                     </td>
                     <td className="font-size black border border-black  " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}> <input
                       onChange={onChange}
-                      defaultValue={refValue?.bAided}
-                      name='bAided'
+                      defaultValue={refValue?.baided}
+                      name='baided'
                       type="text"
                       className='medicalInput border-0 w-100 ' /> </td>
                   </tr>

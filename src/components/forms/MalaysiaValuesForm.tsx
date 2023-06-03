@@ -511,8 +511,8 @@ function MalaysiaValuesForm(props: any) {
                     <td className="font-size black border border-black  " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}> <input
                       onChange={onChange}
                       type="text"
-                      name='vAUnaided'
-                      defaultValue={medicalReport?.vAUnaided}
+                      name='vaunaided'
+                      defaultValue={medicalReport?.vaunaided}
                       className='medicalInput border-0 w-100 ' /> </td>
                   </tr>
                   <tr>
@@ -529,8 +529,8 @@ function MalaysiaValuesForm(props: any) {
                     </td>
                     <td className="font-size black border border-black  " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}> <input
                       onChange={onChange}
-                      defaultValue={medicalReport?.bAided}
-                      name='bAided'
+                      defaultValue={medicalReport?.baided}
+                      name='baided'
                       type="text"
                       className='medicalInput border-0 w-100 ' /> </td>
                   </tr>
@@ -1421,9 +1421,19 @@ function MalaysiaValuesForm(props: any) {
                     <thead style={{ textAlign: 'left' }}>
                       <tr>
                         <th className="font-size black border border-black border-top-0 py-0 " style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>Dr. Name</th>
-                        <th className="font-size black border border-black py-1" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}></th>
+                        <th className="font-size black border border-black py-1" style={{ width: '25%', fontWeight: "normal", paddingLeft: '5px' }}><input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='nameOfDoctor' type="text"
+                      defaultValue={medicalReport?.nameOfDoctor}
+                    /></th>
                         <th className="font-size black border border-black py-1" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}>Date</th>
-                        <th className="font-size black border border-black py-1" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}></th>
+                        <th className="font-size black border border-black py-1" style={{ width: '25%', paddingLeft: '5px', fontWeight: "normal" }}><input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='date' type="text"
+                      defaultValue={medicalReport?.date}
+                    /></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -1431,9 +1441,23 @@ function MalaysiaValuesForm(props: any) {
                         <td style={mystyle} className="font-size border border-black black">
                           Qualification
                         </td>
-                        <td style={mystyle} className="font-size border border-black black"></td>
+                        <td style={mystyle} className="font-size border border-black black">
+
+                        <input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='qualification' type="text"
+                      defaultValue={medicalReport?.qualification}
+                    />
+
+                        </td>
                         <td style={mystyle} className="font-size border border-black black">Hospital Address</td>
-                        <td style={mystyle} className="font-size border border-black black"></td>
+                        <td style={mystyle} className="font-size border border-black black"><input
+                      onChange={onChange}
+                      className='medicalInput border-0 w-100 '
+                      name='hospitaladdress' type="text"
+                      defaultValue={medicalReport?.hospitaladdress}
+                    /></td>
                       </tr>
 
                     </tbody>
