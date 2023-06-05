@@ -33,7 +33,7 @@ const findAllByAllColumnAct = async (data:{pageNumber: number,pageSize:number,te
     return http.post(API_ROUTES.ACT_BILL_ADVANCE_SEARCH,data);
 };
 
-const pay = async (data:{accountId: number,billId: number,amount:number,updateEmail:String}) => {
+const pay = async (data:{accountId: number,billId: number,amount:number,name:String}) => {
     return http.post(API_ROUTES.BILL_PAYMENT_ADD.replace(':ID',data.billId.toString()),data);
 };
 

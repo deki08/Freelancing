@@ -25,8 +25,8 @@ function PayBillComponent(props: any) {
         setProgress(true);
         let accountSelect = document.getElementById('accountId') as HTMLSelectElement;
         let accountId = parseInt(accountSelect ? accountSelect.value : '0');
-        let roleNo = localStorage.getItem("email") ?? '';
-        BillService.pay({ accountId: accountId, billId: bill.id, amount: bill.balance, updateEmail: roleNo }).then((response) => {
+        let roleNo = localStorage.getItem("Name") ?? '';
+        BillService.pay({ accountId: accountId, billId: bill.id, amount: bill.balance, name: roleNo }).then((response) => {
             setBill(response.data);
             setProgress(false);
             setResponseCode(response.status);

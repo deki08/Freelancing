@@ -65,20 +65,17 @@ function Invoice(props: any) {
                     </div>
                 </div>
                 <div id="invoice-template" className="card-body invoice-template">
-                    <div className="row">
+                <div className="row">
                         <div className="col-3 text-center">
                             <ul className="px-0 list-unstyled">
                                 <li><span>PATIENT ID : {bill.regNo}</span></li>
-                                <li><Barcode value={bill?.regNo} marginTop={5} displayValue={false} width={2} height={50} /></li>
-                                <li><span>REG DATE <br />
-                                    {moment(FuncUtil.toDateTime(bill?.createdDate)).format('DD-MM-YYYY hh:mm A')}
-
-                                </span></li>
+                                <li><Barcode value={patient.regNo} marginTop={5} displayValue={false} width={2} height={50} /></li>
+                                <li><span>REG DATE <br />{moment(FuncUtil.toDateTime(bill?.createdDate)).format('DD-MM-YYYY hh:mm A')}</span></li>
                             </ul>
                         </div>
                         <div className="col-2 text-center">
                             <ul className="px-0 list-unstyled">
-                                <li><img src={bill?.photo} alt="" height={150} /></li>
+                                <li><img src={patient.photo} alt="" height={150} /></li>
                             </ul>
                         </div>
                         <div className="col-7 text-center">
