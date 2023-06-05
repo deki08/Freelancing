@@ -63,7 +63,7 @@ public class BillPayment extends Auditable<User>{
         return getBill().getPatientName();
     }
     public String getCreatedByName() {
-        return getBill().addedBy();
+        return getBill().getPaidByName();
     }
 
     public String getAccountName() {

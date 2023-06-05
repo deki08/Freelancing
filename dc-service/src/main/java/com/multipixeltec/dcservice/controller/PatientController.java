@@ -158,8 +158,23 @@ public class PatientController {
 			bill.setPaid(0.0);
 			bill.setStatus(BillStatus.GENERATED);
 			bill.setCommission(commissionAmount);
+			bill.setPaidByName(savedRecord.getAddedby());
 			Bill savedBill = billService.save(bill);
-
+			
+			Actual_Bill actual_Bill = new Actual_Bill();
+			actual_Bill.setPatientId(savedRecord.getRegNo());
+			actual_Bill.setName(savedRecord.getFullName());
+			actual_Bill.setDate(new Date());
+			actual_Bill.setAgency(savedRecord.getAgentOrAgencyName());
+			actual_Bill.setTravellingTo(savedRecord.getTravelingTo());
+			actual_Bill.setPackageName(savedRecord.getTestOrPackageName());
+			actual_Bill.setRecieved(bill.getAmount());
+			actual_Bill.setNetAmount(savedRecord.getTestOrPackage().getPrice());
+			actual_Bill.setCommision(bill.getCommission());
+			actual_Bill.setPaid(bill.getPaid());
+			actual_Bill.setDue(bill.getDue());
+			actual_BillRepository.save(actual_Bill);
+			
 			if (patient.getPayNow()) {
 				Optional<Account> accountOptional = accountService.findAll().stream().findFirst();
 				BillPayment payment = new BillPayment();
@@ -171,19 +186,7 @@ public class PatientController {
 				savedBill.addPayment(payment.getAmount());
 				billService.save(savedBill);
 
-				Actual_Bill actual_Bill = new Actual_Bill();
-				actual_Bill.setPatientId(savedRecord.getRegNo());
-				actual_Bill.setName(savedRecord.getFullName());
-				actual_Bill.setDate(new Date());
-				actual_Bill.setAgency(savedRecord.getAgentOrAgencyName());
-				actual_Bill.setTravellingTo(savedRecord.getTravelingTo());
-				actual_Bill.setPackageName(savedRecord.getTestOrPackageName());
-				actual_Bill.setRecieved(bill.getAmount());
-				actual_Bill.setNetAmount(savedRecord.getTestOrPackage().getPrice());
-				actual_Bill.setCommision(bill.getCommission());
-				actual_Bill.setPaid(bill.getPaid());
-				actual_Bill.setDue(bill.getDue());
-				actual_BillRepository.save(actual_Bill);
+				
 
 //				actual_Bill.set
 
