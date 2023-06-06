@@ -137,13 +137,13 @@ function DataTable(props: any) {
     }
     const getValues = (props: any) => {
         const patientData = {
-          patientId: props?.record?.id,
-          status: props?.e?.target?.value,
+            patientId: props?.record?.id,
+            status: props?.e?.target?.value,
 
         }
-        PatientService.updateStatus(patientData) .then(resp => {
+        PatientService.updateStatus(patientData).then(resp => {
             console.log(resp);
-          })
+        })
         reload();
     }
 
@@ -288,11 +288,14 @@ function DataTable(props: any) {
                             </tr>
                         </thead>
                         <tbody>
+
                             {filteredData.map((record: any, index) => (
                                 <tr key={index}>
+
                                     {columns.map((column: any, cellNumber: number) => (
                                         column["render"] ? <td className={column.class}>{column.render(record)}</td> :
                                             <td key={'rec-' + record.id + '-' + cellNumber} className={column.class}>
+
                                                 {
                                                     column.data === 'index' ? index + 1 : (column.currency ? FuncUtil.toCurrency(record[column.data], "BDT") :
 
@@ -305,19 +308,22 @@ function DataTable(props: any) {
                                                                         // display: 'flex',
                                                                         padding: '10px 10px'
                                                                     }}
-                                                                    
+
                                                                     className='border-0  pl-'
                                                                     onInput={(e) => {
                                                                         clearTimeout(record[column.data].timer)
-                                                                        const timer = setTimeout(() => getValues({ e, record,name :column.data }), 5000);
-                                                                    
+                                                                        const timer = setTimeout(() => getValues({ e, record, name: column.data }), 5000);
+
                                                                     }}
                                                                     defaultValue={record.currentStatus}
                                                                 />
-                                                                
+
                                                             </>
 
-                                                            ) : record[column.data]
+                                                            ) : column.data === 'createdByName' ?
+                                                                (<>
+                                                                    {record.updateBy}
+                                                                </>) : record[column.data]
                                                         )
                                                     )
                                                 }

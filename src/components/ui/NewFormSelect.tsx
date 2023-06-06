@@ -4,9 +4,13 @@ import http from "../../config/httpConfig";
 function NewForm(props: any) {
     let [focused, setFocused] = useState(false);
     let [isLoaded, setIsLoaded] = useState(false);
-    let { label, errorMessage, onChange, column, id, ajax, mapping, values, disableFirstOption, ...inputProps } = props;
+    let { label, errorMessage, onChange,onChange1, column, id, ajax, mapping, values, disableFirstOption, ...inputProps } = props;
     let [options, setOptions] = useState([]);
     const handleFocus = (e: any) => {
+        setFocused(true);
+    };
+
+    const handleFocus1 = (e: any) => {
         setFocused(true);
     };
 
@@ -41,11 +45,25 @@ function NewForm(props: any) {
             <div style={{ display: "flex", justifyContent: "flex-start" }}>
                 <label htmlFor={id}>{label}{inputProps.required ? <span style={{ color: "red", marginLeft: "5px" }}>*</span> : ''} </label>
             </div>
-            <select {...inputProps} onChange={onChange} onInput={handleFocus} focused={focused}>
-                {options?.map((option: { text: any, value: any }) => (
-                    <option value={option.text} defaultChecked={inputProps.defaultValue ? (inputProps.defaultValue == option.value ? true : false) : false}>{option.text}</option>
-                ))}
-            </select>
+            {inputProps.name === 'testOrPackageId' ?
+
+
+                <select {...inputProps} onChange={onChange} onInput={handleFocus} focused={focused}>
+                    {options?.map((option: { text: any, value: any }) => (
+                        <option value={option.text} defaultChecked={inputProps.defaultValue ? (inputProps.defaultValue == option.value ? true : false) : false}>{option.text}</option>
+                    ))}
+                </select>
+                :
+
+                <select {...inputProps} onChange={onChange1} onInput={handleFocus1} focused={focused}>
+                    {options?.map((option: { text: any, value: any }) => (
+                        <option value={option.text} defaultChecked={inputProps.defaultValue ? (inputProps.defaultValue == option.value ? true : false) : false}>{option.text}</option>
+
+                    ))}
+                </select>
+
+
+            }
             <div className="invalid-feedback">{inputProps.errorMessage}</div>
         </div>
     );

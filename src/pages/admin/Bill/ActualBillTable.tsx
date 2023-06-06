@@ -41,6 +41,7 @@ function ActualBillTable(props: any) {
     column: "id",
     sort: "DESC",
     text: "",
+    text2:"",
     from: moment(new Date()).format('YYYY-MM-DD'),
     to: moment(new Date()).format('YYYY-MM-DD'),
     total: 0
@@ -124,13 +125,55 @@ function ActualBillTable(props: any) {
     page.pageNumber = 0;
     loadData();
   }
-  
+
 
   const typeHandler = (e: any) => {
     page.text = e.target.value;
     page.pageNumber = 0;
     loadData();
   }
+
+  let firstValue = '';
+let secondValue = '';
+  const first = (e: any) => {
+    firstValue = e.target.value;
+  };
+
+  const second = (e: any) => {
+    secondValue = e.target.value;
+  };
+
+  const fiterByagency = () => {
+    if (firstValue === '' && secondValue === '') {
+      console.log("This is Checking")
+    } else {
+      console.log(firstValue + "   "+secondValue)
+      page.text2 = firstValue;
+      page.text = secondValue;
+
+
+    }
+  };
+
+  let loadData1 = () => {
+    setIsLoading(true);
+    http.post(endpoint, page).then(response => {
+      setFilteredData(response.data.data);
+      setPage(response.data);
+      updatePagination(response.data);
+      setIsLoading(false);
+      setIsFailed(false);
+
+    }).catch(reason => {
+      setIsFailed(true);
+      setMessage(reason.code);
+      setIsLoading(false);
+    });
+  };
+
+
+
+
   let loadData = () => {
     setIsLoading(true);
     http.post(endpoint, page).then(response => {
@@ -321,18 +364,18 @@ function ActualBillTable(props: any) {
           <div className='  w-auto '>
             <div className="d-flex  justify-content-end align-items-center">
               {FORM.ACTUAL_BILL_SEARCH.map((input) => (
-                <NewForm key={Math.random()}  {...input} onChange={typeHandler}
+                <NewForm key={Math.random()}  {...input} onChange={first} onChange1={second}
                 />
               ))}
               <div>
                 <button type="button" className="btn mt-1 btn-sm btn-outline-purple mr-1 py-1 px-2 box-shadow-1"
-                  onClick={updateValues}>Update
+                  onClick={fiterByagency}>Filter
                 </button>
 
               </div>
             </div>
-
           </div>
+
 
         </div> : ""
       }
