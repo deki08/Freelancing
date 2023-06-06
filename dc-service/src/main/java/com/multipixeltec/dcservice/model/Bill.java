@@ -23,7 +23,7 @@ public class Bill extends Auditable<User> {
 
     @Column(name = "PATIENT_ID", insertable = false, updatable = false)
     private Long patientId;
-
+   
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PATIENT_ID", nullable = false)

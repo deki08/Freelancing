@@ -1,20 +1,25 @@
 package com.multipixeltec.dcservice.controller;
 
-import com.multipixeltec.dcservice.dto.PageDetails;
-import com.multipixeltec.dcservice.model.Bill;
-import com.multipixeltec.dcservice.model.BillPayment;
-import com.multipixeltec.dcservice.service.BillPaymentService;
-import com.multipixeltec.dcservice.util.SortColumn;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import com.multipixeltec.dcservice.dto.PageDetails;
+import com.multipixeltec.dcservice.model.BillPayment;
+import com.multipixeltec.dcservice.service.BillPaymentService;
+import com.multipixeltec.dcservice.util.SortColumn;
 
 @RestController
 @RequestMapping("api/v1")
@@ -22,6 +27,7 @@ public class BillPaymentController {
 
     @Autowired
     private BillPaymentService billpaymentService;
+
 
     @PostMapping("/bill-payment")
     public BillPayment save(@RequestBody BillPayment billpayment){
@@ -63,6 +69,7 @@ public class BillPaymentController {
         } else {
             billPage = billpaymentService.findAllByDateAndText(page, pageable);
         }
+        
         page.setData(billPage.getContent());
         page.setTotal(billPage.getTotalElements());
         return page;

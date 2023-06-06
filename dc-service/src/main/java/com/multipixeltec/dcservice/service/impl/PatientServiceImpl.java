@@ -62,12 +62,11 @@ public class PatientServiceImpl implements PatientService {
 		return patientRepository.findAll(pageable);
 	}
 
-
 	@Autowired
 	private PatientReportRepository patientReportRepository;
 	@Autowired
 	private Actual_BillRepository actual_BillRepository;
-	
+
 	@Transactional
 	@Override
 	public void delete(Long id) {
@@ -76,7 +75,7 @@ public class PatientServiceImpl implements PatientService {
 			Patient patientToDelete = patient.get();
 			if (patient != null) {
 				PatientReport report = patientToDelete.getReport();
-				
+
 				if (report != null) {
 					actual_BillRepository.deleteByPatientId(patientToDelete.getRegNo());
 					patientToDelete.setReport(null);

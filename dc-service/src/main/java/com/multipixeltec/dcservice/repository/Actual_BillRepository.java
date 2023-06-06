@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.multipixeltec.dcservice.dto.ActualDTO;
 import com.multipixeltec.dcservice.dto.PageDetails;
 import com.multipixeltec.dcservice.model.Actual_Bill;
 
@@ -20,5 +21,8 @@ public interface Actual_BillRepository extends JpaRepository<Actual_Bill, Long> 
 	Page<Actual_Bill> findAllByDateAndText(PageDetails page, Pageable pageable);
 
 	void deleteByPatientId(String regNo);
+	@Query(value = "SELECT * FROM actual_bill  where (  agency like %:#{#page.text}% AND "
+			+ " packageName like %:#{#page.text2}%)", nativeQuery = true)
+	Page<Actual_Bill> findByDoubleText(ActualDTO page, Pageable pageable);
 
 }

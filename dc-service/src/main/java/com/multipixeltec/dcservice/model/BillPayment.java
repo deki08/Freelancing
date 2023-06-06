@@ -51,6 +51,10 @@ public class BillPayment extends Auditable<User>{
     @Column(name = "ACCOUNT_ID", insertable = false, updatable = false)
     private Long accountId;
 
+    @Column(name="Updated_BY")
+    private String updateBy;
+    
+    
     public String getBillNo() {
         return getBill().getBillNo();
     }
@@ -71,4 +75,6 @@ public class BillPayment extends Auditable<User>{
             return "N/A";
         return account.getName();
     }
+    
+   
 }

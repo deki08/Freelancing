@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.multipixeltec.dcservice.dto.ActualDTO;
 import com.multipixeltec.dcservice.dto.BillUpdateDto;
 import com.multipixeltec.dcservice.dto.PageDetails;
 import com.multipixeltec.dcservice.model.Actual_Bill;
@@ -99,6 +100,12 @@ public class Actual_Bill_ServiceImpl implements actual_bill_service {
 			actual_BillRepository.save(bill);
 		}
 		return null;
+	}
+
+	@Override
+	public Page<Actual_Bill> findByDoubleText(ActualDTO page, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return actual_BillRepository.findByDoubleText(page,pageable);
 	}
 
 }

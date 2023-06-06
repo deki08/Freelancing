@@ -1,15 +1,15 @@
 package com.multipixeltec.dcservice.controller;
 
-import com.multipixeltec.dcservice.enums.*;
-import com.multipixeltec.dcservice.exceptions.NotFoundException;
-import com.multipixeltec.dcservice.service.*;
-import com.multipixeltec.dcservice.dto.ImageDto;
-import com.multipixeltec.dcservice.dto.PageDetails;
-import com.multipixeltec.dcservice.dto.updateStatusDto;
-import com.multipixeltec.dcservice.model.*;
-import com.multipixeltec.dcservice.repository.Actual_BillRepository;
-import com.multipixeltec.dcservice.util.FileService;
-import com.multipixeltec.dcservice.util.SortColumn;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +19,53 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import com.multipixeltec.dcservice.dto.ImageDto;
+import com.multipixeltec.dcservice.dto.PageDetails;
+import com.multipixeltec.dcservice.dto.updateStatusDto;
+import com.multipixeltec.dcservice.enums.ActiveStatus;
+import com.multipixeltec.dcservice.enums.BillStatus;
+import com.multipixeltec.dcservice.enums.CommissionStatus;
+import com.multipixeltec.dcservice.enums.PaymentStatus;
+import com.multipixeltec.dcservice.enums.ReferenceTo;
+import com.multipixeltec.dcservice.enums.TransactionType;
+import com.multipixeltec.dcservice.exceptions.NotFoundException;
+import com.multipixeltec.dcservice.model.Account;
+import com.multipixeltec.dcservice.model.AccountTransaction;
+import com.multipixeltec.dcservice.model.Actual_Bill;
+import com.multipixeltec.dcservice.model.AgentOrAgency;
+import com.multipixeltec.dcservice.model.Bill;
+import com.multipixeltec.dcservice.model.BillPayment;
+import com.multipixeltec.dcservice.model.Commission;
+import com.multipixeltec.dcservice.model.FingerprintRecord;
+import com.multipixeltec.dcservice.model.Patient;
+import com.multipixeltec.dcservice.model.PatientReport;
+import com.multipixeltec.dcservice.model.ReportedValue;
+import com.multipixeltec.dcservice.model.TestOrPackage;
+import com.multipixeltec.dcservice.repository.Actual_BillRepository;
+import com.multipixeltec.dcservice.service.AccountService;
+import com.multipixeltec.dcservice.service.AccountTransactionService;
+import com.multipixeltec.dcservice.service.AgentOrAgencyService;
+import com.multipixeltec.dcservice.service.BillPaymentService;
+import com.multipixeltec.dcservice.service.BillService;
+import com.multipixeltec.dcservice.service.CommissionService;
+import com.multipixeltec.dcservice.service.DiagnosticReportService;
+import com.multipixeltec.dcservice.service.FingerprintRecordService;
+import com.multipixeltec.dcservice.service.PatientReportService;
+import com.multipixeltec.dcservice.service.PatientService;
+import com.multipixeltec.dcservice.service.ReportedValueService;
+import com.multipixeltec.dcservice.service.TestOrPackageService;
+import com.multipixeltec.dcservice.util.FileService;
+import com.multipixeltec.dcservice.util.SortColumn;
 
 @RestController
 @RequestMapping("api/v1")
@@ -90,6 +124,7 @@ public class PatientController {
 		String countAbbr = String.format("%04d", count + 1);
 		return abb.toUpperCase().concat(dateAbbr).concat(countAbbr);
 	}
+
 
 //    @Transactional(Transactional.TxType.REQUIRES_NEW)
 	@PostMapping("/patient")
@@ -160,7 +195,8 @@ public class PatientController {
 			bill.setCommission(commissionAmount);
 			bill.setPaidByName(savedRecord.getAddedby());
 			Bill savedBill = billService.save(bill);
-			
+
+
 			Actual_Bill actual_Bill = new Actual_Bill();
 			actual_Bill.setPatientId(savedRecord.getRegNo());
 			actual_Bill.setName(savedRecord.getFullName());
@@ -174,7 +210,7 @@ public class PatientController {
 			actual_Bill.setPaid(bill.getPaid());
 			actual_Bill.setDue(bill.getDue());
 			actual_BillRepository.save(actual_Bill);
-			
+
 			if (patient.getPayNow()) {
 				Optional<Account> accountOptional = accountService.findAll().stream().findFirst();
 				BillPayment payment = new BillPayment();
@@ -182,11 +218,10 @@ public class PatientController {
 				payment.setBill(savedBill);
 				payment.setAmount(savedBill.getAmount());
 				payment.setStatus(PaymentStatus.PAID);
+				payment.setUpdateBy(savedRecord.getAddedby());
 				billPaymentService.save(payment);
 				savedBill.addPayment(payment.getAmount());
 				billService.save(savedBill);
-
-				
 
 //				actual_Bill.set
 

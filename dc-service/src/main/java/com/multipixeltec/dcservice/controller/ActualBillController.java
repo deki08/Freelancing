@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.multipixeltec.dcservice.dto.ActualDTO;
 import com.multipixeltec.dcservice.dto.BillUpdateDto;
 import com.multipixeltec.dcservice.dto.PageDetails;
 import com.multipixeltec.dcservice.enums.AgentAgency;
@@ -46,6 +47,19 @@ public class ActualBillController {
 		System.out.println(billUpdateDto.toString());
 		return actual_bill_service.updateBill(billUpdateDto);
 
+	}
+
+	@PostMapping("/actual-bill/filter")
+	public ActualDTO getAdvance(@RequestBody ActualDTO page) {
+		Sort sort = SortColumn.bill(page.getColumn(), page.getSort());
+		Pageable pageable = PageRequest.of(page.getPageNumber(), page.getPageSize(), sort);
+		Page<Actual_Bill> billPage = null;
+		if (page.getText() == null || page.getText().isEmpty()) {
+			billPage = actual_bill_service.findByDoubleText(page, pageable);
+		}
+		page.setData(billPage.getContent());
+		page.setTotal(billPage.getTotalElements());
+		return page;
 	}
 
 }

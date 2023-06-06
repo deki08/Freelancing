@@ -23,6 +23,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import java.security.SecureRandom;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -82,7 +84,7 @@ public class SecurityConfiguration {
 				.permitAll().antMatchers("/api/v1/patient/fixRegNumbers").permitAll()
 				.antMatchers("/api/v1/mal-value", "/api/v1/report-value/**", "/api/v1/malrep-value"
 						,"/api/v1/update/status","/api/v1/actual-bill/advanced","/api/v1/role-permission-bulk"
-						
+						,"/api/v1/actual-bill/filter"
 						).permitAll()
 				.antMatchers(HttpHeaders.ALLOW).permitAll()
 				// all other requests need to be authenticated

@@ -1,14 +1,12 @@
 package com.multipixeltec.dcservice.controller;
 
-import com.multipixeltec.dcservice.dto.BillDto;
-import com.multipixeltec.dcservice.dto.BillPaymentDto;
-import com.multipixeltec.dcservice.dto.BillUpdateDto;
-import com.multipixeltec.dcservice.dto.PageDetails;
-import com.multipixeltec.dcservice.enums.*;
-import com.multipixeltec.dcservice.exceptions.NotFoundException;
-import com.multipixeltec.dcservice.model.*;
-import com.multipixeltec.dcservice.service.*;
-import com.multipixeltec.dcservice.util.SortColumn;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +14,42 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.multipixeltec.dcservice.dto.BillDto;
+import com.multipixeltec.dcservice.dto.BillPaymentDto;
+import com.multipixeltec.dcservice.dto.PageDetails;
+import com.multipixeltec.dcservice.enums.AgentAgency;
+import com.multipixeltec.dcservice.enums.BillStatus;
+import com.multipixeltec.dcservice.enums.CommissionStatus;
+import com.multipixeltec.dcservice.enums.PaymentStatus;
+import com.multipixeltec.dcservice.enums.ReferenceTo;
+import com.multipixeltec.dcservice.enums.TransactionType;
+import com.multipixeltec.dcservice.exceptions.NotFoundException;
+import com.multipixeltec.dcservice.model.Account;
+import com.multipixeltec.dcservice.model.AccountTransaction;
+import com.multipixeltec.dcservice.model.AgentOrAgency;
+import com.multipixeltec.dcservice.model.Bill;
+import com.multipixeltec.dcservice.model.BillPayment;
+import com.multipixeltec.dcservice.model.Commission;
+import com.multipixeltec.dcservice.model.Patient;
+import com.multipixeltec.dcservice.model.TestOrPackage;
+import com.multipixeltec.dcservice.service.AccountService;
+import com.multipixeltec.dcservice.service.AccountTransactionService;
+import com.multipixeltec.dcservice.service.BillPaymentService;
+import com.multipixeltec.dcservice.service.BillService;
+import com.multipixeltec.dcservice.service.CommissionService;
+import com.multipixeltec.dcservice.service.PatientService;
+import com.multipixeltec.dcservice.service.TestOrPackageService;
+import com.multipixeltec.dcservice.service.UserService;
+import com.multipixeltec.dcservice.util.SortColumn;
 
 @RestController
 @RequestMapping("api/v1")
@@ -177,6 +204,7 @@ public class BillController {
 	@Autowired
 	UserService userService;
 
+
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
 	@PostMapping("/bill/{id}/pay")
 	public Bill payBill(@RequestBody BillPaymentDto paymentDto) {
@@ -186,17 +214,20 @@ public class BillController {
 
 			System.out.println("Called...............");
 
-			
 			Optional<Account> accountOptional = accountService.find(paymentDto.getAccountId());
 			BillPayment payment = new BillPayment();
 			accountOptional.ifPresent(account -> payment.setAccount(account));
 			payment.setBill(bill);
 			payment.setAmount(paymentDto.getAmount());
 			payment.setStatus(PaymentStatus.PAID);
+			payment.setUpdateBy(paymentDto.getName());
 			billPaymentService.save(payment);
+			
 			bill.addPayment(payment.getAmount());
 			bill.setPaidByName(paymentDto.getName());
-			billService.save(bill);
+			Bill savedBill = billService.save(bill);
+//			Operator operator1 = 	operatorReposiory.save(operator);
+			
 			AccountTransaction transaction = new AccountTransaction();
 			transaction.setAccount(payment.getAccount());
 			transaction.setAmount(paymentDto.getAmount());
