@@ -13,6 +13,7 @@ import { FORM } from '../../../utils/FormFields';
 import { render } from '@testing-library/react';
 import BillService from '../../../services/BillService';
 import NewForm from '../../../components/ui/NewFormSelect';
+import { BASE_URL } from '../../../utils/constants';
 
 
 
@@ -134,6 +135,7 @@ function ActualBillTable(props: any) {
   }
 
   let firstValue = '';
+
 let secondValue = '';
   const first = (e: any) => {
     firstValue = e.target.value;
@@ -150,6 +152,7 @@ let secondValue = '';
       console.log(firstValue + "   "+secondValue)
       page.text2 = firstValue;
       page.text = secondValue;
+      loadData1();
 
 
     }
@@ -157,7 +160,7 @@ let secondValue = '';
 
   let loadData1 = () => {
     setIsLoading(true);
-    http.post(endpoint, page).then(response => {
+    http.post(`${BASE_URL}/api/v1/actual-bill/filter`, page).then(response => {
       setFilteredData(response.data.data);
       setPage(response.data);
       updatePagination(response.data);
