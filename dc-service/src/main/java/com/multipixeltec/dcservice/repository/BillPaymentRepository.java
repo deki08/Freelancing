@@ -15,6 +15,7 @@ public interface BillPaymentRepository extends JpaRepository<BillPayment, Long> 
     @Query(value = "SELECT * FROM BILL_PAYMENT WHERE (" +
             "BILL_ID like %:#{#page.text}% OR " +
             "AMOUNT like %:#{#page.text}% OR " +
+            "Updated_BY like %:#{#page.text}% OR " +            
             "CREATED_BY IN (SELECT ID FROM USERS WHERE FIRST_NAME LIKE %:#{#page.text}% OR LAST_NAME LIKE %:#{#page.text}%) OR " +
             "ACCOUNT_ID IN (SELECT ID FROM ACCOUNT WHERE NAME LIKE %:#{#page.text}%)) AND CREATED_DATE > :#{#page.from} AND CREATED_DATE <= CONCAT(:#{#page.to}, 'T23:59:59')", nativeQuery = true)
     Page<BillPayment> findAllByDateAndText(PageDetails page, Pageable pageable);

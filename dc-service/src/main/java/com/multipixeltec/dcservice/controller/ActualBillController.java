@@ -63,11 +63,11 @@ public class ActualBillController {
 		} else if ((page.getText() == null || page.getText().equalsIgnoreCase(""))
 				&& (page.getText2() != null && !page.getText2().equalsIgnoreCase(""))) {
 			System.out.println("condition 2");
-			billPage = actual_bill_service.findBySingleText1(page, pageable);
+			billPage = actual_bill_service.findBySingleText2(page, pageable);
 		} else if ((page.getText() != null && !page.getText().equalsIgnoreCase(""))
 				&& (page.getText2() == null || page.getText2().equalsIgnoreCase(""))) {
 			System.out.println("condition 3");
-			billPage = actual_bill_service.findBySingleText2(page, pageable);
+			billPage = actual_bill_service.findBySingleText1(page, pageable);
 		}
 
 		page.setData(billPage.getContent());

@@ -1,12 +1,23 @@
 package com.multipixeltec.dcservice.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.Valid;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.multipixeltec.dcservice.enums.PaymentStatus;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.*;
-import javax.validation.Valid;
 
 /**
  * Copyright (C) 2022 PIXOUS INNOVATIONS - All Rights Reserved
@@ -75,6 +86,10 @@ public class BillPayment extends Auditable<User>{
             return "N/A";
         return account.getName();
     }
-    
-   
+    public String getAgencyName() {
+        return getBill().getAgentOrAgencyName();
+    }
+    public Long getPatientId() {
+        return getBill().getPatientId();
+    }
 }
