@@ -46,7 +46,7 @@ public class Actual_Bill_ServiceImpl implements actual_bill_service {
 			}
 			if (billUpdateDto.getValueType().equalsIgnoreCase("commision")) {
 				billUpdateDto.setUpdateMoney(billUpdateDto.getUpdateMoney().replace(",", ""));
-				bill.setPaid(bill.getPaid() + Double.valueOf(billUpdateDto.getUpdateMoney()));
+				bill.setDue(Double.valueOf(billUpdateDto.getUpdateMoney()) + bill.getDue());
 				bill.setCommision(Double.valueOf(billUpdateDto.getUpdateMoney()));
 			}
 			if (billUpdateDto.getValueType().equalsIgnoreCase("due")) {
@@ -69,8 +69,15 @@ public class Actual_Bill_ServiceImpl implements actual_bill_service {
 			if (billUpdateDto.getValueType().equalsIgnoreCase("recieved")) {
 				billUpdateDto.setUpdateMoney(billUpdateDto.getUpdateMoney().replace(",", ""));
 				bill.setRecieved(Double.valueOf(billUpdateDto.getUpdateMoney()));
-				bill.setDue(bill.getRecieved() - bill.getDue());
-				bill.setPaid(bill.getRecieved() + bill.getNetAmount() + bill.getCommision());
+				bill.setPaid(bill.getRecieved() + bill.getPaid());
+				if (bill.getPaid() < bill.getNetAmount()) {
+					bill.setDue(bill.getNetAmount()-bill.getPaid());
+				}
+				else {
+					bill.setCommision(bill.getPaid()-bill.getNetAmount());
+					bill.setDue(0.0);
+				}
+				
 			}
 			if (billUpdateDto.getValueType().equalsIgnoreCase("netAmount")) {
 				billUpdateDto.setUpdateMoney(billUpdateDto.getUpdateMoney().replace(",", ""));
@@ -79,7 +86,7 @@ public class Actual_Bill_ServiceImpl implements actual_bill_service {
 					bill.setDue(newVal);
 					bill.setNetAmount(Double.valueOf(billUpdateDto.getUpdateMoney()));
 				} else {
-					bill.setCommision(bill.getPaid() - Double.valueOf(billUpdateDto.getUpdateMoney()));
+					bill.setCommision(bill.getNetAmount() - Double.valueOf(billUpdateDto.getUpdateMoney()));
 					bill.setNetAmount(Double.valueOf(billUpdateDto.getUpdateMoney()));
 				}
 			}
@@ -105,7 +112,19 @@ public class Actual_Bill_ServiceImpl implements actual_bill_service {
 	@Override
 	public Page<Actual_Bill> findByDoubleText(ActualDTO page, Pageable pageable) {
 		// TODO Auto-generated method stub
-		return actual_BillRepository.findByDoubleText(page,pageable);
+		return actual_BillRepository.findByDoubleText(page, pageable);
+	}
+
+	@Override
+	public Page<Actual_Bill> findBySingleText1(ActualDTO page, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return actual_BillRepository.findBySingleText1(page, pageable);
+	}
+
+	@Override
+	public Page<Actual_Bill> findBySingleText2(ActualDTO page, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return actual_BillRepository.findBySingleText2(page, pageable);
 	}
 
 }

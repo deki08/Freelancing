@@ -204,7 +204,7 @@ public class PatientController {
 			actual_Bill.setAgency(savedRecord.getAgentOrAgencyName());
 			actual_Bill.setTravellingTo(savedRecord.getTravelingTo());
 			actual_Bill.setPackageName(savedRecord.getTestOrPackageName());
-			actual_Bill.setRecieved(bill.getAmount());
+			actual_Bill.setRecieved(0.0);
 			actual_Bill.setNetAmount(savedRecord.getTestOrPackage().getPrice());
 			actual_Bill.setCommision(bill.getCommission());
 			actual_Bill.setPaid(bill.getPaid());

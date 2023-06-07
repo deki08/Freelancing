@@ -19,4 +19,8 @@ public interface actual_bill_service {
 
 	Page<Actual_Bill> findByDoubleText(ActualDTO page, Pageable pageable);
 
+	Page<Actual_Bill> findBySingleText1(ActualDTO page, Pageable pageable);
+
+	Page<Actual_Bill> findBySingleText2(ActualDTO page, Pageable pageable);
+
 }

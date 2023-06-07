@@ -35,12 +35,14 @@ import com.multipixeltec.dcservice.enums.TransactionType;
 import com.multipixeltec.dcservice.exceptions.NotFoundException;
 import com.multipixeltec.dcservice.model.Account;
 import com.multipixeltec.dcservice.model.AccountTransaction;
+import com.multipixeltec.dcservice.model.Actual_Bill;
 import com.multipixeltec.dcservice.model.AgentOrAgency;
 import com.multipixeltec.dcservice.model.Bill;
 import com.multipixeltec.dcservice.model.BillPayment;
 import com.multipixeltec.dcservice.model.Commission;
 import com.multipixeltec.dcservice.model.Patient;
 import com.multipixeltec.dcservice.model.TestOrPackage;
+import com.multipixeltec.dcservice.repository.Actual_BillRepository;
 import com.multipixeltec.dcservice.service.AccountService;
 import com.multipixeltec.dcservice.service.AccountTransactionService;
 import com.multipixeltec.dcservice.service.BillPaymentService;
@@ -203,7 +205,8 @@ public class BillController {
 
 	@Autowired
 	UserService userService;
-
+	@Autowired
+	private Actual_BillRepository actual_BillRepository;
 
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
 	@PostMapping("/bill/{id}/pay")
@@ -222,12 +225,20 @@ public class BillController {
 			payment.setStatus(PaymentStatus.PAID);
 			payment.setUpdateBy(paymentDto.getName());
 			billPaymentService.save(payment);
-			
+
+			Optional<Actual_Bill> billList = actual_BillRepository.findByPatientId(bill.getRegNo());
+			if (billList.isPresent()) {
+				Actual_Bill actBill = billList.get();
+				actBill.setRecieved(0.0);
+				actBill.setPaid(actBill.getPaid() + paymentDto.getAmount());
+				actBill.setDue(actBill.getNetAmount()- actBill.getPaid());
+				actual_BillRepository.save(actBill);
+			}
 			bill.addPayment(payment.getAmount());
 			bill.setPaidByName(paymentDto.getName());
 			Bill savedBill = billService.save(bill);
 //			Operator operator1 = 	operatorReposiory.save(operator);
-			
+
 			AccountTransaction transaction = new AccountTransaction();
 			transaction.setAccount(payment.getAccount());
 			transaction.setAmount(paymentDto.getAmount());

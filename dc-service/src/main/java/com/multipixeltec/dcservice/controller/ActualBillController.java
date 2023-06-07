@@ -54,9 +54,22 @@ public class ActualBillController {
 		Sort sort = SortColumn.bill(page.getColumn(), page.getSort());
 		Pageable pageable = PageRequest.of(page.getPageNumber(), page.getPageSize(), sort);
 		Page<Actual_Bill> billPage = null;
-		if (page.getText() != null || !page.getText().isEmpty()) {
+		System.out.println("r " + page.getText2());
+		System.out.println("l " + page.getText());
+		if ((page.getText() != null && !page.getText().equalsIgnoreCase(""))
+				&& (page.getText2() != null && !page.getText2().equalsIgnoreCase(""))) {
+			System.out.println("condition 1");
 			billPage = actual_bill_service.findByDoubleText(page, pageable);
+		} else if ((page.getText() == null || page.getText().equalsIgnoreCase(""))
+				&& (page.getText2() != null && !page.getText2().equalsIgnoreCase(""))) {
+			System.out.println("condition 2");
+			billPage = actual_bill_service.findBySingleText1(page, pageable);
+		} else if ((page.getText() != null && !page.getText().equalsIgnoreCase(""))
+				&& (page.getText2() == null || page.getText2().equalsIgnoreCase(""))) {
+			System.out.println("condition 3");
+			billPage = actual_bill_service.findBySingleText2(page, pageable);
 		}
+
 		page.setData(billPage.getContent());
 		page.setTotal(billPage.getTotalElements());
 		return page;
