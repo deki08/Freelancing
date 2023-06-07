@@ -159,7 +159,7 @@ let secondValue = '';
   };
 
   let loadData1 = () => {
-    setIsLoading(true);
+    // setIsLoading(true);
     http.post(`${BASE_URL}/api/v1/actual-bill/filter`, page).then(response => {
       setFilteredData(response.data.data);
       setPage(response.data);
@@ -445,9 +445,9 @@ let secondValue = '';
                                 <>
                                   <span className=''>BDT</span>
                                   <input
-                                    onInput={(e) => {
+                                    onBlur={(e) => {
                                       clearTimeout(record[column.data].timer)
-                                      const timer = setTimeout(() => getValues({ e, record, data: column.data }), 5000);
+                                      const timer = setTimeout(() => getValues({ e, record, data: column.data }));
 
                                     }}
                                     style={{ marginLeft: "4px" }}
@@ -457,9 +457,9 @@ let secondValue = '';
                               : (column.data === 'date' ?
                                 <input style={{ marginLeft: "4px" }}
                                   className='border-0 pl-1'
-                                  onInput={(e) => {
+                                  onBlur={(e) => {
                                     clearTimeout(record[column.data].timer)
-                                    const timer = setTimeout(() => getValues({ e, record, data: column.data }), 5000);
+                                    const timer = setTimeout(() => getValues({ e, record, data: column.data }));
 
                                   }}
                                   defaultValue={formatDateTime(record.date)}
@@ -477,11 +477,11 @@ let secondValue = '';
                                     // />
 
                                     <input
-                                      onInput={(e) => {
+                                    onBlur={(e) => {
                                         if (record[column.data] && record[column.data].timer) {
                                           clearTimeout(record[column.data].timer);
                                         }
-                                        const timer = setTimeout(() => getValues({ e, record, data: column.data }), 4000);
+                                        const timer = setTimeout(() => getValues({ e, record, data: column.data }));
                                       }}
                                       defaultValue={record[column.data]}
                                       className='border-0 pl-1'

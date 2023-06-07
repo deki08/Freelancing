@@ -295,7 +295,7 @@ function DataTable(props: any) {
                                     {columns.map((column: any, cellNumber: number) => (
                                         column["render"] ? <td className={column.class}>{column.render(record)}</td> :
                                             <td key={'rec-' + record.id + '-' + cellNumber} className={column.class}>
-
+                                                {console.log(record)}
                                                 {
                                                     column.data === 'index' ? index + 1 : (column.currency ? FuncUtil.toCurrency(record[column.data], "BDT") :
 
@@ -323,6 +323,14 @@ function DataTable(props: any) {
                                                             ) : column.data === 'createdByName' ?
                                                                 (<>
                                                                     {record.updateBy}
+
+
+                                                                </>) : column.data === 'regNo' ?
+                                                                (<>
+                                                                    {record.patientId}
+                                                                </>) : column.data === 'agent' ?
+                                                                (<>
+                                                                    {record.agencyName}
                                                                 </>) : record[column.data]
                                                         )
                                                     )
