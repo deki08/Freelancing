@@ -20,127 +20,127 @@ public class ReportedValue {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column
+	@Column(length=15)
 	private String earLeft;
-	@Column
+	@Column(length=15)
 	private String earRight;
-	@Column
+	@Column(length=15)
 	private String bloodPressure;
-	@Column
+	@Column(length=15)
 	private String heart;
-	@Column
+	@Column(length=15)
 	private String lungs;
-	@Column
+	@Column(length=15)
 	private String gastrointestinalAbdomen;
-	@Column
+	@Column(length=15)
 	private String height;
-	@Column
+	@Column(length=15)
 	private String weight;
-	@Column
+	@Column(length=15)
 	private String hernia;
-	@Column
+	@Column(length=15)
 	private String varicoseVeins;
-	@Column
+	@Column(length=15)
 	private String deformities;
-	@Column
+	@Column(length=15)
 	private String skin;
-	@Column
+	@Column(length=15)
 	private String cns;
-	@Column
+	@Column(length=15)
 	private String extremities;
-	@Column
+	@Column(length=15)
 	private String psychiatry;
-	@Column
+	@Column(length=15)
 	private String symptoms;
-	@Column
+	@Column(length=15)
 	private String chestXray;
-	@Column
+	@Column(length=15)
 	private String ecg;
-	@Column
+	@Column(length=15)
 	private String hiv;
-	@Column
+	@Column(length=15)
 	private String hbsag;
-	@Column
+	@Column(length=15)
 	private String thc;
-	@Column
+	@Column(length=15)
 	private String mop;
-	@Column
+	@Column(length=15)
 	private String amp;
-	@Column
+	@Column(length=15)
 	private String sugar;
-	@Column
+	@Column(length=15)
 	private String albumin;
-	@Column
+	@Column(length=15)
 	private String urineBilharziasis;
-	@Column
+	@Column(length=15)
 	private String pregnancy;
-	@Column
+	@Column(length=15)
 	private String others;
-	@Column
+	@Column(length=15)
 	private String helminths;
-	@Column
+	@Column(length=15)
 	private String giardia;
-	@Column
+	@Column(length=15)
 	private String bilharziasis;
-	@Column
+	@Column(length=15)
 	private String culture;
-	@Column
+	@Column(length=15)
 	private String stoolBilharziasis;
-	@Column
+	@Column(length=15)
 	private String malaria;
-	@Column
+	@Column(length=15)
 	private String microfilaria;
-	@Column
+	@Column(length=15)
 	private String bloodGroup;
-	@Column
+	@Column(length=15)
 	private String haemoglobin;
-	@Column
+	@Column(length=15)
 	private String esr;
-	@Column
+	@Column(length=15)
 	private String rbs;
-	@Column
+	@Column(length=15)
 	private String creatinine;
-	@Column
+	@Column(length=15)
 	private String tbil;
-	@Column
+	@Column(length=15)
 	private String sgot;
-	@Column
+	@Column(length=15)
 	private String sgpt;
-	@Column
+	@Column(length=15)
 	private String alp;
-	@Column
+	@Column(length=15)
 	private String urea;
-	@Column
+	@Column(length=15)
 	private String antiHcv;
-	@Column
+	@Column(length=15)
 	private String tpha;
-	@Column
+	@Column(length=15)
 	private String vdrl;
-	@Column
+	@Column(length=15)
 	private String status;
-	@Column
+	@Column(length=15)
 	private String remark;
-	@Column
+	@Column(length=15)
 	private Date expireDate;
-	@Column
+	@Column(length=15)
 	private String pulse;
-	@Column
+	@Column(length=15)
 	private String distantAidedRight;
-	@Column
+	@Column(length=15)
 	private String distantAidedLeft;
-	@Column
+	@Column(length=15)
 	private String distantUnaidedRight;
-	@Column
+	@Column(length=15)
 	private String distantUnaidedLeft;
-	@Column
+	@Column(length=15)
 	private String nearAidedRight;
-	@Column
+	@Column(length=15)
 	private String nearAidedLeft;
-	@Column
+	@Column(length=15)
 	private String nearUnaidedRight;
-	@Column
+	@Column(length=15)
 	private String nearUnaidedLeft;
-	@Column
+	@Column(length=15)
 	private String clearVision;
 
 }

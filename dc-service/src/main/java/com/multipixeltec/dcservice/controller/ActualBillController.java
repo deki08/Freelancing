@@ -54,7 +54,7 @@ public class ActualBillController {
 		Sort sort = SortColumn.bill(page.getColumn(), page.getSort());
 		Pageable pageable = PageRequest.of(page.getPageNumber(), page.getPageSize(), sort);
 		Page<Actual_Bill> billPage = null;
-		if (page.getText() == null || page.getText().isEmpty()) {
+		if (page.getText() != null || !page.getText().isEmpty()) {
 			billPage = actual_bill_service.findByDoubleText(page, pageable);
 		}
 		page.setData(billPage.getContent());
