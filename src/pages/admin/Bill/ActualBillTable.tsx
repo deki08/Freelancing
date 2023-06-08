@@ -115,7 +115,7 @@ function ActualBillTable(props: any) {
     CsvUtil.generateExcel('data', filteredData,"landscape");
   }
   const onPdf = () => {
-    PdfUtil.downloadPdf("data", "datatable-download",'landscape');
+    PdfUtil.downloadPdf("data", "datatable-download","act");
   }
 
   const handlePrint = useReactToPrint({
