@@ -89,7 +89,7 @@ public class BillPayment extends Auditable<User>{
     public String getAgencyName() {
         return getBill().getAgentOrAgencyName();
     }
-    public Long getPatientId() {
-        return getBill().getPatientId();
+    public String getRegNo() {
+        return getBill().getRegNo();
     }
 }

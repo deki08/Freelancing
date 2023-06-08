@@ -207,9 +207,9 @@ public class PatientController {
 			actual_Bill.setRecieved(0.0);
 			actual_Bill.setNetAmount(savedRecord.getTestOrPackage().getPrice());
 			actual_Bill.setCommision(bill.getCommission());
-			actual_Bill.setPaid(bill.getPaid());
-			actual_Bill.setDue(bill.getDue());
-			actual_BillRepository.save(actual_Bill);
+			
+			
+			
 
 			if (patient.getPayNow()) {
 				Optional<Account> accountOptional = accountService.findAll().stream().findFirst();
@@ -222,7 +222,8 @@ public class PatientController {
 				billPaymentService.save(payment);
 				savedBill.addPayment(payment.getAmount());
 				billService.save(savedBill);
-
+				actual_Bill.setPaid(savedRecord.getTestOrPackage().getPrice());
+				actual_Bill.setDue(0.0);
 //				actual_Bill.set
 
 				AccountTransaction transaction = new AccountTransaction();
@@ -232,7 +233,11 @@ public class PatientController {
 				transaction.setType(TransactionType.CREDIT);
 				transaction.setReferenceTo(ReferenceTo.BILL);
 				transactionService.save(transaction);
+			}else {
+				actual_Bill.setDue(bill.getDue());
+				actual_Bill.setPaid(bill.getPaid());
 			}
+			actual_BillRepository.save(actual_Bill);
 
 			if (commissionAmount > 0) {
 				Commission commission = new Commission();
