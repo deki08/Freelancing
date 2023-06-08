@@ -43,6 +43,14 @@ function MedicalExaminationContent(props: any) {
       setRefValue(response.data);
     })
   }, [])
+  const calculateAge = (dob: any) => {
+    const currentDate = moment();
+    const dobDate = moment(dob, 'DD-MM-YYYY');
+
+    const age = currentDate.diff(dobDate, 'years');
+
+    return age;
+  };
 
 
   return (
@@ -142,7 +150,7 @@ function MedicalExaminationContent(props: any) {
                   <td colSpan={1} w-25 className="font-size black">REGISTRATION NO.</td>
                   <td colSpan={1} w-25 className="font-size black">{patient.regNo}</td>
                   <td colSpan={1} w-25 className="font-size black">COUNTRY NAME</td>
-                  <td colSpan={1} w-25 className="font-size black">{patient.nationality}ASDADA</td>
+                  <td colSpan={1} w-25 className="font-size black">Bangladesh</td>
 
 
                 </tr>
@@ -158,7 +166,7 @@ function MedicalExaminationContent(props: any) {
                   <td className="font-size w-25 black">PASSPORT NO.</td>
                   <td className="font-size w-25 black">{patient?.passportNo}</td>
                   <td className="font-size w-25 black">DATE OF BIRTH</td>
-                  <td className="font-size w-25 black">{patient?.dateOfBirth}</td>
+                  <td className="font-size w-25 black">{moment(patient?.dateOfBirth).format('DD-MM-YYYY')}</td>
 
                 </tr>
                 <tr>
@@ -168,7 +176,7 @@ function MedicalExaminationContent(props: any) {
                   <td className='w-25'>
                     <tr className='w-100'>
                       <td className="font-size border-border-left-0 border-top-0 border-bottom-0 black" style={{ width: '100px' }}>AGE</td>
-                      <td className="font-size border-0 w-50 black"> </td>
+                      <td className="font-size border-0 w-50 black">{calculateAge(moment(patient?.dateOfBirth).format('DD-MM-YYYY'))} </td>
 
                     </tr>
                   </td>

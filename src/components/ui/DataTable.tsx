@@ -327,7 +327,7 @@ function DataTable(props: any) {
 
                                                                 </>) : column.data === 'regNo' ?
                                                                 (<>
-                                                                    {record.patientId}
+                                                                    {record.regNo}
                                                                 </>) : column.data === 'agent' ?
                                                                 (<>
                                                                     {record.agencyName}

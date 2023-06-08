@@ -144,7 +144,7 @@ function PatientReportContent(props: any) {
                 </tr>
                 <tr>
                   <td className="font-size black">NATIONALITY</td>
-                  <td className="font-size black">{patient.nationality}</td>
+                  <td className="font-size black">Bangladeshi</td>
                   <td className="font-size black">NAME OF AGENCY / SUB AGENT</td>
                   <td className="font-size black">{patient.agentOrAgencyName}</td>
                 </tr>

@@ -23,7 +23,6 @@ function PatientForm() {
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const [isScannerOpen, setIsScannerOpen] = useState(false);
     const [payNow, setPayNow] = useState(true);
-    console.log(localStorage.getItem("Name"));
     const [values, setValues] = useState({
         id: null,
         photo: "",

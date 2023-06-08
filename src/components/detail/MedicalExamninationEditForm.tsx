@@ -153,7 +153,7 @@ function MedicalExaminationEditing(props: any) {
 
 
   const onChange = (e: any) => {
-    setValues({ ...values,[e.target.name]: e.target.value });
+    setValues({ ...values, [e.target.name]: e.target.value });
     // console.log(values);
   };
 
@@ -205,6 +205,15 @@ function MedicalExaminationEditing(props: any) {
       setIsError(true);
       setIsSaved(false);
     })
+  };
+
+  const calculateAge = (dob: any) => {
+    const currentDate = moment();
+    const dobDate = moment(dob, 'DD-MM-YYYY');
+
+    const age = currentDate.diff(dobDate, 'years');
+
+    return age;
   };
 
   return (
@@ -273,7 +282,7 @@ function MedicalExaminationEditing(props: any) {
 
                     </td>
                     <td colSpan={1} w-10 className="font-size black">COUNTRY NAME</td>
-                    <td colSpan={1} w-15 className="font-size black">{patient.nationality}</td>
+                    <td colSpan={1} w-15 className="font-size black">Bangladesh</td>
 
 
 
@@ -293,7 +302,8 @@ function MedicalExaminationEditing(props: any) {
                     <td className="font-size w-25 black">PASSPORT NO.</td>
                     <td className="font-size w-25 black">{patient?.passportNo}     </td>
                     <td className="font-size w-25 black">DATE OF BIRTH</td>
-                    <td className="font-size w-25 black"><p>{patient.dateOfBirth}</p></td>
+                    <td className="font-size w-25 black"><p>{moment(patient?.dateOfBirth).format('DD-MM-YYYY')}
+                    </p></td>
 
                   </tr>
                   <tr>
@@ -303,7 +313,9 @@ function MedicalExaminationEditing(props: any) {
                     <td className='w-25'>
                       <tr className='w-100'>
                         <td className="font-size border-border-left-0 border-top-0 border-bottom-0 black" style={{ width: '100px' }}>AGE</td>
-                        <td className="font-size border-0 w-50 black">25</td>
+                        <td className="font-size border-0 w-50 black">
+                          {calculateAge(moment(patient?.dateOfBirth).format('DD-MM-YYYY'))}
+                        </td>
 
                       </tr>
                     </td>
