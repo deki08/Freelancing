@@ -229,10 +229,7 @@ td {
 }
 
 @media print {
-  @page {
-    size: A4;
-    margin: 0;
-  }
+  
 
   .printable {
     margin: 2px;

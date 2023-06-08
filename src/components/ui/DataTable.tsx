@@ -68,7 +68,7 @@ function DataTable(props: any) {
         CsvUtil.generateExcel('data', filteredData,'portrait');
     }
     const onPdf = () => {
-        PdfUtil.downloadPdf("data", "datatable-download",'portrait');
+        PdfUtil.downloadPdf("data", "datatable-download",'potrait');
     }
 
     const handlePrint = useReactToPrint({

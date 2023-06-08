@@ -120,13 +120,6 @@ function ActualBillTable(props: any) {
 
   const handlePrint = useReactToPrint({
     content: () => document.getElementById('datatable-print'),
-    pageStyle: `
-    @media print {
-      @page {
-        size: landscape;
-      }
-    }
-  `,
   });
 
   const reload = () => {
