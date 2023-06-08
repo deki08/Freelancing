@@ -112,14 +112,21 @@ function ActualBillTable(props: any) {
       delete record.modifiedDate;
       return record;
     })
-    CsvUtil.generateExcel('data', filteredData);
+    CsvUtil.generateExcel('data', filteredData,"landscape");
   }
   const onPdf = () => {
-    PdfUtil.downloadPdf("data", "datatable-download");
+    PdfUtil.downloadPdf("data", "datatable-download",'landscape');
   }
 
   const handlePrint = useReactToPrint({
     content: () => document.getElementById('datatable-print'),
+    pageStyle: `
+    @media print {
+      @page {
+        size: landscape;
+      }
+    }
+  `,
   });
 
   const reload = () => {

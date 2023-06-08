@@ -1,6 +1,6 @@
 import * as XLSX from 'xlsx';
-import {RowInfo, WorkSheet} from "xlsx";
-
+import { RowInfo, WorkSheet } from "xlsx";
+import moment from 'moment';
 const generateCsv = (filename: string, rows: object[], headers?: string[]): void => {
     if (!rows || !rows.length) {
         return;
@@ -21,7 +21,7 @@ const generateCsv = (filename: string, rows: object[], headers?: string[]): void
                 return cell;
             }).join(separator);
         }).join('\n').replace(/(^\[)|(\]$)/mg, '');
-    const blob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     // @ts-ignore
     if (window.navigator.msSaveBlob) { // In case of IE 10+
         // @ts-ignore
@@ -40,13 +40,25 @@ const generateCsv = (filename: string, rows: object[], headers?: string[]): void
         }
     }
 }
-const generateExcel = (filename: string, data: object[]): void => {
+const generateExcel = (filename: string, data: object[], orientation: string): void => {
     const worksheet = XLSX.utils.json_to_sheet(data);
     // worksheet.headerFooter.firstHeader = "Hello Exceljs";
+
+
+    if (orientation === 'landscape') {
+        worksheet['!margins'] = { left: 1, right: 1, top: 1.5, bottom: 1, header: 0.5, footer: 0.5 };
+        worksheet['!page'] = { orientation: 'landscape' };
+    } else if (orientation === 'portrait') {
+        worksheet['!margins'] = { left: 0.7, right: 0.7, top: 0.75, bottom: 0.75, header: 0.3, footer: 0.3 };
+        worksheet['!page'] = { orientation: 'portrait' };
+    }
+
+
+   
     const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
 
     const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    const blob = new Blob([excelBuffer], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+    const blob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
     // @ts-ignore
     if (window.navigator.msSaveBlob) { // In case of IE 10+
         // @ts-ignore

@@ -20,7 +20,7 @@ interface Page {
 }
 
 function DataTable(props: any) {
-    const { columns, endpoint, pagesSizes, actionButtons, dateFilter } = props;
+    const { columns, endpoint, pagesSizes, actionButtons, dateFilter,orientation } = props;
     const [filteredData, setFilteredData] = useState([]);
     let [page, setPage] = useState({
         pageNumber: 0,
@@ -65,10 +65,10 @@ function DataTable(props: any) {
             delete record.modifiedDate;
             return record;
         })
-        CsvUtil.generateExcel('data', filteredData);
+        CsvUtil.generateExcel('data', filteredData,'portrait');
     }
     const onPdf = () => {
-        PdfUtil.downloadPdf("data", "datatable-download");
+        PdfUtil.downloadPdf("data", "datatable-download",'portrait');
     }
 
     const handlePrint = useReactToPrint({
