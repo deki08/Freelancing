@@ -42,7 +42,7 @@ function ActualBillTable(props: any) {
     column: "id",
     sort: "DESC",
     text: "",
-    text2:"",
+    text2: "",
     from: moment(new Date()).format('YYYY-MM-DD'),
     to: moment(new Date()).format('YYYY-MM-DD'),
     total: 0
@@ -112,14 +112,17 @@ function ActualBillTable(props: any) {
       delete record.modifiedDate;
       return record;
     })
-    CsvUtil.generateExcel('data', filteredData,"landscape");
+    // CsvUtil.generateExcel('data', filteredData,"landscape");
+    FileUtil.generateExcel("data", filteredData, columns);
   }
   const onPdf = () => {
-    PdfUtil.downloadPdf("data", "datatable-download","act");
+    PdfUtil.downloadPdf("data", "datatable-download", "act", "");
   }
 
   const handlePrint = useReactToPrint({
     content: () => document.getElementById('datatable-print'),
+    pageStyle: '@page { size: landscape !important; }',
+    
   });
 
   const reload = () => {
@@ -136,7 +139,7 @@ function ActualBillTable(props: any) {
 
   let firstValue = '';
 
-let secondValue = '';
+  let secondValue = '';
   const first = (e: any) => {
     firstValue = e.target.value;
   };
@@ -149,7 +152,7 @@ let secondValue = '';
     if (firstValue === '' && secondValue === '') {
       console.log("This is Checking")
     } else {
-      console.log(firstValue + "   "+secondValue)
+      console.log(firstValue + "   " + secondValue)
       page.text2 = firstValue;
       page.text = secondValue;
       loadData1();
@@ -477,7 +480,7 @@ let secondValue = '';
                                     // />
 
                                     <input
-                                    onBlur={(e) => {
+                                      onBlur={(e) => {
                                         if (record[column.data] && record[column.data].timer) {
                                           clearTimeout(record[column.data].timer);
                                         }

@@ -20,7 +20,7 @@ interface Page {
 }
 
 function DataTable(props: any) {
-    const { columns, endpoint, pagesSizes, actionButtons, dateFilter,orientation } = props;
+    const { columns, endpoint, pagesSizes, actionButtons, dateFilter, orientation, font } = props;
     const [filteredData, setFilteredData] = useState([]);
     let [page, setPage] = useState({
         pageNumber: 0,
@@ -63,16 +63,54 @@ function DataTable(props: any) {
         filteredData.map((record: any) => {
             delete record.createdDate;
             delete record.modifiedDate;
+            delete record.issueDate;
+            delete record.expiredDate;
+            delete record.visaDate;
+            delete record.dateOfBirth;
+            delete record.visaNo;
+            delete record.travelingTo;
+            delete record.presentAddress;
+            delete record.permanentAddress;
+            delete record.group;
+            delete record.email;
+            delete record.gender;
+            delete record.deliveryDate;
+            delete record.mothersName;
+            delete record.fathersName;
+            delete record.photo;
+            delete record.maritalStatus;
+            delete record.religion;
+            delete record.nationality;
+            delete record.profession;
+            delete record.nidNumber;
+            delete record.specialNote;
+            delete record.photo;
+            delete record.qr;
+            delete record.reportUrl;
+            delete record.testOrPackageId;
+            delete record.agentOrAgencyId;
+            delete record.fingerPrint;
+            delete record.status;
+            delete record.report;
+            delete record.fingerId;
+
+
+
+
+
+
             return record;
         })
-        CsvUtil.generateExcel('data', filteredData,'portrait');
+        // CsvUtil.generateExcel('data', filteredData, columns);
+        FileUtil.generateExcel("data", filteredData, columns);
     }
     const onPdf = () => {
-        PdfUtil.downloadPdf("data", "datatable-download","pat");
+        PdfUtil.downloadPdf("data", "datatable-download", "pat", font);
     }
 
     const handlePrint = useReactToPrint({
         content: () => document.getElementById('datatable-print'),
+
     });
 
     const reload = () => {
@@ -326,12 +364,12 @@ function DataTable(props: any) {
 
 
                                                                 </>) : column.data === 'regNo' ?
-                                                                (<>
-                                                                    {record.regNo}
-                                                                </>) : column.data === 'agent' ?
-                                                                (<>
-                                                                    {record.agencyName}
-                                                                </>) : record[column.data]
+                                                                    (<>
+                                                                        {record.regNo}
+                                                                    </>) : column.data === 'agent' ?
+                                                                        (<>
+                                                                            {record.agencyName}
+                                                                        </>) : record[column.data]
                                                         )
                                                     )
                                                 }

@@ -55,12 +55,11 @@ const generateCsv = (filename: string, rows: object[], headers?: string[]): void
         }
     }
 }
+
 const generateExcel = (filename: string, data: object[], orientation: string): void => {
     const dataWithSrno = data.map((obj, index) => {
         const newObj: any = { ...obj };
         newObj[Object.keys(newObj)[0]] = index + 1;
-    
-        // Format date fields
         for (const key in newObj) {
           if (Object.prototype.hasOwnProperty.call(newObj, key)) {
             const value = newObj[key];

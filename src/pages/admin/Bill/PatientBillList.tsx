@@ -139,7 +139,10 @@ function PatientBills(props: any) {
                                                 dateFilter={true}
                                                 actionButtons={true}
                                                 pagesSizes={pageSizes}
-                                                searchPlaceholder={"Patient Name, Passport No, Agent Or Agency Name"} />
+                                                searchPlaceholder={"Patient Name, Passport No, Agent Or Agency Name"}
+                                                font={'4.5px'}
+                                                                                               
+                                                />
                                         </div>
                                     </div>
                                 </div>

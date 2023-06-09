@@ -133,7 +133,9 @@ function AgentBillList(props:any) {
                                                        endpoint={API_ROUTES.BILL_ADVANCE_SEARCH_AGENT} refresh={refresh}
                                                        dateFilter={true}
                                                        actionButtons={true}
-                                                       searchPlaceholder={"Patient Name, Passport No, Agent Name "}/>
+                                                       searchPlaceholder={"Patient Name, Passport No, Agent Name "}
+                                                       font={"5px"}
+                                                       />
                                         </div>
                                     </div>
                                 </div>

@@ -257,7 +257,10 @@ function PatientList(props: any) {
                     endpoint={API_ROUTES.PATIENT_ADVANCE_SEARCH} refresh={refresh}
                     dateFilter={true}
                     actionButtons={true}
-                    searchPlaceholder={"Search Package By TestName, Department, TestMethod, PatientID"} orientation={"portrait"} />
+                    searchPlaceholder={"Search Package By TestName, Department, TestMethod, PatientID"} 
+                    font={"6px"}
+                    
+                    />
                 </div>
               </div>
             </div>

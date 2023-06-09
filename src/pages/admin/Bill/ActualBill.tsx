@@ -34,7 +34,7 @@ function ActualBill(props: any) {
 
     const successHandler = (e: any) => {
         setAction('none');
-        doRefresh(1);
+        // doRefresh(1);
     }
 
     const columns: {}[] = [
